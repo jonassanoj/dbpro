@@ -13,17 +13,23 @@ as well as they should be usefull for the project documentation.
 
 HOW TU USE GIT
 
+copy a version of the server to your local machine
+> git clone git@github.com:jonassanoj/dbpro.git
+
 add file to version controlling
-> git add theFile
+> git add respectiveFile
 
 save changes local
-> git commit
+> git commit -m 'Here the commit message must be entered.'
 
-save changes global (on server)
+save changes global
 > git push
 
-receive latest global version (from server)
+receive latest global version
 > git pull
+
+see the status of all fileS in the current git folder in your repository
+> git status
 
 before the first commit, enter your email/name:
 > git config --global user.name yourName
