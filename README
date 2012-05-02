@@ -13,24 +13,31 @@ as well as they should be usefull for the project documentation.
 
 HOW TU USE GIT
 
-copy a version of the server to your local machine
+clone the repo from server to your local machine
 > git clone git@github.com:jonassanoj/dbpro.git
 
-add file to version controlling
+add a file to the git index (stage it)
 > git add respectiveFile
 
-save changes local
-> git commit -m 'Here the commit message must be entered.'
+put a file into the repo (now it's tracked)
+> git commit respectiveFile -m 'Here the commit message must be entered.'
 
-save changes global
+mark a file to be removed from repo (need to be commited!)
+> git rm respectiveFile 
+
+send changes to tracked remote branch
 > git push
 
-receive latest global version
+download new braches and data from remote repo
+> git fetch
+
+merge changes from tracked remote branch
 > git pull
 
 see the status of all fileS in the current git folder in your repository
 > git status
 
-before the first commit, enter your email/name:
+set your email/name (they are associated with your commits)
 > git config --global user.name yourName
 > git config --global user.email yourEmail
+
