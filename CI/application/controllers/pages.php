@@ -14,8 +14,6 @@
 			$this -> load -> view ('templates/footer', $data);
 		}
 		
-		public function hello_world(){
-		}
 		
 
 	}
