@@ -13,6 +13,9 @@
 			$this -> load -> view ('pages/'.$page, $data);
 			$this -> load -> view ('templates/footer', $data);
 		}
+		
+		public function index(){
+		}
 
 	}
 
