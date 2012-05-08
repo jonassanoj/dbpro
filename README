@@ -28,14 +28,17 @@ mark a file to be removed from repo (need to be commited!)
 send changes to tracked remote branch
 > git push
 
-download new braches and data from remote repo
-> git fetch
+forward local commits to the updated remote repo
+> git rebase
 
 merge changes from tracked remote branch
 > git pull
 
 see the status of all fileS in the current git folder in your repository
 > git status
+
+show all commits chronological
+> git log
 
 set your email/name (they are associated with your commits)
 > git config --global user.name yourName
