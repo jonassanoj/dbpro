@@ -14,19 +14,19 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= 'http://localhost/CI/';
 
 /*
 |--------------------------------------------------------------------------
-| Index File
 |--------------------------------------------------------------------------
 |
 | Typically this will be your index.php file, unless you've renamed it to
 | something else. If you are using mod_rewrite to remove the page set this
 | variable so that it is blank.
 |
+| default is 'index.php' but changed to empty string becaus of .htaccess rules
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -340,8 +340,9 @@ $config['time_reference'] = 'local';
 | can rewrite the tags on-the-fly, enabling you to utilize that syntax
 | in your view files.  Options are TRUE or FALSE (boolean)
 |
+| changed default to TRUE that alternate syntax is supported
 */
-$config['rewrite_short_tags'] = FALSE;
+$config['rewrite_short_tags'] = TRUE;
 
 
 /*
