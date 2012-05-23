@@ -39,6 +39,9 @@ see the status of all fileS in the current git folder in your repository
 show all commits chronological
 > git log
 
+show all available branchen
+> git branch
+
 adding a global ignore file to your repository (switch to the root of your git directory before!)
 > git config --global core.excludesfile .gitignore_global
 
