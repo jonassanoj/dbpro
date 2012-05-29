@@ -1,0 +1,95 @@
+#container
+{
+width: 900px;
+}
+
+#header
+{
+width: 1000px;
+height: 100px;
+position: relative;
+border-bottom: 2px solid #000000;
+}
+
+#header a {
+color: #ffffff;
+text-decoration: underline;
+font-weight: bold;
+font-family: Verdana;
+font-size: 16px;
+}
+
+#header a:visited {
+color: #000000;
+text-decoration: underline;
+font-weight: bold;
+}
+
+#header a:hover {
+color: #cc0000;
+text-decoration: none;
+font-weight: bold;
+}
+
+.HorizLinks {
+position: absolute; top: 77px; left: 170px;
+}
+
+.HorizLinks ul {
+margin: 0px;
+}
+
+.HorizLinks li {
+margin: 0px 8px 0px 0px;
+list-style-type: none;
+display: inline;
+}
+
+#header p {
+color: #000000;
+font-family: Arial;
+font-weight: bold;
+}
+#leftnav
+{
+float: left;
+width: 200px;
+height: 500px;
+border-right: 1px dashed #000000;
+}
+
+#rightnav
+{
+float: right;
+width: 140px;
+height: 500px;
+border-left: 1px dashed #000000;
+}
+
+#body
+{
+width: 900px;
+}
+
+#footer
+{
+width: 1000px;
+clear: both;
+background-color: #0000FF;
+height: 70px;
+text-align: center;
+}
+
+.myform{
+margin:0;
+width:100px;
+padding:0px;
+}
+fieldset {
+border: 1px solid #781351;
+width: 10em;
+}
+legen {
+color: #fff;
+
+}
