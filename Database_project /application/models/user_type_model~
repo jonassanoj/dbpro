@@ -1,0 +1,141 @@
+<?php
+class User_type_model extends CI_Model {
+	   
+   
+	 
+	    function __construct()
+    {
+        parent::__construct();
+    }
+ function table_exists($table_name = null)
+    {
+    	return $this->db->table_exists($table_name);
+    }
+	   /**
+* add_user_type method creates a record in the User table.
+*
+* Option: Values
+* --------------
+*userTypeID
+*userType 
+* @param array $options
+*/
+function add_user_type($options = array())
+{
+    // required values
+    if(!$this->_required(array('userType'), $options)) return false;
+
+       // qualification ( we are not allowing to insert data that it shouldn't be inserted )
+    $qualificationArray = array('userType' );
+    foreach($qualificationArray as $qualifier)
+    {
+        if(isset($options[$qualifier])) $this->db->set($qualifier, $options[$qualifier]);
+    }
+
+    
+    // Execute the query
+    $this->db->insert('userTypes');
+
+    // Return the ID of the inserted row, or false if the row could not be inserted
+    return $this->db->insert_id();
+}
+
+/**
+* update_user_type method alters a record in the usersType table.
+*
+* Option: Values
+* --------------
+*userTypeID
+*userType
+*
+* @param array $options
+* @return int affected_rows()
+*/
+function update_user_type($options = array())
+{
+    // required values
+    if(!$this->_required(array('userType'), $options)) return false;
+
+    // qualification (we're not allowing to update data that it shouldn't)
+    $qualificationArray = array('userType');
+    foreach($qualificationArray as $qualifier)
+    {
+        if(isset($options[$qualifier])) $this->db->set($qualifier, $options[$qualifier]);
+    }
+
+    $this->db->where('userTypeID', $options['userTypeID']);
+
+   
+    // Execute the query
+    $this->db->update('userTypes');
+
+    // Return the number of rows updated, or false if the row could not be inserted
+    return $this->db->affected_rows();
+}
+
+/**
+* get_user_type_data method returns an array of userType record objects
+*
+* Option: Values
+* --------------
+*userTypeID
+*userType
+* limit                limits the number of returned records
+* offset                how many records to bypass before returning a record (limit required)
+* sortBy                determines which column the sort takes place
+* sortDirection        (asc, desc) sort ascending or descending (sortBy required)
+*
+* Returns (array of objects)
+* --------------------------
+*fieldID
+*userType
+* @param array $options
+* @return array result()
+*/
+function get_user_type_data($options = array())
+{
+    // default values
+    $options = $this->_default(array('sortDirection' => 'asc'), $options);
+
+    // Add where clauses to query
+    $qualificationArray = array('userType');
+    foreach($qualificationArray as $qualifier)
+    {
+        if(isset($options[$qualifier])) $this->db->where($qualifier, $options[$qualifier]);
+    }
+
+    // If limit / offset are selected (usually for pagination) then we need to take them into account
+    if(isset($options['limit']) && isset($options['offset'])) $this->db->limit($options['limit'], $options['offset']);
+    else if(isset($options['limit'])) $this->db->limit($options['limit']);
+
+    // sort
+    if(isset($options['sortBy'])) $this->db->order_by($options['sortBy'], $options['sortDirection']);
+
+    $query = $this->db->get('userTypes');
+    if($query->num_rows() == 0) return false;
+
+    if(isset($options['userTypeID']) )
+    {
+        //  return a singular record
+        return $query->row(0);
+    }
+    else
+    {
+        // return any number of records  as an array of objects
+        return $query->result();
+    }
+}
+
+/**
+* delete_user_type method removes a record from the UserType table
+*
+* @param array $options
+*/
+function delete_user_type($options = array())
+{
+    // required values
+    if(!$this->_required(array('userTypeID'), $options)) return false;
+
+    $this->db->where('userTypeID', $options['userTypeID']);
+    $this->db->delete('userTypeID');
+}
