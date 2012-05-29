@@ -16,17 +16,18 @@
 </div>
 
 <div id="rightnav">
-<form class="myform" name:"form"><br />
+
+<form class="myform" name:"form">
 <fieldset>
-<legend>Login Form</legen>
-Name:<input type="text" name="name" id="name" /><br />
+<legend>Login Form</legend>
+<p><label for="Name">Name</label><input type="text" name="name" id="name" /></p>
 
-Password:<input type="password" name="password" id="password" /><br />
+<p><label for="Password">Password</label><input type="password" name="password" id="password" /><br /></p>
 
-<button type="submit">Sign-in</button>
-<div class="spacer"></div>
+<p class="submit"> <input type="submit" value="submit" /></p>
 </fieldset>
 </form>
+
 </div>
 </div>
 

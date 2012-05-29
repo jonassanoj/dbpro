@@ -54,7 +54,7 @@ font-weight: bold;
 {
 float: left;
 width: 200px;
-height: 500px;
+height: 550px;
 border-right: 1px dashed #000000;
 }
 
@@ -62,7 +62,7 @@ border-right: 1px dashed #000000;
 {
 float: right;
 width: 140px;
-height: 500px;
+height: 550px;
 border-left: 1px dashed #000000;
 }
 
@@ -75,8 +75,8 @@ width: 900px;
 {
 width: 1000px;
 clear: both;
-background-color: #0000FF;
-height: 70px;
+background-color: #000066;
+height: 50px;
 text-align: center;
 }
 
@@ -87,9 +87,20 @@ padding:0px;
 }
 fieldset {
 border: 1px solid #781351;
-width: 10em;
+width: 13em;
 }
-legen {
-color: #fff;
-
+label
+{
+width: 4em;
+float: left;
+marginright: 0.5em;
+diplay: block;
+}
+.submit input
+{
+margin-left: 4.5em;
+}
+legend {
+color: #000000;
+text-align: center;
 }
