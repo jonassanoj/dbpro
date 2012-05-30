@@ -35,7 +35,7 @@ class User_model extends CI_Model {
 *KEY userTypeID
 * 
 * @param array $options
-*data can be enicilized in the contrler as array of required prameter and pass in to the model 
+*data can be initialized in the contrler as array of required prameter and pass in to the model 
 
 * for example $data = array(
 		'firstName' => this->input->post('firstName'),
