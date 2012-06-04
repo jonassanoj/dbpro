@@ -32,7 +32,7 @@ font-weight: bold;
 }
 
 .HorizLinks {
-position: absolute; top: 77px; left: 170px;
+position: absolute; top: 77px; left: 220px;
 }
 
 .HorizLinks ul {
@@ -53,40 +53,61 @@ font-weight: bold;
 #leftnav
 {
 float: left;
-width: 200px;
+width: 250px;
 height: 550px;
 border-right: 1px dashed #000000;
 }
 
-#rightnav
-{
-float: right;
-width: 140px;
-height: 550px;
-border-left: 1px dashed #000000;
-}
 
 #body
 {
 width: 900px;
 }
 
+#body p
+{
+	font: Arial,serif;
+	font-size: 16px;
+}
+
+
+
 #footer
 {
+color: #ffffff;
 width: 1000px;
-clear: both;
-background-color: #000066;
+clear: left;
+background-color: #0000cc;
 height: 50px;
 text-align: center;
 }
 
+ 
+.searchbox {
+border:0px; 
+position:absolute;
+top:40px;
+right:50px;
+width:256px;
+height:28px;
+}
+ 
+.searchbox_submit {
+border:0px; 
+background-color:transparent;
+position:absolute;
+top:40px;
+right:50px;
+width:32px;
+height:28px;
+}
 .myform{
 margin:0;
 width:100px;
 padding:0px;
 }
 fieldset {
-border: 1px solid #781351;
+border: 1px solid #000000;
 width: 13em;
 }
 label
@@ -98,9 +119,11 @@ diplay: block;
 }
 .submit input
 {
-margin-left: 4.5em;
+margin-left: 1.5em;
 }
 legend {
-color: #000000;
+color: #ffffff;
+background-color: #0000cc;
 text-align: center;
+font-weight: bold;
 }

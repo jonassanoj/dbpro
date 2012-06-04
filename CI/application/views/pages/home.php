@@ -1,6 +1,10 @@
 <div id="container">
 
-<div id="header"><img src="picture/lastBanner.jpg">
+<div id="header"><img src="picture/newbanner.jpg">
+<form action="">
+<input type="text" class="searchbox" name="s" value="" />
+<input type="image" src="/picture/search.jpg" class="searchbox_submit" value="" />
+</form>
 <div class="HorizLinks">
 <ul>
 <li><a href="homel.php">Home</a></li>
@@ -11,25 +15,33 @@
 </div>
 </div>
 
-<div id="leftnav"> top questions go here!
-
-</div>
-
-<div id="rightnav">
-
-<form class="myform" name:"form">
+<div id="leftnav">
+<form class="myform" name:"sign in">
 <fieldset>
-<legend>Login Form</legend>
-<p><label for="Name">Name</label><input type="text" name="name" id="name" /></p>
+<legend>Login to Goftogo!</legend>
+<p><label for="Name">UserName</label><input type="text" name="name" id="name" /></p>
 
 <p><label for="Password">Password</label><input type="password" name="password" id="password" /><br /></p>
 
-<p class="submit"> <input type="submit" value="submit" /></p>
+<p class="submit"> <input type="submit" value="Login" /></p>
+<a href="...">Forgot your password?</a>
+<br><br>
+
+<hr class="hr"></hr>
+
+<br>
+<p>Don't have an account?</p>
+<p class="submit"><input type="submit" value="Create New Account"></P
+
 </fieldset>
 </form>
 
 </div>
+
 </div>
 
-<div id="body">here is the main content!</div>
+<div id="body">
+<p>Here is for the main content!</p>
+
+</div>
 
