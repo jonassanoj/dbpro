@@ -135,7 +135,7 @@ function get_user_details($userID)
    
   
    	 $this->db->select('*');
-	 $this->db->where('userID',$userID)
+	 $this->db->where('userID',$userID);
     	 $query = $this->db->get('User');
 	
 
