@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "pages/view";
+$route['default_controller'] = 'maincontroller/index';
 // $route['(:any)'] = 'pages/view/$1';
 
 

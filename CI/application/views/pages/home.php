@@ -1,10 +1,11 @@
 <div id="container">
 
-<div id="header"><img src="pictures/newbanner.jpg">
+<div id="header"><img src=<?php echo base_url("pictures/newbanner.jpg") ?>>
 <form action="">
 <input type="text" class="searchbox" name="s" value="" />
-<input type="image" src="/pictures/search.jpg" class="searchbox_submit" value="" />
+<input type="image" src=<?php echo base_url("pictures/search.jpg")?> class="searchbox_submit" value="" />
 </form>
+
 <div class="HorizLinks">
 <ul>
 <li><a href="home.php">Home</a></li>
