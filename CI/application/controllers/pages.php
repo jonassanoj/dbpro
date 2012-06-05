@@ -9,7 +9,6 @@
 				show_404();
 			}
 			$data['title'] = ucfirst($page);
-			$this->load->view(base_url());
 			$this -> load -> view ('templates/header', $data);
 			$this -> load -> view ('pages/'.$page, $data);
 			$this -> load -> view ('templates/footer', $data);
