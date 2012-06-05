@@ -95,17 +95,17 @@ function update_question($options = array())
 *SELECT * FROM table ORDER BY date DESC LIMIT 10;
 * @return array result() 
 */
-function get_ten_recent_question_data()
+function get_ten_recent_question($limit,$offset)
 	{	
-	$this->db->select(' body,postedDate');
-    	$this->db->order_by('postedDate', 'desc');
-	$this->db->limit(10);
-	$query = $this->db->get('Question');
+	//$this->db->select(' body,postedDate');
+    //$this->db->order_by('postedDate', 'desc');
+	//$this->db->limit(10);
+	$query = $this->db->get('Question',$limit, $offset);
 	
 
    
         //  it will return  array of objects from question type 
-        return $query->result();
+        return $query->result_array();
     
 	}
 /**

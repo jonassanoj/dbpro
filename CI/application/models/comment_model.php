@@ -64,15 +64,15 @@ function give_comment($data)
 * @param array $options
 * @return array result()
 */
-function get_comment_data()
+function get_comment_data($offset,$limit,$aid)
 	{
      
-    $query = $this->db->get('Comment');
+    $query = $this->db->get_where('Comment', array('answerID'=>$aid), $limit, $offset);
     if($query->num_rows() == 0) return false;
 
    
         //  it will return  array of objects from answer type 
-        return $query->result();
+        return $query->result_array();
     
 	}
 

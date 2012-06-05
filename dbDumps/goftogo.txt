@@ -97,7 +97,6 @@ CREATE TABLE IF NOT EXISTS `Question` (
   `commentID` int(11) NOT NULL,
   PRIMARY KEY (`questionID`),
   KEY `Question_userID_FK` (`userID`),
-  KEY `Question_CommentID_FK` (`commentID`),
   KEY `Question_fieldID_FK` (`fieldID`),
   KEY `Question_catID_FK` (`catID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -165,7 +164,6 @@ ALTER TABLE `Comment`
 --
 ALTER TABLE `Question`
   ADD CONSTRAINT `Question_catID_FK` FOREIGN KEY (`catID`) REFERENCES `Catagory` (`catID`),
-  ADD CONSTRAINT `Question_CommentID_FK` FOREIGN KEY (`commentID`) REFERENCES `Comment` (`commentID`),
   ADD CONSTRAINT `Question_fieldID_FK` FOREIGN KEY (`fieldID`) REFERENCES `Field` (`fieldID`),
   ADD CONSTRAINT `Question_userID_FK` FOREIGN KEY (`userID`) REFERENCES `User` (`userID`);
 
