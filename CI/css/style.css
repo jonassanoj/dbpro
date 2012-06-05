@@ -1,127 +1,106 @@
-#container
-{
-width: 900px;
+#container {
+	width: 900px;
 }
-
-#header
-{
-width: 1000px;
-height: 100px;
-position: relative;
-border-bottom: 2px solid #000000;
+#header {
+	width: 1000px;
+	height: 100px;
+	position: relative;
+	border-bottom: 2px solid #000000;
 }
-
 #header a {
-color: #ffffff;
-text-decoration: underline;
-font-weight: bold;
-font-family: Verdana;
-font-size: 16px;
+	color: #ffffff;
+	text-decoration: underline;
+	font-weight: bold;
+	font-family: Verdana;
+	font-size: 16px;
 }
-
 #header a:visited {
-color: #000000;
-text-decoration: underline;
-font-weight: bold;
+	color: #000000;
+	text-decoration: underline;
+	font-weight: bold;
 }
-
 #header a:hover {
-color: #cc0000;
-text-decoration: none;
-font-weight: bold;
+	color: #cc0000;
+	text-decoration: none;
+	font-weight: bold;
 }
-
 .HorizLinks {
-position: absolute; top: 77px; left: 220px;
+	position: absolute;
+	top: 77px;
+	left: 220px;
 }
-
 .HorizLinks ul {
-margin: 0px;
+	margin: 0px;
 }
-
 .HorizLinks li {
-margin: 0px 8px 0px 0px;
-list-style-type: none;
-display: inline;
+	margin: 0px 8px 0px 0px;
+	list-style-type: none;
+	display: inline;
 }
-
 #header p {
-color: #000000;
-font-family: Arial;
-font-weight: bold;
+	color: #000000;
+	font-family: Arial;
+	font-weight: bold;
 }
-#leftnav
-{
-float: left;
-width: 250px;
-height: 550px;
-border-right: 1px dashed #000000;
+#leftnav {
+	float: left;
+	width: 250px;
+	height: 550px;
+	border-right: 1px dashed #000000;
 }
-
-
-#body
-{
-width: 900px;
+#body {
+	width: 900px;
 }
-
-#body p
-{
- font: Arial,serif;
- font-size: 16px;
+#body p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
 }
-
-#footer
-{
-color: #ffffff;
-width: 1000px;
-clear: left;
-background-color: #0000cc;
-height: 50px;
-text-align: center;
+#footer {
+	color: #ffffff;
+	width: 1000px;
+	clear: left;
+	background-color: #0000cc;
+	height: 50px;
+	text-align: center;
 }
-
- 
 .searchbox {
-border:0px; 
-position:absolute;
-top:40px;
-right:50px;
-width:256px;
-height:28px;
+	border: 0px;
+	position: absolute;
+	top: 40px;
+	right: 50px;
+	width: 256px;
+	height: 28px;
 }
- 
 .searchbox_submit {
-border:0px; 
-background-color:transparent;
-position:absolute;
-top:40px;
-right:50px;
-width:32px;
-height:28px;
+	border: 0px;
+	background-color: transparent;
+	position: absolute;
+	top: 40px;
+	right: 50px;
+	width: 32px;
+	height: 28px;
 }
-.myform{
-margin:0;
-width:100px;
-padding:0px;
+.myform {
+	margin: 0;
+	width: 100px;
+	padding: 0px;
 }
 fieldset {
-border: 1px solid #000000;
-width: 13em;
+	border: 1px solid #000000;
+	width: 13em;
 }
-label
-{
-width: 4em;
-float: left;
-marginright: 0.5em;
-diplay: block;
+label {
+	width: 4em;
+	float: left;
+	margin-right: 0.5em;
+	display: block;
 }
-.submit input
-{
-margin-left: 1.5em;
+.submit input {
+	margin-left: 1.5em;
 }
 legend {
-color: #ffffff;
-background-color: #0000cc;
-text-align: center;
-font-weight: bold;
+	color: #ffffff;
+	background-color: #0000cc;
+	text-align: center;
+	font-weight: bold;
 }
