@@ -1,9 +1,9 @@
 <div id="container">
 
-<div id="header"><img src="picture/newbanner.jpg">
+<div id="header"><img src="pictures/newbanner.jpg">
 <form action="">
 <input type="text" class="searchbox" name="s" value="" />
-<input type="image" src="/picture/search.jpg" class="searchbox_submit" value="" />
+<input type="image" src="/pictures/search.jpg" class="searchbox_submit" value="" />
 </form>
 <div class="HorizLinks">
 <ul>
