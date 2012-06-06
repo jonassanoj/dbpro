@@ -15,6 +15,10 @@ HOW TU USE GIT
 clone the repo from server to your local machine
 > git clone git@github.com:jonassanoj/dbpro.git
 
+exclude local config files from versioning
+> git update-index --assume-unchanged database.php
+> git update-index --assume-unchanged config.php
+
 add a file to the git index (stage it)
 > git add respectiveFile
 
