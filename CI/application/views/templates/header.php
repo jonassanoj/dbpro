@@ -10,8 +10,8 @@
 <div id="container">
 
 <div id="header"><img src="<?php echo base_url('pictures/newbanner.jpg'); ?>">
-<form action="">
-<input type="text" class="searchbox" name="s" value="" />
+<form form method="post" accept-charset="utf-8" action="http:/index.php/view/search">
+<input type="text" class="searchbox" name="s"/>
 <input type="image" src="<?php echo base_url('pictures/search.jpg'); ?>" class="searchbox_submit" value="" />
 </form>
 <div class="HorizLinks">

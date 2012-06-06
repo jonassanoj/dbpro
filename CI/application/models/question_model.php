@@ -108,19 +108,21 @@ function get_ten_recent_question($limit,$offset)
         return $query->result_array();
     
 	}
-/**
-*method search_question will return question near to search term 
+
+/**method search_question will return question near to search term 
 * --------------------------
 *SELECT * FROM table ORDER BY date DESC LIMIT 10;
 * @return array result() 
 * @parameter searchTerm
-*/
-function search_question($searchTerm)
+ * */
+
+function search_question()
 	{
+	$term = $this->input->post('s');
 	$this->db->select(' body');
-	$this->db->like('body', $searchTerm);
+	$this->db->like('body', $term);
 	$query = $this->db->get('Question');
-	return $query->result();
+	return $query->result_array();
 
 	}
 

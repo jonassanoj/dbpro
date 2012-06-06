@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = 'maincontroller/index';
+$route['default_controller'] = 'view/recentQuestions';
 // $route['(:any)'] = 'pages/view/$1';
 
 
