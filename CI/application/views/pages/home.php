@@ -1,20 +1,3 @@
-<div id="container">
-
-<div id="header"><img src=<?php echo base_url("pictures/newbanner.jpg") ?>>
-<form action="">
-<input type="text" class="searchbox" name="s" value="" />
-<input type="image" src=<?php echo base_url("pictures/search.jpg")?> class="searchbox_submit" value="" />
-</form>
-
-<div class="HorizLinks">
-<ul>
-<li><a href="home.php">Home</a></li>
-<li><a href="news.php">News</a></li>
-<li><a href="about.php">About Us</a></li>
-<li><a href="contact.php">Contact Us</a></li>
-</ul>
-</div>
-</div>
 
 <div id="leftnav">
 <form class="myform" name:"sign in">

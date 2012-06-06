@@ -7,6 +7,22 @@
 
 </head>
 <body>
+<div id="container">
+
+<div id="header"><img src="<?php echo base_url('pictures/newbanner.jpg'); ?>">
+<form action="">
+<input type="text" class="searchbox" name="s" value="" />
+<input type="image" src="<?php echo base_url('pictures/search.jpg'); ?>" class="searchbox_submit" value="" />
+</form>
+<div class="HorizLinks">
+<ul>
+<li><a href="<?php echo base_url('index.php/pages/view/home'); ?>">Home</a></li>
+<li><a href="<?php echo base_url('index.php/pages/view/news'); ?>">News</a></li>
+<li><a href="<?php echo base_url('index.php/pages/view/about'); ?>">About Us</a></li>
+<li><a href="<?php echo base_url('index.php/pages/view/contact'); ?>">Contact Us</a></li>
+</ul>
+</div>
+</div>
 
 
 
