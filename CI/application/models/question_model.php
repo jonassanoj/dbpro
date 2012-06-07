@@ -35,20 +35,20 @@ class Question_model extends CI_Model {
 	}
 
 	/**
-	* update_answer method alters a record in the Question table.
+	* update_question method alters a record in the Question table.
 
-	* @param array $options
+	* @param $body is the text oft the question And $questionID
 	* @return int affected_rows()
 	*/
-	public function update_question($user_data, $questionID) {
-			$query = $this->db->update_string("Question", $user_data, $questionID);
+	public function update_question($body, $questionID) {
+			$query = $this->db->update_string("Question", $body, $questionID);
 			$this->db->query($query);
 		
 	}
 
 	/**
-	*get_ten_recent_question will return 10 recent questions
-	*SELECT * FROM table ORDER BY date DESC LIMIT 10;
+	*get_ten_recent_question will return $limit recent questions
+	*SELECT * FROM table ORDER BY date DESC LIMIT $limit;
 	* @return array result() 
 	*/
 	function get_ten_recent_question($limit){	
