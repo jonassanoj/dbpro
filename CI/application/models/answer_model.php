@@ -1,81 +1,59 @@
 <?php
 class Answer_model extends CI_Model {
-	    function __construct(){
-            parent::__construct();
+	    
+	 
+	function __construct(){
+          parent::__construct();
     	}
-        function table_exists($table_name = null){
-    	   return $this->db->table_exists($table_name);
-    	}
-	   /**
-* give_answer method creates a record in the Answer table.
-*
-* Option: Values
-* --------------
-*answerID
-*answeredDate
-*rank
-*body
-*KEY questionID 
-*KEY userID
-* 
-* @param data can be as array from cantroller
-
-*/
-    function give_answer($data){
-        // Execute the query
-        $this->db->insert('Answer', $data);
-        // Return the ID of the inserted row, or false if the row could not be inserted
-        return $this->db->insert_id();
+ 	
+	// This method will insert an answer to specified quesitonID 
+	function give_answer($questionID,$bodyText){
+	    $this->db->query('insert into Answer(questionID,body) values ('.$questionID.','.$bodyText.')');
+	    return $this->db->insert_id();
 	}
 
-/**
-* update_answer method alters a record in the users table.
-*
-* Option: Values
-* --------------
-*answerID
-*answeredDate
-*rank
-*body
-*KEY questionID 
-*KEY userID
-*
-* @param array $options
-* @return int affected_rows()
-*/
-    function update_answer($options = array())
-	{
-        // required values
-        if(!$this->_required(array('body'), $options)) return false;
-        // qualification (we're not allowing to update data that it shouldn't)
-        $qualificationArray = array('answerDate','rank','body','questionID','userID');
-        foreach($qualificationArray as $qualifier){
-            if(isset($options[$qualifier])) $this->db->set($qualifier, $options[$qualifier]);
-    	}
-        $this->db->where('answerID', $options['answerID']);
-    // Execute the query
-    $this->db->update('Answer');
-    // Return the number of rows updated, or false if the row could not be inserted
-    return $this->db->affected_rows();
+	// This method will returns answers to the specified quesitonID
+	public function get_answers($questionID){
+		$this->db->select('body');
+		$this->db->where('questionID', $questionID); 
+		$query = $this->db->get('Answer');
+		return $query->result();
 	}
-/**
-* get_user_data method returns an array of qualified Answer record objects
-* @return array result()
-*/
-function get_answer($offset,$limit,$qid){
-   	    $query = $this->db->get_where('Answer',array('questionID'=>$qid),$limit,$offset);
-        return $query->result_array();
+	
+	//This method will return the rank of specified answerID
+	public function get_rank($answerID){
+		$this->db->select('rank');
+		$this->db->where('answerID',$answerID);
+		$query=$this->db->get('Answer');
+		return $query->resutl();
+	}
+	
+	// This method will add one to the current rank of the specified answerID
+	public function add_rank($answerID){
+		$currentRank=get_rank($answerID);
+		$this->db->query('update Answer set rank='.($currentRank+1).' where answerID='.$answerID);
+		
 	}
 
-/**
-* delete_answer method removes a record from the answer table
-*
-* 
-*/
-function delete_answer($answerID)
-	{
+
+	/**
+	* update_answer method alters a record in the users table.
+	* @param array $options
+	* @return int affected_rows()
+	*/
+	function update_answer($body,$answerID){
+	    $query = $this->db->update_string("Answer", $body, $answerID);
+	    $this->db->query($query);
+	 }
+
     
-    $this->db->where('answerID', $answerID);
-    $this->db->delete('answers');
-	}
+	
+	/**
+	* delete_answer method removes a record from the answer table
+	*/
+	function delete_answer($answerID){
+	    
+	    $this->db->where('answerID', $answerID);
+	    $this->db->delete('Answer');
+		}
 }// end of class 

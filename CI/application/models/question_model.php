@@ -173,6 +173,25 @@ function delete_own_question($questionID,$userID){
 
 	}
 		
+		
+		public function createQuestion()
+
+		{
+		$this->load->helper('url');
+	
+		$slug = url_title($this->input->post('title'), 'dash', TRUE);
+	
+		$data = array(
+		'name' => $this->input->post('title'),
+		'body' => $this->input->post('text')
+		);
+	
+	
+		return $this->db->insert('Question', $data);
+
+		}
+		
+		
 	
 	
 }// end of file

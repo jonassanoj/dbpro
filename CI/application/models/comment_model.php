@@ -3,89 +3,59 @@ class Comment_model extends CI_Model {
 	   
    
 	 
-	    function __construct()
-   	 {
-        parent::__construct();
+	function __construct() {
+             parent::__construct();
    	 }
- function table_exists($table_name = null)
-    	{
-    	return $this->db->table_exists($table_name);
-    	}
+ 
 	   /**
-* give_comment method creates a record in the Comment table.
-*
-* Option: Values
-* --------------
-*commentID
-*date
-*commentBody
-*KEY answerID 
-*KEY userID
-* 
-* @param array $options
-*/
-function give_comment($data)
-	{
-    
-    
+	* give_comment_question method creates a record in the Comment table for a question with $questionID.
 
-   
-    // Execute the query
-    $this->db->insert('Comment',$data);
-
-    // Return the ID of the inserted row, or false if the row could not be inserted
-    return $this->db->insert_id();
+	* @param  $questionID ,$body of the comment 
+	*/
+	function give_comment_question($questionID,$body){
+		$this->db->query('insert into Comment(questionID,body) values ('.$questionID.','.$body.')');
+		return $this->db->insert_id();
+		   
 	}
 
+	/** give_comment_answer method creates a record in the Comment table for an answer with $answerID.
 
-/**
-* get_comment_data method returns an array of qualified user record objects
-*
-* Option: Values
-* --------------
-*commentID
-*date
-*commentBody
-*KEY answerID 
-*KEY userID
-* limit                limits the number of returned records
-* offset                how many records to bypass before returning a record (limit required)
-* sortBy                determines which column the sort takes place
-* sortDirection        (asc, desc) sort ascending or descending (sortBy required)
-*
-* Returns (array of objects)
-* --------------------------
-*commentID
-*date
-*commentBody
-*KEY answerID 
-*KEY userID
-*
-* @param array $options
-* @return array result()
-*/
-function get_comment_data($offset,$limit,$aid)
-	{
-     
-    $query = $this->db->get_where('Comment', array('answerID'=>$aid), $limit, $offset);
-    if($query->num_rows() == 0) return false;
-
-   
-        //  it will return  array of objects from answer type 
-        return $query->result_array();
-    
+	* @param  $questionID ,$body of the comment 
+	*/
+	function give_comment_answer($answerID,$body){
+	   
+		$this->db->query('insert into Comment(answerID,body) values ('.$answerID.','.$body.')');
+		return $this->db->insert_id();
+	   
+	}
+	// this method will return all comment related to an question 
+	// @ param $offset is for pagination and $limit is for number of records in the page to be disply
+	function get_comment_question($offset,$limit,$questionID){
+	     
+		$query = $this->db->get_where('Comment', array('questionID'=>$questionID), $limit, $offset);
+		if($query->num_rows() == 0) return false;
+		return $query->result_array();
+		    
+	}
+	// this method will return all comment related to an answer 
+	// @ param $offset is for pagination and $limit is for number of records in the page to be disply
+	function get_comment_answer($offset,$limit,$answerid){
+	     
+		$query = $this->db->get_where('Comment', array('answerID'=>$answerID), $limit, $offset);
+		if($query->num_rows() == 0) return false;
+		return $query->result_array();
+	    
 	}
 
-/**
-* delete_answer method removes a record from the answer table
-*
-* @param array $options
-*/
-function delete_answer($commentID)
-	{
-	        
+	/**
+	* delete_comment method removes a record from the answer table
+	* @param  $commentID
+	*/
+	function delete_comment($commentID)
+		{
+			
 
-    $this->db->where('commentID', $commentID);
-    $this->db->delete('Comment');
-	}
+	    $this->db->where('commentID', $commentID);
+	    $this->db->delete('Comment');
+		}
 } //end of file
