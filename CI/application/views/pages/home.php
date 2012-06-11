@@ -25,7 +25,7 @@
 </div>
 
 <div id="body">
-<p>Here is for the main content!</p>
+<p></p>
 
 </div>
 

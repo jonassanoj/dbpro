@@ -6,10 +6,16 @@
 				$this->load->library('pagination');
 				$this->load->model('question_model');
 				$this->load->helper('form');
+				$this->load->library('session');
+				$this->load->library('form_validation');
 		}
 				
 		public function recentQuestions(){
-		   $config['base_url']=base_url('index.php/view/recentQuestions');
+				if($this->session->userdata('login')){
+					echo "show user questions.";
+				}
+				else{
+		   $config['base_url']=base_url	('index.php/view/recentQuestions');
             $limit = $config['per_page']=5;
             $config['total_rows']=$this->db->get('Question')->num_rows();
             $this->pagination->initialize($config);
@@ -20,6 +26,7 @@
             $this->load -> view ('pages/home', $data );
             $this->load -> view ('pagination/paginate_question', $data );
             $this->load -> view ('templates/footer');
+				}
 		}
 		
 		public function viewAnswer($qid){
@@ -59,12 +66,40 @@
 		
 		//$dd = $this->input->post('s');
 		$data['ques'] = $this->question_model->search_question();
+		if(count($data)==0)
+			exit;
+		
 		$this->load->view('question_view', $data);
 		}
 		
-		public  function createQuestion($value='')
+		public  function createQuestion()
 		{
 			
+			//$this->load->helper('form');
+			//$this->load->library('form_validation');
+	
+			$data['title'] = 'Add a new Question';
+			$this -> load -> view ('templates/header', $data);
+			 $this -> load -> view ('templates/footer', $data);
+			//$this->form_validation->set_rules('questionID', 'questionID', 'required');
+			$this->form_validation->set_rules('catid', 'catID', 'required');
+			//$this->form_validation->set_rules('userID', 'UserID', 'required');
+			$this->form_validation->set_rules('title', 'name', 'required');
+			$this->form_validation->set_rules('body', 'body', 'required');
+			//$this->form_validation->set_rules('postedDate', 'date', 'required');
+	
+			if ($this->form_validation->run() === FALSE)
+			{
+					
+				$this->load->view('pages/addquestion');
+				
+		
+			}
+			else
+			{
+				$this->question_model->addQuestion();
+				$this->load->view('pages/success');
+			}
 		}
 			
 			

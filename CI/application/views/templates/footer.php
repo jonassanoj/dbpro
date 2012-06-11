@@ -1,5 +1,5 @@
 
-<div id="footer"><p> Copy Right 2012 </p></div>
+<div id="footer"><p> CopyRight-2012 </p></div>
 
 </div>
 </body>

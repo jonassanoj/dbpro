@@ -1,8 +1,8 @@
 <?php
 class Question_model extends CI_Model {
-	   
+
    
-	 
+
 	    function __construct()
    	 {
         parent::__construct();
@@ -101,7 +101,7 @@ function get_ten_recent_question($limit,$offset)
     //$this->db->order_by('postedDate', 'desc');
 	//$this->db->limit(10);
 	$query = $this->db->get('Question',$limit, $offset);
-	
+
 
    
         //  it will return  array of objects from question type 
@@ -172,26 +172,28 @@ function delete_own_question($questionID,$userID){
 		}
 
 	}
-		
-		
-		public function createQuestion()
+
+
+		public function addQuestion()
 
 		{
 		$this->load->helper('url');
-	
-		$slug = url_title($this->input->post('title'), 'dash', TRUE);
-	
+
+		//$slug = url_title($this->input->post('title'), 'dash', TRUE);
+
 		$data = array(
-		'name' => $this->input->post('title'),
-		'body' => $this->input->post('text')
+		'catID' => $this->input->post('catid'),
+		'title' => $this->input->post('title'),
+		'body' => $this->input->post('body'),
+		'postedDate' => $this->input->post('body'),
 		);
-	
-	
+
+
 		return $this->db->insert('Question', $data);
 
 		}
-		
-		
-	
-	
+
+
+
+
 }// end of file
