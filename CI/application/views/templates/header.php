@@ -16,12 +16,12 @@
 </form>
 <div class="HorizLinks">
 <ul>
-<li><a href="<?php echo base_url('index.php/pages/view/home'); ?>">Home</a></li>
+<li><a href="<?php echo base_url('index.php/view/recentQuestions'); ?>">Home</a></li>
 <li><a href="<?php echo base_url('index.php/pages/view/news'); ?>">News</a></li>
 <li><a href="<?php echo base_url('index.php/pages/view/about'); ?>">About Us</a></li>
 <li><a href="<?php echo base_url('index.php/pages/view/contact'); ?>">Contact Us</a></li>
 <li><a href="<?php echo base_url('index.php/view/createQuestion'); ?>">Add-Question</a></li>
-<li><a href="<?php echo base_url('index.php/pages/view/addanswer'); ?>">Add-Answer</a></li>
+<li><a href="<?php echo base_url('index.php/view/createAnswer'); ?>">Add-Answer</a></li>
 </ul>
 </div>
 </div>

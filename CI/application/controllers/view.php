@@ -103,8 +103,28 @@
 		}
 			
 			
-		public  function createComment($value='')
+		public  function createAnswer()
 		{
+				
+			$data['title'] = 'Give an answer';
+			$this -> load -> view ('templates/header', $data);
+			$this -> load -> view ('templates/footer', $data);
+			$this->form_validation->set_rules('questionID', 'questionID', 'required');
+			$this->form_validation->set_rules('body', 'body', 'required');
 			
+			if ($this->form_validation->run() === FALSE)
+			{
+					
+				$this->load->view('pages/addanswer');
+				
+		
+			}
+			else
+			{
+				$this->answer_model->addAnswer();
+				$this->load->view('pages/success');
+			}
 		}	
+
+		
 	}

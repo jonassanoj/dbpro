@@ -56,4 +56,22 @@ class Answer_model extends CI_Model {
 	    $this->db->where('answerID', $answerID);
 	    $this->db->delete('Answer');
 		}
+
+		public function addAnswer()
+
+		{
+		$this->load->helper('url');
+
+		//$slug = url_title($this->input->post('title'), 'dash', TRUE);
+
+		$data = array(
+		'questionID' => $this->input->post('questionID'),
+		'body' => $this->input->post('body'),
+		);
+
+
+		return $this->db->insert('Answer', $data);
+
+		}
+
 }// end of class 

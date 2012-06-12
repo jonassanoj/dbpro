@@ -5,6 +5,9 @@
     <i>
     [
    	<?php echo anchor("index.php/view/viewAnswer/{$q['questionID']}",'Show answers')?>
+   	
+ 
+   
     ]
     </i>
     </p>
