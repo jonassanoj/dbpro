@@ -134,14 +134,13 @@ function search_question()
 * @parameter questionID
 */
 
-// delete from Answer where answer.UserID=userid and Answer.questionID=quid
+	// delete from Answer where answer.UserID=userid and Answer.questionID=quid
 
-function get_relevant_answers($questionID)
-	{
-	$this->db->select(' body');
-	$this->db->where('questionID', $questionID); 
-	$query = $this->db->get('Answer');
-	return $query->result();
+	function get_relevant_answers($questionID){
+		$this->db->select('body');
+		$this->db->where('questionID', $questionID); 
+		$query = $this->db->get('Answer');
+		return $query->result();
 	}
 
 
@@ -151,32 +150,29 @@ function get_relevant_answers($questionID)
 * delete_question method removes a record from the Question table
 *
 */
-function delete_question($questionID)
-	{
+	function delete_question($questionID){
         
 
-    $this->db->where('questionID', $questionID);
-    $this->db->delete('Question');
+		$this->db->where('questionID', $questionID);
+		$this->db->delete('Question');
 	}
 
-function delete_own_question($questionID,$userID){
-	$this->db->select('questoinID,userID');
-	$this->db->where('questionID',$questionID );
- 	$this->db->where('userID',$userID);
-	$query->db->get('Question');
-	if($query==null){
-		return false;
-		}
-		else{
-		delete_question($questionID);
-		}
+	function delete_own_question($questionID,$userID){
+		$this->db->select('questoinID,userID');
+		$this->db->where('questionID',$questionID );
+		$this->db->where('userID',$userID);
+		$query->db->get('Question');
+			if($query==null){
+				return false;
+			}
+			else{
+				delete_question($questionID);
+			}
 
 	}
 
 
-		public function addQuestion()
-
-		{
+	public function addQuestion(){
 		$this->load->helper('url');
 
 		//$slug = url_title($this->input->post('title'), 'dash', TRUE);
@@ -191,7 +187,7 @@ function delete_own_question($questionID,$userID){
 
 		return $this->db->insert('Question', $data);
 
-		}
+	}
 
 
 
