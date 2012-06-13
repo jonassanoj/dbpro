@@ -32,10 +32,10 @@ class User_model extends CI_Model {
 		
 	}
 	// this method is for adding user 
-	// @parameter $userData is array of user Data 
-	public function add_user($userData) {
+	// @parameter The Method takes userName and password 
+	public function add_user($userName,$password) {
 		
-		$str = $this->db->insert('User', $userData);
+		$str = $this->db->query('insert into User(userName,password) values ('.$userName,$password.')');
 		
 		return $this->db->insert_id();
 		
