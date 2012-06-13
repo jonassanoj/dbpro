@@ -1,7 +1,5 @@
 
-
 <div id="leftnav">
-
 
 </div>
 <div id="body">
@@ -23,4 +21,4 @@
 	<input type="submit" value="Submit" />
 </p>
 </form>
-<?php echo base_url('index.php/pages/view/about'); ?>
+</div>

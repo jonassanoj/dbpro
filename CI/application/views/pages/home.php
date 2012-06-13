@@ -25,7 +25,15 @@
 </div>
 
 <div id="body">
+
+<div class="question"><h1>Top Question</h1>
 <p>Here is for the main content!</p>
+<a href="...">test line</a>
+</div>
+<div class="unwatched">Not answered!</div>
+
+<div class="watched"> Voted!</div>
+
 
 </div>
 

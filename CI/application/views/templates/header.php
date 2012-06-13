@@ -9,7 +9,7 @@
 <body>
 <div id="container">
 
-<div id="header"><img src="<?php echo base_url('pictures/newbanner.jpg'); ?>">
+<div id="header"><img src="<?php echo base_url('pictures/last2.jpg'); ?>">
 <form action="">
 <input type="text" class="searchbox" name="s" value="" />
 <input type="image" src="<?php echo base_url('pictures/search.jpg'); ?>" class="searchbox_submit" value="" />
