@@ -1,176 +1,91 @@
 <?php
 class User_model extends CI_Model {
-	   
-   
-	 
-	    function __construct()
-   	 {
-        parent::__construct();
-   	 }
- function table_exists($table_name = null)
-    	{
-    	return $this->db->table_exists($table_name);
-   	 }
-		   /**
-* add_user method creates a record in the User table.
-*
-* Option: Values
-* --------------
-*userID     
-*userName   (required)
-*firstName  (required)
-*lastName   (required)
-*email      (required)
-*password   (required)
-*imagePath
-*acountCreationDate
-*rank
-*lastLogin
-*organization
-*dateOfBirth
-*degree
-*detail
-  
-*KEY fieldID`
-*KEY userTypeID
-* 
-* @param array $options
-*data can be initialized in the contrler as array of required prameter and pass in to the model 
 
-* for example $data = array(
-		'firstName' => this->input->post('firstName'),
-		'lastName' => this->input -> post('lastName')		
-			);
-
-*/
-
-function add_user($data)
-{
-    
+	public function __construct() {
+		parent::__construct();
+		$this->load->database();
+	}
 	
-    // Execute the query
-    $this->db->insert('User',$data);
+	/*
+	
+	`detail``userTypeID``fieldID``degree``dateOfBirth`
+	`location``organization``lastLogin``rank``acountCreationDate`
+	`imagePath``password``email``fullName``userName``userID`
+	*/
+	
+	public function get_user($name = '', $pass = '') {
+		if($name == '') {
+		
+			$query = $this->db->get("User");
+			
+			return $query->result_array();
+			
+		}
+		else {
+			
+			$this->db->where("userName", $name);
+			$this->db->where("password", $pass);
+			$query = $this->db->get("User");
+			return $query->result_array();
+			
+		}
+		
+	}
+	// this method is for adding user 
+	// @parameter The Method takes userName and password 
+	public function add_user($userName,$password) {
+		
+		$str = $this->db->query('insert into User(userName,password) values ('.$userName,$password.')');
+		
+		return $this->db->insert_id();
+		
+	}
+	// this fuction is for udating user 
+	// @parameter $user_data is array of user data and $where is the condition variable it can be user name, full name or any  		other record 
+	public function update_user($user_data, $where) {
+		$query = $this->db->update_string("User", $user_data, $where);
+		$this->db->query($query);
+		
+	}
+	// this function is for checking user name if exist 
+	public function check_userName($username) {
+		$res = $this->db->get_where("User", $username)->result();
+		if(isset($res) && count($res) > 0 ) 
+		return false; // if user exists
+		else
+		return true;  // if not exists
+	}
+	// this method returns all user data in the user table which is related to the $userid
+	public function get_userdata($userid) {
+		
+		$this->db->where("userID", $userid);
+		$query = $this->db->get("User");
+		return $query->result_array();
+		
+	}
 
-    // Return the ID of the inserted row, or false if the row could not be inserted
-    return $this->db->insert_id();
+
+	// This method returns limited user data starts from the offset for pagination
+	public function get_Users($limit,$offset){
+		$query=$this->db->get($this->'User',$limit,$offset);
+		return $query->result();
+	}
+	
+	//This method will check if the userName and password match will return true 
+	   
+	public function check_login($userName,$password){
+		$this->db->where('userName',$userName);
+		$this->db->where('password',$password);
+		$query=$this->db->get('User');
+		if($query==null){
+		   return false
+		}
+		else{
+		return true;
+		}
+	}
+	
+	
+
 }
 
-/**
-* UpdateUser method alters a record in the users table.
-*
-* Option: Values
-* --------------
-*userID     
-*userName   
-*firstName  
-*lastName   
-*email      
-*password   
-*imagePath
-*acountCreationDate
-*rank
-*lastLogin
-*organization
-*dateOfBirth
-*degree
-*detail
-  
-*KEY fieldID`
-*KEY userTypeID
-*
-* @param array $options
-* @return int affected_rows()
-*/
-function update_user($options = array())
-	{
-    // required values
-    if(!$this->_required(array('firstName','lastName','email','password'), $options)) echo "please fill the required fields";
-
-    // qualification (we're not allowing to update data that it shouldn't)
-    $qualificationArray = array('firstName','lastName','email','password','imagePath','rank','organization','dateOfBirth','degree','detail', 'fieldID','userTypeID');
-    foreach($qualificationArray as $qualifier)
-    	{
-        if(isset($options[$qualifier])) $this->db->set($qualifier, $options[$qualifier]);
-    	}
-
-    $this->db->where('userID', $options['userID']);
-
-    
-    // Execute the query
-    $this->db->update('User');
-
-    // Return the number of rows updated, or false if the row could not be inserted
-    return $this->db->affected_rows();
-	}
-
-/**
-* get_user_data method returns an array of qualified user record objects in acending order 
-*
-
-*/
-function get_user_data()
-	{
-   
-  
-   	 $this->db->select('firstName,lastName,email,rank');
-    	$this->db->order_by('firstName', 'asc');
-	$query = $this->db->get('User');
-	
-
-   
-        //  it will return  array of objects from question type 
-        return $query->result();
-    
-
-    
-	}
-/**
-* get_user_details method returns details of auser with given userID 
-*
-
-*/
- 
-function get_user_details($userID)
-	{
-   
-  
-   	 $this->db->select('*');
-	 $this->db->where('userID',$userID);
-    	 $query = $this->db->get('User');
-	
-
-   
-        //  it will return  array of objects from question type 
-        return $query->result();
-    
-
-    
-	}
-
-/**
-*method get_relevant_recent_question will returns questions relevent to the user with given userID 
-* --------------------------
-*
-* @return array result() 
-* @parameter userID
-*/
-function get_relevant_recent_question($userID)
-	{
-	$this->db->select(' body');
-	$this->db->where('userID', $userID); 
-	$query = $this->db->get('Question');
-	return $query->result();
-	}
-/**
-* DeleteUser method removes a record from the users table
-*
-* @param array $options
-*/
-function delete_user($userID)
-	{
-    // required values
-    $this->db->where('userID', $userID);
-   if( $this->db->delete('User')) return true ;
-
-	}
-}// end of class 

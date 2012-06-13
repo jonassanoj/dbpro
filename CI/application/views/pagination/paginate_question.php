@@ -1,12 +1,13 @@
 
-
-
 <?php foreach ($questions as $q): ?>
     <p>
     <?php echo $q['body']?> 
     <i>
     [
-   	<?php echo anchor("index.php/maincontroller/viewAnswer/{$q['questionID']}",'Show answers')?>
+   	<?php echo anchor("index.php/view/viewAnswer/{$q['questionID']}",'Show answers')?>
+   	
+ 
+   
     ]
     </i>
     </p>

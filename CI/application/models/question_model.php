@@ -1,8 +1,8 @@
 <?php
 class Question_model extends CI_Model {
-	   
+
    
-	 
+
 	    function __construct()
    	 {
         parent::__construct();
@@ -101,26 +101,28 @@ function get_ten_recent_question($limit,$offset)
     //$this->db->order_by('postedDate', 'desc');
 	//$this->db->limit(10);
 	$query = $this->db->get('Question',$limit, $offset);
-	
+
 
    
         //  it will return  array of objects from question type 
         return $query->result_array();
     
 	}
-/**
-*method search_question will return question near to search term 
+
+/**method search_question will return question near to search term 
 * --------------------------
 *SELECT * FROM table ORDER BY date DESC LIMIT 10;
 * @return array result() 
 * @parameter searchTerm
-*/
-function search_question($searchTerm)
+ * */
+
+function search_question()
 	{
+	$term = $this->input->post('s');
 	$this->db->select(' body');
-	$this->db->like('body', $searchTerm);
+	$this->db->like('body', $term);
 	$query = $this->db->get('Question');
-	return $query->result();
+	return $query->result_array();
 
 	}
 
@@ -132,14 +134,13 @@ function search_question($searchTerm)
 * @parameter questionID
 */
 
-// delete from Answer where answer.UserID=userid and Answer.questionID=quid
+	// delete from Answer where answer.UserID=userid and Answer.questionID=quid
 
-function get_relevant_answers($questionID)
-	{
-	$this->db->select(' body');
-	$this->db->where('questionID', $questionID); 
-	$query = $this->db->get('Answer');
-	return $query->result();
+	function get_relevant_answers($questionID){
+		$this->db->select('body');
+		$this->db->where('questionID', $questionID); 
+		$query = $this->db->get('Answer');
+		return $query->result();
 	}
 
 
@@ -149,28 +150,46 @@ function get_relevant_answers($questionID)
 * delete_question method removes a record from the Question table
 *
 */
-function delete_question($questionID)
-	{
+	function delete_question($questionID){
         
 
-    $this->db->where('questionID', $questionID);
-    $this->db->delete('Question');
+		$this->db->where('questionID', $questionID);
+		$this->db->delete('Question');
 	}
 
-function delete_own_question($questionID,$userID){
-	$this->db->select('questoinID,userID');
-	$this->db->where('questionID',$questionID );
- 	$this->db->where('userID',$userID);
-	$query->db->get('Question');
-	if($query==null){
-		return false;
-		}
-		else{
-		delete_question($questionID);
-		}
+	function delete_own_question($questionID,$userID){
+		$this->db->select('questoinID,userID');
+		$this->db->where('questionID',$questionID );
+		$this->db->where('userID',$userID);
+		$query->db->get('Question');
+			if($query==null){
+				return false;
+			}
+			else{
+				delete_question($questionID);
+			}
 
 	}
-		
-	
-	
+
+
+	public function addQuestion(){
+		$this->load->helper('url');
+
+		//$slug = url_title($this->input->post('title'), 'dash', TRUE);
+
+		$data = array(
+		'catID' => $this->input->post('catid'),
+		'title' => $this->input->post('title'),
+		'body' => $this->input->post('body'),
+		'postedDate' => $this->input->post('body'),
+		);
+
+
+		return $this->db->insert('Question', $data);
+
+	}
+
+
+
+
 }// end of file
