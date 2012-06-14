@@ -1,3 +1,6 @@
+database.php
+config.php
+
 # Compiled source #
 ###################
 *.com
@@ -9,7 +12,7 @@
 
 # ignore vim swp files and gedit temp files
 *.swp
-*.*~
+*~
 .vim
 
 # Packages #
@@ -35,7 +38,6 @@
 ######################
 .DS_Store*
 ehthumbs.db
-Icon?
 Thumbs.db
 
 # Eclipse files #
