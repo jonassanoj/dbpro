@@ -62,10 +62,8 @@
 <li class="method public "><a href="#__construct" title="__construct :: constructor"><span class="description">constructor</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#_loadviews" title="_loadviews :: private helper function to build view"><span class="description">private helper function to build view</span><pre>_loadviews()</pre></a></li>
 <li class="method public "><a href="#home" title="home :: home view"><span class="description">home view</span><pre>home()</pre></a></li>
-<li class="method public "><a href="#qshow" title="qshow :: "><span class="description">qshow()
-        </span><pre>qshow()</pre></a></li>
-<li class="method public "><a href="#questions" title="questions :: "><span class="description">questions()
-        </span><pre>questions()</pre></a></li>
+<li class="method public "><a href="#qshow" title="qshow :: show a list of questions"><span class="description">show a list of questions</span><pre>qshow()</pre></a></li>
+<li class="method public "><a href="#questions" title="questions :: show a list of questions"><span class="description">show a list of questions</span><pre>questions()</pre></a></li>
 <li class="method public "><a href="#view" title="view :: "><span class="description">view()
         </span><pre>view()</pre></a></li>
 </ul>
@@ -94,7 +92,7 @@
 <h2>constructor</h2>
 <pre>__construct() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>loads: question_model, answer_model</p></p></div></div>
 </div>
 <a name="_loadviews" id="_loadviews"></a><div class="element clickable method public _loadviews" data-toggle="collapse" data-target="._loadviews .collapse">
 <h2>private helper function to build view</h2>
@@ -104,12 +102,15 @@
 <p class="long_description"><p>every complete html-page sent to the client is constructed here.
 currently, mostly defaults are sent and only the body is changed dynamically.</p>
 
-<p>The following parts are sent in order:
-* <em>templates/header.php</em>
-* <em>header/default.php</em> : the default content appearing in the header
-* <em>leftnav/default.php</em>: the default content of the navigation bar
-* <em>body</em>/$body_view_: the body content given as a parameter
-* <em>templates/footer.php</em></p></p>
+<p>The following parts are sent in order:</p>
+
+<ul>
+<li><em>templates/header.php</em></li>
+<li><em>header/default.php</em> : the default content appearing in the header</li>
+<li><em>leftnav/default.php</em>: the default content of the navigation bar</li>
+<li><em>body</em>/$body_view_: the body content given as a parameter</li>
+<li><em>templates/footer.php</em></li>
+</ul></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$body_view</h4>
@@ -121,18 +122,17 @@ currently, mostly defaults are sent and only the body is changed dynamically.</p
 </div>
 <a name="home" id="home"></a><div class="element clickable method public home" data-toggle="collapse" data-target=".home .collapse">
 <h2>home view</h2>
-<pre>home() : void</pre>
+<pre>home() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><p class="long_description"><p>this is where the default route and the home links will point to.
 it just calls an appropriate function.</p></p></div></div>
 </div>
 <a name="qshow" id="qshow"></a><div class="element clickable method public qshow" data-toggle="collapse" data-target=".qshow .collapse">
-<h2>qshow()
-        </h2>
-<pre>qshow($qid) </pre>
+<h2>show a list of questions</h2>
+<pre>qshow($qid) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
+<p class="long_description"><p>the <em>qdetails</em> view is shown, representing a question and its answers.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$qid</h4>
@@ -141,17 +141,16 @@ it just calls an appropriate function.</p></p></div></div>
 </div></div>
 </div>
 <a name="questions" id="questions"></a><div class="element clickable method public questions" data-toggle="collapse" data-target=".questions .collapse">
-<h2>questions()
-        </h2>
-<pre>questions($offset) </pre>
+<h2>show a list of questions</h2>
+<pre>questions(int $offset) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
+<p class="long_description"><p>the paginated <em>qlist</em> view is shown, representing a clickable list of questions.
+clicking on a question will display its details (answers, etc.)</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$offset</h4>
-<code></code>
-</div>
+<code>int</code><p>the pagination offset</p></div>
 </div></div>
 </div>
 <a name="view" id="view"></a><div class="element clickable method public view" data-toggle="collapse" data-target=".view .collapse">
@@ -175,7 +174,7 @@ it just calls an appropriate function.</p></p></div></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-            generated on 2012-06-14T13:18:27+02:00.<br></footer></div>
+            generated on 2012-06-14T18:36:12+02:00.<br></footer></div>
 </div>
 </body>
 </html>

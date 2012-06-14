@@ -112,7 +112,8 @@
       <error line="4" code="50010">No DocBlock was found for method getanswers()</error>
     </parse_markers>
   </file>
-  <file path="controllers/main.php" hash="7bcf0e0fbe74cce563cb5950a89e6467" package="Default">
+  <file path="controllers/static.php" hash="c5c19c54cf9ea4437df5ce849e6597f3" package="Default"/>
+  <file path="controllers/main.php" hash="2fc736c4b410073bb25d33d45e7eed54" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <name>Main</name>
       <full_name>\Main</full_name>
@@ -122,83 +123,104 @@
         <long-description><![CDATA[<p>Handles the basic site functionality. Browsing questions and answers, etc.</p>]]></long-description>
         <tag line="11" name="package" description="controllers"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="18" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="19" package="controllers">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="18">
+        <docblock line="19">
           <description><![CDATA[constructor]]></description>
-          <long-description><![CDATA[]]></long-description>
+          <long-description><![CDATA[<p>loads: question_model, answer_model</p>]]></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="44" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="46" package="controllers">
         <name>_loadviews</name>
         <full_name>_loadviews</full_name>
-        <docblock line="44">
+        <docblock line="46">
           <description><![CDATA[private helper function to build view]]></description>
           <long-description><![CDATA[<p>every complete html-page sent to the client is constructed here.
 currently, mostly defaults are sent and only the body is changed dynamically.</p>
 
-<p>The following parts are sent in order:
-* <em>templates/header.php</em>
-* <em>header/default.php</em> : the default content appearing in the header
-* <em>leftnav/default.php</em>: the default content of the navigation bar
-* <em>body</em>/$body_view_: the body content given as a parameter
-* <em>templates/footer.php</em></p>]]></long-description>
-          <tag line="44" name="param" description="what should appear in the body" type="string" variable="$body_view">
+<p>The following parts are sent in order:</p>
+
+<ul>
+<li><em>templates/header.php</em></li>
+<li><em>header/default.php</em> : the default content appearing in the header</li>
+<li><em>leftnav/default.php</em>: the default content of the navigation bar</li>
+<li><em>body</em>/$body_view_: the body content given as a parameter</li>
+<li><em>templates/footer.php</em></li>
+</ul>]]></long-description>
+          <tag line="46" name="param" description="what should appear in the body" type="string" variable="$body_view">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="44" name="param" description="The data array to pass on to the views" type="array" variable="$data">
+          <tag line="46" name="param" description="The data array to pass on to the views" type="array" variable="$data">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="44" name="return" description="" type="void">
+          <tag line="46" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="44">
+        <argument line="46">
           <name>$body_view</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="44">
+        <argument line="46">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="68" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="67" package="controllers">
         <name>home</name>
         <full_name>home</full_name>
-        <docblock line="68">
+        <docblock line="67">
           <description><![CDATA[home view]]></description>
           <long-description><![CDATA[<p>this is where the default route and the home links will point to.
 it just calls an appropriate function.</p>]]></long-description>
-          <tag line="68" name="return" description="" type="void">
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="83" package="controllers">
+        <name>questions</name>
+        <full_name>questions</full_name>
+        <docblock line="83">
+          <description><![CDATA[show a list of questions]]></description>
+          <long-description><![CDATA[<p>the paginated <em>qlist</em> view is shown, representing a clickable list of questions.
+clicking on a question will display its details (answers, etc.)</p>]]></long-description>
+          <tag line="83" name="param" description="the pagination offset" type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="83" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="73" package="controllers">
-        <name>questions</name>
-        <full_name>questions</full_name>
-        <argument line="73">
+        <argument line="83">
           <name>$offset</name>
           <default><![CDATA[0]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="86" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="106" package="controllers">
         <name>qshow</name>
         <full_name>qshow</full_name>
-        <argument line="86">
+        <docblock line="106">
+          <description><![CDATA[show a list of questions]]></description>
+          <long-description><![CDATA[<p>the <em>qdetails</em> view is shown, representing a question and its answers.</p>]]></long-description>
+          <tag line="106" name="param" description="the pagination offset" type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="106" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="106">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="96" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="116" package="controllers">
         <name>view</name>
         <full_name>view</full_name>
-        <argument line="96">
+        <argument line="116">
           <name>$page</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -206,9 +228,9 @@ it just calls an appropriate function.</p>]]></long-description>
       </method>
     </class>
     <parse_markers>
-      <error line="73" code="50010">No DocBlock was found for method questions()</error>
-      <error line="86" code="50010">No DocBlock was found for method qshow()</error>
-      <error line="96" code="50010">No DocBlock was found for method view()</error>
+      <error line="106" code="50014">Name of argument $qid does not match with the DocBlock's name $offset in qshow()</error>
+      <notice line="106" code="50013">Parameter $offset could not be found in qshow()</notice>
+      <error line="116" code="50010">No DocBlock was found for method view()</error>
     </parse_markers>
   </file>
   <file path="controllers/ajax.php" hash="2270b26ef7c89c38789cb6f75b00c5a7" package="Default">
