@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a5" title="">
+  <file path="models/question_model.php" hash="c6099c934a01c78584f85913ae0fb44e" package="Default">
+    <class final="false" abstract="false" namespace="" line="2" package="Default">
+      <name>Question_model</name>
+      <full_name>\Question_model</full_name>
+      <extends>CI_Model</extends>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="4" package="Default">
+        <name>getlist</name>
+        <full_name>getlist</full_name>
+        <argument line="4">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="4">
+          <name>$limit</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="4">
+          <name>$filter</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="12" package="Default">
+        <name>getcount</name>
+        <full_name>getcount</full_name>
+        <argument line="12">
+          <name>$filter</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="19" package="Default">
+        <name>getdetails</name>
+        <full_name>getdetails</full_name>
+        <argument line="19">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="6">implement Filter</todo>
+      <todo line="14">implement Filter</todo>
+    </markers>
+    <parse_markers>
+      <error line="2" code="50000">No DocBlock was found for \Question_model</error>
+      <error line="4" code="50010">No DocBlock was found for method getlist()</error>
+      <error line="12" code="50010">No DocBlock was found for method getcount()</error>
+      <error line="19" code="50010">No DocBlock was found for method getdetails()</error>
+    </parse_markers>
+  </file>
+  <file path="models/comment_model.php" hash="13b5710b073d8f3287bc0e583ab32fb8" package="Default">
+    <class final="false" abstract="false" namespace="" line="17" package="models">
+      <name>Comment_model</name>
+      <full_name>\Comment_model</full_name>
+      <extends>CI_Model</extends>
+      <docblock line="17">
+        <description><![CDATA[the comment model]]></description>
+        <long-description><![CDATA[<p>Allows to retrieve and post comments for questions and answers.</p>
+
+<p>It uses the following database tables:</p>
+
+<ul>
+<li><em>Comment</em></li>
+<li><em>User</em> (read only)</li>
+</ul>]]></long-description>
+        <tag line="17" name="package" description="models"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="28" package="models">
+        <name>getqcomments</name>
+        <full_name>getqcomments</full_name>
+        <docblock line="28">
+          <description><![CDATA[retrieve comments for a question]]></description>
+          <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>]]></long-description>
+          <tag line="28" name="param" description="the questionID" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="28" name="return" description="holds comment objects with _userName_ and _body_ properties" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="28">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="models/answer_model.php" hash="ea6ef8650dad9976f2b1b623092c275c" package="Default">
+    <class final="false" abstract="false" namespace="" line="2" package="Default">
+      <name>Answer_model</name>
+      <full_name>\Answer_model</full_name>
+      <extends>CI_Model</extends>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="4" package="Default">
+        <name>getanswers</name>
+        <full_name>getanswers</full_name>
+        <argument line="4">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="2" code="50000">No DocBlock was found for \Answer_model</error>
+      <error line="4" code="50010">No DocBlock was found for method getanswers()</error>
+    </parse_markers>
+  </file>
+  <file path="controllers/main.php" hash="7bcf0e0fbe74cce563cb5950a89e6467" package="Default">
+    <class final="false" abstract="false" namespace="" line="11" package="controllers">
+      <name>Main</name>
+      <full_name>\Main</full_name>
+      <extends>CI_Controller</extends>
+      <docblock line="11">
+        <description><![CDATA[the main controller]]></description>
+        <long-description><![CDATA[<p>Handles the basic site functionality. Browsing questions and answers, etc.</p>]]></long-description>
+        <tag line="11" name="package" description="controllers"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="18" package="controllers">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="18">
+          <description><![CDATA[constructor]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="44" package="controllers">
+        <name>_loadviews</name>
+        <full_name>_loadviews</full_name>
+        <docblock line="44">
+          <description><![CDATA[private helper function to build view]]></description>
+          <long-description><![CDATA[<p>every complete html-page sent to the client is constructed here.
+currently, mostly defaults are sent and only the body is changed dynamically.</p>
+
+<p>The following parts are sent in order:
+* <em>templates/header.php</em>
+* <em>header/default.php</em> : the default content appearing in the header
+* <em>leftnav/default.php</em>: the default content of the navigation bar
+* <em>body</em>/$body_view_: the body content given as a parameter
+* <em>templates/footer.php</em></p>]]></long-description>
+          <tag line="44" name="param" description="what should appear in the body" type="string" variable="$body_view">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="44" name="param" description="The data array to pass on to the views" type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="44" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="44">
+          <name>$body_view</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="44">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="68" package="controllers">
+        <name>home</name>
+        <full_name>home</full_name>
+        <docblock line="68">
+          <description><![CDATA[home view]]></description>
+          <long-description><![CDATA[<p>this is where the default route and the home links will point to.
+it just calls an appropriate function.</p>]]></long-description>
+          <tag line="68" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="73" package="controllers">
+        <name>questions</name>
+        <full_name>questions</full_name>
+        <argument line="73">
+          <name>$offset</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="86" package="controllers">
+        <name>qshow</name>
+        <full_name>qshow</full_name>
+        <argument line="86">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="96" package="controllers">
+        <name>view</name>
+        <full_name>view</full_name>
+        <argument line="96">
+          <name>$page</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="73" code="50010">No DocBlock was found for method questions()</error>
+      <error line="86" code="50010">No DocBlock was found for method qshow()</error>
+      <error line="96" code="50010">No DocBlock was found for method view()</error>
+    </parse_markers>
+  </file>
+  <file path="controllers/ajax.php" hash="2270b26ef7c89c38789cb6f75b00c5a7" package="Default">
+    <class final="false" abstract="false" namespace="" line="12" package="controllers">
+      <name>Ajax</name>
+      <full_name>\Ajax</full_name>
+      <extends>CI_Controller</extends>
+      <docblock line="12">
+        <description><![CDATA[controller for AJAX requests]]></description>
+        <long-description><![CDATA[<p>This controller will handle all AJAX requests up to now.
+If more AJAX-functionality is added, this should be split into thematically
+organized controllers.</p>]]></long-description>
+        <tag line="12" name="package" description="controllers"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="14" package="controllers">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="30" package="controllers">
+        <name>getcomments</name>
+        <full_name>getcomments</full_name>
+        <docblock line="30">
+          <description><![CDATA[asynchronously get comments for a question]]></description>
+          <long-description><![CDATA[<p>calls <em>getqcomments</em> from the comment model.
+presents its data using the <em>ajax/comments</em> view.</p>]]></long-description>
+          <tag line="30" name="param" description="the questionID" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="30" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="30">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="14" code="50010">No DocBlock was found for method __construct()</error>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="controllers" full_name="controllers"/>
+  <package name="models" full_name="models"/>
+  <namespace name="" full_name=""/>
+  <marker count="2">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

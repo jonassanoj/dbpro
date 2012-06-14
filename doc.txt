@@ -1,0 +1,49 @@
+# Controllers
+
+## main
+
+### function home()
+load the default view
+
+### function questions($offset=0)
+shows the main list of questions, supports pagination
+
+### function show($qid)
+shows details for the question with id $qid
+
+### function view($page)
+show the static body content $page
+
+
+# Models
+## question_model
+
+### function getlist($offset,$limit,$filter=array())
+Returns a list of questions. This should be sorted according to relevance.
+The array $filter can be used to filter the result according to certain criteria. The array may contain the following keys:
+* user: show only questions posted by a certain user
+* category: show only questions in a specific category
+* search: a search term as a string. Words seperated by a whitespace are ANDed.
+
+### getcount($filter=array())
+exactly like get_questionlist but returns the amount of questions the query will return.
+
+### getdetails($qid)
+return question nr $qid as an object
+
+## answer_model
+### getanswers($qid)
+returns the answers to question $qid
+
+# Views
+Views are categorized after
+* body: the central area of display, contained in the body-div
+* templates: global header and footer templates shown before and after each set of views. footer.php contains the footer-div.
+* header: stuff that's shown in the header div, e.g. default.php
+* leftnav: stuff that's shown in the leftnav div, e.g. default.php
+
+## body/qlist
+A paginated list of questions shown in the body div.
+
+## body/qdetails
+A question and its answers.
