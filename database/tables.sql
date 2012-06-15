@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS `Category` (
   `fieldID` int(11) DEFAULT NULL,
   `catName` varchar(40) NOT NULL,
   PRIMARY KEY (`catID`),
-  KEY `Category_fieldID_FK` (`fieldID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 CREATE TABLE IF NOT EXISTS `Comment` (
@@ -63,8 +62,6 @@ CREATE TABLE IF NOT EXISTS `User` (
   `degree` varchar(50) DEFAULT NULL,
   `detail` text,
   PRIMARY KEY (`userID`),
-  KEY `fieldID_to_User_fk_company` (`fieldID`),
-  KEY `UserType_to_User_fk_company` (`userTypeID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 CREATE TABLE IF NOT EXISTS `UserType` (

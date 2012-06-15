@@ -28,9 +28,9 @@ class Question_model extends CI_Model {
 	 * 
 	 * **Usage Example**:
 	 * get the first 10 questions matching the terms _php_ and _apache_ :
-	 * > getlist(0, 10, array('search'=>'php apache'))
+	 * > get_list(0, 10, array('search'=>'php apache'))
 	 * get the questions 6-10 with _catId_ 4 
-	 * > getlist(5, 10, array('category'=>4))
+	 * > get_list(5, 10, array('category'=>4))
 	 * 
 	 * @param int $offset the pagination offset
 	 * @param int $limit the amount of questions to retrieve
@@ -39,7 +39,7 @@ class Question_model extends CI_Model {
 	 * 
 	 */
 
-	public function getlist($offset, $limit, $filter = array()) {
+	public function get_list($offset, $limit, $filter = array()) {
 		$this -> db -> select('questionID,title');
 		$this -> db -> where($this->filter($filter));
 		$query = $this -> db -> get('Question', $limit, $offset);
@@ -49,19 +49,28 @@ class Question_model extends CI_Model {
 	/**
 	 * count the questions matching a certain filter.
 	 * 
-	 * the total amount of questions matching the filter criteria. see getlist documentation for details.
+	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
 	 *
-	 * @param array $filter the optional filter, see the getlist documentation 
+	 * @param array $filter the optional filter, see the get_list documentation 
 	 * @return int the amount of questions matching $filter
 	 */
 
 
-	public function getcount($filter = array()) {
+	public function get_count($filter = array()) {
 		$this -> db -> from('Question');
 		return $this -> db -> count_all_results();
 	}
 
-	public function getdetails($qid) {
+	/**
+	 * all the information about one question.
+	 * 
+	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
+	 *
+	 * @param int $qid the questionID 
+	 * @return object a single question object, containing column values as attributes.
+	 */
+
+	public function get_details($qid) {
 		$query = $this -> db -> get_where('Question', array('questionID' => $qid));
 		return $query -> first_row();
 	}
@@ -69,10 +78,10 @@ class Question_model extends CI_Model {
 	/**
 	 * create a filter for the where-clause
 	 *
-	 * A private function used by _getcount_ and _getlist_. It takes the $filter$ array (as described in the _getlist_ documentation) 
+	 * A private function used by *get_count* and *get_list*. It takes the $filter$ array (as described in the _getlist_ documentation) 
 	 * and returns an array that can be passed to the db->where() active record function. 
 	 * 
-	 * @param array $filter the filter, see the getlist documentation 
+	 * @param array $filter the filter, see the get_list documentation 
 	 * @return array a list of key->value conditions applied to the query
 	 */
 

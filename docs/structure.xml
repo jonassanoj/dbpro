@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a5" title="">
-  <file path="models/question_model.php" hash="2712b9c28f9fcdc349326a4a1bcc4f05" package="Default">
+  <file path="models/question_model.php" hash="d38987093727df20ba8b234c69afd344" package="Default">
     <class final="false" abstract="false" namespace="" line="15" package="models">
       <name>Question_model</name>
       <full_name>\Question_model</full_name>
@@ -17,10 +17,10 @@
 </ul>]]></long-description>
         <tag line="15" name="package" description="models"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="39" package="models">
-        <name>getlist</name>
-        <full_name>getlist</full_name>
-        <docblock line="39">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="42" package="models">
+        <name>get_list</name>
+        <full_name>get_list</full_name>
+        <docblock line="42">
           <description><![CDATA[retrieve a sorted and paginated question list]]></description>
           <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>
 
@@ -28,98 +28,111 @@
 
 <ul>
 <li>user: show only questions posted by a certain user</li>
-<li>category: show only questions in a specific category</li>
+<li>category: show only questions in a specific category id</li>
 <li>search: a search term as a string. Words separated by a whitespace are ANDed.</li>
 </ul>
 
 <p><strong>Usage Example</strong>:
-* get the first 10 questions matching the terms <em>php</em> and <em>apache</em></p>
+get the first 10 questions matching the terms <em>php</em> and <em>apache</em> :</p>
 
 <blockquote>
-  <p>getlist(0, 10, array('search'=>'php apache'))</p>
+  <p>get_list(0, 10, array('search'=>'php apache'))
+  get the questions 6-10 with <em>catId</em> 4
+  get_list(5, 10, array('category'=>4))</p>
 </blockquote>]]></long-description>
-          <tag line="39" name="param" description="the pagination offset" type="int" variable="$offset">
+          <tag line="42" name="param" description="the pagination offset" type="int" variable="$offset">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="39" name="param" description="the amount of questions to retrieve" type="int" variable="$limit">
+          <tag line="42" name="param" description="the amount of questions to retrieve" type="int" variable="$limit">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="39" name="param" description="the optional filter to be applied to the results" type="array" variable="$filter">
+          <tag line="42" name="param" description="the optional filter to be applied to the results" type="array" variable="$filter">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="39" name="return" description="holds question objects with a questionID and its title" type="array">
+          <tag line="42" name="return" description="holds question objects with a questionID and its title" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="39">
+        <argument line="42">
           <name>$offset</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="39">
+        <argument line="42">
           <name>$limit</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="39">
+        <argument line="42">
           <name>$filter</name>
           <default><![CDATA[array()]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="67" package="models">
-        <name>getcount</name>
-        <full_name>getcount</full_name>
-        <docblock line="67">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="59" package="models">
+        <name>get_count</name>
+        <full_name>get_count</full_name>
+        <docblock line="59">
           <description><![CDATA[count the questions matching a certain filter.]]></description>
-          <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>
-
-<p>The array <em>$filter</em> can be used to filter the result according to certain criteria. The array may contain the following keys:</p>
-
-<ul>
-<li>user: show only questions posted by a certain user</li>
-<li>category: show only questions in a specific category</li>
-<li>search: a search term as a string. Words separated by a whitespace are ANDed.</li>
-</ul>
-
-<p><strong>Usage Example</strong>:
-* get the first 10 questions matching the terms <em>php</em> and <em>apache</em></p>
-
-<blockquote>
-  <p>getlist(0, 10, array('search'=>'php apache'))</p>
-</blockquote>]]></long-description>
-          <tag line="67" name="param" description="the optional filter, see the {@link getlist()} documentation" type="array" variable="$filter">
+          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
+          <tag line="59" name="param" description="the optional filter, see the get_list documentation" type="array" variable="$filter">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="67" name="return" description="the amount of questions matching $filter" type="int">
+          <tag line="59" name="return" description="the amount of questions matching $filter" type="int">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="67">
+        <argument line="59">
           <name>$filter</name>
           <default><![CDATA[array()]]></default>
           <type/>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="" line="73" package="models">
-        <name>getdetails</name>
-        <full_name>getdetails</full_name>
+        <name>get_details</name>
+        <full_name>get_details</full_name>
+        <docblock line="73">
+          <description><![CDATA[all the information about one question.]]></description>
+          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
+          <tag line="73" name="param" description="the questionID" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="73" name="return" description="a single question object, containing column values as attributes." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
         <argument line="73">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="88" package="models">
+        <name>filter</name>
+        <full_name>filter</full_name>
+        <docblock line="88">
+          <description><![CDATA[create a filter for the where-clause]]></description>
+          <long-description><![CDATA[<p>A private function used by <em>get_count</em> and <em>get_list</em>. It takes the $filter$ array (as described in the <em>getlist</em> documentation)
+and returns an array that can be passed to the db->where() active record function.</p>]]></long-description>
+          <tag line="88" name="param" description="the filter, see the get_list documentation" type="array" variable="$filter">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="88" name="return" description="a list of key-&gt;value conditions applied to the query" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="88">
+          <name>$filter</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
     </class>
     <markers>
-      <todo line="40">implement Filter</todo>
-      <todo line="68">implement Filter</todo>
+      <todo line="89">implement the filter function so that it works as documented.</todo>
     </markers>
-    <parse_markers>
-      <error line="73" code="50010">No DocBlock was found for method getdetails()</error>
-    </parse_markers>
   </file>
-  <file path="models/comment_model.php" hash="f90e9cad1959a84b535aaa4debbb7483" package="Default">
+  <file path="models/comment_model.php" hash="c631cd4e6fbc1e7e2fa59297e6301a04" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
       <name>Comment_model</name>
       <full_name>\Comment_model</full_name>
@@ -136,20 +149,20 @@
 </ul>]]></long-description>
         <tag line="16" name="package" description="models"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="27" package="models">
-        <name>getqcomments</name>
-        <full_name>getqcomments</full_name>
-        <docblock line="27">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="28" package="models">
+        <name>get_qcomments</name>
+        <full_name>get_qcomments</full_name>
+        <docblock line="28">
           <description><![CDATA[retrieve comments for a question]]></description>
           <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>]]></long-description>
-          <tag line="27" name="param" description="the questionID" type="int" variable="$qid">
+          <tag line="28" name="param" description="the questionID" type="int" variable="$qid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="27" name="return" description="holds comment objects with userName and body properties" type="array">
+          <tag line="28" name="return" description="holds comment objects with userName and body properties" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="27">
+        <argument line="28">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -157,31 +170,44 @@
       </method>
     </class>
   </file>
-  <file path="models/answer_model.php" hash="90414063d85a9bfc04269d3e69731c60" package="Default">
-    <class final="false" abstract="false" namespace="" line="11" package="models">
+  <file path="models/answer_model.php" hash="d312a3b7865b3328b9235b946c0345a4" package="Default">
+    <class final="false" abstract="false" namespace="" line="14" package="models">
       <name>Answer_model</name>
       <full_name>\Answer_model</full_name>
       <extends>CI_Model</extends>
-      <docblock line="11">
-        <description><![CDATA[the main controller]]></description>
-        <long-description><![CDATA[<p>Handles the basic site functionality. Browsing questions and answers, etc.</p>]]></long-description>
-        <tag line="11" name="package" description="models"/>
+      <docblock line="14">
+        <description><![CDATA[the answer model]]></description>
+        <long-description><![CDATA[<p>Provides CRUD functionality for answers.</p>
+
+<p>It uses the following database tables:</p>
+
+<ul>
+<li><em>Answer</em></li>
+</ul>]]></long-description>
+        <tag line="14" name="package" description="models"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="13" package="models">
-        <name>getanswers</name>
-        <full_name>getanswers</full_name>
-        <argument line="13">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="25" package="models">
+        <name>get_answers</name>
+        <full_name>get_answers</full_name>
+        <docblock line="25">
+          <description><![CDATA[return the answers for a question]]></description>
+          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
+          <tag line="25" name="param" description="the id of the question we want answers for" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="25" name="return" description="holds answer objects with fileds for all database columns" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="25">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
-    <parse_markers>
-      <error line="13" code="50010">No DocBlock was found for method getanswers()</error>
-    </parse_markers>
   </file>
-  <file path="controllers/main.php" hash="97320d84af36e94644ed01f5e7868ba7" package="Default">
+  <file path="controllers/main.php" hash="cfba8a33fa2a877e2a5fad84664dfc65" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <name>Main</name>
       <full_name>\Main</full_name>
@@ -199,10 +225,10 @@
           <long-description><![CDATA[<p>loads: question_model, answer_model</p>]]></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="46" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="45" package="controllers">
         <name>_loadviews</name>
         <full_name>_loadviews</full_name>
-        <docblock line="46">
+        <docblock line="45">
           <description><![CDATA[private helper function to build view]]></description>
           <long-description><![CDATA[<p>every complete html-page sent to the client is constructed here.
 currently, mostly defaults are sent and only the body is changed dynamically.</p>
@@ -216,92 +242,98 @@ currently, mostly defaults are sent and only the body is changed dynamically.</p
 <li><em>body</em>/$body_view_: the body content given as a parameter</li>
 <li><em>templates/footer.php</em></li>
 </ul>]]></long-description>
-          <tag line="46" name="param" description="what should appear in the body" type="string" variable="$body_view">
+          <tag line="45" name="param" description="what should appear in the body" type="string" variable="$body_view">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="46" name="param" description="The data array to pass on to the views" type="array" variable="$data">
+          <tag line="45" name="param" description="The data array to pass on to the views" type="array" variable="$data">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="46" name="return" description="" type="void">
+          <tag line="45" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="46">
+        <argument line="45">
           <name>$body_view</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="46">
+        <argument line="45">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="67" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="64" package="controllers">
         <name>home</name>
         <full_name>home</full_name>
-        <docblock line="67">
+        <docblock line="64">
           <description><![CDATA[home view]]></description>
           <long-description><![CDATA[<p>this is where the default route and the home links will point to.
 it just calls an appropriate function.</p>]]></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="83" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="79" package="controllers">
         <name>questions</name>
         <full_name>questions</full_name>
-        <docblock line="83">
+        <docblock line="79">
           <description><![CDATA[show a list of questions]]></description>
           <long-description><![CDATA[<p>the paginated <em>qlist</em> view is shown, representing a clickable list of questions.
 clicking on a question will display its details (answers, etc.)</p>]]></long-description>
-          <tag line="83" name="param" description="the pagination offset" type="int" variable="$offset">
+          <tag line="79" name="param" description="the pagination offset" type="int" variable="$offset">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="83" name="return" description="" type="void">
+          <tag line="79" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="83">
+        <argument line="79">
           <name>$offset</name>
           <default><![CDATA[0]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="106" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="101" package="controllers">
         <name>qshow</name>
         <full_name>qshow</full_name>
-        <docblock line="106">
-          <description><![CDATA[show a list of questions]]></description>
+        <docblock line="101">
+          <description><![CDATA[show one question]]></description>
           <long-description><![CDATA[<p>the <em>qdetails</em> view is shown, representing a question and its answers.</p>]]></long-description>
-          <tag line="106" name="param" description="the pagination offset" type="int" variable="$offset">
+          <tag line="101" name="param" description="the questionID" type="int" variable="$qid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="106" name="return" description="" type="void">
+          <tag line="101" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="106">
+        <argument line="101">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="116" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="121" package="controllers">
         <name>view</name>
         <full_name>view</full_name>
-        <argument line="116">
+        <docblock line="121">
+          <description><![CDATA[show a certain body page]]></description>
+          <long-description><![CDATA[<p>this function shows a certain (static) page from the views/body directory.
+use this for static content like: about, contact, terms-of-use, etc.</p>]]></long-description>
+          <tag line="121" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="121" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="121">
           <name>$page</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
-    <parse_markers>
-      <error line="106" code="50014">Name of argument $qid does not match with the DocBlock's name $offset in qshow()</error>
-      <notice line="106" code="50013">Parameter $offset could not be found in qshow()</notice>
-      <error line="116" code="50010">No DocBlock was found for method view()</error>
-    </parse_markers>
   </file>
-  <file path="controllers/ajax.php" hash="e1bcf5aa50cfa2fcba502f111c6468c3" package="Default">
+  <file path="controllers/ajax.php" hash="b9845f06bca2a8e815c99fb1b1b1b749" package="Default">
     <class final="false" abstract="false" namespace="" line="12" package="controllers">
       <name>Ajax</name>
       <full_name>\Ajax</full_name>
@@ -318,11 +350,11 @@ organized controllers.</p>]]></long-description>
         <full_name>__construct</full_name>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="" line="29" package="controllers">
-        <name>getcomments</name>
-        <full_name>getcomments</full_name>
+        <name>qcomments</name>
+        <full_name>qcomments</full_name>
         <docblock line="29">
           <description><![CDATA[asynchronously get comments for a question]]></description>
-          <long-description><![CDATA[<p>calls <em>getqcomments</em> from the comment model.
+          <long-description><![CDATA[<p>calls <em>get_qcomments</em> from the comment model.
 presents its data using the <em>ajax/comments</em> view.</p>]]></long-description>
           <tag line="29" name="param" description="the questionID" type="int" variable="$qid">
             <type by_reference="false">int</type>
@@ -346,7 +378,7 @@ presents its data using the <em>ajax/comments</em> view.</p>]]></long-descriptio
   <package name="controllers" full_name="controllers"/>
   <package name="models" full_name="models"/>
   <namespace name="" full_name=""/>
-  <marker count="2">todo</marker>
+  <marker count="1">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>

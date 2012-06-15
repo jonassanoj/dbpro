@@ -32,10 +32,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">6</span></a></li>
+                <span class="label label-info">1</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">2</span>
+                <span class="label label-info">1</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -61,10 +61,9 @@
 <li class="method public "><a href="#__construct" title="__construct :: constructor"><span class="description">constructor</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#_loadviews" title="_loadviews :: private helper function to build view"><span class="description">private helper function to build view</span><pre>_loadviews()</pre></a></li>
 <li class="method public "><a href="#home" title="home :: home view"><span class="description">home view</span><pre>home()</pre></a></li>
-<li class="method public "><a href="#qshow" title="qshow :: show a list of questions"><span class="description">show a list of questions</span><pre>qshow()</pre></a></li>
+<li class="method public "><a href="#qshow" title="qshow :: show one question"><span class="description">show one question</span><pre>qshow()</pre></a></li>
 <li class="method public "><a href="#questions" title="questions :: show a list of questions"><span class="description">show a list of questions</span><pre>questions()</pre></a></li>
-<li class="method public "><a href="#view" title="view :: "><span class="description">view()
-        </span><pre>view()</pre></a></li>
+<li class="method public "><a href="#view" title="view :: show a certain body page"><span class="description">show a certain body page</span><pre>view()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
@@ -127,16 +126,15 @@ currently, mostly defaults are sent and only the body is changed dynamically.</p
 it just calls an appropriate function.</p></p></div></div>
 </div>
 <a name="qshow" id="qshow"></a><div class="element clickable method public qshow" data-toggle="collapse" data-target=".qshow .collapse">
-<h2>show a list of questions</h2>
-<pre>qshow($qid) : void</pre>
+<h2>show one question</h2>
+<pre>qshow(int $qid) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>the <em>qdetails</em> view is shown, representing a question and its answers.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$qid</h4>
-<code></code>
-</div>
+<code>int</code><p>the questionID</p></div>
 </div></div>
 </div>
 <a name="questions" id="questions"></a><div class="element clickable method public questions" data-toggle="collapse" data-target=".questions .collapse">
@@ -153,16 +151,16 @@ clicking on a question will display its details (answers, etc.)</p></p>
 </div></div>
 </div>
 <a name="view" id="view"></a><div class="element clickable method public view" data-toggle="collapse" data-target=".view .collapse">
-<h2>view()
-        </h2>
-<pre>view($page) </pre>
+<h2>show a certain body page</h2>
+<pre>view(string $page) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
+<p class="long_description"><p>this function shows a certain (static) page from the views/body directory.
+use this for static content like: about, contact, terms-of-use, etc.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$page</h4>
-<code></code>
+<code>string</code><p>the name of the page (without extension) in views/body</p>
 </div>
 </div></div>
 </div>
@@ -173,7 +171,7 @@ clicking on a question will display its details (answers, etc.)</p></p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-            generated on 2012-06-15T11:57:03+02:00.<br></footer></div>
+            generated on 2012-06-15T13:39:07+02:00.<br></footer></div>
 </div>
 </body>
 </html>

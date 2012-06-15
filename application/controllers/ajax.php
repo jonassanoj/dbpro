@@ -19,15 +19,15 @@ class Ajax extends CI_Controller {
 	/**
 	 * asynchronously get comments for a question
 	 *
-	 * calls _getqcomments_ from the comment model.
-	 * presents its data using the _ajax/comments_ view.
+	 * calls *get_qcomments* from the comment model.
+	 * presents its data using the *ajax/comments* view.
 	 *
 	 * @param int $qid the questionID
 	 * @return void
 	 */
 
-	public function getcomments($qid) {
-		$data["comments"] = $this -> comment_model -> getqcomments($qid);
+	public function qcomments($qid) {
+		$data["comments"] = $this -> comment_model -> get_qcomments($qid);
 		$this -> load -> view('ajax/comments', $data);
 	}
 

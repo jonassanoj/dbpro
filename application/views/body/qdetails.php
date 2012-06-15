@@ -3,7 +3,7 @@ $(document).ready(function() {
      
    $("#submitit").click(function() {
 
-        $("#ajaxresult").load("<?php echo site_url('ajax/getcomments/'.$question->questionID); ?>");
+        $("#ajaxresult").load("<?php echo site_url('ajax/qcomments/'.$question->questionID); ?>");
 
    });
    

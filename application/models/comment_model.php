@@ -14,6 +14,7 @@
  */
 
 class Comment_model extends CI_Model {
+
 	/**
 	 * retrieve comments for a question
 	 *
@@ -24,7 +25,7 @@ class Comment_model extends CI_Model {
 	 * @return array holds comment objects with userName and body properties
 	 */
 
-	public function getqcomments($qid) {
+	public function get_qcomments($qid) {
 		$this -> db -> select('User.userName,Comment.body');
 		$this -> db -> join('User', 'User.UserID=Comment.UserID');
 		$query = $this -> db -> get_where('Comment', array('questionID' => $qid));

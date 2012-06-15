@@ -79,37 +79,47 @@ class Main extends CI_Controller {
 	public function questions($offset = 0) {
 		$config['base_url'] = site_url('main/questions/');
 		$config['per_page'] = 5;
-		$data['questions'] = $this -> question_model -> getlist($offset, $config['per_page']);
-		$config['total_rows'] = $this -> question_model -> getcount();
+		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page']);
+		$config['total_rows'] = $this -> question_model -> get_count();
 		$this -> pagination -> initialize($config);
 		$data['pagelinks'] = $this -> pagination -> create_links();
 		$data['title'] = 'Goftogo: Recommended Questions';
 		$this -> _loadviews('qlist', $data);
-		$this -> session -> set_flashdata('backlink', anchor('main/questions/' . $offset, "back", "class=backlink"));
+		$this -> session -> set_userdata('backlink', anchor('main/questions/' . $offset, "back", "class=backlink"));
 	}
 
 	/**
-	 * show a list of questions
+	 * show one question
 	 *
 	 * the _qdetails_ view is shown, representing a question and its answers.
 	 *
-	 * @param int $offset the pagination offset
+	 * @param int $qid the questionID
 	 * @return void
 	 *
 	 */
 
 	public function qshow($qid) {
-		$data['question'] = $this -> question_model -> getdetails($qid);
+		$data['question'] = $this -> question_model -> get_details($qid);
 		$data['title'] = 'Goftogo: ' . $data['question'] -> title;
-		$data['answers'] = $this -> answer_model -> getanswers($qid);
-		$data['backlink'] = $this -> session -> flashdata('backlink');
+		$data['answers'] = $this -> answer_model -> get_answers($qid);
+		$data['backlink'] = $this -> session -> userdata('backlink');
 		$this -> _loadviews('qdetails', $data);
 
 	}
+
+	/**
+	 * show a certain body page
+	 *
+	 * this function shows a certain (static) page from the views/body directory.
+	 * use this for static content like: about, contact, terms-of-use, etc. 
+	 *
+	 * @param string $page the name of the page (without extension) in views/body
+	 * @return void
+	 *
+	 */
 
 	public function view($page) {
 		$data['title'] = ucfirst($page);
 		$this -> _loadviews($page, $data);
 	}
-
 }
