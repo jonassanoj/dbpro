@@ -1,42 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a5" title="">
-  <file path="models/question_model.php" hash="c6099c934a01c78584f85913ae0fb44e" package="Default">
-    <class final="false" abstract="false" namespace="" line="2" package="Default">
+  <file path="models/question_model.php" hash="2712b9c28f9fcdc349326a4a1bcc4f05" package="Default">
+    <class final="false" abstract="false" namespace="" line="15" package="models">
       <name>Question_model</name>
       <full_name>\Question_model</full_name>
       <extends>CI_Model</extends>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="4" package="Default">
+      <docblock line="15">
+        <description><![CDATA[the question model]]></description>
+        <long-description><![CDATA[<p>Provides CRUD functionality for questions.</p>
+
+<p>It uses the following database tables:</p>
+
+<ul>
+<li><em>Question</em></li>
+<li><em>Anwer</em> (read only)</li>
+</ul>]]></long-description>
+        <tag line="15" name="package" description="models"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="39" package="models">
         <name>getlist</name>
         <full_name>getlist</full_name>
-        <argument line="4">
+        <docblock line="39">
+          <description><![CDATA[retrieve a sorted and paginated question list]]></description>
+          <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>
+
+<p>The array <em>$filter</em> can be used to filter the result according to certain criteria. The array may contain the following keys:</p>
+
+<ul>
+<li>user: show only questions posted by a certain user</li>
+<li>category: show only questions in a specific category</li>
+<li>search: a search term as a string. Words separated by a whitespace are ANDed.</li>
+</ul>
+
+<p><strong>Usage Example</strong>:
+* get the first 10 questions matching the terms <em>php</em> and <em>apache</em></p>
+
+<blockquote>
+  <p>getlist(0, 10, array('search'=>'php apache'))</p>
+</blockquote>]]></long-description>
+          <tag line="39" name="param" description="the pagination offset" type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="39" name="param" description="the amount of questions to retrieve" type="int" variable="$limit">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="39" name="param" description="the optional filter to be applied to the results" type="array" variable="$filter">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="39" name="return" description="holds question objects with a questionID and its title" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="39">
           <name>$offset</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="4">
+        <argument line="39">
           <name>$limit</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="4">
+        <argument line="39">
           <name>$filter</name>
           <default><![CDATA[array()]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="12" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="67" package="models">
         <name>getcount</name>
         <full_name>getcount</full_name>
-        <argument line="12">
+        <docblock line="67">
+          <description><![CDATA[count the questions matching a certain filter.]]></description>
+          <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>
+
+<p>The array <em>$filter</em> can be used to filter the result according to certain criteria. The array may contain the following keys:</p>
+
+<ul>
+<li>user: show only questions posted by a certain user</li>
+<li>category: show only questions in a specific category</li>
+<li>search: a search term as a string. Words separated by a whitespace are ANDed.</li>
+</ul>
+
+<p><strong>Usage Example</strong>:
+* get the first 10 questions matching the terms <em>php</em> and <em>apache</em></p>
+
+<blockquote>
+  <p>getlist(0, 10, array('search'=>'php apache'))</p>
+</blockquote>]]></long-description>
+          <tag line="67" name="param" description="the optional filter, see the {@link getlist()} documentation" type="array" variable="$filter">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="67" name="return" description="the amount of questions matching $filter" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="67">
           <name>$filter</name>
           <default><![CDATA[array()]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="19" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="73" package="models">
         <name>getdetails</name>
         <full_name>getdetails</full_name>
-        <argument line="19">
+        <argument line="73">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -44,22 +112,19 @@
       </method>
     </class>
     <markers>
-      <todo line="6">implement Filter</todo>
-      <todo line="14">implement Filter</todo>
+      <todo line="40">implement Filter</todo>
+      <todo line="68">implement Filter</todo>
     </markers>
     <parse_markers>
-      <error line="2" code="50000">No DocBlock was found for \Question_model</error>
-      <error line="4" code="50010">No DocBlock was found for method getlist()</error>
-      <error line="12" code="50010">No DocBlock was found for method getcount()</error>
-      <error line="19" code="50010">No DocBlock was found for method getdetails()</error>
+      <error line="73" code="50010">No DocBlock was found for method getdetails()</error>
     </parse_markers>
   </file>
-  <file path="models/comment_model.php" hash="13b5710b073d8f3287bc0e583ab32fb8" package="Default">
-    <class final="false" abstract="false" namespace="" line="17" package="models">
+  <file path="models/comment_model.php" hash="f90e9cad1959a84b535aaa4debbb7483" package="Default">
+    <class final="false" abstract="false" namespace="" line="16" package="models">
       <name>Comment_model</name>
       <full_name>\Comment_model</full_name>
       <extends>CI_Model</extends>
-      <docblock line="17">
+      <docblock line="16">
         <description><![CDATA[the comment model]]></description>
         <long-description><![CDATA[<p>Allows to retrieve and post comments for questions and answers.</p>
 
@@ -69,22 +134,22 @@
 <li><em>Comment</em></li>
 <li><em>User</em> (read only)</li>
 </ul>]]></long-description>
-        <tag line="17" name="package" description="models"/>
+        <tag line="16" name="package" description="models"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="28" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="27" package="models">
         <name>getqcomments</name>
         <full_name>getqcomments</full_name>
-        <docblock line="28">
+        <docblock line="27">
           <description><![CDATA[retrieve comments for a question]]></description>
           <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>]]></long-description>
-          <tag line="28" name="param" description="the questionID" type="int" variable="$qid">
+          <tag line="27" name="param" description="the questionID" type="int" variable="$qid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="28" name="return" description="holds comment objects with _userName_ and _body_ properties" type="array">
+          <tag line="27" name="return" description="holds comment objects with userName and body properties" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="28">
+        <argument line="27">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -92,15 +157,20 @@
       </method>
     </class>
   </file>
-  <file path="models/answer_model.php" hash="ea6ef8650dad9976f2b1b623092c275c" package="Default">
-    <class final="false" abstract="false" namespace="" line="2" package="Default">
+  <file path="models/answer_model.php" hash="90414063d85a9bfc04269d3e69731c60" package="Default">
+    <class final="false" abstract="false" namespace="" line="11" package="models">
       <name>Answer_model</name>
       <full_name>\Answer_model</full_name>
       <extends>CI_Model</extends>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="4" package="Default">
+      <docblock line="11">
+        <description><![CDATA[the main controller]]></description>
+        <long-description><![CDATA[<p>Handles the basic site functionality. Browsing questions and answers, etc.</p>]]></long-description>
+        <tag line="11" name="package" description="models"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="13" package="models">
         <name>getanswers</name>
         <full_name>getanswers</full_name>
-        <argument line="4">
+        <argument line="13">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -108,12 +178,10 @@
       </method>
     </class>
     <parse_markers>
-      <error line="2" code="50000">No DocBlock was found for \Answer_model</error>
-      <error line="4" code="50010">No DocBlock was found for method getanswers()</error>
+      <error line="13" code="50010">No DocBlock was found for method getanswers()</error>
     </parse_markers>
   </file>
-  <file path="controllers/static.php" hash="c5c19c54cf9ea4437df5ce849e6597f3" package="Default"/>
-  <file path="controllers/main.php" hash="2fc736c4b410073bb25d33d45e7eed54" package="Default">
+  <file path="controllers/main.php" hash="97320d84af36e94644ed01f5e7868ba7" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <name>Main</name>
       <full_name>\Main</full_name>
@@ -233,7 +301,7 @@ clicking on a question will display its details (answers, etc.)</p>]]></long-des
       <error line="116" code="50010">No DocBlock was found for method view()</error>
     </parse_markers>
   </file>
-  <file path="controllers/ajax.php" hash="2270b26ef7c89c38789cb6f75b00c5a7" package="Default">
+  <file path="controllers/ajax.php" hash="e1bcf5aa50cfa2fcba502f111c6468c3" package="Default">
     <class final="false" abstract="false" namespace="" line="12" package="controllers">
       <name>Ajax</name>
       <full_name>\Ajax</full_name>
@@ -249,21 +317,21 @@ organized controllers.</p>]]></long-description>
         <name>__construct</name>
         <full_name>__construct</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="30" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="29" package="controllers">
         <name>getcomments</name>
         <full_name>getcomments</full_name>
-        <docblock line="30">
+        <docblock line="29">
           <description><![CDATA[asynchronously get comments for a question]]></description>
           <long-description><![CDATA[<p>calls <em>getqcomments</em> from the comment model.
 presents its data using the <em>ajax/comments</em> view.</p>]]></long-description>
-          <tag line="30" name="param" description="the questionID" type="int" variable="$qid">
+          <tag line="29" name="param" description="the questionID" type="int" variable="$qid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="30" name="return" description="" type="void">
+          <tag line="29" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="30">
+        <argument line="29">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>

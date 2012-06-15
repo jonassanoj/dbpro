@@ -82,7 +82,7 @@ public function home()
 
 public function questions($offset=0)
 {
-	$config['base_url'] = base_url('main/questions/');
+	$config['base_url'] = site_url('main/questions/');
 	$config['per_page'] = 5;
 	$data['questions'] = $this->question_model->getlist($offset,$config['per_page']);
 	$config['total_rows'] = $this->question_model->getcount();
