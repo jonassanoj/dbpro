@@ -97,12 +97,12 @@ h3 {
 	border-color: silver;
 	padding: 0.5em;
 	text-align: justify;
-	background-size: 40px;
 }
 
 .question {
 	padding-left: 2.5em;
 	background: transparent url(../img/icons/question.png) no-repeat top left;
+	background-size: 40px;
 }
 
 .answer {

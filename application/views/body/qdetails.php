@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 <div id="ajaxresult">
 <form action="<?php echo site_url(); ?>/ajax/getcomments" method="POST">
-<input type="image" title="load comments" src=<?php echo base_url('img/iconplus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
+<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
 </form> 
 <?php
 if (isset($result))
