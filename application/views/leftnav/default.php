@@ -5,4 +5,11 @@
 	echo '<li>'.anchor('',"Home").'</li>' 
 ?>
 </ul>
-</div>
+
+<form class="searchform">
+	<input type="text" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" />
+	<input type="button" class="submit" value="Go" />
+</form>
+
+
+</div> <!-- leftnav -->

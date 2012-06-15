@@ -111,7 +111,7 @@ class Main extends CI_Controller {
 	 * show a certain body page
 	 *
 	 * this function shows a certain (static) page from the views/body directory.
-	 * use this for static content like: about, contact, terms-of-use, etc. 
+	 * use this for static content like: about, contact, terms-of-use, etc.
 	 *
 	 * @param string $page the name of the page (without extension) in views/body
 	 * @return void
@@ -122,4 +122,5 @@ class Main extends CI_Controller {
 		$data['title'] = ucfirst($page);
 		$this -> _loadviews($page, $data);
 	}
+
 }

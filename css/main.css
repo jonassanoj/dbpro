@@ -8,6 +8,7 @@ body {
 a {
 	text-decoration: none;
 	color: black;
+	cursor: pointer;
 }
 
 a:hover {
@@ -22,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font: normal 180% sans-serif;
+	font: normal 180%;
 }
 
 h2 {
@@ -53,6 +54,14 @@ h3 {
 	background-size: 130px;
 }
 
+#header #loginbox {
+	width: 300px;
+	float: right;
+	margin: 0;
+	padding: 0 ;
+}
+
+
 #leftnav {
 	float: left;
 	margin: 0;
@@ -78,8 +87,7 @@ h3 {
 
 #body {
 	margin-left: 10em;
-	margin-bottom: 50px;
-	margin-top: 100px min-height :400px;
+	min-height :400px;
 	padding: 1em;
 }
 
@@ -139,11 +147,4 @@ a.backlink:hover {
 	padding-left: 2.5em;
 }
 
-.message {
-	border: solid 1px #DEDEDE;
-	background: #EFEFEF;
-	color: #222222;
-	padding: 4px;
-	text-align: center;
-}
 
