@@ -3,27 +3,23 @@ body {
 	font: normal 100% sans-serif;
 	line-height: 1.5;
 	color: black;
-
 }
 
-a  {
+a {
 	text-decoration: none;
 	color: black;
 }
 
-a:hover  {
+a:hover {
 	color: #A67C7C;
 }
 
-
-
-h1,h2,h3,h4,h5,h6 {
+h1, h2, h3, h4, h5, h6 {
 	text-decoration: none;
 	color: #A67C7C;
 	margin: 0;
 	padding: 0;
 }
-
 
 h1 {
 	font: normal 180% sans-serif;
@@ -38,10 +34,9 @@ h3 {
 	color: black;
 }
 
-
 #container {
 	background: #FFF;
-        padding: 1em;
+	padding: 1em;
 	width: 80%;
 	min-width: 800px;
 	min-height: 600px;
@@ -51,31 +46,31 @@ h3 {
 
 #header {
 	height: 120px;
-	float:top;
+	float: top;
 	padding-left: 180px;
 	border-bottom: 1px dashed silver;
 	background: transparent url(../img/logo.png) no-repeat top left;
- 	background-size: 130px;
+	background-size: 130px;
 }
 
 #leftnav {
 	float: left;
-  margin: 0; 
-  padding: 0;
+	margin: 0;
+	padding: 0;
 	width: 10em;
- 	border-right: 1px dashed silver;
-	min-height:400px;
+	border-right: 1px dashed silver;
+	min-height: 400px;
 }
 
-#leftnav ul{
+#leftnav ul {
 	font: normal 120% sans-serif;
-	list-style-type:none;
-	overflow:hidden;
-	margin:0;
-	padding:0;
+	list-style-type: none;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
 }
 
-#leftnav li{
+#leftnav li {
 	text-align: center;
 	font-weight: bold;
 	padding-top: 1em;
@@ -84,9 +79,8 @@ h3 {
 #body {
 	margin-left: 10em;
 	margin-bottom: 50px;
-	margin-top: 100px
-	min-height:400px;
-	padding:1em;
+	margin-top: 100px min-height :400px;
+	padding: 1em;
 }
 
 #footer {
@@ -94,66 +88,62 @@ h3 {
 	height: 50px;
 	text-align: center;
 	border-top: 1px dashed silver;
-	float:bottom;
+	float: bottom;
 }
 
 .question, .answer, .comment {
-  border-bottom-width:1px;
-  border-bottom-style:dashed;
-  border-color:silver;
-  padding:0.5em;
-  text-align:justify;
-  background-size: 40px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-color: silver;
+	padding: 0.5em;
+	text-align: justify;
+	background-size: 40px;
 }
 
 .question {
-  padding-left: 2.5em;
-  background: transparent url(../img/icon/question.png) no-repeat top left;
-
+	padding-left: 2.5em;
+	background: transparent url(../img/icons/question.png) no-repeat top left;
 }
 
 .answer {
-  padding-left: 6em;
-  background: transparent url(../img/icon/answer.png) no-repeat top left;
-  background-size: 40px;
+	padding-left: 6em;
+	background: transparent url(../img/icons/answer.png) no-repeat top left;
+	background-size: 40px;
 }
 
 .comment {
-  padding-left: 8em;
-  font: italic 90% sans-serif;
+	padding-left: 8em;
+	font: italic 90% sans-serif;
 }
-
 
 a.backlink {
 	margin-top: 1em;
-	display:block;
-	overflow:hidden;
-	text-indent:100%;
-	white-space:nowrap;
-  background-image: url(../img/icon/back.png);
-  background-size: 50px;
+	display: block;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	background-image: url(../img/icons/back.png);
+	background-size: 50px;
 	background-position: center center;
-  height:50px;
-	width:50px;
+	height: 50px;
+	width: 50px;
 }
 
 a.backlink:hover {
-  background-image: url(../img/icon/back_hover.png);
+	background-image: url(../img/icons/back_hover.png);
 }
 
-
-.question p{
-  border-left-width:1px;
-  border-left-style:dashed;
-  padding-left:2.5em;
+.question p {
+	border-left-width: 1px;
+	border-left-style: dashed;
+	padding-left: 2.5em;
 }
 
-
-.message{
-	border:solid 1px #DEDEDE; 
-	background:#EFEFEF;
-	color:#222222;
-	padding:4px;
-	text-align:center;
+.message {
+	border: solid 1px #DEDEDE;
+	background: #EFEFEF;
+	color: #222222;
+	padding: 4px;
+	text-align: center;
 }
 
