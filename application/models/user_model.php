@@ -12,59 +12,44 @@
  * @package models
  */
 
-//TODO: integrate functions for usage of category and field here
 //TODO: adapt docu of every function according coding conventions
 
 class User_model extends CI_Model {
 
-
-	// TODO: implement function  
+	// TODO: implement the login function. If the username exists, and the user's password is equal to $password it should return the userID, otherwise 0. Also implement delete_user(). Then create phpdoc comments for both functions.  
 	public function login($name, $password) {
-	// return uid if sucessfull else 0
+	 
 	}
+
+	public function delete_user($uid) {
 	
-	// TODO: implement function
+	}
+		
+	// TODO: implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.   
 	public function add_user($name, $password, $email) {
 	// check for existing user
-	// return true if successfull
+	// return true if successful
 	}
 	
-	// TODO: implement function  
-	public function delete_user($uid) {
-	//  return true if successfull
-	}
-	
-	// TODO: implement function
+
+	// TODO: Find out how the update_user() function can be used. Then document it using phpdoc. Use question_model::get_list() as an example.
 	public function update_user($uid, $user_data) {
-	//  return true if successfull
+		$this -> db -> query(update_string('User',$user_data, "userID = $uid"));
+		return $this -> db -> affected_rows(); 
 	}
 	
-	// TODO: adapt function docu to guidelines 
-	// this method returns all user data in the user table which is related to the $userid
+	// TODO: This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'  
 	public function get_userdata($uid) {
-		$this -> db -> where("userID", $uid);
-		$query = $this -> db -> get("User");
-		return $query -> result_array();
+	}
+	
+	// TODO: implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.
+	public function change_usertype($uid, $utid) {
+	  // return true if successful
 	}
 
-	// TODO: implement function  
-	public function get_user($uids=array(), $limit, $offset) {
-	// return all users if $uids is empty, else respective user(s)
-	// concern limit for data and offset for pagination   
-	}
-	
-	
-	// this function will return all userTypes
-	public function get_user_types() {
+	public function get_usertypes() {
 	 	$query = $this->db->get('UserType');    
 	    return $query->result();
 	}
-	
-	// TODO: implement function
-	public function change_user_type($uid, $uidType) {
-	// function for admins only
-	// return true if successfull
-	}
-	
 	
 }

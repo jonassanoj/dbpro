@@ -1,6 +1,6 @@
 <?php
 
-// TODO: adapt complete docu to guidelines
+// TODO: complete the category_model documentation, using phpdoc comments like in question_model.php
 
 class Category_model extends CI_Model {
 
@@ -13,7 +13,7 @@ class Category_model extends CI_Model {
 		return $this -> db -> insert_id();
 	}
 
-	// this fuction will alter the new name for category in Category Table
+	// this function will alter the new name for category in Category Table
 	function update_cat($catID, $catName) {
 		$this -> db -> where('catID', $catID);
 		$this -> db -> set('catName', $catName);
@@ -22,15 +22,15 @@ class Category_model extends CI_Model {
 	}
 
 	// this function will return all Categories in the category table
-	function get_cat_data($limit, $offset) {
-		$query = $this -> db -> get('Catagory', $limit, $offset);
+	function get_categories($fieldID=0) {
+		if (!$fieldID=0) $this -> db -> where('fieldID', $fieldID);
+		$query = $this -> db -> get('Category');
 		return $query -> result();
 	}
 
-	// this function will delete an unwanted category from gategory table
+	// this function will delete an unwanted category from category table
 	function delete_cat($catID) {
 		$this -> db -> where('catID', $catID);
-		$this -> db -> delete('Catagory');
+		$this -> db -> delete('Category');
 	}
-
 }

@@ -1,4 +1,4 @@
-form label {
+#form label {
     display: block;
     float: left;
     padding-right: 0.5em;
@@ -7,14 +7,14 @@ form label {
     font-size: 100%;
     } 
  
-form a{
+#form a{
     float: left;
     padding-right: 0.5em;
     text-align: left;
     	
 }
 
-form input{
+#form input{
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     background-color: #eaeaea;

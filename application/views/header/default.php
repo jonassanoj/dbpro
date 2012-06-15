@@ -1,7 +1,7 @@
 <div id="header">
 <div id="loginbox">
 	<?php 
-		echo form_open("user/login/");
+		echo form_open("user/login/",array('id'=>'form'));
 	    echo '<div class="field_container">';
 	    echo form_label('Username','username');
 		$attribute = array("id" => "username",
