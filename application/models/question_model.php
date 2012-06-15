@@ -7,7 +7,7 @@
  * It uses the following database tables:
  *
  * * _Question_
- * * _Anwer_ (read only)
+ * * _Answer_ (read only)
  *
  * @package models
  */

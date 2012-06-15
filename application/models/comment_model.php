@@ -32,4 +32,34 @@ class Comment_model extends CI_Model {
 		return $query -> result();
 	}
 
+	// TODO: implement function
+	public function get_acomments($aid) {
+
+	}
+
+	// TODO: implement function
+	public function create_qcomment($qid, $uid, $body) {
+
+	}
+
+	// TODO: implement function
+	public function create_acomment($aid, $uid, $body) {
+
+	}
+
+	// TODO: implement function
+	public function update_comment($cid, $uid, $body) {
+
+	}
+
+	// TODO: implement function
+	public function delete_comment($cid, $uid) {
+
+	}
+
+	// TODO: implement function
+	public function get_all_comments($uid) {
+		// return all comments from all answers and questions from a user
+	}
+
 }
