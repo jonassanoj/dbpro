@@ -1,8 +1,8 @@
 <div id="body">
 
 <div class="notification">
-<h3> The login with username <b><?php echo $username ?></b> was not successful </h3>
-<?php echo $this -> session -> userdata('failed_logins'); ?>
+<h3> The login with username "<b><?php echo $username ?></b>" was not successful </h3>
+<?php echo $this -> session -> userdata('failed_logins'); ?> failed logins...
 </div>
 	<?php 
 		echo form_open("user/login/",array('id'=>'form'));

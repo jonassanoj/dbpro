@@ -47,6 +47,7 @@ class User extends CI_Controller {
 		$this -> load -> view('templates/footer');
 	}
 	
+	//TODO: Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).
 	public function login()
 	{
 		$username = $this -> input -> post('username');
@@ -67,6 +68,8 @@ class User extends CI_Controller {
 		if (!$uid) redirect(site_url('user/failed/'.$username));
 		// login successful
 		$this -> session -> unset_userdata('failed_logins');
+		$this -> session -> set_userdata('uid',$uid);
+		$this -> session -> set_userdata('usertype',$this-> user_model -> get_usertype($uid));
 		$this -> session -> set_userdata('login', true);
 		$this -> session -> set_userdata('username', $username);
 		redirect($this -> session -> userdata('last_visited'));
@@ -75,11 +78,13 @@ class User extends CI_Controller {
 	public function logout()
 	{
 		$this -> session -> unset_userdata('login');
+		$this -> session -> unset_userdata('uid');
+		$this -> session -> unset_userdata('usertype');
 		$this -> session -> unset_userdata('username');
 		redirect($this -> session -> userdata('last_visited'));
 	}
 	
-	public function failed($user)
+	public function failed($user='')
 	{
 		if (!$this -> session -> userdata('failed_logins')) $this -> session -> set_userdata('failed_logins', 1);
 		else $this -> session -> set_userdata('failed_logins', $this -> session -> userdata('failed_logins')+1);
@@ -93,5 +98,9 @@ class User extends CI_Controller {
 		
 	}
 	
-
+	public function recover($user='')
+	{
+	
+	}
+	
 }

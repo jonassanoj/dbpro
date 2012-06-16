@@ -12,13 +12,12 @@
  * @package models
  */
 
-//TODO: adapt docu of every function according coding conventions
 
 class User_model extends CI_Model {
 
 	// TODO: implement the login function. If the username exists, and the user's password is equal to $password it should return the userID, otherwise 0. Also implement delete_user(). Then create phpdoc comments for both functions.  
 	public function login($name, $password) {
-	 
+	 return 1;
 	}
 
 	public function delete_user($uid) {
@@ -50,6 +49,15 @@ class User_model extends CI_Model {
 	public function get_usertypes() {
 	 	$query = $this->db->get('UserType');    
 	    return $query->result();
+	}
+	
+	//TODO: implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.
+	public function get_usertype($uid) {
+	  return 0;
+	}
+	
+	public function get_field($uid){
+	  return 0;
 	}
 	
 }
