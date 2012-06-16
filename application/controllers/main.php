@@ -26,7 +26,7 @@ class Main extends CI_Controller {
 	 * private helper function to build view
 	 *
 	 * every complete html-page sent to the client is constructed here.
-	 * currently, mostly defaults are sent and only the body is changed dynamically.
+	 * currently, mostly defaults are sent.
 	 *
 	 * The following parts are sent in order:
 	 *
@@ -46,9 +46,20 @@ class Main extends CI_Controller {
 		if (!file_exists('application/views/body/' . $body_view . '.php')) {
 			show_404();
 		}
-
+		// remember the current URL for creating backlinks
+		$this -> session -> set_userdata('last_visited', current_url());
 		$this -> load -> view('templates/header', $data);
-		$this -> load -> view('header/default');
+		if ($this -> session -> userdata('login'))
+		{ // user is logged in
+			$data['username'] = $this -> session -> userdata('username');
+			$this -> load -> view('header/loggedin',$data);
+		}
+		else
+		{
+			$data['username'] = $this -> input -> cookie('username');
+			$this -> load -> view('header/loginbox',$data);
+		}
+			
 		$this -> load -> view('leftnav/default');
 		$this -> load -> view('body/' . $body_view, $data);
 		$this -> load -> view('templates/footer');
@@ -85,7 +96,6 @@ class Main extends CI_Controller {
 		$data['pagelinks'] = $this -> pagination -> create_links();
 		$data['title'] = 'Goftogo: Recommended Questions';
 		$this -> _loadviews('qlist', $data);
-		$this -> session -> set_userdata('backlink', anchor('main/questions/' . $offset, "back", "class=backlink"));
 	}
 
 	/**
@@ -102,7 +112,7 @@ class Main extends CI_Controller {
 		$data['question'] = $this -> question_model -> get_details($qid);
 		$data['title'] = 'Goftogo: ' . $data['question'] -> title;
 		$data['answers'] = $this -> answer_model -> get_answers($qid);
-		$data['backlink'] = $this -> session -> userdata('backlink');
+		$data['backlink'] = anchor($this -> session -> userdata('last_visited'), "back", "class=backlink");
 		$this -> _loadviews('qdetails', $data);
 
 	}
