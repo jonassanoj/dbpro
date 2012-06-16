@@ -100,7 +100,7 @@ class Main extends CI_Controller {
 	}
 	
 	public function field($fid,$offset) {
-		// TODO: implement field($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
+		// TODO: implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
 	}
 	
 	public function search($term,$offset) {
