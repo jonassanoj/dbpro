@@ -42,6 +42,7 @@ class Main extends CI_Controller {
 	 *
 	 */
 
+	//TODO: extend the _loadviews() function so it loads a different sidebar, depending if the user is logged in or not. 
 	public function _loadviews($body_view, $data) {
 		if (!file_exists('application/views/body/' . $body_view . '.php')) {
 			show_404();
@@ -86,7 +87,7 @@ class Main extends CI_Controller {
 	 * @return void
 	 *
 	 */
-
+ 
 	public function questions($offset = 0) {
 		$config['base_url'] = site_url('main/questions/');
 		$config['per_page'] = 5;
@@ -96,6 +97,14 @@ class Main extends CI_Controller {
 		$data['pagelinks'] = $this -> pagination -> create_links();
 		$data['title'] = 'Goftogo: Recommended Questions';
 		$this -> _loadviews('qlist', $data);
+	}
+	
+	public function field($fid,$offset) {
+		// TODO: implement field($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
+	}
+	
+	public function search($term,$offset) {
+		// TODO: implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
 	}
 
 	/**
@@ -107,7 +116,7 @@ class Main extends CI_Controller {
 	 * @return void
 	 *
 	 */
-
+	
 	public function qshow($qid) {
 		$data['question'] = $this -> question_model -> get_details($qid);
 		$data['title'] = 'Goftogo: ' . $data['question'] -> title;
