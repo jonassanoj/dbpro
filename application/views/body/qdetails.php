@@ -1,11 +1,10 @@
 <script type="text/javascript">
 $(document).ready(function() {
-     
+   $("#ajaxresult").css("visibility", "visible");  
    $("#submitit").click(function() {
 
         $("#ajaxresult").load("<?php echo site_url('ajax/qcomments/'.$question->questionID); ?>");
-
-   });
+    });
    
  }); 
 </script>
@@ -17,20 +16,16 @@ $(document).ready(function() {
 		<h3><?php echo $question->title; ?></h3>
 		<p><?php echo $question->body; ?></p>
 
-<div id="ajaxresult">
-<form action="<?php echo site_url(); ?>/ajax/getcomments" method="POST">
-<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
+<div style="visibility:hidden" id="ajaxresult">
+<form action="" method="POST">
+  <input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
 </form> 
 <?php
 if (isset($result))
     echo $result;
 ?>
+</div> <!-- ajaxresult -->
 </div>
-</div>
-
-
-
-
 
 <?php foreach ($answers as $answer): ?>
 	<div class="answer">
