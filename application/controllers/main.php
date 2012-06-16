@@ -77,7 +77,7 @@ class Main extends CI_Controller {
 	 */
 
 	public function questions($offset = 0) {
-		$config['base_url'] = site_url('main/questions/');
+		$config['base_url'] = site_url('index.php/main/questions/');
 		$config['per_page'] = 5;
 		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page']);
 		$config['total_rows'] = $this -> question_model -> get_count();
@@ -104,6 +104,7 @@ class Main extends CI_Controller {
 		$data['answers'] = $this -> answer_model -> get_answers($qid);
 		$data['backlink'] = $this -> session -> userdata('backlink');
 		$this -> _loadviews('qdetails', $data);
+		
 
 	}
 
