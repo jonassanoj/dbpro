@@ -1,40 +1,39 @@
-body {
-	background: #D9C6B0;
-	font: normal 100% sans-serif;
-	line-height: 1.5;
-	color: black;
-}
+/***************************************************************************/
+/** 1. RESET   
+/********************
+/ remove default styling of page elements (margins, padding, border, etc.)	
+****************************************************************************/
+html, body, ul, ol, li, form, fieldset, legend {margin: 0;	padding: 0; }
+h1, h2, h3, h4, h5, h6, p { margin-top: 0; }
+fieldset,img { border: 0; }
+legend { color: #000; }
+li { list-style: none; }
+sup { vertical-align: text-top; }
+sub { vertical-align: text-bottom; }
+table {border-collapse: collapse; border-spacing: 0;}
+caption, th, td { text-align: left;	vertical-align: top; font-weight: normal; }
 
-a,input[type=submit] {
-	text-decoration: none;
-	color: black;
-	cursor: pointer;
-}
+/***************************************************************************/
+/** 2. Global Look
+/********************
+/ Some colors, look of basic elements.  	
+****************************************************************************/
 
-a:hover,input[type=submit]:hover {
-	color: #A67C7C;
-}
+body { background: #D9C6B0; color: black; }
 
-h1, h2, h3, h4, h5, h6 {
-	text-decoration: none;
-	color: black;
-	margin: 0;
-	padding: 0;
-}
+/* Links are black, become underlined only while mouse hovers. */
+a       { text-decoration: none; color: black; cursor: pointer; }
+a:hover { text-decoration: underline; }
 
-h1 {
-	font: normal 180%;
-	color: #A67C7C;
-}
+h1 { font-size: 200%; font-weight: bold; color: #A67C7C; padding-top: 30px; }
+h2 { font-size: 150%; }
+h3 { font-size: 120%; }
 
-h2 {
-	font: normal 150% sans-serif;
-}
-
-h3 {
-	font: normal 120% sans-serif;
-	color: black;
-}
+/***************************************************************************/
+/** 2. Global Layout DIVs
+/********************
+/ #header,#leftnav,#body, etc.  	
+****************************************************************************/
 
 #container {
 	background: #FFF;
@@ -76,7 +75,7 @@ h3 {
 }
 
 #leftnav ul {
-	font: normal 120% sans-serif;
+	font: normal 120%;
 	list-style-type: none;
 	overflow: hidden;
 	margin: 0;
@@ -125,7 +124,7 @@ h3 {
 
 .comment {
 	padding-left: 8em;
-	font: italic 90% sans-serif;
+	font: italic 90%;
 }
 
 a.backlink {
