@@ -29,8 +29,8 @@ class User_model extends CI_Model {
 	 ** function add user is for adding new user in the table User with initial data *(username,password and email address)	
 	 * @author ASHUQULLAH ALIZAI
 	 * @param string_type $name is the username for the user 
-	 * @param password_type $password password specify by user
-	 * @param email_type $email email specify by user 
+	 * @param password_type $password, password specify by user
+	 * @param email_type $email email, specify by user 
 	 */
 	public function add_user($name, $password, $email) {
 	// check for existing user
