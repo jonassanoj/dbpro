@@ -38,7 +38,7 @@
 // Meta-Information
 $lang['language_name'] = "deutsch"; // name of the language as it should be displayed.
 $lang['language_code'] = "de"; // language code, e.g. fa for Farsi,  ps for Pashto, de for German
-$lang['language_subcode'] = "DE"; // language subcode, DE for Germany, so de-DE is German spoken in Germany.
+$lang['language_region'] = "DE"; // regional language subtype, DE for Germany, so de-DE is German spoken in Germany.
 $lang['language_dir'] = "ltr"; // language direction can be ltr (left-to-right) or rtl (right-to-left)
 
 // Titles
@@ -69,6 +69,7 @@ $lang['form_register'] = "Registrieren";
 $lang['msg_login_failed'] = "Login fehlgeschlagen!";
 $lang['msgvar_username_taken'] = "Der Benutzername %s ist bereits registriert!";
 $lang['msgvar_users_online'] = "Momentan sind %u registrierte Nutzer und %u Gäste online.";
+$lang['msgvar_login_trial'] = "Du hast %u mal erfolglos versucht, dich einzuloggen.";
 
 // Paragraphs 
 $lang['par_about'] = "Goftogo (Dialog) ist eine Frage und Antwort Webseite zum Thema Informatik, die afghanische Informatikstudenten, 

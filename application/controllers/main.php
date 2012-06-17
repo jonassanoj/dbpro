@@ -13,7 +13,7 @@ class Main extends CI_Controller {
 	/**
 	 * constructor
 	 *
-	 * loads question_model, answer_model. Loads the default language  
+	 * loads question_model, answer_model, main_lang.
 	 * 
 	 */
 
@@ -30,15 +30,15 @@ class Main extends CI_Controller {
 	 * private helper function to build view
 	 *
 	 * every complete html-page sent to the client is constructed here.
-	 * currently, mostly defaults are sent.
+	 * currently, header and body are choosen dynamically.
 	 *
 	 * The following parts are sent in order:
 	 *
-	 * * _templates/header.php_
-	 * * _header/default.php_ : the default content appearing in the header
+	 * * _include/header.php_
+	 * * _header/loginbox | loggedin : a header with loginbox or with logout button
 	 * * _leftnav/default.php_: the default content of the navigation bar
 	 * * _body_/$body_view_: the body content given as a parameter
-	 * * _templates/footer.php_
+	 * * _include/footer.php_
 	 *
 	 * @param string $body_view what should appear in the body
 	 * @param array $data The data array to pass on to the views
@@ -50,7 +50,7 @@ class Main extends CI_Controller {
 	public function _loadviews($body_view, $data) {
 		// remember the current URL for creating backlinks
 		$this -> session -> set_userdata('last_visited', current_url());
-		$this -> load -> view('templates/header', $data);
+		$this -> load -> view('include/header', $data);
 		if ($this -> session -> userdata('login'))
 		{ // user is logged in
 			$data['username'] = $this -> session -> userdata('username');
@@ -63,7 +63,7 @@ class Main extends CI_Controller {
 			
 		$this -> load -> view('leftnav/default');
 		$this -> load -> view('body/' . $body_view, $data);
-		$this -> load -> view('templates/footer');
+		$this -> load -> view('include/footer');
 	}
 	
 	/**

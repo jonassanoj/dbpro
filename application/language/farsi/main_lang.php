@@ -1,5 +1,7 @@
 <?php
 
+// TODO: Translate all the string values to Dari/Farsi. You can write your own short text for $lang['par_about'].   
+
 /*
  * language/farsi/main_lang.php
  * 
@@ -38,7 +40,7 @@
 // Meta-Information
 $lang['language_name'] = "‏درى‎"; // name of the language as it should be displayed.
 $lang['language_code'] = "fa"; // language code, e.g. fa for Farsi,  ps for Pashto, de for German
-$lang['language_subcode'] = "AF"; // subcode, AF for Afghanistan (so fa-AF is dari)
+$lang['language_region'] = "AF"; // regional language subtype, AF for Afghanistan (so fa-AF is dari)
 $lang['language_dir'] = "rtl"; // language direction can be ltr (left-to-right) or rtl (right-to-left)
 
 
@@ -69,15 +71,14 @@ $lang['form_login'] = "Login";
 $lang['form_register'] = "Register";
 
 // Messages 
-$lang['msg_login_failed'] = "Sorry, your login failed!";
+// Messages 
+$lang['msg_login_failed'] = "Login failed!";
 $lang['msgvar_username_taken'] = "Sorry, the username %s is already registered!";
 $lang['msgvar_users_online'] = "At the moment, %u registered users and %u guests are online.";
-
+$lang['msgvar_login_trial'] = "You tried %u times to login unsuccessully";
 // Paragraphs 
 $lang['par_about'] = "Goftogo (Dialogue) is a Computer Science related Q&A site, that wants to bring Afghan IT students, 
 teachers and professionals closer together. Whether you are just starting to learn about IT at university, are an experienced 
 programmer working daily with the most up-to-date technology or a professor with years of experience and a scientific background: 
 Join now to ask questions and receive answers, to give answers and receive gratitude. Unlike other things, knowledge only gets 
 bigger the more it is shared!";
-
-
