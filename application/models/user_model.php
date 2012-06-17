@@ -40,7 +40,7 @@ class User_model extends CI_Model {
 	}else {
 		$date = date('Y/m/d H:i:s');
 		$this -> db -> set('userName', $name);
-		$this -> db -> set('paswword', $password);
+		$this -> db -> set('password', $password);
 		$this -> db -> set('email', $email);
 		$this -> db -> set('accountCreationDate', $date);
 		$this -> db -> insert('User');
@@ -56,9 +56,9 @@ class User_model extends CI_Model {
 	 * @ returns false if username exist in the database, retruns true if the username not exist 
 	 */
 
-	public function _check_userName($username) {
-		$res = $this->db->get_where("User", $username)->result();
-		if(isset($res) && count($res) > 0 )
+	public function _check_userName($username) {   
+                $query = $this->db->get_where('User', array('userName ='=> $username))->result(); 
+		if($query->num_rows() > 0 )
 			return false; // if user exists
 		else
 			return true;  // if not exists
