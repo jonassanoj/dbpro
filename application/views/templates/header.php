@@ -4,11 +4,7 @@
 
 <script type="text/javascript" src="<?php echo base_url('js/jquery-1.7.2.min.js');?>"></script>
 
-<title><?php
-     if (isset($title))
-       echo($title);
-     else echo("goftogo"); 
-?>
+<title><?php echo($title); ?>
 </title>
  
 <link rel="stylesheet" href="<?php echo base_url('css/main.css');?>" type="text/css" media="screen"/>

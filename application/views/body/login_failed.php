@@ -1,4 +1,4 @@
-<div id="body">
+<div id="body">‎
 
 <div class="notification">
 <h3> The login with username "<b><?php echo $username ?></b>" was not successful </h3>

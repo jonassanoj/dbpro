@@ -34,9 +34,7 @@
 
 <h1>
 <?php
-     if (isset($title))
-       echo($title);
-     else echo("Goftogo"); 
+       echo($title); 
 ?>
 </h1>
 
