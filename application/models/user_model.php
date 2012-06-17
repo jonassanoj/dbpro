@@ -28,9 +28,9 @@ class User_model extends CI_Model {
 	/**
 	 ** function add user is for adding new user in the User table with initial data *(username,password and email address)	
 	 * @author ASHUQULLAH ALIZAI
-	 * @param string_type $name is the username for the user 
-	 * @param password_type $password, password specify by user
-	 * @param email_type $email email, specify by user 
+	 * @param string $name is the username for the user 
+	 * @param string $password is password specify by user
+	 * @param string $email is email specify by user 
 	 */
 	public function add_user($name, $password, $email) {
 	// check for existing user
@@ -53,7 +53,7 @@ class User_model extends CI_Model {
 	 * @author ASHUQULLAH ALIZAI
 	 * @param string_type $username is the user name for user who wants to register for first time 
 	 * *private function _check_userName checks if usename exists or not ,
-	 * @ returns false if username exist in the database, retruns true if the username not exist 
+	 * @return false if username exist in the database, retruns true if the username not exist 
 	 */
 
 	public function _check_userName($username) {   
