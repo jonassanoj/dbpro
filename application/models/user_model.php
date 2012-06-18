@@ -15,26 +15,58 @@
 
 class User_model extends CI_Model {
 
-	// TODO: implement the login function. If the username exists, and the user's password is equal to $password it should return the userID, otherwise 0. Also implement delete_user(). Then create phpdoc comments for both functions.  
+/**
+ * Checks if the username exists
+ *
+ * The _$name_ is compared to the _userName_ in User table.
+ *
+ * The _$password_ is compared if it is eqaul to that userName's password. 
+ * 
+ * @author Huma Yari
+ * @param string $name The username
+ * @param string $password The password
+ * @return int the userID if exits or 0
+ */
+
 	public function login($name, $password) {
-	 return 1;
+		$this->db->where('userName',$name);
+		$this->db->where('password',$password);
+		$this->db->select('userID');
+		$query = $this->db->get('User');
+		if($query->num_rows() > 0){
+		return $query[0]['userID'];
+		}
+		else return 0;
 	}
 
+/**
+ * Deletes a user
+ *
+ * The given userID is compared to the _userID_ of the User table.
+ *
+ * The user will be deleted if that userID is found. 
+ *
+ *@author Huma Yari
+ *@param int The userID
+ *@return void
+ */
+
 	public function delete_user($uid) {
-	
+	return $this -> db -> delete('User', array('userID'=>$uid));
 	}
 		
 	// TODO: implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.   
 	/**
-	 ** function add user is for adding new user in the User table with initial data *(username,password and email address)	
+	 ** adding new user in the User table with initial data *(username,password and email address)	
 	 * @author ASHUQULLAH ALIZAI
-	 * @param string_type $name is the username for the user 
-	 * @param password_type $password, password specify by user
-	 * @param email_type $email email, specify by user 
+	 * @param string $name is the username for the user 
+	 * @param string $password is password specify by user
+	 * @param string $email is email specify by user 
+	 * @return boolean true if success 
 	 */
 	public function add_user($name, $password, $email) {
 	// check for existing user
-	$check_user =$this->_check_userName($name);
+	$check_user =$this->check_userName($name);
 	if (!$check_user){
 		return false;
 	}else {
@@ -52,12 +84,13 @@ class User_model extends CI_Model {
 	/**
 	 * @author ASHUQULLAH ALIZAI
 	 * @param string_type $username is the user name for user who wants to register for first time 
-	 * *private function _check_userName checks if username exists or not ,
-	 * @ returns false if username exist in the database, retruns true if the username not exist 
+
+	 * *private function _check_userName checks if usename exists or not ,
+	 * @return boolean false if username exist in the database, retruns true if the username not exist 
 	 */
 
-	public function _check_userName($username) {   
-                $query = $this->db->get_where('User', array('userName ='=> $username))->result(); 
+	public function check_userName($username) {   
+         $query = $this->db->get_where('User', array('userName ='=> $username))->result(); 
 		if($query->num_rows() > 0 )
 			return false; // if user exists
 		else

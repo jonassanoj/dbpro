@@ -53,6 +53,7 @@ $lang['title_about'] = "About Goftogo";
 $lang['w_about'] = "about";
 $lang['w_home'] = "home";
 $lang['w_back'] = "back";
+$lang['w_lang_ps'] = "‏Pashto";
 $lang['w_lang_fa'] = "Persian";
 $lang['w_lang_de'] = "German";
 $lang['w_lang_en'] = "English";
