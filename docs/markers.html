@@ -20,7 +20,6 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
-<li><a href="packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="packages/controllers.html"><i class="icon-folder-open"></i> controllers</a></li>
 <li><a href="packages/models.html"><i class="icon-folder-open"></i> models</a></li>
 </ul>
@@ -33,10 +32,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">37</span></a></li>
+                <span class="label label-info">25</span></a></li>
 <li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">14</span>
+                <span class="label label-info">13</span>
 </li></ul></a></li>
 <li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -54,13 +53,12 @@
 <div class="row">
 <div class="span4"><ul class="side-nav nav nav-list">
 <li class="nav-header">Navigation</li>
-<li><a href="#models/question_model.php"><i class="icon-file"></i>models/question_model.php</a></li>
-<li><a href="#models/user_model.php"><i class="icon-file"></i>models/user_model.php</a></li>
-<li><a href="#models/field_model.php"><i class="icon-file"></i>models/field_model.php</a></li>
 <li><a href="#models/category_model.php"><i class="icon-file"></i>models/category_model.php</a></li>
+<li><a href="#models/question_model.php"><i class="icon-file"></i>models/question_model.php</a></li>
 <li><a href="#models/comment_model.php"><i class="icon-file"></i>models/comment_model.php</a></li>
-<li><a href="#controllers/main.php"><i class="icon-file"></i>controllers/main.php</a></li>
+<li><a href="#models/user_model.php"><i class="icon-file"></i>models/user_model.php</a></li>
 <li><a href="#controllers/user.php"><i class="icon-file"></i>controllers/user.php</a></li>
+<li><a href="#controllers/main.php"><i class="icon-file"></i>controllers/main.php</a></li>
 </ul></div>
 <div class="span8">
 <ul class="breadcrumb">
@@ -72,81 +70,10 @@
 <div class="alert alert-info">
                         The following markers were found:
                         <ul><li>todo 
-                <span class="label label-info">14</span>
+                <span class="label label-info">13</span>
 </li></ul>
 </div>
 <div id="marker-accordion">
-<div class="package-contents">
-<a name="models/question_model.php" id="models/question_model.php"></a><h3>
-<i class="icon-file"></i>models/question_model.php<small style="float: right;padding-right: 10px;">1</small>
-</h3>
-<div><table class="table markers table-bordered">
-<tr>
-<th>Type</th>
-<th>Line</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>todo</td>
-<td>90</td>
-<td>implement the filter function so that it works as documented.</td>
-</tr>
-</table></div>
-</div>
-<div class="package-contents">
-<a name="models/user_model.php" id="models/user_model.php"></a><h3>
-<i class="icon-file"></i>models/user_model.php<small style="float: right;padding-right: 10px;">5</small>
-</h3>
-<div><table class="table markers table-bordered">
-<tr>
-<th>Type</th>
-<th>Line</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>todo</td>
-<td>58</td>
-<td>implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.</td>
-</tr>
-<tr>
-<td>todo</td>
-<td>100</td>
-<td>Find out how the update_user() function can be used. Then document it using phpdoc. Use question_model::get_list() as an example.</td>
-</tr>
-<tr>
-<td>todo</td>
-<td>106</td>
-<td>This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'</td>
-</tr>
-<tr>
-<td>todo</td>
-<td>110</td>
-<td>implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.</td>
-</tr>
-<tr>
-<td>todo</td>
-<td>120</td>
-<td>implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.</td>
-</tr>
-</table></div>
-</div>
-<div class="package-contents">
-<a name="models/field_model.php" id="models/field_model.php"></a><h3>
-<i class="icon-file"></i>models/field_model.php<small style="float: right;padding-right: 10px;">1</small>
-</h3>
-<div><table class="table markers table-bordered">
-<tr>
-<th>Type</th>
-<th>Line</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>todo</td>
-<td>3</td>
-<td>complete field_model documentation according to the guidelines</td>
-</tr>
-</table></div>
-</div>
 <div class="package-contents">
 <a name="models/category_model.php" id="models/category_model.php"></a><h3>
 <i class="icon-file"></i>models/category_model.php<small style="float: right;padding-right: 10px;">1</small>
@@ -161,6 +88,23 @@
 <td>todo</td>
 <td>3</td>
 <td>complete the category_model documentation, using phpdoc comments like in question_model.php</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="models/question_model.php" id="models/question_model.php"></a><h3>
+<i class="icon-file"></i>models/question_model.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>90</td>
+<td>implement the filter function so that it works as documented.</td>
 </tr>
 </table></div>
 </div>
@@ -183,6 +127,60 @@
 <td>todo</td>
 <td>61</td>
 <td>Implement update_comment so that it updates the body of the comment specified by $cid. Then implement delete_comment so that it deletes the comment specified by $cid. Create documentation for both functions, using phpdoc comments. See get_acomments for an example.</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="models/user_model.php" id="models/user_model.php"></a><h3>
+<i class="icon-file"></i>models/user_model.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>58</td>
+<td>implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>103</td>
+<td>Find out how the update_user() function can be used. Then document it using phpdoc. Use question_model::get_list() as an example.</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>109</td>
+<td>This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>121</td>
+<td>implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>139</td>
+<td>implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="controllers/user.php" id="controllers/user.php"></a><h3>
+<i class="icon-file"></i>controllers/user.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>54</td>
+<td>Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).</td>
 </tr>
 </table></div>
 </div>
@@ -213,30 +211,13 @@
 </tr>
 </table></div>
 </div>
-<div class="package-contents">
-<a name="controllers/user.php" id="controllers/user.php"></a><h3>
-<i class="icon-file"></i>controllers/user.php<small style="float: right;padding-right: 10px;">1</small>
-</h3>
-<div><table class="table markers table-bordered">
-<tr>
-<th>Type</th>
-<th>Line</th>
-<th>Description</th>
-</tr>
-<tr>
-<td>todo</td>
-<td>54</td>
-<td>Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).</td>
-</tr>
-</table></div>
-</div>
 </div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-            generated on 2012-06-18T15:30:39+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a6</a> and<br>
+            generated on 2012-06-19T01:52:58+02:00.<br></footer></div>
 </div>
 </body>
 </html>
