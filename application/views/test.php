@@ -8,9 +8,9 @@
 <!--
 body {
 	background: white;
-	font: normal 120% sans-serif;
+	font: normal 100% sans-serif;
 	line-height: 1.5;
-	margin: 4em;
+	margin: 3em;
 	color: black;
 }
 
@@ -18,29 +18,47 @@ ul {
 	margin: 0 auto;
 	border-width: 1px;
 	border-style: solid;
-	width: 60%;
 	border-color: black;
+	width: 85%;
 	padding: 4px;
 	list-style:none;
 	text-align: justify;
 }
 
 li {
- padding: 2px;
- margin: 2px;
+ padding: 3px;
+ margin: 3px;
 }
+
+ul ul {
+	width: 95%;
+	margin-top: 2em;
+	background-color: CornflowerBlue;
+}
+ul ul ul {
+	margin-top: 0;
+	background-color: gray;
+}
+
 
 ul li {
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
-	
 	border-color: black;
+	padding: 2em;
+	font: bold x-large sans-serif;
 }
 
+ul ul li { 
+	background-color: beige;
+	font: normal medium sans-serif; 
+	padding: 3px;
+}
 
-ul ul {background-color: #007C7C; }
+/*
+ul ul { }
 
-ul ul li { background-color: #DDDFDF; }
+*/
 
 --!>
 </style> 
