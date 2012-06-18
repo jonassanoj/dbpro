@@ -1,0 +1,20 @@
+/*	Droid Serif  + Droid Sans 
+	
+	---- Sans(N,B) Serif(N,I,B) (131 load)
+	@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700,400italic);
+
+	font-family: 'Droid Sans', sans-serif; 
+	font-family: 'Droid Serif', serif; 
+*/		
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700,400italic);
+
+/****************************************************************************************/
+
+body {font-family:"DroidSerif", Georgia, serif;}
+h1, h2, h3, h4, h5, h6, ul, ol {font-family:"DroidSans", Helvetica, Arial, sans; }
+
+strong { font-weight:bold; }
+em { font-style:italic; }
+strong em { font-weight:bold; font-style:italic;}
+

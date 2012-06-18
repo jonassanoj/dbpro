@@ -25,6 +25,7 @@
     font-style: normal;
 }
 
+/*
 @font-face {
     font-family: 'DroidSans';
     src: url('DroidSans-Bold-webfont.eot');
@@ -33,6 +34,7 @@
     font-weight: bold;
     font-style: normal;
 }
+*/
 
 @font-face {
     font-family: 'DroidSerif';
@@ -72,9 +74,8 @@
 
 /****************************************************************************************/
 
-/* Headings in DroidSerif, everything else in DroidSans */ 
-body { font-family:"DroidSans", Helvetica, Arial, sans; }
-h1, h2, h3, h4, h5, h6 { font-family:"DroidSerif", Georgia, serif; }
+body {font-family:"DroidSerif", Georgia, serif;}
+h1, h2, h3, h4, h5, h6, ul, ol {font-family:"DroidSans", Helvetica, Arial, sans; }
 
 strong { font-weight:bold; }
 em { font-style:italic; }

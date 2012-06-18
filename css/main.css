@@ -1,3 +1,5 @@
+@import url(font/gw_cabin.css);
+
 /***************************************************************************/
 /** 1. RESET   
 /********************
@@ -19,22 +21,21 @@ caption, th, td { text-align: left;	vertical-align: top; font-weight: normal; }
 / Some colors, look of basic elements.  	
 ****************************************************************************/
 
-body { background: #D9C6B0; color: black; }
+body { background: #D9C6B0; color: black; line-height: 1.5; }
 
 /* Links are black, become underlined only while mouse hovers. */
 a       { text-decoration: none; color: black; cursor: pointer; }
 a:hover { text-decoration: underline; }
 
-h1 { font-size: 200%; font-weight: bold; color: #A67C7C; padding-top: 30px; }
-h2 { font-size: 150%; }
-h3 { font-size: 120%; }
+h1 { font-size: 270%; color: #A67C7C; padding-top: 20px; }
+h2 { font-size: 180%; }
+h3 { font-size: 150%; }
 
 /***************************************************************************/
 /** 2. Global Layout DIVs
 /********************
 / #header,#leftnav,#body, etc.  	
 ****************************************************************************/
-
 #container {
 	background: #FFF;
 	padding: 1em;
@@ -67,25 +68,16 @@ h3 { font-size: 120%; }
 
 #leftnav {
 	float: left;
-	margin: 0;
-	padding: 0;
+	padding: 0em;
 	width: 10em;
 	border-right: 1px dashed silver;
 	min-height: 400px;
 }
 
-#leftnav ul {
-	font: normal 120%;
-	list-style-type: none;
-	overflow: hidden;
-	margin: 0;
-	padding: 0;
-}
 
-#leftnav li {
-	text-align: center;
-	font-weight: bold;
-	padding-top: 1em;
+#leftnav ul { /* list items in the navigation bar (menu) */
+	font-size: 140%;
+	padding: 1.5em;
 }
 
 #body {
@@ -158,5 +150,4 @@ a.backlink:hover {
 	margin: 1em;
 	text-align: center;
 	}
-	
-}
+

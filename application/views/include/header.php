@@ -14,9 +14,6 @@
 	echo link_tag('css/formee-structure.css');
 	echo link_tag('css/formee-style.css');
 	
-	// load Droid Sans/Droid Serif fonts 
-	echo link_tag('css/font/droid.css');
-	
 	// favicon
 	echo link_tag('favicon.png', 'shortcut icon', 'img/ico');
 ?>
