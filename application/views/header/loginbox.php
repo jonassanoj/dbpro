@@ -1,43 +1,36 @@
 <div id="header">
+
+
 <div id="loginbox">
 	<?php 
 		echo form_open("user/login/",array('id'=>'form'));
-	    echo '<div class="field_container">';
-	    echo form_label('Username','username');
+	    echo lang('form_username','username');
 		$attribute = array("id" => "username",
 						   "name" => "username",
 						   "value" => $username);
 
 		echo form_input($attribute);
+		echo '<br>'; // clear left
 		$attribute = array("id" => "password",
 						   "name" => "password",
 						   "value" => '');
-		echo '</div>'; // .field_container
-		echo '<div class="field_container">';
-		echo form_label('Password','password');
+		echo lang('form_password','password');
 		echo form_password($attribute);
-		echo '</div>'; // .field_container
-		echo '<div class="field_container">';
-				echo form_label('remember me','remember');
+		echo '<br>'; // clear left
+		echo lang('form_remember','remember');;
 		echo form_checkbox('remember', 'yes', TRUE);
-		echo '</div>'; // .field_container
-		echo '<div class="field_container">';
+		echo '<br>'; // clear left
 		$attribute = array("id" => "login",
 						   "name" => "login",
 						   "value" => "Login");
-		echo anchor("user/register/","Register");
+		echo form_label('','login');
+		echo anchor("user/register/",lang('form_register'));
 		echo form_submit($attribute);
-		echo '</div>'; // .field_container
         echo form_close(); ?>
-
 </div> <!-- loginbox -->
 
 <h1>
-<?php
-     if (isset($title))
-       echo($title);
-     else echo("Goftogo"); 
-?>
+<?php echo($title); ?>
 </h1>
 
 </div> <!-- header -->

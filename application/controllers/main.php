@@ -13,28 +13,32 @@ class Main extends CI_Controller {
 	/**
 	 * constructor
 	 *
-	 * loads: question_model, answer_model
+	 * loads question_model, answer_model, main_lang.
+	 * 
 	 */
 
 	public function __construct() {
 		parent::__construct();
 		$this -> load -> model('question_model');
 		$this -> load -> model('answer_model');
+		// if no language defined in session, load default language.
+		if (! $this -> session -> userdata('language')) $this->lang->load('main');
+		else $this->lang->load('main', $this -> session -> userdata('language'));
 	}
 
 	/**
 	 * private helper function to build view
 	 *
 	 * every complete html-page sent to the client is constructed here.
-	 * currently, mostly defaults are sent.
+	 * currently, header and body are choosen dynamically.
 	 *
 	 * The following parts are sent in order:
 	 *
-	 * * _templates/header.php_
-	 * * _header/default.php_ : the default content appearing in the header
+	 * * _include/header.php_
+	 * * _header/loginbox | loggedin : a header with loginbox or with logout button
 	 * * _leftnav/default.php_: the default content of the navigation bar
 	 * * _body_/$body_view_: the body content given as a parameter
-	 * * _templates/footer.php_
+	 * * _include/footer.php_
 	 *
 	 * @param string $body_view what should appear in the body
 	 * @param array $data The data array to pass on to the views
@@ -42,30 +46,26 @@ class Main extends CI_Controller {
 	 *
 	 */
 
-	//TODO: extend the _loadviews() function so it loads a different sidebar, depending if the user is logged in or not. 
+	//TODO: extend the _loadviews() function so it loads a different sidebar, depending on the type of user.
 	public function _loadviews($body_view, $data) {
-		if (!file_exists('application/views/body/' . $body_view . '.php')) {
-			show_404();
-		}
 		// remember the current URL for creating backlinks
 		$this -> session -> set_userdata('last_visited', current_url());
-		$this -> load -> view('templates/header', $data);
+		$this -> load -> view('include/header', $data);
 		if ($this -> session -> userdata('login'))
 		{ // user is logged in
 			$data['username'] = $this -> session -> userdata('username');
 			$this -> load -> view('header/loggedin',$data);
 		}
-		else
-		{
+		else {
 			$data['username'] = $this -> input -> cookie('username');
 			$this -> load -> view('header/loginbox',$data);
 		}
 			
 		$this -> load -> view('leftnav/default');
 		$this -> load -> view('body/' . $body_view, $data);
-		$this -> load -> view('templates/footer');
+		$this -> load -> view('include/footer');
 	}
-
+	
 	/**
 	 * home view
 	 *
@@ -95,7 +95,7 @@ class Main extends CI_Controller {
 		$config['total_rows'] = $this -> question_model -> get_count();
 		$this -> pagination -> initialize($config);
 		$data['pagelinks'] = $this -> pagination -> create_links();
-		$data['title'] = 'Goftogo: Recommended Questions';
+		$data['title'] = lang('title_recent_questions');
 		$this -> _loadviews('qlist', $data);
 	}
 	
@@ -119,9 +119,9 @@ class Main extends CI_Controller {
 	
 	public function qshow($qid) {
 		$data['question'] = $this -> question_model -> get_details($qid);
-		$data['title'] = 'Goftogo: ' . $data['question'] -> title;
+		$data['title'] =lang('title_main').': '.$data['question'] -> title;
 		$data['answers'] = $this -> answer_model -> get_answers($qid);
-		$data['backlink'] = anchor($this -> session -> userdata('last_visited'), "back", "class=backlink");
+		$data['backlink'] = anchor($this -> session -> userdata('last_visited'), lang('w_back'), "class=backlink");
 		$this -> _loadviews('qdetails', $data);
 
 	}
@@ -138,8 +138,11 @@ class Main extends CI_Controller {
 	 */
 
 	public function view($page) {
-		$data['title'] = ucfirst($page);
-		$this -> _loadviews($page, $data);
+		// if no view to show for $page, show 404 now.
+		if (! file_exists('application/views/body/' . $page . '.php')) show_404();
+		// try to translate the title, then capitalize it.
+		$data['title'] = mb_convert_case(lang('w_'.$page),MB_CASE_TITLE);
+		$this -> _loadviews($page,$data);
 	}
 
 }

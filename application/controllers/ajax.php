@@ -28,7 +28,7 @@ class Ajax extends CI_Controller {
 
 	public function qcomments($qid) {
 		$data["comments"] = $this -> comment_model -> get_qcomments($qid);
-		$this -> load -> view('ajax/comments', $data);
+		$this -> load -> view('include/comments', $data);
 	}
 
 }
