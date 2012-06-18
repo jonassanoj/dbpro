@@ -14,7 +14,7 @@ body {
 	color: black;
 }
 
-ul {
+dl { 
 	margin: 0 auto;
 	border-width: 1px;
 	border-style: solid;
@@ -25,39 +25,63 @@ ul {
 	text-align: justify;
 }
 
-li {
- padding: 3px;
- margin: 3px;
+dd, dt { /* all keys or values */
+ 
+ /*padding: 3px; margin: 3px;*/
+ margin-left:0.3em;
+ display: inline; 
 }
 
-ul ul {
+
+dt { /* all keys  */
+ font-style:italic;
+ margin-left:2em;
+}
+
+dl dl { /* level two list */
 	width: 95%;
 	margin-top: 2em;
-	background-color: CornflowerBlue;
+	background-color: #F0F8FF;
 }
-ul ul ul {
+dl dl dl { /* level three+ list */
 	margin-top: 0;
-	background-color: gray;
+	background-color: #ADD8E6;
 }
 
-
-ul li {
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-	border-color: black;
-	padding: 2em;
-	font: bold x-large sans-serif;
+dl dd { /* values level 1+ */
+	font-size: x-large;
 }
 
-ul ul li { 
-	background-color: beige;
-	font: normal medium sans-serif; 
-	padding: 3px;
+dl dt { /* keys level 1+ */
+	font-size: large;
+	}
+
+dl dl dd { /* values level 2+ */
+	font-size: large; 
+
 }
+ dl dl dt { /* keys level 2+ */
+	font-size: medium; 
+ }
 
 /*
-ul ul { }
-
+<dl>
+  Test of user_model -> get_usertypes()
+    <dl>
+      0
+        <dl>
+          <dt>userTypeID: </dt><dd>0</dd>          <dt>userType: </dt><dd>unconfirmed</dd>        </dl>
+            1
+        <dl>
+          <dt>userTypeID: </dt><dd>1</dd>          <dt>userType: </dt><dd>Normal User</dd>        </dl>
+            2
+        <dl>
+          <dt>userTypeID: </dt><dd>2</dd>          <dt>userType: </dt><dd>Editor</dd>        </dl>
+            3
+        <dl>
+          <dt>userTypeID: </dt><dd>3</dd>          <dt>userType: </dt><dd>Admin</dd>        </dl>
+          </dl>
+  </dl>
 */
 
 --!>
@@ -65,6 +89,53 @@ ul ul { }
 </head>
 <body>
 <?php
+	function mylist($type = 'ul', $list, $depth = 0)
+	{
+		// If an array wasn't submitted there's nothing to do...
+		if ( ! is_array($list))
+		{
+			return $list;
+		}
+
+		// Set the indentation based on the depth
+		$out = str_repeat(" ", $depth);
+
+		// Write the opening list tag
+		$out .= "<".$type.">\n";
+
+		// Cycle through the list elements.  If an array is
+		// encountered we will recursively call _list()
+
+		static $_last_list_item = '';
+		foreach ($list as $key => $val)
+		{
+			$_last_list_item = $key;
+
+			$out .= str_repeat(" ", $depth + 2);
+			
+			if ( ! is_array($val))
+			{
+				$out .= '<dt>'.$key.': </dt>'.'<dd>'.$val.'</dd>';
+			}
+			else
+			{
+				$out .= '<dd>'.$_last_list_item."</dd>\n";
+				$out .= mylist($type, $val, $depth + 4);
+				$out .= str_repeat(" ", $depth + 2);
+			}
+
+			//$out .= "</li>\n";
+		}
+
+		// Set the indentation for the closing tag
+		$out .= str_repeat(" ", $depth);
+
+		// Write the closing list tag
+		$out .= "</".$type.">\n";
+
+		return $out;
+	}
+
 $this->load->helper('html');
 
 echo heading($title,1);
@@ -74,8 +145,11 @@ if (!isset($result)) {
 }
 
 
-$array = json_decode(json_encode($result), true);
-echo ul($array);
+$array = json_decode(json_encode($result, JSON_FORCE_OBJECT),true);
+
+
+echo mylist('dl',$array);
+
 ?>
 </body>
 </html>

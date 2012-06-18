@@ -1,13 +1,14 @@
 <?php
 
 /**
-* the test controller
-*
-* A controller for testing models. To test your model
-*
-*
-* @package controllers
-*/
+ * the test controller
+ *
+ * A controller for testing model.
+ * In the wiki there is a short howto that explains the testing process
+ * The comments in this file however should be self-explanatory.
+ *
+ * @package controllers
+ */
 
 class Test extends CI_Controller {
 
