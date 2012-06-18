@@ -35,7 +35,7 @@ class User_model extends CI_Model {
 	 */
 	public function add_user($name, $password, $email) {
 	// check for existing user
-	$check_user =$this->_check_userName($name);
+	$check_user =$this->check_userName($name);
 	if (!$check_user){
 		return false;
 	}else {
