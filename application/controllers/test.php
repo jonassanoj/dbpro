@@ -65,7 +65,32 @@ class Test extends CI_Controller {
 		 		);
 	}
 
+	public function logintest($p1,$p2)
 
+	{
+		// this calls a function from usermodel. 
+		// the resuts are reported by calling the $this->_report function.
+		
+		$this->_report( 
+			    // the return value will be shown in the test report:
+		 		$this -> user_model -> login($p1, $p2),
+				// the second parameter will give a title to the report:
+				 'Test of user_model -> login()'
+				);
+	}
+
+	public function deleteUserTest($p1)
+	{
+		// this calls a function from usermodel. 
+		// the resuts are reported by calling the $this->_report function.
+		
+		$this->_report( 
+			    // the return value will be shown in the test report:
+		 		$this -> user_model -> delete_user($p1),
+				// the second parameter will give a title to the report:
+				 'Test of user_model -> delete_user()'
+				);
+	}
 	
 	
 	public function test2() {

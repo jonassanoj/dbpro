@@ -33,10 +33,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">33</span></a></li>
+                <span class="label label-info">37</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">11</span>
+                <span class="label label-info">14</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -60,10 +60,15 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#__construct" title="__construct :: constructor"><span class="description">constructor</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#_loadviews" title="_loadviews :: private helper function to build view"><span class="description">private helper function to build view</span><pre>_loadviews()</pre></a></li>
+<li class="method public "><a href="#_loadviews" title="_loadviews :: "><span class="description">_loadviews()
+        </span><pre>_loadviews()</pre></a></li>
+<li class="method public "><a href="#field" title="field :: "><span class="description">field()
+        </span><pre>field()</pre></a></li>
 <li class="method public "><a href="#home" title="home :: home view"><span class="description">home view</span><pre>home()</pre></a></li>
 <li class="method public "><a href="#qshow" title="qshow :: show one question"><span class="description">show one question</span><pre>qshow()</pre></a></li>
 <li class="method public "><a href="#questions" title="questions :: show a list of questions"><span class="description">show a list of questions</span><pre>questions()</pre></a></li>
+<li class="method public "><a href="#search" title="search :: "><span class="description">search()
+        </span><pre>search()</pre></a></li>
 <li class="method public "><a href="#view" title="view :: show a certain body page"><span class="description">show a certain body page</span><pre>view()</pre></a></li>
 </ul>
 </div>
@@ -91,32 +96,42 @@
 <h2>constructor</h2>
 <pre>__construct() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"><p>loads: question_model, answer_model</p></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>loads question_model, answer_model, main_lang.</p></p></div></div>
 </div>
 <a name="_loadviews" id="_loadviews"></a><div class="element clickable method public _loadviews" data-toggle="collapse" data-target="._loadviews .collapse">
-<h2>private helper function to build view</h2>
-<pre>_loadviews(string $body_view, array $data) : void</pre>
+<h2>_loadviews()
+        </h2>
+<pre>_loadviews($body_view, $data) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>every complete html-page sent to the client is constructed here.
-currently, mostly defaults are sent and only the body is changed dynamically.</p>
-
-<p>The following parts are sent in order:</p>
-
-<ul>
-<li><em>templates/header.php</em></li>
-<li><em>header/default.php</em> : the default content appearing in the header</li>
-<li><em>leftnav/default.php</em>: the default content of the navigation bar</li>
-<li><em>body</em>/$body_view_: the body content given as a parameter</li>
-<li><em>templates/footer.php</em></li>
-</ul></p>
+<p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$body_view</h4>
-<code>string</code><p>what should appear in the body</p></div>
+<code></code>
+</div>
 <div class="subelement argument">
 <h4>$data</h4>
-<code>array</code><p>The data array to pass on to the views</p></div>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="field" id="field"></a><div class="element clickable method public field" data-toggle="collapse" data-target=".field .collapse">
+<h2>field()
+        </h2>
+<pre>field($fid, $offset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$fid</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code></code>
+</div>
 </div></div>
 </div>
 <a name="home" id="home"></a><div class="element clickable method public home" data-toggle="collapse" data-target=".home .collapse">
@@ -151,6 +166,24 @@ clicking on a question will display its details (answers, etc.)</p></p>
 <code>int</code><p>the pagination offset</p></div>
 </div></div>
 </div>
+<a name="search" id="search"></a><div class="element clickable method public search" data-toggle="collapse" data-target=".search .collapse">
+<h2>search()
+        </h2>
+<pre>search($term, $offset) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$term</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code></code>
+</div>
+</div></div>
+</div>
 <a name="view" id="view"></a><div class="element clickable method public view" data-toggle="collapse" data-target=".view .collapse">
 <h2>show a certain body page</h2>
 <pre>view(string $page) : void</pre>
@@ -172,7 +205,7 @@ use this for static content like: about, contact, terms-of-use, etc.</p></p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-            generated on 2012-06-15T21:12:18+02:00.<br></footer></div>
+            generated on 2012-06-18T14:39:32+02:00.<br></footer></div>
 </div>
 </body>
 </html>
