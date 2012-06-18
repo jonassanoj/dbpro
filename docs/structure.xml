@@ -133,7 +133,7 @@ and returns an array that can be passed to the db->where() active record functio
       <todo line="90">implement the filter function so that it works as documented.</todo>
     </markers>
   </file>
-  <file path="models/user_model.php" hash="2af66871b7ab44df5c3d241d2e6e190c" package="Default">
+  <file path="models/user_model.php" hash="5d9d79077468ff5eb204d803ebfe9ab0" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
       <name>User_model</name>
       <full_name>\User_model</full_name>
@@ -150,117 +150,168 @@ and returns an array that can be passed to the db->where() active record functio
 </ul>]]></long-description>
         <tag line="16" name="package" description="models"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="30" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="31" package="models">
         <name>login</name>
         <full_name>login</full_name>
-        <docblock line="30">
+        <docblock line="31">
           <description><![CDATA[Checks if the username exists]]></description>
-          <long-description><![CDATA[<p>The <em>$name</em> is compared to the <em>userName</em> field of the User table.
-Then the <em>$password</em> is compared if it is eqaul to that userName's password.
-If the user exits and password is valid then it will return the userID of that user.
-Else it will return 0 .</p>]]></long-description>
-          <tag line="30" name="param" description="The username" type="string" variable="$name">
+          <long-description><![CDATA[<p>The <em>$name</em> is compared to the <em>userName</em> in User table.</p>
+
+<p>The <em>$password</em> is compared if it is eqaul to that userName's password.</p>]]></long-description>
+          <tag line="31" name="author" description="Huma Yari"/>
+          <tag line="31" name="param" description="The username" type="string" variable="$name">
             <type by_reference="false">string</type>
           </tag>
+          <tag line="31" name="param" description="The password" type="string" variable="$password">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="return" description="the userID if exits or 0" type="int">
+            <type by_reference="false">int</type>
+          </tag>
         </docblock>
-        <argument line="30">
+        <argument line="31">
           <name>$name</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="30">
+        <argument line="31">
           <name>$password</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="48" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="54" package="models">
         <name>delete_user</name>
         <full_name>delete_user</full_name>
-        <docblock line="48">
+        <docblock line="54">
           <description><![CDATA[Deletes a user]]></description>
-          <long-description><![CDATA[<p>The given userID which is sent as the parameter is compared to the <em>userID</em> of the User table.
-The user will be deleted if that userID is found.</p>]]></long-description>
+          <long-description><![CDATA[<p>The given userID is compared to the <em>userID</em> of the User table.</p>
+
+<p>The user will be deleted if that userID is found.</p>]]></long-description>
+          <tag line="54" name="author" description="Huma Yari"/>
+          <tag line="54" name="param" description="The userID" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="54" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
         </docblock>
-        <argument line="48">
+        <argument line="54">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="53" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="67" package="models">
         <name>add_user</name>
         <full_name>add_user</full_name>
-        <argument line="53">
+        <docblock line="67">
+          <description><![CDATA[* adding new user in the User table with initial data *(username,password and email address)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="67" name="author" description="ASHUQULLAH ALIZAI"/>
+          <tag line="67" name="param" description="is the username for the user" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="67" name="param" description="is password specify by user" type="string" variable="$password">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="67" name="param" description="is email specify by user" type="string" variable="$email">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="67" name="return" description="true if success" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="67">
           <name>$name</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="53">
+        <argument line="67">
           <name>$password</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="53">
+        <argument line="67">
           <name>$email</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="60" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="91" package="models">
+        <name>check_userName</name>
+        <full_name>check_userName</full_name>
+        <docblock line="91">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="91" name="author" description="ASHUQULLAH ALIZAI"/>
+          <tag line="91" name="param" description="is the user name for user who wants to register for first time *private function _check_userName checks if usename exists or not ," type="\string_type" variable="$username">
+            <type by_reference="false">\string_type</type>
+          </tag>
+          <tag line="91" name="return" description="false if username exist in the database, retruns true if the username not exist" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="91">
+          <name>$username</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="101" package="models">
         <name>update_user</name>
         <full_name>update_user</full_name>
-        <argument line="60">
+        <argument line="101">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="60">
+        <argument line="101">
           <name>$user_data</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="66" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="107" package="models">
         <name>get_userdata</name>
         <full_name>get_userdata</full_name>
-        <argument line="66">
+        <argument line="107">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="70" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="111" package="models">
         <name>change_usertype</name>
         <full_name>change_usertype</full_name>
-        <argument line="70">
+        <argument line="111">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="70">
+        <argument line="111">
           <name>$utid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="74" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="115" package="models">
         <name>get_usertypes</name>
         <full_name>get_usertypes</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="80" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="121" package="models">
         <name>get_usertype</name>
         <full_name>get_usertype</full_name>
-        <argument line="80">
+        <argument line="121">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="84" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="125" package="models">
         <name>get_field</name>
         <full_name>get_field</full_name>
-        <argument line="84">
+        <argument line="125">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -268,22 +319,20 @@ The user will be deleted if that userID is found.</p>]]></long-description>
       </method>
     </class>
     <markers>
-      <todo line="52">implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.</todo>
-      <todo line="59">Find out how the update_user() function can be used. Then document it using phpdoc. Use question_model::get_list() as an example.</todo>
-      <todo line="65">This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'</todo>
-      <todo line="69">implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.</todo>
-      <todo line="79">implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.</todo>
+      <todo line="58">implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.</todo>
+      <todo line="100">Find out how the update_user() function can be used. Then document it using phpdoc. Use question_model::get_list() as an example.</todo>
+      <todo line="106">This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'</todo>
+      <todo line="110">implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.</todo>
+      <todo line="120">implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.</todo>
     </markers>
     <parse_markers>
-      <error line="30" code="50015">Argument $password is missing from the Docblock of login()</error>
-      <error line="48" code="50015">Argument $uid is missing from the Docblock of delete_user()</error>
-      <error line="53" code="50010">No DocBlock was found for method add_user()</error>
-      <error line="60" code="50010">No DocBlock was found for method update_user()</error>
-      <error line="66" code="50010">No DocBlock was found for method get_userdata()</error>
-      <error line="70" code="50010">No DocBlock was found for method change_usertype()</error>
-      <error line="74" code="50010">No DocBlock was found for method get_usertypes()</error>
-      <error line="80" code="50010">No DocBlock was found for method get_usertype()</error>
-      <error line="84" code="50010">No DocBlock was found for method get_field()</error>
+      <error line="91" code="50012">No short description for method check_userName()</error>
+      <error line="101" code="50010">No DocBlock was found for method update_user()</error>
+      <error line="107" code="50010">No DocBlock was found for method get_userdata()</error>
+      <error line="111" code="50010">No DocBlock was found for method change_usertype()</error>
+      <error line="115" code="50010">No DocBlock was found for method get_usertypes()</error>
+      <error line="121" code="50010">No DocBlock was found for method get_usertype()</error>
+      <error line="125" code="50010">No DocBlock was found for method get_field()</error>
     </parse_markers>
   </file>
   <file path="models/answer_model.php" hash="d312a3b7865b3328b9235b946c0345a4" package="Default">
@@ -552,7 +601,7 @@ The user will be deleted if that userID is found.</p>]]></long-description>
       <error line="21" code="50010">No DocBlock was found for method delete_field()</error>
     </parse_markers>
   </file>
-  <file path="controllers/main.php" hash="10bbe4ef9c21f076e7e10fe25f412c83" package="Default">
+  <file path="controllers/main.php" hash="62ef0288ab35a856bfdfb16ab92522f0" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <name>Main</name>
       <full_name>\Main</full_name>
@@ -562,23 +611,23 @@ The user will be deleted if that userID is found.</p>]]></long-description>
         <long-description><![CDATA[<p>Handles the basic site functionality. Browsing questions and answers, etc.</p>]]></long-description>
         <tag line="11" name="package" description="controllers"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="19" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="19">
+        <docblock line="20">
           <description><![CDATA[constructor]]></description>
-          <long-description><![CDATA[<p>loads: question_model, answer_model</p>]]></long-description>
+          <long-description><![CDATA[<p>loads question_model, answer_model, main_lang.</p>]]></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="46" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="50" package="controllers">
         <name>_loadviews</name>
         <full_name>_loadviews</full_name>
-        <argument line="46">
+        <argument line="50">
           <name>$body_view</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="46">
+        <argument line="50">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -682,17 +731,46 @@ use this for static content like: about, contact, terms-of-use, etc.</p>]]></lon
       </method>
     </class>
     <markers>
-      <todo line="45">extend the _loadviews() function so it loads a different sidebar, depending if the user is logged in or not.</todo>
+      <todo line="49">extend the _loadviews() function so it loads a different sidebar, depending on the type of user.</todo>
       <todo line="103">implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
       <todo line="107">implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
     </markers>
     <parse_markers>
-      <error line="46" code="50010">No DocBlock was found for method _loadviews()</error>
+      <error line="50" code="50010">No DocBlock was found for method _loadviews()</error>
       <error line="102" code="50010">No DocBlock was found for method field()</error>
       <error line="106" code="50010">No DocBlock was found for method search()</error>
     </parse_markers>
   </file>
-  <file path="controllers/ajax.php" hash="b9845f06bca2a8e815c99fb1b1b1b749" package="Default">
+  <file path="controllers/util.php" hash="0f1df72c2d63af6801622fbe5cb8ef4c" package="Default">
+    <class final="false" abstract="false" namespace="" line="11" package="controllers">
+      <name>Util</name>
+      <full_name>\Util</full_name>
+      <extends>CI_Controller</extends>
+      <docblock line="11">
+        <description><![CDATA[Utility controller]]></description>
+        <long-description><![CDATA[<p>a controller containing utility functions. It uses no views but sends the user back to the last URI saved in the session.
+e.g. used for changing the language globally.</p>]]></long-description>
+        <tag line="11" name="package" description="controllers"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
+        <name>lang</name>
+        <full_name>lang</full_name>
+        <docblock line="20">
+          <description><![CDATA[Load a language]]></description>
+          <long-description><![CDATA[<p>Changing the language my setting the session variable language.</p>]]></long-description>
+          <tag line="20" name="param" description="the language to load, named like the folder containing the language files" type="string" variable="$language">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="20">
+          <name>$language</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="controllers/ajax.php" hash="6218514efa36404ec9c3f12ee71aa974" package="Default">
     <class final="false" abstract="false" namespace="" line="12" package="controllers">
       <name>Ajax</name>
       <full_name>\Ajax</full_name>
@@ -733,7 +811,7 @@ presents its data using the <em>ajax/comments</em> view.</p>]]></long-descriptio
       <error line="14" code="50010">No DocBlock was found for method __construct()</error>
     </parse_markers>
   </file>
-  <file path="controllers/user.php" hash="8e13a11dec1c74259d8284b2711b1af0" package="Default">
+  <file path="controllers/user.php" hash="efdd3d2f46eee4a7a47b7c6f7b5e703b" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <name>User</name>
       <full_name>\User</full_name>
@@ -748,70 +826,70 @@ presents its data using the <em>ajax/comments</em> view.</p>]]></long-descriptio
         <full_name>__construct</full_name>
         <docblock line="19">
           <description><![CDATA[constructor]]></description>
-          <long-description><![CDATA[<p>loads: user_model</p>]]></long-description>
+          <long-description><![CDATA[<p>loads: user_model, main_lang</p>]]></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="42" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="46" package="controllers">
         <name>_loadviews</name>
         <full_name>_loadviews</full_name>
-        <docblock line="42">
+        <docblock line="46">
           <description><![CDATA[private helper function to build view]]></description>
           <long-description><![CDATA[<p>This loads views for the registration, failed-login, etc. screens
 The following parts are sent in order:</p>
 
 <ul>
-<li><em>templates/header.php</em></li>
+<li><em>include/header.php</em></li>
 <li><em>header/simple.php</em> : no login box</li>
 <li><em>leftnav/default.php</em>: the default content of the navigation bar</li>
 <li><em>body</em>/$body_view_: the body content given as a parameter</li>
-<li><em>templates/footer.php</em></li>
+<li><em>include/footer.php</em></li>
 </ul>]]></long-description>
-          <tag line="42" name="param" description="what should appear in the body" type="string" variable="$body_view">
+          <tag line="46" name="param" description="what should appear in the body" type="string" variable="$body_view">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="42" name="param" description="The data array to pass on to the views" type="array" variable="$data">
+          <tag line="46" name="param" description="The data array to pass on to the views" type="array" variable="$data">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="42" name="return" description="" type="void">
+          <tag line="46" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="42">
+        <argument line="46">
           <name>$body_view</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="42">
+        <argument line="46">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="51" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="73" package="controllers">
         <name>login</name>
         <full_name>login</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="78" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="110" package="controllers">
         <name>logout</name>
         <full_name>logout</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="87" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="133" package="controllers">
         <name>failed</name>
         <full_name>failed</full_name>
-        <argument line="87">
+        <argument line="133">
           <name>$user</name>
           <default><![CDATA['']]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="96" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="146" package="controllers">
         <name>register</name>
         <full_name>register</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="101" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="151" package="controllers">
         <name>recover</name>
         <full_name>recover</full_name>
-        <argument line="101">
+        <argument line="151">
           <name>$user</name>
           <default><![CDATA['']]></default>
           <type/>
@@ -819,14 +897,111 @@ The following parts are sent in order:</p>
       </method>
     </class>
     <markers>
-      <todo line="50">Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).</todo>
+      <todo line="54">Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).</todo>
     </markers>
     <parse_markers>
-      <error line="51" code="50010">No DocBlock was found for method login()</error>
-      <error line="78" code="50010">No DocBlock was found for method logout()</error>
-      <error line="87" code="50010">No DocBlock was found for method failed()</error>
-      <error line="96" code="50010">No DocBlock was found for method register()</error>
-      <error line="101" code="50010">No DocBlock was found for method recover()</error>
+      <error line="73" code="50010">No DocBlock was found for method login()</error>
+      <error line="110" code="50010">No DocBlock was found for method logout()</error>
+      <error line="133" code="50010">No DocBlock was found for method failed()</error>
+      <error line="146" code="50010">No DocBlock was found for method register()</error>
+      <error line="151" code="50010">No DocBlock was found for method recover()</error>
+    </parse_markers>
+  </file>
+  <file path="controllers/test.php" hash="431ec79921365bb2a378fd668ba451f9" package="Default">
+    <class final="false" abstract="false" namespace="" line="12" package="controllers">
+      <name>Test</name>
+      <full_name>\Test</full_name>
+      <extends>CI_Controller</extends>
+      <docblock line="12">
+        <description><![CDATA[the test controller]]></description>
+        <long-description><![CDATA[<p>A controller for testing models. To test your model</p>]]></long-description>
+        <tag line="12" name="package" description="controllers"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="15" namespace="" package="Default">
+        <name>$result</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="23" package="controllers">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="23">
+          <description><![CDATA[constructor]]></description>
+          <long-description><![CDATA[<p>loads the model you want to test.</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="35" package="controllers">
+        <name>_remap</name>
+        <full_name>_remap</full_name>
+        <argument line="35">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="35">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="44" package="controllers">
+        <name>_report</name>
+        <full_name>_report</full_name>
+        <argument line="44">
+          <name>$result</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="44">
+          <name>$title</name>
+          <default><![CDATA['Unnamed']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="54" package="controllers">
+        <name>test1</name>
+        <full_name>test1</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="67" package="controllers">
+        <name>logintest</name>
+        <full_name>logintest</full_name>
+        <argument line="67">
+          <name>$p1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="67">
+          <name>$p2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="81" package="controllers">
+        <name>delete_userTest</name>
+        <full_name>delete_userTest</full_name>
+        <argument line="81">
+          <name>$p1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="95" package="controllers">
+        <name>test2</name>
+        <full_name>test2</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="101" package="controllers">
+        <name>multitest</name>
+        <full_name>multitest</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="15" code="50018">No DocBlock was found for property $result</error>
+      <error line="35" code="50010">No DocBlock was found for method _remap()</error>
+      <error line="44" code="50010">No DocBlock was found for method _report()</error>
+      <error line="54" code="50010">No DocBlock was found for method test1()</error>
+      <error line="67" code="50010">No DocBlock was found for method logintest()</error>
+      <error line="81" code="50010">No DocBlock was found for method delete_userTest()</error>
+      <error line="95" code="50010">No DocBlock was found for method test2()</error>
+      <error line="101" code="50010">No DocBlock was found for method multitest()</error>
     </parse_markers>
   </file>
   <package name="Default" full_name="Default"/>

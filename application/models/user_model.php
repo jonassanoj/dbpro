@@ -18,13 +18,14 @@ class User_model extends CI_Model {
 /**
  * Checks if the username exists
  *
- * The _$name_ is compared to the _userName_ field of the User table.
- * Then the _$password_ is compared if it is eqaul to that userName's password. 
- * If the user exits and password is valid then it will return the userID of that user.
- * Else it will return 0 .
+ * The _$name_ is compared to the _userName_ in User table.
  *
+ * The _$password_ is compared if it is eqaul to that userName's password. 
+ * 
+ * @author Huma Yari
  * @param string $name The username
- *
+ * @param string $password The password
+ * @return int the userID if exits or 0
  */
 
 	public function login($name, $password) {
@@ -41,8 +42,13 @@ class User_model extends CI_Model {
 /**
  * Deletes a user
  *
- * The given userID which is sent as the parameter is compared to the _userID_ of the User table.
+ * The given userID is compared to the _userID_ of the User table.
+ *
  * The user will be deleted if that userID is found. 
+ *
+ *@author Huma Yari
+ *@param int The userID
+ *@return void
  */
 
 	public function delete_user($uid) {
