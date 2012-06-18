@@ -52,7 +52,7 @@ class User_model extends CI_Model {
 	/**
 	 * @author ASHUQULLAH ALIZAI
 	 * @param string_type $username is the user name for user who wants to register for first time 
-	 * *private function _check_userName checks if usename exists or not ,
+	 * *private function _check_userName checks if username exists or not ,
 	 * @ returns false if username exist in the database, retruns true if the username not exist 
 	 */
 
@@ -75,9 +75,22 @@ class User_model extends CI_Model {
 	public function get_userdata($uid) {
 	}
 	
+	
+	/**
+	 * @author GhezalAhmad Zia
+	 * @param  The function change_usertype has two parameter which is $uid and $utid, this function 
+	 * change the user 's type. like we have normal user we can change it to Admin.
+	 * @return true.
+	 */
+	
 	// TODO: implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.
 	public function change_usertype($uid, $utid) {
 	  // return true if successful
+	  	$this->db->set('$userTypeID',$utid);
+	  	$this->db->where('$userID', $uid);
+	  	$this->db->update('User');
+	  	return true; 
+		
 	}
 
 	public function get_usertypes() {
