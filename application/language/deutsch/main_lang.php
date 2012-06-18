@@ -54,6 +54,7 @@ $lang['title_about'] = "Über Goftogo";
 $lang['w_about'] = "über";
 $lang['w_home'] = "home";
 $lang['w_back'] = "zurück";
+$lang['w_lang_ps'] = "‏paschtu";
 $lang['w_lang_fa'] = "persisch";
 $lang['w_lang_de'] = "deutsch";
 $lang['w_lang_en'] = "english";

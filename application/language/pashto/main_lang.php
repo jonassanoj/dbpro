@@ -1,7 +1,9 @@
 <?php
 
+// TODO: Translate all the string values to Pashto. You can write your own short text for $lang['par_about'].   
+
 /*
- * language/english/main_lang.php
+ * language/pashto/main_lang.php
  * 
  * ****************************************** 
  *  Goftogo Internationalization: Conventions
@@ -34,48 +36,50 @@
  * 
  */ 
 
-// Meta-Information
-$lang['language_name'] = "English"; // name of the language as it should be displayed.
-$lang['language_code'] = "en"; // language code, e.g. fa for Farsi,  ps for Pashto, de for German
-$lang['language_region'] = "US"; // regional language subtype. en-US is for US-english
-$lang['language_dir'] = "ltr"; // language direction can be ltr (left-to-right) or rtl (right-to-left)
 
+// Meta-Information
+$lang['language_name'] = "‏پښتو‎"; // name of the language as it should be displayed.
+$lang['language_code'] = "ps"; // language code, e.g. fa for Farsi,  ps for Pashto, de for German
+$lang['language_region'] = "AF"; // regional language subtype, AF for Afghanistan (so fa-AF is dari)
+$lang['language_dir'] = "rtl"; // language direction can be ltr (left-to-right) or rtl (right-to-left)
+
+
+// TODO: translate the values to pashto/dari. 
 // Titles
-$lang['title_main'] = "Goftogo";  
-$lang['title_alt'] =  "Dialogue"; // alternative name (translation of the word Goftogo into this language)
-$lang['title_recent_questions'] = "Most recent questions";
-$lang['title_popular_questions'] = "Most popular questions";
-$lang['title_your_questions'] = "Your questions";
-$lang['title_your_interest'] = "Questions that could interest you";
-$lang['title_about'] = "About Goftogo";
+$lang['title_main'] = "ګفتګو";  
+$lang['title_alt'] =  "Goftogo"; // alternative name 
+$lang['title_recent_questions'] = "تازه پوښتنی";
+$lang['title_popular_questions'] = "ډیر کتل شوی پوښتنی";
+$lang['title_your_questions'] = "ستاسی پوښتنی";
+$lang['title_your_interest'] = "پوښتنی چی ستا به هم خوښی شی";
+$lang['title_about'] = "د ګفتګو په اړه";
 
 // Words
-$lang['w_about'] = "about";
-$lang['w_home'] = "home";
-$lang['w_back'] = "back";
-$lang['w_lang_ps'] = "‏Pashto";
-$lang['w_lang_fa'] = "Persian";
-$lang['w_lang_de'] = "German";
-$lang['w_lang_en'] = "English";
+$lang['w_about'] = "په اړه";
+$lang['w_home'] = "کورپاڼه";
+$lang['w_back'] = "شاته";
+$lang['w_lang_ps'] = "‏پښتو";
+$lang['w_lang_fa'] = "‏درى‎";
+$lang['w_lang_de'] = "آلمانی";
+$lang['w_lang_en'] = "انگلیسی";
+
 
 // Form
-$lang['form_username'] = "Username";
-$lang['form_password'] = "Password";
-$lang['form_remember'] = "Remember me";
-$lang['form_login'] = "Login";
-$lang['form_register'] = "Register";
+$lang['form_username'] = "نوم";
+$lang['form_password'] = "رمز";
+$lang['form_remember'] = "یاد می وساته";
+$lang['form_login'] = "ننوتل";
+$lang['form_register'] = "راجستر";
 
+// Messages 
 // Messages 
 $lang['msg_login_failed'] = "Login failed!";
 $lang['msgvar_username_taken'] = "Sorry, the username %s is already registered!";
 $lang['msgvar_users_online'] = "At the moment, %u registered users and %u guests are online.";
 $lang['msgvar_login_trial'] = "You tried %u times to login unsuccessully";
-
 // Paragraphs 
 $lang['par_about'] = "Goftogo (Dialogue) is a Computer Science related Q&A site, that wants to bring Afghan IT students, 
 teachers and professionals closer together. Whether you are just starting to learn about IT at university, are an experienced 
 programmer working daily with the most up-to-date technology or a professor with years of experience and a scientific background: 
 Join now to ask questions and receive answers, to give answers and receive gratitude. Unlike other things, knowledge only gets 
 bigger the more it is shared!";
-
-
