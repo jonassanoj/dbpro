@@ -57,19 +57,18 @@ class User_model extends CI_Model {
 		
 	// TODO: implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.   
 	/**
-	 ** adding new user in the User table with initial data *(username,password and email address)	
+	 * adding new user 
+	 *
+	 * adding new user in the User table with initial data *(username,password and email address)	
+	 * 
 	 * @author ASHUQULLAH ALIZAI
 	 * @param string $name is the username for the user 
-	 * @param string $password is password specify by user
-	 * @param string $email is email specify by user 
-	 * @return boolean true if success 
+	 * @param string $password is password specified by user
+	 * @param string $email is email specified by user 
+	 * @return int inserted userID  
 	 */
 	public function add_user($name, $password, $email) {
-	// check for existing user
-	$check_user =$this->check_userName($name);
-	if (!$check_user){
-		return false;
-	}else {
+	
 		$date = date('Y/m/d H:i:s');
 		$this -> db -> set('userName', $name);
 		$this -> db -> set('password', $password);
@@ -77,24 +76,27 @@ class User_model extends CI_Model {
 		$this -> db -> set('accountCreationDate', $date);
 		$this -> db -> insert('User');
 		// return true if successful
-		return true;
-	}
+		return $this->db->insert_id();;
+	
 	
 	}
 	/**
+	 * checking the existancy of userName
+	 * 
+	 * checks if the userName exist on the user table 
+	 * 
 	 * @author ASHUQULLAH ALIZAI
 	 * @param string_type $username is the user name for user who wants to register for first time 
 
-	 * *private function _check_userName checks if usename exists or not ,
-	 * @return boolean false if username exist in the database, retruns true if the username not exist 
+	 * 
+	 * @return int  userID
 	 */
 
 	public function check_userName($username) {   
-         $query = $this->db->get_where('User', array('userName ='=> $username))->result(); 
-		if($query->num_rows() > 0 )
-			return false; // if user exists
-		else
-			return true;  // if not exists
+		$this->db->select('userID');
+		$query = $this->db->get_where('User', array('userName ='=> $username))->result(); 
+		return $query->result_array();
+		
 	}
 	
 
@@ -125,13 +127,20 @@ class User_model extends CI_Model {
 	  	return true; 
 		
 	}
-
+	/**
+	 * 
+	 * 
+	 */
 	public function get_usertypes() {
 	 	$query = $this->db->get('UserType');    
 	    return $query->result();
 	}
 	
 	//TODO: implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.
+	/**
+	 * it is to return usertype
+	 * 
+	 */
 	public function get_usertype($uid) {
 	  return 0;
 	}
