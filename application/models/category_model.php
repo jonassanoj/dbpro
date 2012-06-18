@@ -5,6 +5,10 @@
 class Category_model extends CI_Model {
 
 	// this function will add record to the category table
+	/**
+	 * 
+	 * this model
+	 */
 	function add_cat($catName, $fieldID) {
 
 		$this -> db -> set('catName', $catName);
