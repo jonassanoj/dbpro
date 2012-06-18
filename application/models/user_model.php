@@ -127,13 +127,20 @@ class User_model extends CI_Model {
 	  	return true; 
 		
 	}
-
+	/**
+	 * 
+	 * 
+	 */
 	public function get_usertypes() {
 	 	$query = $this->db->get('UserType');    
 	    return $query->result();
 	}
 	
 	//TODO: implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.
+	/**
+	 * it is to return usertype
+	 * 
+	 */
 	public function get_usertype($uid) {
 	  return 0;
 	}
