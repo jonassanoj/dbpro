@@ -41,4 +41,4 @@ Thumbs.db
 # Eclipse files #
 #################
 .project
-application/config/config.php
+.settings
