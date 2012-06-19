@@ -73,7 +73,7 @@ class Test extends CI_Controller {
 	}
 
 	public function test3($qid,$uid,$body) {
-	$this->_report($this -> comment_model -> create_qcomment($qid,$uid,$body),'Hello this is comment test'); // replace the string with 		a call to your model
+	$this->_report($this -> comment_model -> create_acomment($qid,$uid,$body),'Hello this is comment test'); // replace the string with 		a call to your model
 	}
 	
 	
@@ -81,8 +81,8 @@ class Test extends CI_Controller {
 	public function multitest() { 
 		// You can run more than one test in one function.
 		// But make sure all the tests you call give different titles to the result
-		$this->$test1();
-		$this->$test2();
+		$this->test1();
+		$this->test2();
 	}
 	
 

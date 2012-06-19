@@ -50,14 +50,17 @@ class Comment_model extends CI_Model {
 	}
 
 	/**
-	 * adds a question or answer comment to the Comment table of database
+	 * adds a question comment to the Comment table of database
 	 *
-	 * Generates an insert string based on the data you supply, and runs the query. You will pass an array to the function.	
-	 * Returns commentID for inserted question or answer comment.
+	 * You will pass 3 parameter qid,uid,body it means questionID,userID and body to Comment table in database.
+	 * after inserting successfully all parameter to the database, commentID will be return from database
 	 *
 	 *
-	 * @param int $cid the commentID
-	 * 
+	 * @author Abdul Razzaq 
+	 * @param int $qid the questionID
+	 * @param int $uid the userID
+	 * @param int $body the body
+	 * @return int commentID
 	 */
 
 	// TODO: Implement create_qcomment and create_acomment so that it adds a question or answer comment to the database and returns the 	new comment's commentID. Then create its documentation, using phpdoc comments. See get_acomments for an example.
@@ -68,6 +71,20 @@ class Comment_model extends CI_Model {
 		return $this -> db -> insert_id();
   
 	}
+	
+	/**
+	 * adds a answer comment to the Comment table of database
+	 *
+	 * You will pass 3 parameter aid,uid,body it means answerID,userID and body to Comment table in database.
+	 * after inserting successfully all parameter to the database, commentID will be return from database
+	 *
+	 *
+	 * @author Abdul Razzaq 
+	 * @param int $aid the answerID
+	 * @param int $uid the userID
+	 * @param int $body the body
+	 * @return int commentID
+	 */
 
 	public function create_acomment($aid, $uid, $body) {
 		
@@ -78,14 +95,12 @@ class Comment_model extends CI_Model {
 
     // TODO: Implement update_comment so that it updates the body of the comment specified by $cid. Then implement delete_comment so that it 	deletes the comment specified by $cid. Create documentation for both functions, using phpdoc comments. See get_acomments for an example.
 	public function update_comment($cid, $body) {
-		
-		$this->db->where('commentID', $cid);
-		$this->db->update('Comment', array('body' => $body)); 
+		 
 
 	}
     
 	public function delete_comment($cid) {
-		$this->db->delete('Comment', array('commentID' => $cid)); 
+		 
 
 	}
 
