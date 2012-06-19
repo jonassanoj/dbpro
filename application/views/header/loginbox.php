@@ -1,31 +1,28 @@
 <div id="header">
 
-
 <div id="loginbox">
-	<?php 
-		echo form_open("user/login/",array('id'=>'form'));
-	    echo lang('form_username','username');
-		$attribute = array("id" => "username",
-						   "name" => "username",
-						   "value" => $username);
 
-		echo form_input($attribute);
-		echo '<br>'; // clear left
-		$attribute = array("id" => "password",
-						   "name" => "password",
-						   "value" => '');
+<?php 
+	echo form_open("user/login/",array('class'=>'formee'));
+	echo formee_div(12); // line one: name box
+	    echo lang('form_username','username');
+		echo form_input(array("id" => "username",
+						      "name"  => "username",
+						      //"value" => $username
+		));
+	echo '</div>'.formee_div(12,DIV_CLEAR); // line two: password box
 		echo lang('form_password','password');
-		echo form_password($attribute);
-		echo '<br>'; // clear left
+		echo form_password(array("id" => "password",
+						         "name" => "password",
+						         "value" => ''));
+	echo '</div>'.formee_div(6,DIV_CLEAR); // line three: remember box, and two buttons
 		echo lang('form_remember','remember');;
 		echo form_checkbox('remember', 'yes', TRUE);
-		echo '<br>'; // clear left
-		$attribute = array("id" => "login",
-						   "name" => "login",
-						   "value" => "Login");
-		echo form_label('','login');
-		echo anchor("user/register/",lang('form_register'));
-		echo form_submit($attribute);
+		echo '</div>'.formee_div(3); 
+		echo formee_button('register',lang('form_register'));
+		echo '</div>'.formee_div(3);
+		echo formee_button('login',lang('form_login'));
+		echo '</div>';
         echo form_close(); ?>
 </div> <!-- loginbox -->
 

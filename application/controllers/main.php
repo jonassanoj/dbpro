@@ -48,7 +48,7 @@ class Main extends CI_Controller {
 
 	//TODO: extend the _loadviews() function so it loads a different sidebar, depending on the type of user.
 	public function _loadviews($body_view, $data) {
-		// remember the current URL for creating backlinks
+		/* remember the current URL for creating backlinks
 		$this -> session -> set_userdata('last_visited', current_url());
 		$this -> load -> view('include/header', $data);
 		if ($this -> session -> userdata('login'))
@@ -63,7 +63,9 @@ class Main extends CI_Controller {
 			
 		$this -> load -> view('leftnav/default');
 		$this -> load -> view('body/' . $body_view, $data);
-		$this -> load -> view('include/footer');
+		$this -> load -> view('include/footer');*/
+		$data['bodyview']=$body_view;
+		$this -> load -> view('testview',$data);
 	}
 	
 	/**

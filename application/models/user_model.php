@@ -17,7 +17,7 @@ class User_model extends CI_Model {
 
 	// TODO: implement the login function. If the username exists, and the user's password is equal to $password it should return the userID, otherwise 0. Also implement delete_user(). Then create phpdoc comments for both functions.  
 	public function login($name, $password) {
-	 return 1;
+	 return 0;
 	}
 
 	public function delete_user($uid) {

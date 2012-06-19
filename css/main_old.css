@@ -34,32 +34,26 @@ h3 { font-size: 150%; }
 /***************************************************************************/
 /** 2. Global Layout DIVs
 /********************
-/*   <#wrapper>
-/*     <#header />
-/*     <#middle>
-/*       <#container>
-/*         <#content />
-/*       <# />
-/*     <#sideLeft />
-/*     <# />
-/*   <#/>
-/* <#footer />
-
+/ #header,#leftnav,#body, etc.  	
 ****************************************************************************/
-#wrapper {
-	width: 90%;
-	margin: 0 auto;
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
+#container {
+	background: #FFF;
+	padding: 1em;
+	width: 80%;
+	min-width: 800px;
+	min-height: 600px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-
-/* Header
------------------------------------------------------------------------------*/
 #header {
 	height: 120px;
-	background: #FFE680;
+	float: top;
+	clear:both;
+	background: transparent url(../img/logo.png) no-repeat top left;
+	background-size: 130px;
+	border-bottom: 1px dashed silver;
+	padding-left: 14em ;
 }
 
 #header #loginbox {
@@ -70,52 +64,37 @@ h3 { font-size: 150%; }
 	font-size: 90%;
 }
 
-/* Middle
------------------------------------------------------------------------------*/
-#middle {
-	width: 100%;
-	padding: 0 0 50px;
-	height: 1%;
-	position: relative;
-}
-#middle:after {
-	content: '.';
-	display: block;
-	clear: both;
-	visibility: hidden;
-	height: 0;
-}
-#container {
-	width: 100%;
+
+#leftnav {
 	float: left;
-	overflow: hidden;
-	minimum-height: 500px;
-}
-#content {
-	padding: 0 0 0 270px;
+	padding: 0em;
+	width: 10em;
+	border-right: 1px dashed silver;
+	min-height: 400px;
 }
 
 
-/* Sidebar Left
------------------------------------------------------------------------------*/
-#sideLeft {
+#leftnav ul { /* list items in the navigation bar (menu) */
+	font-size: 140%;
+	padding: 1.5em;
+}
+
+#body {
 	float: left;
-	width: 250px;
-	margin-left: -100%;
-	position: relative;
-	background: #B5E3FF;
+	clear: right;
+	min-height :400px;
+	padding: 1em;
+	
 }
 
-
-/* Footer
------------------------------------------------------------------------------*/
 #footer {
-	width: 1000px;
-	margin: -50px auto 0;
+	clear:both;
 	height: 50px;
-	background: #BFF08E;
-	position: relative;
+	text-align: center;
+	border-top: 1px dashed silver;
+	float: bottom;
 }
+
 
 .question, .answer, .comment {
 	border-bottom-width: 1px;
