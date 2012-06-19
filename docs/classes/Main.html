@@ -32,7 +32,11 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+<<<<<<< HEAD
+                <span class="label label-info">36</span></a></li>
+=======
                 <span class="label label-info">25</span></a></li>
+>>>>>>> 2dcb407fa223ff8ddadc2fe0de27618d592dfea0
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">13</span>
@@ -61,8 +65,7 @@
 <li class="method public "><a href="#__construct" title="__construct :: constructor"><span class="description">constructor</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#_loadviews" title="_loadviews :: "><span class="description">_loadviews()
         </span><pre>_loadviews()</pre></a></li>
-<li class="method public "><a href="#field" title="field :: "><span class="description">field()
-        </span><pre>field()</pre></a></li>
+<li class="method public "><a href="#field" title="field :: shows a list of paginated questions"><span class="description">shows a list of paginated questions</span><pre>field()</pre></a></li>
 <li class="method public "><a href="#home" title="home :: home view"><span class="description">home view</span><pre>home()</pre></a></li>
 <li class="method public "><a href="#qshow" title="qshow :: show one question"><span class="description">show one question</span><pre>qshow()</pre></a></li>
 <li class="method public "><a href="#questions" title="questions :: show a list of questions"><span class="description">show a list of questions</span><pre>questions()</pre></a></li>
@@ -116,21 +119,19 @@
 </div></div>
 </div>
 <a name="field" id="field"></a><div class="element clickable method public field" data-toggle="collapse" data-target=".field .collapse">
-<h2>field()
-        </h2>
-<pre>field($fid, $offset) </pre>
+<h2>shows a list of paginated questions</h2>
+<pre>field(int $fid, int $offset) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
+<p class="long_description"><p>which they belong to specific category.
+get the list of question(4 questions per page) wich they corrospond the specific fieldID</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$fid</h4>
-<code></code>
-</div>
+<code>int</code><p>the ID of field</p></div>
 <div class="subelement argument">
 <h4>$offset</h4>
-<code></code>
-</div>
+<code>int</code><p>the pagination offset</p></div>
 </div></div>
 </div>
 <a name="home" id="home"></a><div class="element clickable method public home" data-toggle="collapse" data-target=".home .collapse">
@@ -203,8 +204,13 @@ use this for static content like: about, contact, terms-of-use, etc.</p></p>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+<<<<<<< HEAD
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a6</a> and<br>
+            generated on 2012-06-19T17:02:27+02:00.<br></footer></div>
+=======
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
             generated on 2012-06-19T10:22:45+02:00.<br></footer></div>
+>>>>>>> 2dcb407fa223ff8ddadc2fe0de27618d592dfea0
 </div>
 </body>
 </html>
