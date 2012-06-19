@@ -20,7 +20,7 @@ dl {
 	border-style: solid;
 	border-color: black;
 	width: 85%;
-	padding: 4px;
+	padding: 1em;
 	list-style:none;
 	text-align: justify;
 }
@@ -41,6 +41,7 @@ dt { /* all keys  */
 dl dl { /* level two list */
 	width: 95%;
 	margin-top: 2em;
+	padding: 5px;
 	background-color: #F0F8FF;
 }
 dl dl dl { /* level three+ list */

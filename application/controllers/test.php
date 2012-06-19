@@ -49,7 +49,7 @@ class Test extends CI_Controller {
 ///  TEST AREA; Here you can write test functions
 ///
 ///  you can give them any name and call them with localhost/test/name
-///  
+///  It's recommended not to push changes to this controller to the repository.
 /// 
 	
 	public function gut()
@@ -61,34 +61,7 @@ class Test extends CI_Controller {
 		 		);
 		}
 
-	public function logintest($p1,$p2)
 
-	{
-		// this calls a function from usermodel. 
-		// the resuts are reported by calling the $this->_report function.
-		
-		$this->_report( 
-			    // the return value will be shown in the test report:
-		 		$this -> user_model -> login($p1, $p2),
-				// the second parameter will give a title to the report:
-				 'Test of user_model -> login()'
-				);
-	}
-
-	public function deleteUserTest($p1)
-	{
-		// this calls a function from usermodel. 
-		// the resuts are reported by calling the $this->_report function.
-		
-		$this->_report( 
-			    // the return value will be shown in the test report:
-		 		$this -> user_model -> delete_user($p1),
-				// the second parameter will give a title to the report:
-				 'Test of user_model -> delete_user()'
-				);
-	}
-	
-	
 	public function test2() {
 		$this->_report("Hello I am test2"); // replace the string with a call to your model
 	}

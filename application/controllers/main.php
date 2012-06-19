@@ -126,7 +126,16 @@ class Main extends CI_Controller {
 	}
 	
 	public function search($term,$offset) {
-		// TODO: implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
+		$config['base_url'] = site_url('main/questions/');
+		$config['per_page'] = 5;
+		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page']);
+		$config['total_rows'] = $this -> question_model -> get_count();
+		$this -> pagination -> initialize($config);
+		$data['pagelinks'] = $this -> pagination -> create_links();
+		$data['title'] = lang('title_recent_questions');
+		$this -> _loadviews('qlist', $data);
+
+
 	}
 
 	/**
