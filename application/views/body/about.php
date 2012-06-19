@@ -1,4 +1,4 @@
 <div id="body">
-<h3>About Goftogo</h3>
-<p>created as a tutorial for Code Igniter</p>
-</div>
+<h3><?php echo lang('title_about') ?></h3>
+<p><?php echo lang('par_about') ?></p>
+</div>‏

@@ -5,25 +5,26 @@ body {
 	color: black;
 }
 
-a {
+a,input[type=submit] {
 	text-decoration: none;
 	color: black;
 	cursor: pointer;
 }
 
-a:hover {
+a:hover,input[type=submit]:hover {
 	color: #A67C7C;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	text-decoration: none;
-	color: #A67C7C;
+	color: black;
 	margin: 0;
 	padding: 0;
 }
 
 h1 {
 	font: normal 180%;
+	color: #A67C7C;
 }
 
 h2 {
@@ -48,17 +49,20 @@ h3 {
 #header {
 	height: 120px;
 	float: top;
-	padding-left: 180px;
-	border-bottom: 1px dashed silver;
 	background: transparent url(../img/logo.png) no-repeat top left;
 	background-size: 130px;
+	border-bottom: 1px dashed silver;
+	padding-left: 14em ;
+	padding-top: 1em ;
+	
 }
 
 #header #loginbox {
 	width: 300px;
 	float: right;
-	margin: 0;
 	padding: 0 ;
+	margin: 0, auto;
+	font-size: 90%;
 }
 
 
@@ -147,4 +151,13 @@ a.backlink:hover {
 	padding-left: 2.5em;
 }
 
-
+.notification {
+	border-width: 1px;
+	border-style: dashed;
+	border-color: red;
+	padding: 1em;
+	margin: 1em;
+	text-align: center;
+	}
+	
+}

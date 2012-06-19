@@ -22,8 +22,9 @@ class Question_model extends CI_Model {
 	 * 
 	 * The array _$filter_ can be used to filter the result according to certain criteria. The array may contain the following keys:
 	 *
-	 * * user: show only questions posted by a certain user
-	 * * category: show only questions in a specific category id
+	 * * userID: show only questions posted by a certain user id
+	 * * catID: show only questions in a specific category id
+	 * * fieldID: show only questions of a category that belong to a specific field id
 	 * * search: a search term as a string. Words separated by a whitespace are ANDed.
 	 * 
 	 * **Usage Example**:

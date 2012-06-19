@@ -20,7 +20,6 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
-<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="../packages/controllers.html"><i class="icon-folder-open"></i> controllers</a></li>
 <li><a href="../packages/models.html"><i class="icon-folder-open"></i> models</a></li>
 </ul>
@@ -33,10 +32,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">33</span></a></li>
+                <span class="label label-info">22</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">11</span>
+                <span class="label label-info">13</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -64,14 +63,15 @@
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-class"></i> Classes</li>
-<li><a href="#Question_model" title="the question model">Question_model</a></li>
-<li><a href="#User_model" title="">User_model</a></li>
-<li><a href="#Field_model" title="">Field_model</a></li>
-<li><a href="#Category_model" title="">Category_model</a></li>
-<li><a href="#Comment_model" title="the comment model">Comment_model</a></li>
+<li><a href="#Category_model" title="The category model">Category_model</a></li>
 <li><a href="#Answer_model" title="the answer model">Answer_model</a></li>
-<li><a href="#Main" title="the main controller">Main</a></li>
-<li><a href="#User" title="">User</a></li>
+<li><a href="#Comment_model" title="the comment model">Comment_model</a></li>
+<li><a href="#Field_model" title="this model is for fields">Field_model</a></li>
+<li><a href="#Question_model" title="the question model">Question_model</a></li>
+<li><a href="#User_model" title="the user model">User_model</a></li>
+<li><a href="#User" title="the user controller">User</a></li>
+<li><a href="#Util" title="Utility controller">Util</a></li>
+<li><a href="#Test" title="the test controller">Test</a></li>
 <li><a href="#Ajax" title="controller for AJAX requests">Ajax</a></li>
 </ul>
 </div>
@@ -102,7 +102,7 @@
 <a name="Category_model" id="Category_model"></a><div class="element ajax clickable class" href="../classes/Category_model.html">
 <h1>Category_model<a href="../classes/Category_model.html">¶</a>
 </h1>
-<p class="short_description"></p>
+<p class="short_description">The category model</p>
 <div class="details collapse"></div>
 <a href="../classes/Category_model.html" class="more">« More »</a>
 </div>
@@ -116,16 +116,9 @@
 <a name="Field_model" id="Field_model"></a><div class="element ajax clickable class" href="../classes/Field_model.html">
 <h1>Field_model<a href="../classes/Field_model.html">¶</a>
 </h1>
-<p class="short_description"></p>
+<p class="short_description">this model is for fields</p>
 <div class="details collapse"></div>
 <a href="../classes/Field_model.html" class="more">« More »</a>
-</div>
-<a name="Main" id="Main"></a><div class="element ajax clickable class" href="../classes/Main.html">
-<h1>Main<a href="../classes/Main.html">¶</a>
-</h1>
-<p class="short_description">the main controller</p>
-<div class="details collapse"></div>
-<a href="../classes/Main.html" class="more">« More »</a>
 </div>
 <a name="Question_model" id="Question_model"></a><div class="element ajax clickable class" href="../classes/Question_model.html">
 <h1>Question_model<a href="../classes/Question_model.html">¶</a>
@@ -134,19 +127,33 @@
 <div class="details collapse"></div>
 <a href="../classes/Question_model.html" class="more">« More »</a>
 </div>
+<a name="Test" id="Test"></a><div class="element ajax clickable class" href="../classes/Test.html">
+<h1>Test<a href="../classes/Test.html">¶</a>
+</h1>
+<p class="short_description">the test controller</p>
+<div class="details collapse"></div>
+<a href="../classes/Test.html" class="more">« More »</a>
+</div>
 <a name="User" id="User"></a><div class="element ajax clickable class" href="../classes/User.html">
 <h1>User<a href="../classes/User.html">¶</a>
 </h1>
-<p class="short_description"></p>
+<p class="short_description">the user controller</p>
 <div class="details collapse"></div>
 <a href="../classes/User.html" class="more">« More »</a>
 </div>
 <a name="User_model" id="User_model"></a><div class="element ajax clickable class" href="../classes/User_model.html">
 <h1>User_model<a href="../classes/User_model.html">¶</a>
 </h1>
-<p class="short_description"></p>
+<p class="short_description">the user model</p>
 <div class="details collapse"></div>
 <a href="../classes/User_model.html" class="more">« More »</a>
+</div>
+<a name="Util" id="Util"></a><div class="element ajax clickable class" href="../classes/Util.html">
+<h1>Util<a href="../classes/Util.html">¶</a>
+</h1>
+<p class="short_description">Utility controller</p>
+<div class="details collapse"></div>
+<a href="../classes/Util.html" class="more">« More »</a>
 </div>
 </div>
 </div>
@@ -154,7 +161,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-            generated on 2012-06-15T21:12:18+02:00.<br></footer></div>
+            generated on 2012-06-19T14:35:15+02:00.<br></footer></div>
 </div>
 </body>
 </html>

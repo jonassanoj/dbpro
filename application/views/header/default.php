@@ -19,7 +19,7 @@
 		echo '</div>'; // .field_container
 		echo '<div class="field_container">';
 				echo form_label('remember me','remember');
-		echo form_checkbox('remember', 'remember', TRUE);
+		echo form_checkbox('remember', 'yes', TRUE);
 		echo '</div>'; // .field_container
 		echo '<div class="field_container">';
 		$attribute = array("id" => "login",
