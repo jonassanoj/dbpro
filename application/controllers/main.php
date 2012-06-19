@@ -68,7 +68,7 @@ class Main extends CI_Controller {
 			$this -> load -> view('header/loginbox',$data);
 		}
 		
-		if(isset($this -> session -> userdata('usertype')){
+		if(isset($this -> session -> userdata('usertype'))){
 		
 			if ($this -> session -> userdata('usertype') == 1)
 			{
