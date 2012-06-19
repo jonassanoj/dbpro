@@ -73,13 +73,15 @@ $lang['form_register'] = "راجستر";
 
 // Messages 
 // Messages 
-$lang['msg_login_failed'] = "Login failed!";
-$lang['msgvar_username_taken'] = "Sorry, the username %s is already registered!";
-$lang['msgvar_users_online'] = "At the moment, %u registered users and %u guests are online.";
-$lang['msgvar_login_trial'] = "You tried %u times to login unsuccessully";
+$lang['msg_login_failed'] = "ننوتل ناکام شول";
+$lang['msgvar_username_taken'] = "په تاسف سره چی %s نوم مخکی نه راجستر شویده!";
+$lang['msgvar_users_online'] = "اوس محال %u راجستر شوی او %u میلمه کسان آنلاین دی. ";
+$lang['msgvar_login_trial'] = " تاسو%u ځل دننوتلو ناکامه هڅه کړی ده. ";
 // Paragraphs 
-$lang['par_about'] = "Goftogo (Dialogue) is a Computer Science related Q&A site, that wants to bring Afghan IT students, 
-teachers and professionals closer together. Whether you are just starting to learn about IT at university, are an experienced 
-programmer working daily with the most up-to-date technology or a professor with years of experience and a scientific background: 
-Join now to ask questions and receive answers, to give answers and receive gratitude. Unlike other things, knowledge only gets 
-bigger the more it is shared!";
+$lang['par_about'] = "
+ ګفتګو  د کمپیوټر ساینس اړوند دپوښتنی او ځوابونو انټرنټی پاڼه ده چی موخه یی د کمپیوټر ساینس د زده کونکو استاذانو او 
+   د معلوماتی ټکنالوژۍ دڅانګی   مسلکی کسانو تر مینخ نږدیوالۍ و اړیکی جوړول ده. که چیری تاسی نوی د معلوماتی ټکنالوژۍ زده کړه پیل کړی ده یا مجرب پروګرام جوړونکی 
+   یاست چی د ننی ټکنالوژی سره کار کوی او یا هم دساینس او ټکنالوژی پروفیسور او د کلونو تجربی خاوند یۍ : همدا اوس زمونږ سره یوځای شی . پوښتنی ولیکی 
+اویا دنورو پوښتنو ته ځواب ولیکی او خپل معلومات لا ډیر کړۍ
+د علم په شریکولو سره ستاسو علم لانور هم ډیرږی.
+";
