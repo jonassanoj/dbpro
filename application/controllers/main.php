@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
 <?php
 /**
  * the main controller
@@ -40,7 +37,7 @@ class Main extends CI_Controller {
 	 *
 	 * * _include/header.php_
 	 * * _header/loginbox | loggedin : a header with loginbox or with logout button
-<<<<<<< HEAD
+
 	 * * _leftnav/_:
 	 * * ***If the user type is known, show specific leftnav bar depending on usertype.
 	 * ***usertype 1 for confirmed user
@@ -49,9 +46,7 @@ class Main extends CI_Controller {
 	 * ***usertype 0 or else for unconfirmed user
 	 * * ***If the user type is unknown, show default or unconfirmed user leftnav bar.
 	 * ******************************************************************
-=======
-	 * * _leftnav/default.php_: the default content of the navigation bar
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
+
 	 * * _body_/$body_view_: the body content given as a parameter
 	 * * _include/footer.php_
 	 *
@@ -61,7 +56,7 @@ class Main extends CI_Controller {
 	 *
 	 */
 
-	//TODO: extend the _loadviews() function so it loads a different sidebar, depending on the type of user.
+	
 	public function _loadviews($body_view, $data) {
 		// remember the current URL for creating backlinks
 		$this -> session -> set_userdata('last_visited', current_url());
@@ -75,9 +70,10 @@ class Main extends CI_Controller {
 			$data['username'] = $this -> input -> cookie('username');
 			$this -> load -> view('header/loginbox',$data);
 		}
-<<<<<<< HEAD
-		
-		if(isset($this -> session -> userdata('usertype')){
+
+		$this -> load -> view('leftnav/default');
+
+		if($this -> session -> userdata('usertype')){
 		
 			if ($this -> session -> userdata('usertype') == 1)
 			{
@@ -99,12 +95,8 @@ class Main extends CI_Controller {
 		else{
 			$this -> load -> view('leftnav/default');
 		}
-			
 		
-=======
-			
-		$this -> load -> view('leftnav/default');
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
+
 		$this -> load -> view('body/' . $body_view, $data);
 		$this -> load -> view('include/footer');
 	}
@@ -132,11 +124,9 @@ class Main extends CI_Controller {
 	 */
  
 	public function questions($offset = 0) {
-<<<<<<< HEAD
-		$config['base_url'] = site_url('index.php/main/questions/');
-=======
+
 		$config['base_url'] = site_url('main/questions/');
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
+
 		$config['per_page'] = 5;
 		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page']);
 		$config['total_rows'] = $this -> question_model -> get_count();
@@ -145,15 +135,7 @@ class Main extends CI_Controller {
 		$data['title'] = lang('title_recent_questions');
 		$this -> _loadviews('qlist', $data);
 	}
-<<<<<<< HEAD
-	
-	public function field($fid,$offset) {
-		// TODO: implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
-	}
-	
-	public function search($term,$offset) {
-		// TODO: implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
-=======
+
 	/**
 	*shows a list of paginated questions
 	*
@@ -192,7 +174,7 @@ class Main extends CI_Controller {
 		$this -> _loadviews('qlist', $data);
 
 
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
+
 	}
 
 	/**
@@ -234,7 +216,4 @@ class Main extends CI_Controller {
 	}
 
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
