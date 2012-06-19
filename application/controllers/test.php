@@ -1,14 +1,13 @@
 <?php
 
 /**
- * the test controller
- *
- * A controller for testing model.
- * In the wiki there is a short howto that explains the testing process
- * The comments in this file however should be self-explanatory.
- *
- * @package controllers
- */
+* the test controller
+*
+* A controller for testing models. To test your model
+*
+*
+* @package controllers
+*/
 
 class Test extends CI_Controller {
 
@@ -28,6 +27,7 @@ class Test extends CI_Controller {
 //  Load here all the models you want to test.
 //  
 		$this -> load -> model('user_model');
+		$this -> load -> model('comment_model');
 
 	
 	}
@@ -49,7 +49,7 @@ class Test extends CI_Controller {
 ///  TEST AREA; Here you can write test functions
 ///
 ///  you can give them any name and call them with localhost/test/name
-///  It's recommended not to push changes to this controller to the repository.
+///  
 /// 
 	
 	public function test1()
@@ -66,8 +66,14 @@ class Test extends CI_Controller {
 	}
 
 
+	
+	
 	public function test2() {
-		$this->_report("Hello I am test2"); // replace the string with a call to your model
+	$this->_report('Hello I am test2'); // replace the string with a call to your model
+	}
+
+	public function test3($qid,$uid,$body) {
+	$this->_report($this -> comment_model -> create_qcomment($qid,$uid,$body),'Hello this is comment test'); // replace the string with 		a call to your model
 	}
 	
 	
