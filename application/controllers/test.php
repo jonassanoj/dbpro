@@ -52,18 +52,14 @@ class Test extends CI_Controller {
 ///  
 /// 
 	
-	public function test1()
-	{
-		// this calls a function from usermodel. 
-		// the resuts are reported by calling the $this->_report function.
-		
-		$this->_report( 
+	public function gut()
+	{$this->_report( 
 			    // the return value will be shown in the test report:
 		 		$this -> user_model -> get_usertypes(),
 				// the second parameter will give a title to the report:
 				'Test of user_model -> get_usertypes()'
 		 		);
-	}
+		}
 
 	public function logintest($p1,$p2)
 

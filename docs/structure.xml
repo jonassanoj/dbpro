@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project version="2.0.0a5" title="">
+<project version="2.0.0a6" title="">
   <file path="models/question_model.php" hash="7488068140547dec675938121e70362f" package="Default">
     <class final="false" abstract="false" namespace="" line="15" package="models">
+      <extends>CI_Model</extends>
       <name>Question_model</name>
       <full_name>\Question_model</full_name>
-      <extends>CI_Model</extends>
       <docblock line="15">
         <description><![CDATA[the question model]]></description>
         <long-description><![CDATA[<p>Provides CRUD functionality for questions.</p>
@@ -135,9 +135,9 @@ and returns an array that can be passed to the db->where() active record functio
   </file>
   <file path="models/user_model.php" hash="5d9d79077468ff5eb204d803ebfe9ab0" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
+      <extends>CI_Model</extends>
       <name>User_model</name>
       <full_name>\User_model</full_name>
-      <extends>CI_Model</extends>
       <docblock line="16">
         <description><![CDATA[the user model]]></description>
         <long-description><![CDATA[<p>User management. CRUD for users, their types and their fields.</p>
@@ -335,112 +335,11 @@ and returns an array that can be passed to the db->where() active record functio
       <error line="125" code="50010">No DocBlock was found for method get_field()</error>
     </parse_markers>
   </file>
-  <file path="models/field_model.php" hash="9dbb68a8530d22fc34b9572ae50c5cc0" package="Default">
-    <class final="false" abstract="false" namespace="" line="5" package="Default">
-      <name>Field_model</name>
-      <full_name>\Field_model</full_name>
-      <extends>CI_Model</extends>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="8" package="Default">
-        <name>get_fields</name>
-        <full_name>get_fields</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="15" package="Default">
-        <name>add_field</name>
-        <full_name>add_field</full_name>
-        <argument line="15">
-          <name>$fieldName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="21" package="Default">
-        <name>delete_field</name>
-        <full_name>delete_field</full_name>
-        <argument line="21">
-          <name>$fieldID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <markers>
-      <todo line="3">complete field_model documentation according to the guidelines</todo>
-    </markers>
-    <parse_markers>
-      <error line="5" code="50000">No DocBlock was found for \Field_model</error>
-      <error line="8" code="50010">No DocBlock was found for method get_fields()</error>
-      <error line="15" code="50010">No DocBlock was found for method add_field()</error>
-      <error line="21" code="50010">No DocBlock was found for method delete_field()</error>
-    </parse_markers>
-  </file>
-  <file path="models/category_model.php" hash="0af6523b4fb7798061199a1b60120fc1" package="Default">
-    <class final="false" abstract="false" namespace="" line="5" package="Default">
-      <name>Category_model</name>
-      <full_name>\Category_model</full_name>
-      <extends>CI_Model</extends>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="8" package="Default">
-        <name>add_cat</name>
-        <full_name>add_cat</full_name>
-        <argument line="8">
-          <name>$catName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="8">
-          <name>$fieldID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="17" package="Default">
-        <name>update_cat</name>
-        <full_name>update_cat</full_name>
-        <argument line="17">
-          <name>$catID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="17">
-          <name>$catName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="25" package="Default">
-        <name>get_categories</name>
-        <full_name>get_categories</full_name>
-        <argument line="25">
-          <name>$fieldID</name>
-          <default><![CDATA[0]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="32" package="Default">
-        <name>delete_cat</name>
-        <full_name>delete_cat</full_name>
-        <argument line="32">
-          <name>$catID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <markers>
-      <todo line="3">complete the category_model documentation, using phpdoc comments like in question_model.php</todo>
-    </markers>
-    <parse_markers>
-      <error line="5" code="50000">No DocBlock was found for \Category_model</error>
-      <error line="8" code="50010">No DocBlock was found for method add_cat()</error>
-      <error line="17" code="50010">No DocBlock was found for method update_cat()</error>
-      <error line="25" code="50010">No DocBlock was found for method get_categories()</error>
-      <error line="32" code="50010">No DocBlock was found for method delete_cat()</error>
-    </parse_markers>
-  </file>
   <file path="models/comment_model.php" hash="1d12911faeac6ee9129d77331aa92fc7" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
+      <extends>CI_Model</extends>
       <name>Comment_model</name>
       <full_name>\Comment_model</full_name>
-      <extends>CI_Model</extends>
       <docblock line="16">
         <description><![CDATA[the comment model]]></description>
         <long-description><![CDATA[<p>Allows to retrieve and post comments for questions and answers.</p>
@@ -566,9 +465,9 @@ and returns an array that can be passed to the db->where() active record functio
   </file>
   <file path="models/answer_model.php" hash="d312a3b7865b3328b9235b946c0345a4" package="Default">
     <class final="false" abstract="false" namespace="" line="14" package="models">
+      <extends>CI_Model</extends>
       <name>Answer_model</name>
       <full_name>\Answer_model</full_name>
-      <extends>CI_Model</extends>
       <docblock line="14">
         <description><![CDATA[the answer model]]></description>
         <long-description><![CDATA[<p>Provides CRUD functionality for answers.</p>
@@ -601,11 +500,154 @@ and returns an array that can be passed to the db->where() active record functio
       </method>
     </class>
   </file>
+  <file path="models/category_model.php" hash="0af6523b4fb7798061199a1b60120fc1" package="Default">
+    <class final="false" abstract="false" namespace="" line="5" package="Default">
+      <extends>CI_Model</extends>
+      <name>Category_model</name>
+      <full_name>\Category_model</full_name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="8" package="Default">
+        <name>add_cat</name>
+        <full_name>add_cat</full_name>
+        <argument line="8">
+          <name>$catName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="8">
+          <name>$fieldID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="17" package="Default">
+        <name>update_cat</name>
+        <full_name>update_cat</full_name>
+        <argument line="17">
+          <name>$catID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="17">
+          <name>$catName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="25" package="Default">
+        <name>get_categories</name>
+        <full_name>get_categories</full_name>
+        <argument line="25">
+          <name>$fieldID</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="32" package="Default">
+        <name>delete_cat</name>
+        <full_name>delete_cat</full_name>
+        <argument line="32">
+          <name>$catID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="3">complete the category_model documentation, using phpdoc comments like in question_model.php</todo>
+    </markers>
+    <parse_markers>
+      <error line="5" code="50000">No DocBlock was found for \Category_model</error>
+      <error line="8" code="50010">No DocBlock was found for method add_cat()</error>
+      <error line="17" code="50010">No DocBlock was found for method update_cat()</error>
+      <error line="25" code="50010">No DocBlock was found for method get_categories()</error>
+      <error line="32" code="50010">No DocBlock was found for method delete_cat()</error>
+    </parse_markers>
+  </file>
+  <file path="models/field_model.php" hash="9dbb68a8530d22fc34b9572ae50c5cc0" package="Default">
+    <class final="false" abstract="false" namespace="" line="5" package="Default">
+      <extends>CI_Model</extends>
+      <name>Field_model</name>
+      <full_name>\Field_model</full_name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="8" package="Default">
+        <name>get_fields</name>
+        <full_name>get_fields</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="15" package="Default">
+        <name>add_field</name>
+        <full_name>add_field</full_name>
+        <argument line="15">
+          <name>$fieldName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="21" package="Default">
+        <name>delete_field</name>
+        <full_name>delete_field</full_name>
+        <argument line="21">
+          <name>$fieldID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="3">complete field_model documentation according to the guidelines</todo>
+    </markers>
+    <parse_markers>
+      <error line="5" code="50000">No DocBlock was found for \Field_model</error>
+      <error line="8" code="50010">No DocBlock was found for method get_fields()</error>
+      <error line="15" code="50010">No DocBlock was found for method add_field()</error>
+      <error line="21" code="50010">No DocBlock was found for method delete_field()</error>
+    </parse_markers>
+  </file>
+  <file path="controllers/test.php" hash="f6faa1715cb7d2a2a742b0edf4b37d9b" package="Default"/>
+  <file path="controllers/ajax.php" hash="6218514efa36404ec9c3f12ee71aa974" package="Default">
+    <class final="false" abstract="false" namespace="" line="12" package="controllers">
+      <extends>CI_Controller</extends>
+      <name>Ajax</name>
+      <full_name>\Ajax</full_name>
+      <docblock line="12">
+        <description><![CDATA[controller for AJAX requests]]></description>
+        <long-description><![CDATA[<p>This controller will handle all AJAX requests up to now.
+If more AJAX-functionality is added, this should be split into thematically
+organized controllers.</p>]]></long-description>
+        <tag line="12" name="package" description="controllers"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="14" package="controllers">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="29" package="controllers">
+        <name>qcomments</name>
+        <full_name>qcomments</full_name>
+        <docblock line="29">
+          <description><![CDATA[asynchronously get comments for a question]]></description>
+          <long-description><![CDATA[<p>calls <em>get_qcomments</em> from the comment model.
+presents its data using the <em>ajax/comments</em> view.</p>]]></long-description>
+          <tag line="29" name="param" description="the questionID" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="29" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="29">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="14" code="50010">No DocBlock was found for method __construct()</error>
+    </parse_markers>
+  </file>
   <file path="controllers/util.php" hash="0f1df72c2d63af6801622fbe5cb8ef4c" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
+      <extends>CI_Controller</extends>
       <name>Util</name>
       <full_name>\Util</full_name>
-      <extends>CI_Controller</extends>
       <docblock line="11">
         <description><![CDATA[Utility controller]]></description>
         <long-description><![CDATA[<p>a controller containing utility functions. It uses no views but sends the user back to the last URI saved in the session.
@@ -630,11 +672,11 @@ e.g. used for changing the language globally.</p>]]></long-description>
       </method>
     </class>
   </file>
-  <file path="controllers/main.php" hash="62ef0288ab35a856bfdfb16ab92522f0" package="Default">
+  <file path="controllers/main.php" hash="24eba38f28cef6ece35b14b4ac3fa517" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
+      <extends>CI_Controller</extends>
       <name>Main</name>
       <full_name>\Main</full_name>
-      <extends>CI_Controller</extends>
       <docblock line="11">
         <description><![CDATA[the main controller]]></description>
         <long-description><![CDATA[<p>Handles the basic site functionality. Browsing questions and answers, etc.</p>]]></long-description>
@@ -691,68 +733,82 @@ clicking on a question will display its details (answers, etc.)</p>]]></long-des
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="102" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="112" package="controllers">
         <name>field</name>
         <full_name>field</full_name>
-        <argument line="102">
+        <docblock line="112">
+          <description><![CDATA[shows a list of paginated questions]]></description>
+          <long-description><![CDATA[<p>which they belong to specific category.
+get the list of question(5 questions per page) wich they corrospond the specific fieldID</p>]]></long-description>
+          <tag line="112" name="param" description="the ID of field" type="int" variable="$fid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="112" name="param" description="the pagination offset" type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="112" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="112">
           <name>$fid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="102">
+        <argument line="112">
           <name>$offset</name>
-          <default><![CDATA[]]></default>
+          <default><![CDATA[0]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="106" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="126" package="controllers">
         <name>search</name>
         <full_name>search</full_name>
-        <argument line="106">
+        <argument line="126">
           <name>$term</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="106">
+        <argument line="126">
           <name>$offset</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="120" package="controllers">
-        <name>qshow</name>
-        <full_name>qshow</full_name>
-        <docblock line="120">
-          <description><![CDATA[show one question]]></description>
-          <long-description><![CDATA[<p>the <em>qdetails</em> view is shown, representing a question and its answers.</p>]]></long-description>
-          <tag line="120" name="param" description="the questionID" type="int" variable="$qid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="120" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="120">
-          <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="" line="140" package="controllers">
-        <name>view</name>
-        <full_name>view</full_name>
+        <name>qshow</name>
+        <full_name>qshow</full_name>
         <docblock line="140">
-          <description><![CDATA[show a certain body page]]></description>
-          <long-description><![CDATA[<p>this function shows a certain (static) page from the views/body directory.
-use this for static content like: about, contact, terms-of-use, etc.</p>]]></long-description>
-          <tag line="140" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
-            <type by_reference="false">string</type>
+          <description><![CDATA[show one question]]></description>
+          <long-description><![CDATA[<p>the <em>qdetails</em> view is shown, representing a question and its answers.</p>]]></long-description>
+          <tag line="140" name="param" description="the questionID" type="int" variable="$qid">
+            <type by_reference="false">int</type>
           </tag>
           <tag line="140" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
         <argument line="140">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="160" package="controllers">
+        <name>view</name>
+        <full_name>view</full_name>
+        <docblock line="160">
+          <description><![CDATA[show a certain body page]]></description>
+          <long-description><![CDATA[<p>this function shows a certain (static) page from the views/body directory.
+use this for static content like: about, contact, terms-of-use, etc.</p>]]></long-description>
+          <tag line="160" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="160" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="160">
           <name>$page</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -761,20 +817,19 @@ use this for static content like: about, contact, terms-of-use, etc.</p>]]></lon
     </class>
     <markers>
       <todo line="49">extend the _loadviews() function so it loads a different sidebar, depending on the type of user.</todo>
-      <todo line="103">implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
-      <todo line="107">implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
+      <todo line="113">implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
+      <todo line="127">implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
     </markers>
     <parse_markers>
       <error line="50" code="50010">No DocBlock was found for method _loadviews()</error>
-      <error line="102" code="50010">No DocBlock was found for method field()</error>
-      <error line="106" code="50010">No DocBlock was found for method search()</error>
+      <error line="126" code="50010">No DocBlock was found for method search()</error>
     </parse_markers>
   </file>
   <file path="controllers/user.php" hash="efdd3d2f46eee4a7a47b7c6f7b5e703b" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
+      <extends>CI_Controller</extends>
       <name>User</name>
       <full_name>\User</full_name>
-      <extends>CI_Controller</extends>
       <docblock line="11">
         <description><![CDATA[the user controller]]></description>
         <long-description><![CDATA[<p>Handles logging in and registering users.</p>]]></long-description>
@@ -864,146 +919,6 @@ The following parts are sent in order:</p>
       <error line="133" code="50010">No DocBlock was found for method failed()</error>
       <error line="146" code="50010">No DocBlock was found for method register()</error>
       <error line="151" code="50010">No DocBlock was found for method recover()</error>
-    </parse_markers>
-  </file>
-  <file path="controllers/test.php" hash="2564daf6e689b35e41cee3c6c59a78b7" package="Default">
-    <class final="false" abstract="false" namespace="" line="13" package="controllers">
-      <name>Test</name>
-      <full_name>\Test</full_name>
-      <extends>CI_Controller</extends>
-      <docblock line="13">
-        <description><![CDATA[the test controller]]></description>
-        <long-description><![CDATA[<p>A controller for testing model.
-In the wiki there is a short howto that explains the testing process
-The comments in this file however should be self-explanatory.</p>]]></long-description>
-        <tag line="13" name="package" description="controllers"/>
-      </docblock>
-      <property final="false" static="false" visibility="private" line="16" namespace="" package="Default">
-        <name>$result</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="24" package="controllers">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-        <docblock line="24">
-          <description><![CDATA[constructor]]></description>
-          <long-description><![CDATA[<p>loads the model you want to test.</p>]]></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="36" package="controllers">
-        <name>_remap</name>
-        <full_name>_remap</full_name>
-        <argument line="36">
-          <name>$method</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="36">
-          <name>$params</name>
-          <default><![CDATA[array()]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="45" package="controllers">
-        <name>_report</name>
-        <full_name>_report</full_name>
-        <argument line="45">
-          <name>$result</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="45">
-          <name>$title</name>
-          <default><![CDATA['Unnamed']]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="55" package="controllers">
-        <name>test1</name>
-        <full_name>test1</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="68" package="controllers">
-        <name>logintest</name>
-        <full_name>logintest</full_name>
-        <argument line="68">
-          <name>$p1</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="68">
-          <name>$p2</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="82" package="controllers">
-        <name>deleteUserTest</name>
-        <full_name>deleteUserTest</full_name>
-        <argument line="82">
-          <name>$p1</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="96" package="controllers">
-        <name>test2</name>
-        <full_name>test2</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="102" package="controllers">
-        <name>multitest</name>
-        <full_name>multitest</full_name>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="16" code="50018">No DocBlock was found for property $result</error>
-      <error line="36" code="50010">No DocBlock was found for method _remap()</error>
-      <error line="45" code="50010">No DocBlock was found for method _report()</error>
-      <error line="55" code="50010">No DocBlock was found for method test1()</error>
-      <error line="68" code="50010">No DocBlock was found for method logintest()</error>
-      <error line="82" code="50010">No DocBlock was found for method deleteUserTest()</error>
-      <error line="96" code="50010">No DocBlock was found for method test2()</error>
-      <error line="102" code="50010">No DocBlock was found for method multitest()</error>
-    </parse_markers>
-  </file>
-  <file path="controllers/ajax.php" hash="6218514efa36404ec9c3f12ee71aa974" package="Default">
-    <class final="false" abstract="false" namespace="" line="12" package="controllers">
-      <name>Ajax</name>
-      <full_name>\Ajax</full_name>
-      <extends>CI_Controller</extends>
-      <docblock line="12">
-        <description><![CDATA[controller for AJAX requests]]></description>
-        <long-description><![CDATA[<p>This controller will handle all AJAX requests up to now.
-If more AJAX-functionality is added, this should be split into thematically
-organized controllers.</p>]]></long-description>
-        <tag line="12" name="package" description="controllers"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="14" package="controllers">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="29" package="controllers">
-        <name>qcomments</name>
-        <full_name>qcomments</full_name>
-        <docblock line="29">
-          <description><![CDATA[asynchronously get comments for a question]]></description>
-          <long-description><![CDATA[<p>calls <em>get_qcomments</em> from the comment model.
-presents its data using the <em>ajax/comments</em> view.</p>]]></long-description>
-          <tag line="29" name="param" description="the questionID" type="int" variable="$qid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="29" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="29">
-          <name>$qid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="14" code="50010">No DocBlock was found for method __construct()</error>
     </parse_markers>
   </file>
   <package name="Default" full_name="Default"/>

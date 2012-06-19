@@ -98,9 +98,29 @@ class Main extends CI_Controller {
 		$data['title'] = lang('title_recent_questions');
 		$this -> _loadviews('qlist', $data);
 	}
+	/**
+	* shows a list of paginated questions
+	*
+        * which they belong to specific category.
+	* get the list of question(4 questions per page) wich they corrospond the specific fieldID 
+	* @param int $fid the ID of field
+	* @param int $offset the pagination offset
+	* @return void
+	 *
+        */
 	
-	public function field($fid,$offset) {
+	public function field($fid,$offset = 0) {
 		// TODO: implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
+		$config['base_url'] = site_url("main/field/$fid/");
+		$config['per_page'] = 4;
+		$config['uri_segment'] = 4;
+		$filter=array('fieldID'=>$fid);
+		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'],$filter);
+		$config['total_rows'] = $this -> question_model -> get_count($filter);
+		$this -> pagination -> initialize($config);
+		$data['pagelinks'] = $this -> pagination -> create_links();
+		$data['title'] = lang('title_recent_questions');
+		$this -> _loadviews('qlist', $data);
 	}
 	
 	public function search($term,$offset) {
