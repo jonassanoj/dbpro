@@ -105,8 +105,22 @@ class User_model extends CI_Model {
 	}
 	
 	// TODO: This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'  
+	
+	/**
+	 * retrieve all information about specified user
+	 *
+	 * Returns all user included usertype and userfield data such as User.userName, User.fullName, User.email, User.password, User.imagePath, Field.fieldName, UserType.userType, User.acountCreationDate, User.rank, User.lastLogin, User.Organization, User.location, User.dateOfBirth, User.degree, User.detail
+	 * @author Hamidullah khanzai
+	 * @param int $uid
+	 * @return array holds user objects with a fieldName and userType and all related data belongs to a user
+	 * 
+	 */
 	public function get_userdata($uid) {
+		$query=$this->db->query('SELECT User.userName, User.fullName, User.email, User.password, User.imagePath, Field.fieldName, UserType.userType, User.acountCreationDate, User.rank, User.lastLogin, User.Organization, User.location, User.dateOfBirth, User.degree, User.detail,FROM User, Field, UserType WHERE User.userTypeID = UserType.userTypeID AND User.fieldID = Field.fieldID and User.userID ='.$uid);
+		return $query->result();
+	
 	}
+	
 	
 	
 	/**
