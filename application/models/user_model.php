@@ -125,19 +125,49 @@ class User_model extends CI_Model {
 	  	return true; 
 		
 	}
-
+/**
+	 * return user types
+	 *
+	 * This function is used to return all types of users.the function takes no parameter.
+	 * 
+	 * @author saminullah sameem
+	 * @return object user types
+	 */
 	public function get_usertypes() {
 	 	$query = $this->db->get('UserType');    
 	    return $query->result();
 	}
 	
 	//TODO: implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.
+	/** 
+	 *  returns specific user type.
+	 * 
+	 * This Function takes user_id from the user table and returns a specific type of user e.g Administrator.We have four types of users 
+	 * named Administrator, Normal user,Editor and unconfirmed.
+	 * 
+	 * @author saminullah sameem
+	 * @return array user data
+	 */
 	public function get_usertype($uid) {
-	  return 0;
+		$query=$this->db->query('SELECT UserType.userType FROM User, UserType WHERE User.userTypeID = userType.userTypeID AND userID ='.$uid);
+		
+	  return $query->result();
 	}
+	/**
+	 *  returns user field.
+	 * 
+	 * This function is used  to return user's field. this function takes user_id as argument and return a specific field of user. for example a user belong to 
+	 * software engineering, Data base management system etc.
+	 * 
+	 * @author saminullah sameem
+	 * @return object  user field
+	 *  
+	 */
 	
 	public function get_field($uid){
-	  return 0;
+		$query=$this->db->query('SELECT Field.fieldName FROM User, Field WHERE User.fieldID = Field.fieldID AND userID ='.$uid);
+		
+	  	return $query->result();
 	}
 	
 }
