@@ -12,8 +12,8 @@
 /****************************************************************************************/
 body { font-family:"Cabin", Helvetica, Arial, sans; }
 
-h1 { font-family:"Lobster Two", cursive; font-weight: bold; font-style: italic }
-h2, h3, h4, h5, h6, ul, ol	{ font-family:"Cabin", Helvetica, Arial, sans; font-weight: bold;}
+h1, h2 { font-family:"Lobster Two", cursive; font-weight: bold; font-style: italic }
+h3, h4, h5, h6, ul, ol	{ font-family:"Cabin", Helvetica, Arial, sans; font-weight: bold;}
 	
 
 
