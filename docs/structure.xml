@@ -601,7 +601,105 @@ and returns an array that can be passed to the db->where() active record functio
       <error line="21" code="50010">No DocBlock was found for method delete_field()</error>
     </parse_markers>
   </file>
-  <file path="controllers/test.php" hash="f6faa1715cb7d2a2a742b0edf4b37d9b" package="Default"/>
+  <file path="controllers/test.php" hash="0a38fe8119449255d09ce944746c3e30" package="Default">
+    <class final="false" abstract="false" namespace="" line="13" package="controllers">
+      <extends>CI_Controller</extends>
+      <name>Test</name>
+      <full_name>\Test</full_name>
+      <docblock line="13">
+        <description><![CDATA[the test controller]]></description>
+        <long-description><![CDATA[<p>A controller for testing model.
+In the wiki there is a short howto that explains the testing process
+The comments in this file however should be self-explanatory.</p>]]></long-description>
+        <tag line="13" name="package" description="controllers"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="16" namespace="" package="Default">
+        <name>$result</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="24" package="controllers">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="24">
+          <description><![CDATA[constructor]]></description>
+          <long-description><![CDATA[<p>loads the model you want to test.</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="36" package="controllers">
+        <name>_remap</name>
+        <full_name>_remap</full_name>
+        <argument line="36">
+          <name>$method</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="36">
+          <name>$params</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="45" package="controllers">
+        <name>_report</name>
+        <full_name>_report</full_name>
+        <argument line="45">
+          <name>$result</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="45">
+          <name>$title</name>
+          <default><![CDATA['Unnamed']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="55" package="controllers">
+        <name>gut</name>
+        <full_name>gut</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="64" package="controllers">
+        <name>logintest</name>
+        <full_name>logintest</full_name>
+        <argument line="64">
+          <name>$p1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$p2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="78" package="controllers">
+        <name>deleteUserTest</name>
+        <full_name>deleteUserTest</full_name>
+        <argument line="78">
+          <name>$p1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="92" package="controllers">
+        <name>test2</name>
+        <full_name>test2</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="98" package="controllers">
+        <name>multitest</name>
+        <full_name>multitest</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="16" code="50018">No DocBlock was found for property $result</error>
+      <error line="36" code="50010">No DocBlock was found for method _remap()</error>
+      <error line="45" code="50010">No DocBlock was found for method _report()</error>
+      <error line="55" code="50010">No DocBlock was found for method gut()</error>
+      <error line="64" code="50010">No DocBlock was found for method logintest()</error>
+      <error line="78" code="50010">No DocBlock was found for method deleteUserTest()</error>
+      <error line="92" code="50010">No DocBlock was found for method test2()</error>
+      <error line="98" code="50010">No DocBlock was found for method multitest()</error>
+    </parse_markers>
+  </file>
   <file path="controllers/ajax.php" hash="6218514efa36404ec9c3f12ee71aa974" package="Default">
     <class final="false" abstract="false" namespace="" line="12" package="controllers">
       <extends>CI_Controller</extends>
@@ -672,7 +770,7 @@ e.g. used for changing the language globally.</p>]]></long-description>
       </method>
     </class>
   </file>
-  <file path="controllers/main.php" hash="24eba38f28cef6ece35b14b4ac3fa517" package="Default">
+  <file path="controllers/main.php" hash="0abd48a6340410d87884c4e65cd66ecb" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <extends>CI_Controller</extends>
       <name>Main</name>
@@ -733,82 +831,82 @@ clicking on a question will display its details (answers, etc.)</p>]]></long-des
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="112" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="113" package="controllers">
         <name>field</name>
         <full_name>field</full_name>
-        <docblock line="112">
+        <docblock line="113">
           <description><![CDATA[shows a list of paginated questions]]></description>
           <long-description><![CDATA[<p>which they belong to specific category.
-get the list of question(5 questions per page) wich they corrospond the specific fieldID</p>]]></long-description>
-          <tag line="112" name="param" description="the ID of field" type="int" variable="$fid">
+get the list of question(4 questions per page) wich they corrospond the specific fieldID</p>]]></long-description>
+          <tag line="113" name="param" description="the ID of field" type="int" variable="$fid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="112" name="param" description="the pagination offset" type="int" variable="$offset">
+          <tag line="113" name="param" description="the pagination offset" type="int" variable="$offset">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="112" name="return" description="" type="void">
+          <tag line="113" name="return" description="Author Somaia Zabihi" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="112">
+        <argument line="113">
           <name>$fid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="112">
+        <argument line="113">
           <name>$offset</name>
           <default><![CDATA[0]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="126" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="128" package="controllers">
         <name>search</name>
         <full_name>search</full_name>
-        <argument line="126">
+        <argument line="128">
           <name>$term</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="126">
+        <argument line="128">
           <name>$offset</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="140" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="142" package="controllers">
         <name>qshow</name>
         <full_name>qshow</full_name>
-        <docblock line="140">
+        <docblock line="142">
           <description><![CDATA[show one question]]></description>
           <long-description><![CDATA[<p>the <em>qdetails</em> view is shown, representing a question and its answers.</p>]]></long-description>
-          <tag line="140" name="param" description="the questionID" type="int" variable="$qid">
+          <tag line="142" name="param" description="the questionID" type="int" variable="$qid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="140" name="return" description="" type="void">
+          <tag line="142" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="140">
+        <argument line="142">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="160" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="162" package="controllers">
         <name>view</name>
         <full_name>view</full_name>
-        <docblock line="160">
+        <docblock line="162">
           <description><![CDATA[show a certain body page]]></description>
           <long-description><![CDATA[<p>this function shows a certain (static) page from the views/body directory.
 use this for static content like: about, contact, terms-of-use, etc.</p>]]></long-description>
-          <tag line="160" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
+          <tag line="162" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="160" name="return" description="" type="void">
+          <tag line="162" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="160">
+        <argument line="162">
           <name>$page</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -817,12 +915,12 @@ use this for static content like: about, contact, terms-of-use, etc.</p>]]></lon
     </class>
     <markers>
       <todo line="49">extend the _loadviews() function so it loads a different sidebar, depending on the type of user.</todo>
-      <todo line="113">implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
-      <todo line="127">implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
+      <todo line="114">implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
+      <todo line="129">implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
     </markers>
     <parse_markers>
       <error line="50" code="50010">No DocBlock was found for method _loadviews()</error>
-      <error line="126" code="50010">No DocBlock was found for method search()</error>
+      <error line="128" code="50010">No DocBlock was found for method search()</error>
     </parse_markers>
   </file>
   <file path="controllers/user.php" hash="efdd3d2f46eee4a7a47b7c6f7b5e703b" package="Default">

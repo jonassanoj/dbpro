@@ -99,7 +99,7 @@ class Main extends CI_Controller {
 		$this -> _loadviews('qlist', $data);
 	}
 	/**
-	* shows a list of paginated questions
+	*shows a list of paginated questions
 	*
         * which they belong to specific category.
 	* get the list of question(4 questions per page) wich they corrospond the specific fieldID 
@@ -107,10 +107,12 @@ class Main extends CI_Controller {
 	* @param int $offset the pagination offset
 	* @return void
 	 *
+	*Author Somaia Zabihi
         */
 	
 	public function field($fid,$offset = 0) {
 		// TODO: implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
+		//Author Somaia Zabihi
 		$config['base_url'] = site_url("main/field/$fid/");
 		$config['per_page'] = 4;
 		$config['uri_segment'] = 4;
