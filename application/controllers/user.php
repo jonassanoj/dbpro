@@ -43,12 +43,10 @@ class User extends CI_Controller {
 	 *
 	 */
 	
-	public function _loadviews($body_view, $data) {
-		$this -> load -> view('include/header', $data);
-		$this -> load -> view('header/simple',$data);	
-		$this -> load -> view('leftnav/default');
-		$this -> load -> view('body/' . $body_view, $data);
-		$this -> load -> view('include/footer');
+	public function _loadviews($content, $data) {
+		$data['loginbox']=FALSE;
+		$data['content']="content/$content";
+		$this -> load -> view('main_view',$data);
 	}
 	
 	//TODO: Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).

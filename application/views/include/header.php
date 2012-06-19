@@ -1,25 +1,29 @@
-<?php echo doctype(); ?>
-<html lang='en' xml:lang='en' xmlns="http://www.w3.org/1999/xhtml">
-<?php echo meta('Content-type', 'text/html; charset=utf-8', 'equiv'); ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html <?php
+		if (isset($this->lang))
+			echo 'lang='.lang('language_code').' xml:lang='.lang('language_code').' dir='.lang('language_dir');
+		?> xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 
 <head>
-<script type="text/javascript" src="<?php echo base_url('js/jquery-1.7.2.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('js/formee.js');?>"></script>
-
-<title> <?php echo($title); ?> </title>
-
-<?php
-	// Main stylesheet. Always load first.
-	echo link_tag('css/main.css');
+<?php 
+	if (isset($scripts)) {
+		foreach($scripts as $uri) echo '<script type="text/javascript" src="'.base_url($uri).'"></script>'."\n"; 
+	}
 	
-	// load Formee CSS form templates
-	echo link_tag('css/formee-structure.css');
-	echo link_tag('css/formee-style.css');
+	echo "<title>$title</title>\n";
 	
 	// favicon
-	echo link_tag('favicon.png', 'shortcut icon', 'img/ico');
-?>
+	echo link_tag('favicon.png', 'shortcut icon', 'img/ico')."\n";
+	
+	// Main stylesheet. Always load first.
+	echo link_tag('css/main.css')."\n";
+	
 
+	// Additional styles given in an array
+	if (isset($styles)) {
+		foreach($styles as $uri) echo link_tag($uri)."\n";
+	}
+?>
 </head>
-<body>
-<div id="container">
+
