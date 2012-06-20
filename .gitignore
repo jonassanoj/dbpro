@@ -41,3 +41,4 @@ Thumbs.db
 # Eclipse files #
 #################
 .project
+.settings
