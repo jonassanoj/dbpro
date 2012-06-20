@@ -2,7 +2,7 @@
 
 <?php foreach ($questions as $question): ?>
 	<div class="question">
-		<?php echo anchor('index.php/main/qshow/'.$question->questionID,$question->title); ?>
+		<?php echo anchor('/main/qshow/'.$question->questionID,$question->title); ?>
 	</div>
 <?php endforeach ?>
 
