@@ -95,7 +95,7 @@ private function filter($filter) {
 				$this->db->where('userID=',$filter['userID']);
 		}
 		if (array_key_exists('catID', $filter)) {
-			this->db->where('catID=', $filter['catID']);
+			$this->db->where('catID=', $filter['catID']);
 		
 		}
 		if (array_key_exists('search', $filter)){
@@ -105,6 +105,7 @@ private function filter($filter) {
 		
 		}
 	}
+	return array();
  }
 
 }

@@ -75,7 +75,7 @@ class Main extends CI_Controller {
 		if(isset($this -> session -> userdata('usertype'))){
 =======
 
-		$this -> load -> view('leftnav/default');
+		//$this -> load -> view('leftnav/default');
 
 		if($this -> session -> userdata('usertype')){
 >>>>>>> a7eb895f8ab20439d44438eb01d497c0c84ae4d1

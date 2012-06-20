@@ -19,11 +19,11 @@
 <polyline fill="none" stroke="gray" points="216,-588 216,-20 "/>
 <path fill="none" stroke="gray" d="M216,-20C216,-14 222,-8 228,-8"/>
 </g>
-<!-- \\Question_model -->
-<g id="node2" class="node"><title>\\Question_model</title>
-<a xlink:href="models.question_model.html" xlink:title="Question_model" target="_parent">
+<!-- \\Category_model -->
+<g id="node2" class="node"><title>\\Category_model</title>
+<a xlink:href="models.category_model.html" xlink:title="Category_model" target="_parent">
 <polygon fill="none" stroke="black" points="335,-592 225,-592 225,-556 335,-556 335,-592"/>
-<text text-anchor="middle" x="280" y="-571.1" font-family="Courier,monospace" font-size="11.00">Question_model</text>
+<text text-anchor="middle" x="280" y="-571.1" font-family="Courier,monospace" font-size="11.00">Category_model</text>
 </a>
 </g>
 <!-- CI_Model -->
@@ -31,22 +31,22 @@
 <ellipse fill="none" stroke="black" cx="76" cy="-439" rx="55.8614" ry="18.3848"/>
 <text text-anchor="middle" x="76" y="-435.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">CI_Model</text>
 </g>
-<!-- \\Question_model&#45;&gt;CI_Model -->
-<g id="edge3" class="edge"><title>\\Question_model&#45;&gt;CI_Model</title>
+<!-- \\Category_model&#45;&gt;CI_Model -->
+<g id="edge3" class="edge"><title>\\Category_model&#45;&gt;CI_Model</title>
 <path fill="none" stroke="black" d="M233.168,-555.91C227.273,-553.15 221.416,-550.16 216,-547 173.709,-522.326 129.771,-486.474 102.654,-462.951"/>
 <polygon fill="none" stroke="black" points="104.628,-460.027 94.7992,-456.072 100.017,-465.294 104.628,-460.027"/>
 </g>
-<!-- \\User_model -->
-<g id="node3" class="node"><title>\\User_model</title>
-<a xlink:href="models.user_model.html" xlink:title="User_model" target="_parent">
-<polygon fill="none" stroke="black" points="322,-538 238,-538 238,-502 322,-502 322,-538"/>
-<text text-anchor="middle" x="280" y="-517.1" font-family="Courier,monospace" font-size="11.00">User_model</text>
+<!-- \\Answer_model -->
+<g id="node3" class="node"><title>\\Answer_model</title>
+<a xlink:href="models.answer_model.html" xlink:title="Answer_model" target="_parent">
+<polygon fill="none" stroke="black" points="329,-538 231,-538 231,-502 329,-502 329,-538"/>
+<text text-anchor="middle" x="280" y="-517.1" font-family="Courier,monospace" font-size="11.00">Answer_model</text>
 </a>
 </g>
-<!-- \\User_model&#45;&gt;CI_Model -->
-<g id="edge5" class="edge"><title>\\User_model&#45;&gt;CI_Model</title>
-<path fill="none" stroke="black" d="M237.731,-503.217C203.595,-489.663 155.678,-470.637 120.866,-456.815"/>
-<polygon fill="none" stroke="black" points="122.003,-453.5 111.418,-453.063 119.42,-460.006 122.003,-453.5"/>
+<!-- \\Answer_model&#45;&gt;CI_Model -->
+<g id="edge5" class="edge"><title>\\Answer_model&#45;&gt;CI_Model</title>
+<path fill="none" stroke="black" d="M234.472,-501.923C200.592,-488.47 154.573,-470.198 120.855,-456.81"/>
+<polygon fill="none" stroke="black" points="121.838,-453.435 111.253,-452.997 119.255,-459.941 121.838,-453.435"/>
 </g>
 <!-- \\Comment_model -->
 <g id="node4" class="node"><title>\\Comment_model</title>
@@ -60,6 +60,49 @@
 <path fill="none" stroke="black" d="M227.994,-459.117C200.539,-455.483 166.664,-451 137.866,-447.188"/>
 <polygon fill="none" stroke="black" points="138.283,-443.713 127.911,-445.871 137.365,-450.652 138.283,-443.713"/>
 </g>
+<<<<<<< HEAD
+<!-- \\Field_model -->
+<g id="node5" class="node"><title>\\Field_model</title>
+<a xlink:href="models.field_model.html" xlink:title="Field_model" target="_parent">
+<polygon fill="none" stroke="black" points="325,-430 235,-430 235,-394 325,-394 325,-430"/>
+<text text-anchor="middle" x="280" y="-409.1" font-family="Courier,monospace" font-size="11.00">Field_model</text>
+</a>
+</g>
+<!-- \\Field_model&#45;&gt;CI_Model -->
+<g id="edge9" class="edge"><title>\\Field_model&#45;&gt;CI_Model</title>
+<path fill="none" stroke="black" d="M234.472,-418.026C206.092,-421.782 169.195,-426.665 138.145,-430.775"/>
+<polygon fill="none" stroke="black" points="137.314,-427.354 127.86,-432.136 138.232,-434.294 137.314,-427.354"/>
+</g>
+<!-- \\Question_model -->
+<g id="node6" class="node"><title>\\Question_model</title>
+<a xlink:href="models.question_model.html" xlink:title="Question_model" target="_parent">
+<polygon fill="none" stroke="black" points="335,-376 225,-376 225,-340 335,-340 335,-376"/>
+<text text-anchor="middle" x="280" y="-355.1" font-family="Courier,monospace" font-size="11.00">Question_model</text>
+</a>
+</g>
+<!-- \\Question_model&#45;&gt;CI_Model -->
+<g id="edge11" class="edge"><title>\\Question_model&#45;&gt;CI_Model</title>
+<path fill="none" stroke="black" d="M234.472,-376.077C200.592,-389.53 154.573,-407.802 120.855,-421.19"/>
+<polygon fill="none" stroke="black" points="119.255,-418.059 111.253,-425.003 121.838,-424.565 119.255,-418.059"/>
+</g>
+<!-- \\User_model -->
+<g id="node7" class="node"><title>\\User_model</title>
+<a xlink:href="models.user_model.html" xlink:title="User_model" target="_parent">
+<polygon fill="none" stroke="black" points="322,-322 238,-322 238,-286 322,-286 322,-322"/>
+<text text-anchor="middle" x="280" y="-301.1" font-family="Courier,monospace" font-size="11.00">User_model</text>
+</a>
+</g>
+<!-- \\User_model&#45;&gt;CI_Model -->
+<g id="edge13" class="edge"><title>\\User_model&#45;&gt;CI_Model</title>
+<path fill="none" stroke="black" d="M237.929,-319.913C230.459,-323.252 222.875,-326.989 216,-331 173.709,-355.674 129.771,-391.526 102.654,-415.049"/>
+<polygon fill="none" stroke="black" points="100.017,-412.706 94.7992,-421.928 104.628,-417.973 100.017,-412.706"/>
+</g>
+<!-- \\User -->
+<g id="node8" class="node"><title>\\User</title>
+<a xlink:href="controllers.user.html" xlink:title="User" target="_parent">
+<polygon fill="none" stroke="black" points="307,-268 253,-268 253,-232 307,-232 307,-268"/>
+<text text-anchor="middle" x="280" y="-247.1" font-family="Courier,monospace" font-size="11.00">User</text>
+=======
 <!-- \\Answer_model -->
 <g id="node5" class="node"><title>\\Answer_model</title>
 <a xlink:href="models.answer_model.html" xlink:title="Answer_model" target="_parent">
@@ -101,6 +144,7 @@
 <a xlink:href="controllers.test.html" xlink:title="Test" target="_parent">
 <polygon fill="none" stroke="black" points="307,-268 253,-268 253,-232 307,-232 307,-268"/>
 <text text-anchor="middle" x="280" y="-247.1" font-family="Courier,monospace" font-size="11.00">Test</text>
+>>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
 </a>
 </g>
 <!-- CI_Controller -->
@@ -108,8 +152,13 @@
 <ellipse fill="none" stroke="black" cx="76" cy="-142" rx="75.1594" ry="18.3848"/>
 <text text-anchor="middle" x="76" y="-138.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">CI_Controller</text>
 </g>
+<<<<<<< HEAD
+<!-- \\User&#45;&gt;CI_Controller -->
+<g id="edge15" class="edge"><title>\\User&#45;&gt;CI_Controller</title>
+=======
 <!-- \\Test&#45;&gt;CI_Controller -->
 <g id="edge15" class="edge"><title>\\Test&#45;&gt;CI_Controller</title>
+>>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
 <path fill="none" stroke="black" d="M252.882,-239.439C241.362,-234.728 227.875,-228.911 216,-223 179.48,-204.821 139.323,-181.189 111.418,-164.148"/>
 <polygon fill="none" stroke="black" points="113.162,-161.112 102.809,-158.862 109.499,-167.077 113.162,-161.112"/>
 </g>
