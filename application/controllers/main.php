@@ -12,7 +12,7 @@
 class Main extends CI_Controller {
 
 	/**
-	 * constructor
+	 * constructor 
 	 *
 	 * loads question_model, answer_model, main_lang.
 	 * 
