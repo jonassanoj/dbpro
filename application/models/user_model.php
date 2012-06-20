@@ -87,9 +87,10 @@ class User_model extends CI_Model {
 	 * 
 	 * @author ASHUQULLAH ALIZAI
 	 * @param string_type $username is the user name for user who wants to register for first time 
+
 	 * *private function _check_userName checks if usename exists or not ,
 	 * @return boolean false if username exist in the database, retruns true if the username not exist 
-	 * 
+
 	 * @return int  userID
 	 */
 
