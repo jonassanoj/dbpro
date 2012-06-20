@@ -70,10 +70,15 @@ class Main extends CI_Controller {
 			$data['username'] = $this -> input -> cookie('username');
 			$this -> load -> view('header/loginbox',$data);
 		}
+<<<<<<< HEAD
+		
+		if(isset($this -> session -> userdata('usertype'))){
+=======
 
 		//$this -> load -> view('leftnav/default');
 
 		if($this -> session -> userdata('usertype')){
+>>>>>>> a7eb895f8ab20439d44438eb01d497c0c84ae4d1
 		
 			if ($this -> session -> userdata('usertype') == 1)
 			{

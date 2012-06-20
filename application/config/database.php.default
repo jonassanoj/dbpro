@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
+$db['default']['username'] = 'goftogo';
 $db['default']['password'] = '';
 $db['default']['database'] = 'goftogo';
 $db['default']['dbdriver'] = 'mysql';
