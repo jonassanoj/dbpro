@@ -113,10 +113,14 @@ class User_model extends CI_Model {
 	}
 	
 	/**
+	 * Changing user type
+	 * 
+	 * This fucntion takes user id and user type id as parameter and change user type.
+	 * 
 	 * @author GhezalAhmad Zia
-	 * @param  Integer $uid and $utid which are two parameters for user id and user typed id
-	 * @param  This function change the users typed. and
-	 * @return the result. the affected_rows() check and retrive the affected rows from database, if user not exist then it will return 0
+	 * @param int $uid it is user id.
+	 * @param int $utid it is user type id.
+	 * @return int affected_rows() check and retrive the affected rows from database, if user not exist then it will return 0
 	 */
 	
 	// TODO: implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.
