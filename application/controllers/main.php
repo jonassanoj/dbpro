@@ -103,8 +103,18 @@ class Main extends CI_Controller {
 		// TODO: implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
 	}
 	
-	public function search($term,$offset) {
-		// TODO: implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
+	public function search($offset, $term) {
+		$config['base_url'] = site_url('main/search/');
+		$config['per_page'] = 5;
+		$array = explode(' ', $term);
+		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $array);
+		$config['total_rows'] = $this -> question_model -> get_count();
+		$this -> pagination -> initialize($config);
+		$data['pagelinks'] = $this -> pagination -> create_links();
+		$data['title'] = lang('title_recent_questions');
+		$this -> _loadviews('qlist', $data);
+		
+
 	}
 
 	/**
