@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a5" title="">
-  <file path="models/question_model.php" hash="e635a725aebb532aa30125c19b8462bf" package="Default">
+  <file path="models/question_model.php" hash="9b893d8f80868f26c5ad25dcb2d1ee49" package="Default">
     <class final="false" abstract="false" namespace="" line="15" package="models">
       <name>Question_model</name>
       <full_name>\Question_model</full_name>
@@ -129,9 +129,6 @@ It executes active record functions to qualify the query.</p>]]></long-descripti
         </argument>
       </method>
     </class>
-    <markers>
-      <todo line="90">implement the filter function so that it works as documented.</todo>
-    </markers>
   </file>
   <file path="models/user_model.php" hash="5c7ac40359242f08636a88a985c6cda0" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
@@ -530,7 +527,7 @@ It uses the table _Field.</p>]]></long-description>
       </method>
     </class>
   </file>
-  <file path="models/comment_model.php" hash="50a03f7181f7e7bce3e3574c6570c572" package="Default">
+  <file path="models/comment_model.php" hash="71370a1c1b595b9e9c903791c71c67c4" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
       <name>Comment_model</name>
       <full_name>\Comment_model</full_name>
@@ -599,8 +596,8 @@ after inserting successfully all parameter to the database, commentID will be re
           <tag line="66" name="param" description="the userID" type="int" variable="$uid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="66" name="param" description="the body" type="int" variable="$body">
-            <type by_reference="false">int</type>
+          <tag line="66" name="param" description="the body" type="string" variable="$body">
+            <type by_reference="false">string</type>
           </tag>
           <tag line="66" name="return" description="commentID" type="int">
             <type by_reference="false">int</type>
@@ -636,8 +633,8 @@ after inserting successfully all parameter to the database, commentID will be re
           <tag line="88" name="param" description="the userID" type="int" variable="$uid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="88" name="param" description="the body" type="int" variable="$body">
-            <type by_reference="false">int</type>
+          <tag line="88" name="param" description="the body" type="string" variable="$body">
+            <type by_reference="false">string</type>
           </tag>
           <tag line="88" name="return" description="commentID" type="int">
             <type by_reference="false">int</type>
@@ -1265,7 +1262,7 @@ presents its data using the <em>ajax/comments</em> view.</p>]]></long-descriptio
   <package name="controllers" full_name="controllers"/>
   <package name="models" full_name="models"/>
   <namespace name="" full_name=""/>
-  <marker count="10">todo</marker>
+  <marker count="9">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>
