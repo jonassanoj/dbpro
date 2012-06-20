@@ -63,9 +63,10 @@ class Test extends CI_Controller {
 				'Test of user_model -> get_usertypes()'
 		 		);
 	}
+	
 
 	public function test2() {
-		$this->_report("Hello I am test2"); // replace the string with a call to your model
+		$this->_report("Hello I am test2",'a string'); // replace the string with a call to your model
 	}
 	
 	

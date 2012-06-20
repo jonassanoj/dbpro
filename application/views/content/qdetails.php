@@ -18,9 +18,7 @@ $(document).ready(function() {
 
 <div style="visibility:hidden" id="ajaxresult">
 <form action="" method="POST">
-  <input type="image" title="load comments" 
-  src=<?php echo base_url('img/icons/plus.png'); ?> 
-  width=30 name="submitit" id="submitit" onclick="return false" />
+  <input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
 </form> 
 <?php
 if (isset($result))
@@ -35,8 +33,6 @@ if (isset($result))
 	</div>
 <?php endforeach ?>
 
-<?php echo $backlink?> 
-
-
+<?php echo $backlink?>
 </div> <!-- body -->
 

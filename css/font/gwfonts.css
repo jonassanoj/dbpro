@@ -1,0 +1,63 @@
+/*  
+====================================================================  
+  Collection (Google Webfonts): 
+  http://www.google.com/webfonts#ChoosePlace:select/Collection:Droid+Sans|Lato|Arvo|Cabin|Lora|PT+Sans|Ubuntu|Bitter|PT+Serif|Gentium+Basic|Droid+Serif|Open+Sans|Yanone+Kaffeesatz|Dancing+Script|Oswald|Raleway:100|Vollkorn|Lobster+Two
+  
+  @import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic|Arvo:400,700,400italic,700italic|Cabin:400,600,400italic,600italic|Lora:400,700,400italic,700italic|PT+Sans:400,700,400italic,700italic|Ubuntu:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic|Droid+Serif:400,700,400italic,700italic|Open+Sans:400italic,700italic,400,700|Dancing+Script|Oswald:300,700|Raleway:100|Vollkorn:400italic,700italic,400,700|Lobster+Two:400italic,700italic);
+
+tmp:
+http://www.google.com/webfonts#ReviewPlace:refine/Collection:Droid+Sans|Lato|Arvo|Lora|PT+Sans|Ubuntu|Bitter|PT+Serif|Gentium+Basic|Droid+Serif|Open+Sans|Yanone+Kaffeesatz|Dancing+Script|Oswald|Raleway:100|Vollkorn
+
+
+====================================================================
+	1.Lobster(italic brush script) + Cabin(humanist sans)
+		
+	---- Full pack (508 load)
+	@import url(http://fonts.googleapis.com/css?family=Cabin:400,600,400italic,600italic|Lobster+Two:700italic,400italic);
+		
+	---- Slimpack (208 load)
+	@import url(http://fonts.googleapis.com/css?family=Cabin:400,600|Lobster+Two:700italic);
+	
+	---- how to use	
+	font-family: 'Lobster Two', cursive;
+	font-family: 'Cabin', sans-serif;
+	
+====================================================================
+	2.Droid Serif  + Droid Sans 
+	
+	---- Sans(N,B) Serif(N,I,B) (131 load)
+	@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700,400italic);
+
+	font-family: 'Droid Sans', sans-serif; 
+	font-family: 'Droid Serif', serif; 
+ 
+====================================================================
+	3.Arvo + PT Sans
+	
+	---- PT body (1) + Arvo (3)  (152)
+	@import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic|PT+Sans);	
+
+	font-family: 'Arvo', serif;
+	font-family: 'PT Sans', sans-serif;
+
+====================================================================
+
+
+font-family: 'Lato', sans-serif;
+
+
+font-family: 'Lora', serif;
+
+font-family: 'Ubuntu', sans-serif;
+font-family: 'Bitter', serif;
+
+
+font-family: 'Open Sans', sans-serif;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+font-family: 'Dancing Script', cursive;
+font-family: 'Oswald', sans-serif;
+font-family: 'Raleway', cursive;
+font-family: 'Vollkorn', serif;
+
+ */
+ 

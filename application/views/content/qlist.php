@@ -1,5 +1,3 @@
-<div id="body">
-
 <?php foreach ($questions as $question): ?>
 	<div class="question">
 
@@ -11,8 +9,8 @@
 <?php endforeach ?>
 
 <div class="pagination">
-<?php echo "<center>" .($pagelinks);?>
+<?php echo($pagelinks);?>
 </div>
-</div> <!-- body -->
+
 
 
