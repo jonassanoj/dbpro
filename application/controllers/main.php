@@ -70,7 +70,13 @@ class Main extends CI_Controller {
 			$data['username'] = $this -> input -> cookie('username');
 			$this -> load -> view('header/loginbox',$data);
 		}
-				
+
+
+		
+		
+
+		if($this -> session -> userdata('usertype')){
+
 			if ($this -> session -> userdata('usertype') == 1)
 			{
 				$this -> load -> view('leftnav/user');
@@ -84,11 +90,12 @@ class Main extends CI_Controller {
 				$this -> load -> view('leftnav/admin');
 			}
 		
+		}	
 		else {
 			$this -> load -> view('leftnav/default');
 		}
 		
-
+		
 		$this -> load -> view('body/' . $body_view, $data);
 		$this -> load -> view('include/footer');
 	}
