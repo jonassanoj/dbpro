@@ -71,7 +71,7 @@ class Main extends CI_Controller {
 			$this -> load -> view('header/loginbox',$data);
 		}
 
-		$this -> load -> view('leftnav/default');
+		//$this -> load -> view('leftnav/default');
 
 		if($this -> session -> userdata('usertype')){
 		
