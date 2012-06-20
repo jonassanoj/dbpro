@@ -57,18 +57,19 @@ class User_model extends CI_Model {
 		
 	// TODO: implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.   
 	/**
-	 * adding new user 
-	 *
-	 * adding new user in the User table with initial data *(username,password and email address)	
-	 * 
+	 ** adding new user in the User table with initial data *(username,password and email address)	
 	 * @author ASHUQULLAH ALIZAI
 	 * @param string $name is the username for the user 
-	 * @param string $password is password specified by user
-	 * @param string $email is email specified by user 
-	 * @return int inserted userID  
+	 * @param string $password is password specify by user
+	 * @param string $email is email specify by user 
+	 * @return boolean true if success 
 	 */
 	public function add_user($name, $password, $email) {
-	
+	// check for existing user
+	$check_user =$this->check_userName($name);
+	if (!$check_user){
+		return false;
+	}else {
 		$date = date('Y/m/d H:i:s');
 		$this -> db -> set('userName', $name);
 		$this -> db -> set('password', $password);
@@ -76,29 +77,24 @@ class User_model extends CI_Model {
 		$this -> db -> set('accountCreationDate', $date);
 		$this -> db -> insert('User');
 		// return true if successful
-		return $this->db->insert_id();;
-	
+		return true;
+	}
 	
 	}
 	/**
-	 * checking the existancy of userName
-	 * 
-	 * checks if the userName exist on the user table 
-	 * 
 	 * @author ASHUQULLAH ALIZAI
 	 * @param string_type $username is the user name for user who wants to register for first time 
 
 	 * *private function _check_userName checks if usename exists or not ,
 	 * @return boolean false if username exist in the database, retruns true if the username not exist 
-
-	 * @return int  userID
 	 */
 
 	public function check_userName($username) {   
-		$this->db->select('userID');
-		$query = $this->db->get_where('User', array('userName ='=> $username)); 
-		return $query->result();
-		
+         $query = $this->db->get_where('User', array('userName ='=> $username))->result(); 
+		if($query->num_rows() > 0 )
+			return false; // if user exists
+		else
+			return true;  // if not exists
 	}
 	
 
@@ -112,15 +108,12 @@ class User_model extends CI_Model {
 	public function get_userdata($uid) {
 	}
 	
+	
 	/**
-	 * Changing user type
-	 * 
-	 * This fucntion takes user id and user type id as parameter and change user type.
-	 * 
 	 * @author GhezalAhmad Zia
-	 * @param int $uid it is user id.
-	 * @param int $utid it is user type id.
-	 * @return int affected_rows() check and retrive the affected rows from database, if user not exist then it will return 0
+	 * @param  The function change_usertype has two parameter which is $uid and $utid, this function 
+	 * change the user 's type. like we have normal user we can change it to Admin.
+	 * @return true.
 	 */
 	
 	// TODO: implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.
@@ -129,12 +122,16 @@ class User_model extends CI_Model {
 	  	$this->db->set('$userTypeID',$utid);
 	  	$this->db->where('$userID', $uid);
 	  	$this->db->update('User');
-	  	return $this->db->afftected_rows(); 
+	  	return true; 
 		
 	}
-	/**
+/**
+	 * return user types
+	 *
+	 * This function is used to return all types of users.the function takes no parameter.
 	 * 
-	 * 
+	 * @author saminullah sameem
+	 * @return object user types
 	 */
 	public function get_usertypes() {
 	 	$query = $this->db->get('UserType');    
@@ -142,16 +139,35 @@ class User_model extends CI_Model {
 	}
 	
 	//TODO: implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.
-	/**
-	 * it is to return usertype
+	/** 
+	 *  returns specific user type.
 	 * 
+	 * This Function takes user_id from the user table and returns a specific type of user e.g Administrator.We have four types of users 
+	 * named Administrator, Normal user,Editor and unconfirmed.
+	 * 
+	 * @author saminullah sameem
+	 * @return array user data
 	 */
 	public function get_usertype($uid) {
-	  return 0;
+		$query=$this->db->query('SELECT UserType.userType FROM User, UserType WHERE User.userTypeID = userType.userTypeID AND userID ='.$uid);
+		
+	  return $query->result();
 	}
+	/**
+	 *  returns user field.
+	 * 
+	 * This function is used  to return user's field. this function takes user_id as argument and return a specific field of user. for example a user belong to 
+	 * software engineering, Data base management system etc.
+	 * 
+	 * @author saminullah sameem
+	 * @return object  user field
+	 *  
+	 */
 	
 	public function get_field($uid){
-	  return 0;
+		$query=$this->db->query('SELECT Field.fieldName FROM User, Field WHERE User.fieldID = Field.fieldID AND userID ='.$uid);
+		
+	  	return $query->result();
 	}
 	
 }
