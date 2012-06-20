@@ -20,6 +20,7 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="../packages/controllers.html"><i class="icon-folder-open"></i> controllers</a></li>
 <li><a href="../packages/models.html"><i class="icon-folder-open"></i> models</a></li>
 </ul>
@@ -32,25 +33,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-<<<<<<< HEAD
-                <span class="label label-info">25</span></a></li>
+                <span class="label label-info">19</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">11</span>
-=======
-<<<<<<< HEAD
-                <span class="label label-info">22</span></a></li>
-=======
-<<<<<<< HEAD
-                <span class="label label-info">36</span></a></li>
-=======
-                <span class="label label-info">25</span></a></li>
->>>>>>> 2dcb407fa223ff8ddadc2fe0de27618d592dfea0
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
-<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul><li>todo 
-                <span class="label label-info">13</span>
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
+                <span class="label label-info">10</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -75,12 +61,9 @@
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#__construct" title="__construct :: constructor"><span class="description">constructor</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#_loadviews" title="_loadviews :: private helper function to build view"><span class="description">private helper function to build view</span><pre>_loadviews()</pre></a></li>
-<li class="method public "><a href="#failed" title="failed :: "><span class="description">failed()
-        </span><pre>failed()</pre></a></li>
-<li class="method public "><a href="#login" title="login :: "><span class="description">login()
-        </span><pre>login()</pre></a></li>
-<li class="method public "><a href="#logout" title="logout :: "><span class="description">logout()
-        </span><pre>logout()</pre></a></li>
+<li class="method public "><a href="#failed" title="failed :: Function to count userlogin failing:"><span class="description">Function to count userlogin failing:</span><pre>failed()</pre></a></li>
+<li class="method public "><a href="#login" title="login :: function for user login:"><span class="description">function for user login:</span><pre>login()</pre></a></li>
+<li class="method public "><a href="#logout" title="logout :: Fuction for loging out:"><span class="description">Fuction for loging out:</span><pre>logout()</pre></a></li>
 <li class="method public "><a href="#recover" title="recover :: "><span class="description">recover()
         </span><pre>recover()</pre></a></li>
 <li class="method public "><a href="#register" title="register :: "><span class="description">register()
@@ -115,55 +98,75 @@
 </div>
 <a name="_loadviews" id="_loadviews"></a><div class="element clickable method public _loadviews" data-toggle="collapse" data-target="._loadviews .collapse">
 <h2>private helper function to build view</h2>
-<pre>_loadviews(string $body_view, array $data) : void</pre>
+<pre>_loadviews(string $content, array $data) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This loads views for the registration, failed-login, etc. screens
-The following parts are sent in order:</p>
-
-<ul>
-<li><em>include/header.php</em></li>
-<li><em>header/simple.php</em> : no login box</li>
-<li><em>leftnav/default.php</em>: the default content of the navigation bar</li>
-<li><em>body</em>/$body_view_: the body content given as a parameter</li>
-<li><em>include/footer.php</em></li>
-</ul></p>
+<p class="long_description"><p>This loads views for the registration, failed-login, etc. screens</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$body_view</h4>
-<code>string</code><p>what should appear in the body</p></div>
+<h4>$content</h4>
+<code>string</code><p>what should appear as content</p></div>
 <div class="subelement argument">
 <h4>$data</h4>
 <code>array</code><p>The data array to pass on to the views</p></div>
 </div></div>
 </div>
 <a name="failed" id="failed"></a><div class="element clickable method public failed" data-toggle="collapse" data-target=".failed .collapse">
-<h2>failed()
-        </h2>
-<pre>failed($user) </pre>
+<h2>Function to count userlogin failing:</h2>
+<pre>failed(String $user) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
+<p class="long_description"><p>This funciton is for counting user login failing and to show login failed page, or account recover page
+It checks wheather the failed_logins variable set in the session data or not if not,
+it make a failed_logins index and storing 1st time login fail or if the failed_logins
+was already set in the session data it just increment it (last_value + 1)
+than it set a data array to store error and username there,
+This function also check if the user login failed less than 3 times it will redirect to the login_failed page
+and if the login failed 3 times it will redirect user to recover page, where he/she can recoreved his/her password</p></p>
+<table class="table table-bordered"><tr>
+<th>Note</th>
+<td>: Error message taken from Language helper class, lang('message_index'); it return the specified error
+message in current language.</td>
+</tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$user</h4>
-<code></code>
+<code>String</code><p>it represent username default-value = ''</p>
 </div>
 </div></div>
 </div>
 <a name="login" id="login"></a><div class="element clickable method public login" data-toggle="collapse" data-target=".login .collapse">
-<h2>login()
-        </h2>
-<pre>login() </pre>
+<h2>function for user login:</h2>
+<pre>login() : void</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>This function check the following condition, and perform the task</p>
+
+<ul><li> Getting values (username, password) from login form and checking it in database
+   also login form have an optional checkbox field (remember) this function also check
+   if someone checked this remember  checkbox, so it will create a cookie on client computer
+   which will be exist till 3 days, otherwise cookies will be delete </li>
+ <li>if user login failed so a failed(username) function will be called and this failed fuction
+   is counting that how much time login is failed if it was more than 3 times and new recover page
+   wil open to user.</li>
+ <li>if user login successfully session data will be set for this user where
+   userid, username, usertype, login(true, false) will store </li>
+ <li>when user data set in the sessioin the user will be redirect to the last visiting place
+   which will take from session data. (last_visited)</li></ul></p></div></div>
 </div>
 <a name="logout" id="logout"></a><div class="element clickable method public logout" data-toggle="collapse" data-target=".logout .collapse">
-<h2>logout()
-        </h2>
-<pre>logout() </pre>
+<h2>Fuction for loging out:</h2>
+<pre>logout() : \:</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Session data of the current user will unset here:</p>
+
+<ul><li>login</li> <li>userid(uid)</li> <li>usertype</li> <li>username</li></ul>
+
+<p>will redirect after loging out, to the last visited place</p></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\:</code>void</div>
+</div></div>
 </div>
 <a name="recover" id="recover"></a><div class="element clickable method public recover" data-toggle="collapse" data-target=".recover .collapse">
 <h2>recover()
@@ -192,21 +195,8 @@ The following parts are sent in order:</p>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-<<<<<<< HEAD
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a6</a> and<br>
-            generated on 2012-06-19T17:02:27+02:00.<br></footer></div>
-=======
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-<<<<<<< HEAD
-            generated on 2012-06-20T09:11:25+02:00.<br></footer></div>
-=======
-<<<<<<< HEAD
-            generated on 2012-06-19T14:35:15+02:00.<br></footer></div>
-=======
-            generated on 2012-06-19T10:22:45+02:00.<br></footer></div>
->>>>>>> 2dcb407fa223ff8ddadc2fe0de27618d592dfea0
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
+            generated on 2012-06-20T15:39:49+02:00.<br></footer></div>
 </div>
 </body>
 </html>

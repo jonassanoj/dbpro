@@ -1,8 +1,414 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <project version="2.0.0a5" title="">
-<<<<<<< HEAD
-  <file path="models/category_model.php" hash="5a3ea821b572925af8b0e6003dabdaf5" package="Default">
+  <file path="models/question_model.php" hash="e635a725aebb532aa30125c19b8462bf" package="Default">
+    <class final="false" abstract="false" namespace="" line="15" package="models">
+      <name>Question_model</name>
+      <full_name>\Question_model</full_name>
+      <extends>CI_Model</extends>
+      <docblock line="15">
+        <description><![CDATA[the question model]]></description>
+        <long-description><![CDATA[<p>Provides CRUD functionality for questions.</p>
+
+<p>It uses the following database tables:</p>
+
+<ul>
+<li><em>Question</em></li>
+<li><em>Answer</em> (read only)</li>
+</ul>]]></long-description>
+        <tag line="15" name="package" description="models"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="43" package="models">
+        <name>get_list</name>
+        <full_name>get_list</full_name>
+        <docblock line="43">
+          <description><![CDATA[retrieve a sorted and paginated question list]]></description>
+          <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>
+
+<p>The array <em>$filter</em> can be used to filter the result according to certain criteria. The array may contain the following keys:</p>
+
+<ul>
+<li>userID: show only questions posted by a certain user id</li>
+<li>catID: show only questions in a specific category id</li>
+<li>fieldID: show only questions of a category that belong to a specific field id</li>
+<li>search: a search term as a string. Words separated by a whitespace are ANDed.</li>
+</ul>
+
+<p><strong>Usage Example</strong>:
+get the first 10 questions matching the terms <em>php</em> and <em>apache</em> :</p>
+
+<blockquote>
+  <p>get_list(0, 10, array('search'=>'php apache'))
+  get the questions 6-10 with <em>catId</em> 4
+  get_list(5, 10, array('category'=>4))</p>
+</blockquote>]]></long-description>
+          <tag line="43" name="param" description="the pagination offset" type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="43" name="param" description="the amount of questions to retrieve" type="int" variable="$limit">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="43" name="param" description="the optional filter to be applied to the results" type="array" variable="$filter">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="43" name="return" description="holds question objects with a questionID and its title" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="43">
+          <name>$limit</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="43">
+          <name>$filter</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="60" package="models">
+        <name>get_count</name>
+        <full_name>get_count</full_name>
+        <docblock line="60">
+          <description><![CDATA[count the questions matching a certain filter.]]></description>
+          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
+          <tag line="60" name="param" description="the optional filter, see the get_list documentation" type="array" variable="$filter">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="60" name="return" description="the amount of questions matching $filter" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="60">
+          <name>$filter</name>
+          <default><![CDATA[array()]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="74" package="models">
+        <name>get_details</name>
+        <full_name>get_details</full_name>
+        <docblock line="74">
+          <description><![CDATA[all the information about one question.]]></description>
+          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
+          <tag line="74" name="param" description="the questionID" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="74" name="return" description="a single question object, containing column values as attributes." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="74">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="89" package="models">
+        <name>filter</name>
+        <full_name>filter</full_name>
+        <docblock line="89">
+          <description><![CDATA[create a filter for the where-clause]]></description>
+          <long-description><![CDATA[<p>A private function used by <em>get_count</em> and <em>get_list</em>. It takes the $filter$ array (as described in the <em>getlist</em> documentation)
+It executes active record functions to qualify the query.</p>]]></long-description>
+          <tag line="89" name="param" description="the filter, see the get_list documentation" type="array" variable="$filter">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="89" name="return" description="no return value" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="89">
+          <name>$filter</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="90">implement the filter function so that it works as documented.</todo>
+    </markers>
+  </file>
+  <file path="models/user_model.php" hash="5c7ac40359242f08636a88a985c6cda0" package="Default">
+    <class final="false" abstract="false" namespace="" line="16" package="models">
+      <name>User_model</name>
+      <full_name>\User_model</full_name>
+      <extends>CI_Model</extends>
+      <docblock line="16">
+        <description><![CDATA[the user model]]></description>
+        <long-description><![CDATA[<p>User management. CRUD for users, their types and their fields.</p>
+
+<p>It uses the following database tables:</p>
+
+<ul>
+<li><em>User</em></li>
+<li><em>UserType</em> (read only)</li>
+</ul>]]></long-description>
+        <tag line="16" name="package" description="models"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="31" package="models">
+        <name>login</name>
+        <full_name>login</full_name>
+        <docblock line="31">
+          <description><![CDATA[Checks if the username exists]]></description>
+          <long-description><![CDATA[<p>The <em>$name</em> is compared to the <em>userName</em> in User table.</p>
+
+<p>The <em>$password</em> is compared if it is eqaul to that userName's password.</p>]]></long-description>
+          <tag line="31" name="author" description="Huma Yari"/>
+          <tag line="31" name="param" description="The username" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="param" description="The password" type="string" variable="$password">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="return" description="the userID if exits or 0" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="31">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="31">
+          <name>$password</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="54" package="models">
+        <name>delete_user</name>
+        <full_name>delete_user</full_name>
+        <docblock line="54">
+          <description><![CDATA[Deletes a user]]></description>
+          <long-description><![CDATA[<p>The given userID is compared to the <em>userID</em> of the User table.</p>
+
+<p>The user will be deleted if that userID is found.</p>]]></long-description>
+          <tag line="54" name="author" description="Huma Yari"/>
+          <tag line="54" name="param" description="The userID" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="54" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="54">
+          <name>$uid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="70" package="models">
+        <name>add_user</name>
+        <full_name>add_user</full_name>
+        <docblock line="70">
+          <description><![CDATA[adding new user]]></description>
+          <long-description><![CDATA[<p>adding new user in the User table with initial data *(username,password and email address)</p>]]></long-description>
+          <tag line="70" name="author" description="ASHUQULLAH ALIZAI"/>
+          <tag line="70" name="param" description="is the username for the user" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="param" description="is password specified by user" type="string" variable="$password">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="param" description="is email specified by user" type="string" variable="$email">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="return" description="inserted userID" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="70">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="70">
+          <name>$password</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="70">
+          <name>$email</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="97" package="models">
+        <name>check_userName</name>
+        <full_name>check_userName</full_name>
+        <docblock line="97">
+          <description><![CDATA[checking the existancy of userName]]></description>
+          <long-description><![CDATA[<p>checks if the userName exist on the user table</p>]]></long-description>
+          <tag line="97" name="author" description="ASHUQULLAH ALIZAI"/>
+          <tag line="97" name="param" description="is the user name for user who wants to register for first time *private function _check_userName checks if usename exists or not ," type="\string_type" variable="$username">
+            <type by_reference="false">\string_type</type>
+          </tag>
+          <tag line="97" name="return" description="false if username exist in the database, retruns true if the username not exist" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="97" name="return" description="userID" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="97">
+          <name>$username</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="106" package="models">
+        <name>update_user</name>
+        <full_name>update_user</full_name>
+        <argument line="106">
+          <name>$uid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="106">
+          <name>$user_data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="112" package="models">
+        <name>get_userdata</name>
+        <full_name>get_userdata</full_name>
+        <argument line="112">
+          <name>$uid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="127" package="models">
+        <name>change_usertype</name>
+        <full_name>change_usertype</full_name>
+        <argument line="127">
+          <name>$uid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="127">
+          <name>$utid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="139" package="models">
+        <name>get_usertypes</name>
+        <full_name>get_usertypes</full_name>
+        <docblock line="139">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="149" package="models">
+        <name>get_usertype</name>
+        <full_name>get_usertype</full_name>
+        <docblock line="149">
+          <description><![CDATA[it is to return usertype]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+        <argument line="149">
+          <name>$uid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="153" package="models">
+        <name>get_field</name>
+        <full_name>get_field</full_name>
+        <argument line="153">
+          <name>$uid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="58">implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.</todo>
+      <todo line="105">Find out how the update_user() function can be used. Then document it using phpdoc. Use question_model::get_list() as an example.</todo>
+      <todo line="111">This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'</todo>
+      <todo line="126">implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.</todo>
+      <todo line="144">implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.</todo>
+    </markers>
+    <parse_markers>
+      <error line="106" code="50010">No DocBlock was found for method update_user()</error>
+      <error line="112" code="50010">No DocBlock was found for method get_userdata()</error>
+      <error line="127" code="50010">No DocBlock was found for method change_usertype()</error>
+      <error line="139" code="50012">No short description for method get_usertypes()</error>
+      <error line="149" code="50015">Argument $uid is missing from the Docblock of get_usertype()</error>
+      <error line="153" code="50010">No DocBlock was found for method get_field()</error>
+    </parse_markers>
+  </file>
+  <file path="models/field_model.php" hash="be13dd48d5d17cb195e3eb14629b1f8b" package="Default">
+    <class final="false" abstract="false" namespace="" line="13" package="models">
+      <name>Field_model</name>
+      <full_name>\Field_model</full_name>
+      <extends>CI_Model</extends>
+      <docblock line="13">
+        <description><![CDATA[the Field_model]]></description>
+        <long-description><![CDATA[<p>Provides the following functions:
+_get_fields(): returns the field recoreds from table _Field.
+_add_field($fieldName): insert a new field recored to table _Field.
+_delete_field($fieldID): deletes a record from table _Field.
+It uses the table _Field.</p>]]></long-description>
+        <tag line="13" name="package" description="models"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="21" package="models">
+        <name>get_fields</name>
+        <full_name>get_fields</full_name>
+        <docblock line="21">
+          <description><![CDATA[retrives all records from table Field as record objects.]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="21" name="param" description="none" type="" variable=""/>
+          <tag line="21" name="return" description="holds fields objects with fieldIDs and fieldNames." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="32" package="models">
+        <name>add_field</name>
+        <full_name>add_field</full_name>
+        <docblock line="32">
+          <description><![CDATA[insert a given fieldName into table _Field.]]></description>
+          <long-description><![CDATA[<p>fieldname: can be a string that indicates area of study or profession of a user.</p>]]></long-description>
+          <tag line="32" name="param" description="" type="string" variable="$fieldName">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="32">
+          <name>$fieldName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="45" package="models">
+        <name>delete_field</name>
+        <full_name>delete_field</full_name>
+        <docblock line="45">
+          <description><![CDATA[Deletes a specific record from table _Field that matches the given fieldID.]]></description>
+          <long-description><![CDATA[<p>fieldID: can be an integer that has beent from coller function.</p>]]></long-description>
+          <tag line="45" name="param" description="" type="int" variable="$fieldID">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$fieldID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <notice line="21" code="50013">Parameter  could not be found in get_fields()</notice>
+    </parse_markers>
+  </file>
+  <file path="models/category_model.php" hash="8030749f5f2237ca4b669975fa1ce0e9" package="Default">
     <class final="false" abstract="false" namespace="" line="21" package="models">
       <name>Category_model</name>
       <full_name>\Category_model</full_name>
@@ -26,94 +432,97 @@
 </ul>]]></long-description>
         <tag line="21" name="package" description="models"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="33" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="34" package="models">
         <name>add_cat</name>
         <full_name>add_cat</full_name>
-        <docblock line="33">
+        <docblock line="34">
           <description><![CDATA[Add new category.]]></description>
-          <long-description><![CDATA[<p>This function will add new category to a specified field in Category tables and return category ID.</p>]]></long-description>
-          <tag line="33" name="param" description="Means category-Name." type="string" variable="$catName">
+          <long-description><![CDATA[<p>This function will add new category to the Category tables and a specified field table Category tables.</p>]]></long-description>
+          <tag line="34" name="author" description="Abdulaziz Akbary"/>
+          <tag line="34" name="param" description="the catName, means category-Name." type="string" variable="$catName">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="33" name="param" description="Means field-ID." type="int" variable="$fieldID">
+          <tag line="34" name="param" description="the fieldID, means field-ID." type="int" variable="$fieldID">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="33" name="return" description="Category-ID of new inserted category." type="int">
+          <tag line="34" name="return" description="containing a category ID." type="int">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="33">
+        <argument line="34">
           <name>$catName</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="33">
+        <argument line="34">
           <name>$fieldID</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="50" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="53" package="models">
         <name>update_cat</name>
         <full_name>update_cat</full_name>
-        <docblock line="50">
+        <docblock line="53">
           <description><![CDATA[Update category.]]></description>
           <long-description><![CDATA[<p>This function is used to update previouse existed category in a Category tables.</p>]]></long-description>
-          <tag line="50" name="param" description="Means category-ID." type="int" variable="$catID">
+          <tag line="53" name="author" description="Abdulaziz Akbary"/>
+          <tag line="53" name="param" description="the catID, means category-ID." type="int" variable="$catID">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="50" name="param" description="Means category-Name." type="string" variable="$catName">
+          <tag line="53" name="param" description="the catName, means category-Name." type="string" variable="$catName">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="50" name="return" description="Category-ID of updated category." type="int">
+          <tag line="53" name="return" description="containing a category ID." type="int">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="50">
+        <argument line="53">
           <name>$catID</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="50">
+        <argument line="53">
           <name>$catName</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="67" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="71" package="models">
         <name>get_categories</name>
         <full_name>get_categories</full_name>
-        <docblock line="67">
+        <docblock line="71">
           <description><![CDATA[Retrieving all category.]]></description>
-          <long-description><![CDATA[<p>This function will return all categories thats belongs to a specific field from Category tables,if no parameter passed to this function in this case it will return the whole category table.</p>]]></long-description>
-          <tag line="67" name="param" description="Means field-ID." type="int" variable="$fieldID">
+          <long-description><![CDATA[<p>This function will return all categories belongs to a specific field from Category tables.</p>]]></long-description>
+          <tag line="71" name="author" description="Abdulaziz Akbary"/>
+          <tag line="71" name="param" description="the fieldID, means field-ID." type="int" variable="$fieldID">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="67" name="return" description="Containing columns and rows of Category table." type="array">
-            <type by_reference="false">array</type>
+          <tag line="71" name="return" description="containing all columns and rows of Category table." type="object">
+            <type by_reference="false">object</type>
           </tag>
         </docblock>
-        <argument line="67">
+        <argument line="71">
           <name>$fieldID</name>
           <default><![CDATA[0]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="84" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="88" package="models">
         <name>delete_cat</name>
         <full_name>delete_cat</full_name>
-        <docblock line="84">
+        <docblock line="88">
           <description><![CDATA[Delete a category.]]></description>
           <long-description><![CDATA[<p>This function is used to delete a specific category from a Category tables.</p>]]></long-description>
-          <tag line="84" name="author" description="Abdulaziz Akbary"/>
-          <tag line="84" name="param" description="Means category-ID." type="int" variable="$catID">
+          <tag line="88" name="author" description="Abdulaziz Akbary"/>
+          <tag line="88" name="param" description="the catID, means category-ID." type="int" variable="$catID">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="84" name="return" description="Category-ID of deleted row." type="int">
-            <type by_reference="false">int</type>
+          <tag line="88" name="return" description="" type="Void">
+            <type by_reference="false">Void</type>
           </tag>
         </docblock>
-        <argument line="84">
+        <argument line="88">
           <name>$catID</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -121,44 +530,7 @@
       </method>
     </class>
   </file>
-  <file path="models/answer_model.php" hash="d312a3b7865b3328b9235b946c0345a4" package="Default">
-    <class final="false" abstract="false" namespace="" line="14" package="models">
-      <name>Answer_model</name>
-      <full_name>\Answer_model</full_name>
-      <extends>CI_Model</extends>
-      <docblock line="14">
-        <description><![CDATA[the answer model]]></description>
-        <long-description><![CDATA[<p>Provides CRUD functionality for answers.</p>
-
-<p>It uses the following database tables:</p>
-
-<ul>
-<li><em>Answer</em></li>
-</ul>]]></long-description>
-        <tag line="14" name="package" description="models"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="25" package="models">
-        <name>get_answers</name>
-        <full_name>get_answers</full_name>
-        <docblock line="25">
-          <description><![CDATA[return the answers for a question]]></description>
-          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
-          <tag line="25" name="param" description="the id of the question we want answers for" type="int" variable="$qid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="25" name="return" description="holds answer objects with fileds for all database columns" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-        </docblock>
-        <argument line="25">
-          <name>$qid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-  </file>
-  <file path="models/comment_model.php" hash="1d12911faeac6ee9129d77331aa92fc7" package="Default">
+  <file path="models/comment_model.php" hash="50a03f7181f7e7bce3e3574c6570c572" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
       <name>Comment_model</name>
       <full_name>\Comment_model</full_name>
@@ -213,62 +585,115 @@
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="53" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="66" package="models">
         <name>create_qcomment</name>
         <full_name>create_qcomment</full_name>
-        <argument line="53">
+        <docblock line="66">
+          <description><![CDATA[adds a question comment to the Comment table of database]]></description>
+          <long-description><![CDATA[<p>You will pass 3 parameter qid,uid,body it means questionID,userID and body to Comment table in database.
+after inserting successfully all parameter to the database, commentID will be return from database</p>]]></long-description>
+          <tag line="66" name="author" description="Abdul Razzaq"/>
+          <tag line="66" name="param" description="the questionID" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="66" name="param" description="the userID" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="66" name="param" description="the body" type="int" variable="$body">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="66" name="return" description="commentID" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="66">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="53">
+        <argument line="66">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="53">
+        <argument line="66">
           <name>$body</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="57" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="88" package="models">
         <name>create_acomment</name>
         <full_name>create_acomment</full_name>
-        <argument line="57">
+        <docblock line="88">
+          <description><![CDATA[adds a answer comment to the Comment table of database]]></description>
+          <long-description><![CDATA[<p>You will pass 3 parameter aid,uid,body it means answerID,userID and body to Comment table in database.
+after inserting successfully all parameter to the database, commentID will be return from database</p>]]></long-description>
+          <tag line="88" name="author" description="Abdul Razzaq"/>
+          <tag line="88" name="param" description="the answerID" type="int" variable="$aid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="88" name="param" description="the userID" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="88" name="param" description="the body" type="int" variable="$body">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="88" name="return" description="commentID" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="88">
           <name>$aid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="57">
+        <argument line="88">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="57">
+        <argument line="88">
           <name>$body</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="62" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="105" package="models">
         <name>update_comment</name>
         <full_name>update_comment</full_name>
-        <argument line="62">
+        <docblock line="105">
+          <description><![CDATA[Update Comments by id]]></description>
+          <long-description><![CDATA[<p>this function will update the comment body.</p>]]></long-description>
+          <tag line="105" name="param" description="the commentID" type="int" variable="$cid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="105" name="param" description="the body" type="string" variable="$body">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="105">
           <name>$cid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="62">
+        <argument line="105">
           <name>$body</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="66" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="124" package="models">
         <name>delete_comment</name>
         <full_name>delete_comment</full_name>
-        <argument line="66">
+        <docblock line="124">
+          <description><![CDATA[Delete Comments by id]]></description>
+          <long-description><![CDATA[<p>this function will delete the comment.</p>]]></long-description>
+          <tag line="124" name="param" description="the commentID" type="int" variable="$cid">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="124">
           <name>$cid</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -276,628 +701,7 @@
       </method>
     </class>
     <markers>
-      <todo line="52">Implement create_qcomment and create_acomment so that it adds a question or answer comment to the database and returns the new comment's commentID. Then create its documentation, using phpdoc comments. See get_acomments for an example.</todo>
-      <todo line="61">Implement update_comment so that it updates the body of the comment specified by $cid. Then implement delete_comment so that it deletes the comment specified by $cid. Create documentation for both functions, using phpdoc comments. See get_acomments for an example.</todo>
-    </markers>
-    <parse_markers>
-      <error line="53" code="50010">No DocBlock was found for method create_qcomment()</error>
-      <error line="57" code="50010">No DocBlock was found for method create_acomment()</error>
-      <error line="62" code="50010">No DocBlock was found for method update_comment()</error>
-      <error line="66" code="50010">No DocBlock was found for method delete_comment()</error>
-    </parse_markers>
-  </file>
-  <file path="models/field_model.php" hash="1609eaf8befe030634c58c037d8e430e" package="Default">
-    <class final="false" abstract="false" namespace="" line="12" package="models">
-      <name>Field_model</name>
-      <full_name>\Field_model</full_name>
-      <extends>CI_Model</extends>
-      <docblock line="12">
-        <description><![CDATA[this model is for fields]]></description>
-        <long-description><![CDATA[<p>Field_model: this class provide interfaces for geting
-adding, deleting fields, from database, (Field) table</p>]]></long-description>
-        <tag line="12" name="author" description="Sayed Ahmad Mahboobi"/>
-        <tag line="12" name="package" description="models"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="25" package="models">
-        <name>get_fields</name>
-        <full_name>get_fields</full_name>
-        <docblock line="25">
-          <description><![CDATA[this function is for geting field]]></description>
-          <long-description><![CDATA[<p>get_fields(): this function select all rows from Field table</p>]]></long-description>
-          <tag line="25" name="author" description="Sayed Ahmad Mahbobi"/>
-          <tag line="25" name="return" description="Array: it return an array of all rows in the Field table" type="\:">
-            <type by_reference="false">\:</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="42" package="models">
-        <name>add_field</name>
-        <full_name>add_field</full_name>
-        <docblock line="42">
-          <description><![CDATA[it adds records in the field table]]></description>
-          <long-description><![CDATA[<p>add_field(): This fuction add a new field into Field table</p>]]></long-description>
-          <tag line="42" name="author" description="Sayed Ahmad Mahboobi"/>
-          <tag line="42" name="param" description="(String: needs a parameter which represent a field name)" type="string" variable="$fieldName">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="42" name="return" description="new_inserted_id (int: it return the new iserted field id)" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="42">
-          <name>$fieldName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="59" package="models">
-        <name>delete_field</name>
-        <full_name>delete_field</full_name>
-        <docblock line="59">
-          <description><![CDATA[deletes the feilds]]></description>
-          <long-description><![CDATA[<p>delete_field(): This fuction delete a field from field table
-Function takes an arguments which will be fieldID</p>]]></long-description>
-          <tag line="59" name="author" description="Sayed Ahmad Mahboobi"/>
-          <tag line="59" name="param" description="(int: ID of the field to be delete)" type="int" variable="$fieldID">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="59" name="return" description="void" type="\:">
-            <type by_reference="false">\:</type>
-          </tag>
-        </docblock>
-        <argument line="59">
-          <name>$fieldID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-  </file>
-=======
-=======
-<project version="2.0.0a6" title="">
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-  <file path="models/question_model.php" hash="7488068140547dec675938121e70362f" package="Default">
-    <class final="false" abstract="false" namespace="" line="15" package="models">
-      <extends>CI_Model</extends>
-      <name>Question_model</name>
-      <full_name>\Question_model</full_name>
-      <docblock line="15">
-        <description><![CDATA[the question model]]></description>
-        <long-description><![CDATA[<p>Provides CRUD functionality for questions.</p>
-
-<p>It uses the following database tables:</p>
-
-<ul>
-<li><em>Question</em></li>
-<li><em>Answer</em> (read only)</li>
-</ul>]]></long-description>
-        <tag line="15" name="package" description="models"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="43" package="models">
-        <name>get_list</name>
-        <full_name>get_list</full_name>
-        <docblock line="43">
-          <description><![CDATA[retrieve a sorted and paginated question list]]></description>
-          <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>
-
-<p>The array <em>$filter</em> can be used to filter the result according to certain criteria. The array may contain the following keys:</p>
-
-<ul>
-<li>userID: show only questions posted by a certain user id</li>
-<li>catID: show only questions in a specific category id</li>
-<li>fieldID: show only questions of a category that belong to a specific field id</li>
-<li>search: a search term as a string. Words separated by a whitespace are ANDed.</li>
-</ul>
-
-<p><strong>Usage Example</strong>:
-get the first 10 questions matching the terms <em>php</em> and <em>apache</em> :</p>
-
-<blockquote>
-  <p>get_list(0, 10, array('search'=>'php apache'))
-  get the questions 6-10 with <em>catId</em> 4
-  get_list(5, 10, array('category'=>4))</p>
-</blockquote>]]></long-description>
-          <tag line="43" name="param" description="the pagination offset" type="int" variable="$offset">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="43" name="param" description="the amount of questions to retrieve" type="int" variable="$limit">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="43" name="param" description="the optional filter to be applied to the results" type="array" variable="$filter">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="43" name="return" description="holds question objects with a questionID and its title" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-        </docblock>
-        <argument line="43">
-          <name>$offset</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="43">
-          <name>$limit</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="43">
-          <name>$filter</name>
-          <default><![CDATA[array()]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="60" package="models">
-        <name>get_count</name>
-        <full_name>get_count</full_name>
-        <docblock line="60">
-          <description><![CDATA[count the questions matching a certain filter.]]></description>
-          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
-          <tag line="60" name="param" description="the optional filter, see the get_list documentation" type="array" variable="$filter">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="60" name="return" description="the amount of questions matching $filter" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="60">
-          <name>$filter</name>
-          <default><![CDATA[array()]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="74" package="models">
-        <name>get_details</name>
-        <full_name>get_details</full_name>
-        <docblock line="74">
-          <description><![CDATA[all the information about one question.]]></description>
-          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
-          <tag line="74" name="param" description="the questionID" type="int" variable="$qid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="74" name="return" description="a single question object, containing column values as attributes." type="object">
-            <type by_reference="false">object</type>
-          </tag>
-        </docblock>
-        <argument line="74">
-          <name>$qid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="89" package="models">
-        <name>filter</name>
-        <full_name>filter</full_name>
-        <docblock line="89">
-          <description><![CDATA[create a filter for the where-clause]]></description>
-          <long-description><![CDATA[<p>A private function used by <em>get_count</em> and <em>get_list</em>. It takes the $filter$ array (as described in the <em>getlist</em> documentation)
-and returns an array that can be passed to the db->where() active record function.</p>]]></long-description>
-          <tag line="89" name="param" description="the filter, see the get_list documentation" type="array" variable="$filter">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="89" name="return" description="a list of key-&gt;value conditions applied to the query" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-        </docblock>
-        <argument line="89">
-          <name>$filter</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <markers>
-      <todo line="90">implement the filter function so that it works as documented.</todo>
-    </markers>
-  </file>
-<<<<<<< HEAD
-  <file path="models/user_model.php" hash="92834606e415b52e13924c13bc5e4da0" package="Default">
-=======
-  <file path="models/user_model.php" hash="89bec533a5196a913ba293fdf5ce2bd0" package="Default">
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-    <class final="false" abstract="false" namespace="" line="16" package="models">
-      <extends>CI_Model</extends>
-      <name>User_model</name>
-      <full_name>\User_model</full_name>
-      <docblock line="16">
-        <description><![CDATA[the user model]]></description>
-        <long-description><![CDATA[<p>User management. CRUD for users, their types and their fields.</p>
-
-<p>It uses the following database tables:</p>
-
-<ul>
-<li><em>User</em></li>
-<li><em>UserType</em> (read only)</li>
-</ul>]]></long-description>
-        <tag line="16" name="package" description="models"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="31" package="models">
-        <name>login</name>
-        <full_name>login</full_name>
-        <docblock line="31">
-          <description><![CDATA[Checks if the username exists]]></description>
-          <long-description><![CDATA[<p>The <em>$name</em> is compared to the <em>userName</em> in User table.</p>
-
-<p>The <em>$password</em> is compared if it is eqaul to that userName's password.</p>]]></long-description>
-          <tag line="31" name="author" description="Huma Yari"/>
-          <tag line="31" name="param" description="The username" type="string" variable="$name">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="31" name="param" description="The password" type="string" variable="$password">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="31" name="return" description="the userID if exits or 0" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="31">
-          <name>$name</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="31">
-          <name>$password</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="54" package="models">
-        <name>delete_user</name>
-        <full_name>delete_user</full_name>
-        <docblock line="54">
-          <description><![CDATA[Deletes a user]]></description>
-          <long-description><![CDATA[<p>The given userID is compared to the <em>userID</em> of the User table.</p>
-
-<p>The user will be deleted if that userID is found.</p>]]></long-description>
-          <tag line="54" name="author" description="Huma Yari"/>
-          <tag line="54" name="param" description="The userID" type="int" variable="$uid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="54" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="54">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="70" package="models">
-        <name>add_user</name>
-        <full_name>add_user</full_name>
-        <docblock line="70">
-          <description><![CDATA[adding new user]]></description>
-          <long-description><![CDATA[<p>adding new user in the User table with initial data *(username,password and email address)</p>]]></long-description>
-          <tag line="70" name="author" description="ASHUQULLAH ALIZAI"/>
-          <tag line="70" name="param" description="is the username for the user" type="string" variable="$name">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="70" name="param" description="is password specified by user" type="string" variable="$password">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="70" name="param" description="is email specified by user" type="string" variable="$email">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="70" name="return" description="inserted userID" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="70">
-          <name>$name</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="70">
-          <name>$password</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="70">
-          <name>$email</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="95" package="models">
-        <name>check_userName</name>
-        <full_name>check_userName</full_name>
-        <docblock line="95">
-          <description><![CDATA[checking the existancy of userName]]></description>
-          <long-description><![CDATA[<p>checks if the userName exist on the user table</p>]]></long-description>
-          <tag line="95" name="author" description="ASHUQULLAH ALIZAI"/>
-          <tag line="95" name="param" description="is the user name for user who wants to register for first time" type="\string_type" variable="$username">
-            <type by_reference="false">\string_type</type>
-          </tag>
-          <tag line="95" name="return" description="userID" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="95">
-          <name>$username</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="104" package="models">
-        <name>update_user</name>
-        <full_name>update_user</full_name>
-        <argument line="104">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="104">
-          <name>$user_data</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="110" package="models">
-        <name>get_userdata</name>
-        <full_name>get_userdata</full_name>
-        <argument line="110">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="122" package="models">
-        <name>change_usertype</name>
-        <full_name>change_usertype</full_name>
-        <argument line="122">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="122">
-          <name>$utid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="134" package="models">
-        <name>get_usertypes</name>
-        <full_name>get_usertypes</full_name>
-        <docblock line="134">
-          <description><![CDATA[]]></description>
-          <long-description><![CDATA[]]></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="144" package="models">
-        <name>get_usertype</name>
-        <full_name>get_usertype</full_name>
-        <docblock line="144">
-          <description><![CDATA[it is to return usertype]]></description>
-          <long-description><![CDATA[]]></long-description>
-<<<<<<< HEAD
-=======
-        </docblock>
-        <argument line="144">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="148" package="models">
-        <name>get_field</name>
-        <full_name>get_field</full_name>
-        <argument line="148">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <markers>
-      <todo line="58">implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.</todo>
-      <todo line="103">Find out how the update_user() function can be used. Then document it using phpdoc. Use question_model::get_list() as an example.</todo>
-      <todo line="109">This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'</todo>
-      <todo line="121">implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.</todo>
-      <todo line="139">implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.</todo>
-    </markers>
-    <parse_markers>
-      <error line="104" code="50010">No DocBlock was found for method update_user()</error>
-      <error line="110" code="50010">No DocBlock was found for method get_userdata()</error>
-      <error line="122" code="50010">No DocBlock was found for method change_usertype()</error>
-      <error line="134" code="50012">No short description for method get_usertypes()</error>
-      <error line="144" code="50015">Argument $uid is missing from the Docblock of get_usertype()</error>
-      <error line="148" code="50010">No DocBlock was found for method get_field()</error>
-    </parse_markers>
-  </file>
-<<<<<<< HEAD
-=======
-  <file path="models/field_model.php" hash="1609eaf8befe030634c58c037d8e430e" package="Default">
-    <class final="false" abstract="false" namespace="" line="12" package="models">
-      <name>Field_model</name>
-      <full_name>\Field_model</full_name>
-      <extends>CI_Model</extends>
-      <docblock line="12">
-        <description><![CDATA[this model is for fields]]></description>
-        <long-description><![CDATA[<p>Field_model: this class provide interfaces for geting
-adding, deleting fields, from database, (Field) table</p>]]></long-description>
-        <tag line="12" name="author" description="Sayed Ahmad Mahboobi"/>
-        <tag line="12" name="package" description="models"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="25" package="models">
-        <name>get_fields</name>
-        <full_name>get_fields</full_name>
-        <docblock line="25">
-          <description><![CDATA[this function is for geting field]]></description>
-          <long-description><![CDATA[<p>get_fields(): this function select all rows from Field table</p>]]></long-description>
-          <tag line="25" name="author" description="Sayed Ahmad Mahbobi"/>
-          <tag line="25" name="return" description="Array: it return an array of all rows in the Field table" type="\:">
-            <type by_reference="false">\:</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="42" package="models">
-        <name>add_field</name>
-        <full_name>add_field</full_name>
-        <docblock line="42">
-          <description><![CDATA[it adds records in the field table]]></description>
-          <long-description><![CDATA[<p>add_field(): This fuction add a new field into Field table</p>]]></long-description>
-          <tag line="42" name="author" description="Sayed Ahmad Mahboobi"/>
-          <tag line="42" name="param" description="(String: needs a parameter which represent a field name)" type="string" variable="$fieldName">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="42" name="return" description="new_inserted_id (int: it return the new iserted field id)" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="42">
-          <name>$fieldName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="59" package="models">
-        <name>delete_field</name>
-        <full_name>delete_field</full_name>
-        <docblock line="59">
-          <description><![CDATA[deletes the feilds]]></description>
-          <long-description><![CDATA[<p>delete_field(): This fuction delete a field from field table
-Function takes an arguments which will be fieldID</p>]]></long-description>
-          <tag line="59" name="author" description="Sayed Ahmad Mahboobi"/>
-          <tag line="59" name="param" description="(int: ID of the field to be delete)" type="int" variable="$fieldID">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="59" name="return" description="void" type="\:">
-            <type by_reference="false">\:</type>
-          </tag>
-        </docblock>
-        <argument line="59">
-          <name>$fieldID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-  </file>
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
-  <file path="models/category_model.php" hash="0fd8426812a459db5037e295ac47c0ee" package="Default">
-    <class final="false" abstract="false" namespace="" line="23" package="models">
-      <name>Category_model</name>
-      <full_name>\Category_model</full_name>
-      <extends>CI_Model</extends>
-      <docblock line="23">
-        <description><![CDATA[The category model]]></description>
-        <long-description><![CDATA[<p>This model allows us to add, update, retrieve and delete category from category table.</p>
-
-<p>It uses the following database:</p>
-
-<ul>
-<li><em>goftogo</em></li>
-<li><em>User</em> (read only)</li>
-</ul>
-
-<p>It uses the following tables of goftogo database:</p>
-
-<ul>
-<li><em>Category</em></li>
-<li><em>User</em> (read only)</li>
-</ul>]]></long-description>
-        <tag line="23" name="package" description="models"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="37" package="models">
-        <name>add_cat</name>
-        <full_name>add_cat</full_name>
-        <docblock line="37">
-          <description><![CDATA[Add new category.]]></description>
-          <long-description><![CDATA[<p>This function will add new category to the Category tables and a specified field table Category tables.</p>]]></long-description>
-          <tag line="37" name="author" description="Abdulaziz Akbary"/>
-          <tag line="37" name="param" description="the catName, means category-Name." type="string" variable="$catName">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="37" name="param" description="the fieldID, means field-ID." type="int" variable="$fieldID">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="37" name="return" description="containing a category ID." type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="37">
-          <name>$catName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="37">
-          <name>$fieldID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="56" package="models">
-        <name>update_cat</name>
-        <full_name>update_cat</full_name>
-        <docblock line="56">
-          <description><![CDATA[Update category.]]></description>
-          <long-description><![CDATA[<p>This function is used to update previouse existed category in a Category tables.</p>]]></long-description>
-          <tag line="56" name="author" description="Abdulaziz Akbary"/>
-          <tag line="56" name="param" description="the catID, means category-ID." type="int" variable="$catID">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="56" name="param" description="the catName, means category-Name." type="string" variable="$catName">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="56" name="return" description="containing a category ID." type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="56">
-          <name>$catID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="56">
-          <name>$catName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="75" package="models">
-        <name>get_categories</name>
-        <full_name>get_categories</full_name>
-        <docblock line="75">
-          <description><![CDATA[Retrieving all category.]]></description>
-          <long-description><![CDATA[<p>This function will return all categories belongs to a specific field from Category tables.</p>]]></long-description>
-          <tag line="75" name="author" description="Abdulaziz Akbary"/>
-          <tag line="75" name="param" description="the fieldID, means field-ID." type="int" variable="$fieldID">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="75" name="return" description="containing all columns and rows of Category table." type="object">
-            <type by_reference="false">object</type>
-          </tag>
-        </docblock>
-        <argument line="75">
-          <name>$fieldID</name>
-          <default><![CDATA[0]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="93" package="models">
-        <name>delete_cat</name>
-        <full_name>delete_cat</full_name>
-        <docblock line="93">
-          <description><![CDATA[Delete a category.]]></description>
-          <long-description><![CDATA[<p>This function is used to delete a specific category from a Category tables.</p>]]></long-description>
-          <tag line="93" name="author" description="Abdulaziz Akbary"/>
-          <tag line="93" name="param" description="the catID, means category-ID." type="int" variable="$catID">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="93" name="return" description="" type="Void">
-            <type by_reference="false">Void</type>
-          </tag>
-        </docblock>
-        <argument line="93">
-          <name>$catID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <markers>
-      <todo line="3">complete the category_model documentation, using phpdoc comments like in question_model.php</todo>
+      <todo line="95">Implement update_comment so that it updates the body of the comment specified by $cid. Then implement delete_comment so that it deletes the comment specified by $cid. Create documentation for both functions, using phpdoc comments. See get_acomments for an example.</todo>
     </markers>
   </file>
   <file path="models/answer_model.php" hash="d312a3b7865b3328b9235b946c0345a4" package="Default">
@@ -937,91 +741,189 @@ Function takes an arguments which will be fieldID</p>]]></long-description>
       </method>
     </class>
   </file>
->>>>>>> 2dcb407fa223ff8ddadc2fe0de27618d592dfea0
-  <file path="models/comment_model.php" hash="1d12911faeac6ee9129d77331aa92fc7" package="Default">
-    <class final="false" abstract="false" namespace="" line="16" package="models">
-      <extends>CI_Model</extends>
-      <name>Comment_model</name>
-      <full_name>\Comment_model</full_name>
-      <docblock line="16">
-        <description><![CDATA[the comment model]]></description>
-        <long-description><![CDATA[<p>Allows to retrieve and post comments for questions and answers.</p>
-
-<p>It uses the following database tables:</p>
-
-<ul>
-<li><em>Comment</em></li>
-<li><em>User</em> (read only)</li>
-</ul>]]></long-description>
-        <tag line="16" name="package" description="models"/>
+  <file path="controllers/util.php" hash="5258aab63923c523ee0799d797d73d88" package="Default">
+    <class final="false" abstract="false" namespace="" line="11" package="controllers">
+      <name>Util</name>
+      <full_name>\Util</full_name>
+      <extends>CI_Controller</extends>
+      <docblock line="11">
+        <description><![CDATA[Utility controller]]></description>
+        <long-description><![CDATA[<p>a controller containing utility functions. It uses no views but sends the user back to the last URI saved in the session.
+e.g. used for changing the language globally.</p>]]></long-description>
+        <tag line="11" name="package" description="controllers"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="28" package="models">
-        <name>get_qcomments</name>
-        <full_name>get_qcomments</full_name>
-        <docblock line="28">
-          <description><![CDATA[retrieve comments for a question]]></description>
-          <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>]]></long-description>
-          <tag line="28" name="param" description="the questionID" type="int" variable="$qid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="28" name="return" description="holds comment objects with userName and body properties" type="array">
-            <type by_reference="false">array</type>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
+        <name>lang</name>
+        <full_name>lang</full_name>
+        <docblock line="20">
+          <description><![CDATA[Load a language]]></description>
+          <long-description><![CDATA[<p>Changing the language my setting the session variable language.</p>]]></long-description>
+          <tag line="20" name="param" description="the language to load, named like the folder containing the language files" type="string" variable="$language">
+            <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="28">
+        <argument line="20">
+          <name>$language</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="controllers/main.php" hash="9d15ef1456763d3834e826908a62f740" package="Default">
+    <class final="false" abstract="false" namespace="" line="11" package="controllers">
+      <name>Main</name>
+      <full_name>\Main</full_name>
+      <extends>CI_Controller</extends>
+      <docblock line="11">
+        <description><![CDATA[the main controller]]></description>
+        <long-description><![CDATA[<p>Handles the basic site functionality. Browsing questions and answers, etc.</p>]]></long-description>
+        <tag line="11" name="package" description="controllers"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="20">
+          <description><![CDATA[constructor]]></description>
+          <long-description><![CDATA[<p>loads question_model, answer_model, main_lang.</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="42" package="controllers">
+        <name>_loadviews</name>
+        <full_name>_loadviews</full_name>
+        <docblock line="42">
+          <description><![CDATA[private helper function to build view]]></description>
+          <long-description><![CDATA[<p>every complete html-page sent to the client is constructed here.</p>
+
+<p>The following parts are sent in order:</p>]]></long-description>
+          <tag line="42" name="param" description="what should appear in the body" type="string" variable="$content">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="42" name="param" description="The data array to pass on to the views" type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="42" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="42">
+          <name>$content</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="42">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="56" package="controllers">
+        <name>home</name>
+        <full_name>home</full_name>
+        <docblock line="56">
+          <description><![CDATA[home view]]></description>
+          <long-description><![CDATA[<p>this is where the default route and the home links will point to.
+it just calls an appropriate function.</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="71" package="controllers">
+        <name>questions</name>
+        <full_name>questions</full_name>
+        <docblock line="71">
+          <description><![CDATA[show a list of questions]]></description>
+          <long-description><![CDATA[<p>the paginated <em>qlist</em> view is shown, representing a clickable list of questions.
+clicking on a question will display its details (answers, etc.)</p>]]></long-description>
+          <tag line="71" name="param" description="the pagination offset" type="int" variable="$offset">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="71" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="71">
+          <name>$offset</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="82" package="controllers">
+        <name>field</name>
+        <full_name>field</full_name>
+        <argument line="82">
+          <name>$fid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="82">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="86" package="controllers">
+        <name>search</name>
+        <full_name>search</full_name>
+        <argument line="86">
+          <name>$term</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="86">
+          <name>$offset</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="100" package="controllers">
+        <name>qshow</name>
+        <full_name>qshow</full_name>
+        <docblock line="100">
+          <description><![CDATA[show one question]]></description>
+          <long-description><![CDATA[<p>the <em>qdetails</em> view is shown, representing a question and its answers.</p>]]></long-description>
+          <tag line="100" name="param" description="the questionID" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="100" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="100">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="45" package="models">
-        <name>get_acomments</name>
-        <full_name>get_acomments</full_name>
-        <docblock line="45">
-          <description><![CDATA[retrieve comments for an answer]]></description>
-          <long-description><![CDATA[<p>Returns all comments for an answer, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>]]></long-description>
-          <tag line="45" name="param" description="the answerID" type="int" variable="$aid">
-            <type by_reference="false">int</type>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="120" package="controllers">
+        <name>view</name>
+        <full_name>view</full_name>
+        <docblock line="120">
+          <description><![CDATA[show a certain body page]]></description>
+          <long-description><![CDATA[<p>this function shows a certain (static) page from the views/body directory.
+use this for static content like: about, contact, terms-of-use, etc.</p>]]></long-description>
+          <tag line="120" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
+            <type by_reference="false">string</type>
           </tag>
-          <tag line="45" name="return" description="holds comment objects with userName and body properties" type="array">
-            <type by_reference="false">array</type>
+          <tag line="120" name="return" description="" type="void">
+            <type by_reference="false">void</type>
           </tag>
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
         </docblock>
-        <argument line="144">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="148" package="models">
-        <name>get_field</name>
-        <full_name>get_field</full_name>
-        <argument line="148">
-          <name>$uid</name>
+        <argument line="120">
+          <name>$page</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
     <markers>
-      <todo line="58">implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.</todo>
-      <todo line="103">Find out how the update_user() function can be used. Then document it using phpdoc. Use question_model::get_list() as an example.</todo>
-      <todo line="109">This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'</todo>
-      <todo line="121">implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.</todo>
-      <todo line="139">implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.</todo>
+      <todo line="83">implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
+      <todo line="87">implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
     </markers>
     <parse_markers>
-      <error line="104" code="50010">No DocBlock was found for method update_user()</error>
-      <error line="110" code="50010">No DocBlock was found for method get_userdata()</error>
-      <error line="122" code="50010">No DocBlock was found for method change_usertype()</error>
-      <error line="134" code="50012">No short description for method get_usertypes()</error>
-      <error line="144" code="50015">Argument $uid is missing from the Docblock of get_usertype()</error>
-      <error line="148" code="50010">No DocBlock was found for method get_field()</error>
+      <error line="82" code="50010">No DocBlock was found for method field()</error>
+      <error line="86" code="50010">No DocBlock was found for method search()</error>
     </parse_markers>
   </file>
-<<<<<<< HEAD
-  <file path="controllers/user.php" hash="efdd3d2f46eee4a7a47b7c6f7b5e703b" package="Default">
+  <file path="controllers/user.php" hash="4b7cdd0e69c519ae6e9c121046d40bcc" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <name>User</name>
       <full_name>\User</full_name>
@@ -1039,91 +941,108 @@ Function takes an arguments which will be fieldID</p>]]></long-description>
           <long-description><![CDATA[<p>loads: user_model, main_lang</p>]]></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="46" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="39" package="controllers">
         <name>_loadviews</name>
         <full_name>_loadviews</full_name>
-        <docblock line="46">
+        <docblock line="39">
           <description><![CDATA[private helper function to build view]]></description>
-          <long-description><![CDATA[<p>This loads views for the registration, failed-login, etc. screens
-The following parts are sent in order:</p>
-
-<ul>
-<li><em>include/header.php</em></li>
-<li><em>header/simple.php</em> : no login box</li>
-<li><em>leftnav/default.php</em>: the default content of the navigation bar</li>
-<li><em>body</em>/$body_view_: the body content given as a parameter</li>
-<li><em>include/footer.php</em></li>
-</ul>]]></long-description>
-          <tag line="46" name="param" description="what should appear in the body" type="string" variable="$body_view">
+          <long-description><![CDATA[<p>This loads views for the registration, failed-login, etc. screens</p>]]></long-description>
+          <tag line="39" name="param" description="what should appear as content" type="string" variable="$content">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="46" name="param" description="The data array to pass on to the views" type="array" variable="$data">
+          <tag line="39" name="param" description="The data array to pass on to the views" type="array" variable="$data">
             <type by_reference="false">array</type>
-=======
-  <file path="models/field_model.php" hash="1609eaf8befe030634c58c037d8e430e" package="Default">
-    <class final="false" abstract="false" namespace="" line="12" package="models">
-      <name>Field_model</name>
-      <full_name>\Field_model</full_name>
-      <extends>CI_Model</extends>
-      <docblock line="12">
-        <description><![CDATA[this model is for fields]]></description>
-        <long-description><![CDATA[<p>Field_model: this class provide interfaces for geting
-adding, deleting fields, from database, (Field) table</p>]]></long-description>
-        <tag line="12" name="author" description="Sayed Ahmad Mahboobi"/>
-        <tag line="12" name="package" description="models"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="25" package="models">
-        <name>get_fields</name>
-        <full_name>get_fields</full_name>
-        <docblock line="25">
-          <description><![CDATA[this function is for geting field]]></description>
-          <long-description><![CDATA[<p>get_fields(): this function select all rows from Field table</p>]]></long-description>
-          <tag line="25" name="author" description="Sayed Ahmad Mahbobi"/>
-          <tag line="25" name="return" description="Array: it return an array of all rows in the Field table" type="\:">
-            <type by_reference="false">\:</type>
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
           </tag>
-          <tag line="46" name="return" description="" type="void">
+          <tag line="39" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-<<<<<<< HEAD
-        <argument line="46">
-          <name>$body_view</name>
+        <argument line="39">
+          <name>$content</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="46">
+        <argument line="39">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="73" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="65" package="controllers">
         <name>login</name>
         <full_name>login</full_name>
+        <docblock line="65">
+          <description><![CDATA[function for user login:]]></description>
+          <long-description><![CDATA[<p>This function check the following condition, and perform the task</p>
+
+<ul><li> Getting values (username, password) from login form and checking it in database
+   also login form have an optional checkbox field (remember) this function also check
+   if someone checked this remember  checkbox, so it will create a cookie on client computer
+   which will be exist till 3 days, otherwise cookies will be delete </li>
+ <li>if user login failed so a failed(username) function will be called and this failed fuction
+   is counting that how much time login is failed if it was more than 3 times and new recover page
+   wil open to user.</li>
+ <li>if user login successfully session data will be set for this user where
+   userid, username, usertype, login(true, false) will store </li>
+ <li>when user data set in the sessioin the user will be redirect to the last visiting place
+   which will take from session data. (last_visited)</li></ul>]]></long-description>
+          <tag line="65" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="110" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="103" package="controllers">
         <name>logout</name>
         <full_name>logout</full_name>
+        <docblock line="103">
+          <description><![CDATA[Fuction for loging out:]]></description>
+          <long-description><![CDATA[<p>Session data of the current user will unset here:</p>
+
+<ul><li>login</li> <li>userid(uid)</li> <li>usertype</li> <li>username</li></ul>
+
+<p>will redirect after loging out, to the last visited place</p>]]></long-description>
+          <tag line="103" name="param" description="void" type="\:" variable="">
+            <type by_reference="false">\:</type>
+          </tag>
+          <tag line="103" name="return" description="void" type="\:">
+            <type by_reference="false">\:</type>
+          </tag>
+        </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="133" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="128" package="controllers">
         <name>failed</name>
         <full_name>failed</full_name>
-        <argument line="133">
+        <docblock line="128">
+          <description><![CDATA[Function to count userlogin failing:]]></description>
+          <long-description><![CDATA[<p>This funciton is for counting user login failing and to show login failed page, or account recover page
+It checks wheather the failed_logins variable set in the session data or not if not,
+it make a failed_logins index and storing 1st time login fail or if the failed_logins
+was already set in the session data it just increment it (last_value + 1)
+than it set a data array to store error and username there,
+This function also check if the user login failed less than 3 times it will redirect to the login_failed page
+and if the login failed 3 times it will redirect user to recover page, where he/she can recoreved his/her password</p>]]></long-description>
+          <tag line="128" name="Note" description=": Error message taken from Language helper class, lang('message_index'); it return the specified error&#10;message in current language."/>
+          <tag line="128" name="param" description="it represent username default-value = ''" type="String" variable="$user">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="128" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="128">
           <name>$user</name>
           <default><![CDATA['']]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="146" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="141" package="controllers">
         <name>register</name>
         <full_name>register</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="151" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="146" package="controllers">
         <name>recover</name>
         <full_name>recover</full_name>
-        <argument line="151">
+        <argument line="146">
           <name>$user</name>
           <default><![CDATA['']]></default>
           <type/>
@@ -1131,970 +1050,15 @@ adding, deleting fields, from database, (Field) table</p>]]></long-description>
       </method>
     </class>
     <markers>
-      <todo line="54">Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).</todo>
+      <todo line="45">Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).</todo>
     </markers>
     <parse_markers>
-      <error line="73" code="50010">No DocBlock was found for method login()</error>
-      <error line="110" code="50010">No DocBlock was found for method logout()</error>
-      <error line="133" code="50010">No DocBlock was found for method failed()</error>
-      <error line="146" code="50010">No DocBlock was found for method register()</error>
-      <error line="151" code="50010">No DocBlock was found for method recover()</error>
+      <notice line="103" code="50013">Parameter  could not be found in logout()</notice>
+      <error line="141" code="50010">No DocBlock was found for method register()</error>
+      <error line="146" code="50010">No DocBlock was found for method recover()</error>
     </parse_markers>
   </file>
-  <file path="controllers/main.php" hash="31b0b3ae4d4e8abef8df521615c352d3" package="Default">
-    <class final="false" abstract="false" namespace="" line="11" package="controllers">
-      <name>Main</name>
-      <full_name>\Main</full_name>
-      <extends>CI_Controller</extends>
-      <docblock line="11">
-        <description><![CDATA[the main controller]]></description>
-        <long-description><![CDATA[<p>Handles the basic site functionality. Browsing questions and answers, etc.</p>]]></long-description>
-        <tag line="11" name="package" description="controllers"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-        <docblock line="20">
-          <description><![CDATA[constructor]]></description>
-          <long-description><![CDATA[<p>loads question_model, answer_model, main_lang.</p>]]></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="50" package="controllers">
-        <name>_loadviews</name>
-        <full_name>_loadviews</full_name>
-        <argument line="50">
-          <name>$body_view</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="50">
-          <name>$data</name>
-=======
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="42" package="models">
-        <name>add_field</name>
-        <full_name>add_field</full_name>
-        <docblock line="42">
-          <description><![CDATA[it adds records in the field table]]></description>
-          <long-description><![CDATA[<p>add_field(): This fuction add a new field into Field table</p>]]></long-description>
-          <tag line="42" name="author" description="Sayed Ahmad Mahboobi"/>
-          <tag line="42" name="param" description="(String: needs a parameter which represent a field name)" type="string" variable="$fieldName">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="42" name="return" description="new_inserted_id (int: it return the new iserted field id)" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="42">
-          <name>$fieldName</name>
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="59" package="models">
-        <name>delete_field</name>
-        <full_name>delete_field</full_name>
-        <docblock line="59">
-          <description><![CDATA[deletes the feilds]]></description>
-          <long-description><![CDATA[<p>delete_field(): This fuction delete a field from field table
-Function takes an arguments which will be fieldID</p>]]></long-description>
-          <tag line="59" name="author" description="Sayed Ahmad Mahboobi"/>
-          <tag line="59" name="param" description="(int: ID of the field to be delete)" type="int" variable="$fieldID">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="59" name="return" description="void" type="\:">
-            <type by_reference="false">\:</type>
-          </tag>
-        </docblock>
-        <argument line="59">
-          <name>$fieldID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-<<<<<<< HEAD
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="106" package="controllers">
-        <name>search</name>
-        <full_name>search</full_name>
-        <argument line="106">
-=======
-    </class>
-  </file>
-  <file path="models/question_model.php" hash="7488068140547dec675938121e70362f" package="Default">
-    <class final="false" abstract="false" namespace="" line="15" package="models">
-      <name>Question_model</name>
-      <full_name>\Question_model</full_name>
-      <extends>CI_Model</extends>
-      <docblock line="15">
-        <description><![CDATA[the question model]]></description>
-        <long-description><![CDATA[<p>Provides CRUD functionality for questions.</p>
-
-<p>It uses the following database tables:</p>
-
-<ul>
-<li><em>Question</em></li>
-<li><em>Answer</em> (read only)</li>
-</ul>]]></long-description>
-        <tag line="15" name="package" description="models"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="43" package="models">
-        <name>get_list</name>
-        <full_name>get_list</full_name>
-        <docblock line="43">
-          <description><![CDATA[retrieve a sorted and paginated question list]]></description>
-          <long-description><![CDATA[<p>Returns all comments for a question, providing the <em>userName</em> of the commenter and the <em>body</em> of the comment.</p>
-
-<p>The array <em>$filter</em> can be used to filter the result according to certain criteria. The array may contain the following keys:</p>
-
-<ul>
-<li>userID: show only questions posted by a certain user id</li>
-<li>catID: show only questions in a specific category id</li>
-<li>fieldID: show only questions of a category that belong to a specific field id</li>
-<li>search: a search term as a string. Words separated by a whitespace are ANDed.</li>
-</ul>
-
-<p><strong>Usage Example</strong>:
-get the first 10 questions matching the terms <em>php</em> and <em>apache</em> :</p>
-
-<blockquote>
-  <p>get_list(0, 10, array('search'=>'php apache'))
-  get the questions 6-10 with <em>catId</em> 4
-  get_list(5, 10, array('category'=>4))</p>
-</blockquote>]]></long-description>
-          <tag line="43" name="param" description="the pagination offset" type="int" variable="$offset">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="43" name="param" description="the amount of questions to retrieve" type="int" variable="$limit">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="43" name="param" description="the optional filter to be applied to the results" type="array" variable="$filter">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="43" name="return" description="holds question objects with a questionID and its title" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-        </docblock>
-        <argument line="43">
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-          <name>$offset</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-<<<<<<< HEAD
-        <argument line="106">
-          <name>$term</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="130" package="controllers">
-        <name>qshow</name>
-        <full_name>qshow</full_name>
-        <docblock line="130">
-          <description><![CDATA[show one question]]></description>
-          <long-description><![CDATA[<p>the <em>qdetails</em> view is shown, representing a question and its answers.</p>]]></long-description>
-          <tag line="130" name="param" description="the questionID" type="int" variable="$qid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="130" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="130">
-=======
-        <argument line="43">
-          <name>$limit</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="43">
-          <name>$filter</name>
-          <default><![CDATA[array()]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="60" package="models">
-        <name>get_count</name>
-        <full_name>get_count</full_name>
-        <docblock line="60">
-          <description><![CDATA[count the questions matching a certain filter.]]></description>
-          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
-          <tag line="60" name="param" description="the optional filter, see the get_list documentation" type="array" variable="$filter">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="60" name="return" description="the amount of questions matching $filter" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="60">
-          <name>$filter</name>
-          <default><![CDATA[array()]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="74" package="models">
-        <name>get_details</name>
-        <full_name>get_details</full_name>
-        <docblock line="74">
-          <description><![CDATA[all the information about one question.]]></description>
-          <long-description><![CDATA[<p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p>]]></long-description>
-          <tag line="74" name="param" description="the questionID" type="int" variable="$qid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="74" name="return" description="a single question object, containing column values as attributes." type="object">
-            <type by_reference="false">object</type>
-          </tag>
-        </docblock>
-        <argument line="74">
-          <name>$qid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="89" package="models">
-        <name>filter</name>
-        <full_name>filter</full_name>
-        <docblock line="89">
-          <description><![CDATA[create a filter for the where-clause]]></description>
-          <long-description><![CDATA[<p>A private function used by <em>get_count</em> and <em>get_list</em>. It takes the $filter$ array (as described in the <em>getlist</em> documentation)
-and returns an array that can be passed to the db->where() active record function.</p>]]></long-description>
-          <tag line="89" name="param" description="the filter, see the get_list documentation" type="array" variable="$filter">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="89" name="return" description="a list of key-&gt;value conditions applied to the query" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-        </docblock>
-        <argument line="89">
-          <name>$filter</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <markers>
-      <todo line="90">implement the filter function so that it works as documented.</todo>
-    </markers>
-  </file>
-  <file path="models/user_model.php" hash="89bec533a5196a913ba293fdf5ce2bd0" package="Default">
-    <class final="false" abstract="false" namespace="" line="16" package="models">
-      <name>User_model</name>
-      <full_name>\User_model</full_name>
-      <extends>CI_Model</extends>
-      <docblock line="16">
-        <description><![CDATA[the user model]]></description>
-        <long-description><![CDATA[<p>User management. CRUD for users, their types and their fields.</p>
-
-<p>It uses the following database tables:</p>
-
-<ul>
-<li><em>User</em></li>
-<li><em>UserType</em> (read only)</li>
-</ul>]]></long-description>
-        <tag line="16" name="package" description="models"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="31" package="models">
-        <name>login</name>
-        <full_name>login</full_name>
-        <docblock line="31">
-          <description><![CDATA[Checks if the username exists]]></description>
-          <long-description><![CDATA[<p>The <em>$name</em> is compared to the <em>userName</em> in User table.</p>
-
-<p>The <em>$password</em> is compared if it is eqaul to that userName's password.</p>]]></long-description>
-          <tag line="31" name="author" description="Huma Yari"/>
-          <tag line="31" name="param" description="The username" type="string" variable="$name">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="31" name="param" description="The password" type="string" variable="$password">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="31" name="return" description="the userID if exits or 0" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="31">
-          <name>$name</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="31">
-          <name>$password</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-<<<<<<< HEAD
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="54" package="models">
-        <name>delete_user</name>
-        <full_name>delete_user</full_name>
-        <docblock line="54">
-          <description><![CDATA[Deletes a user]]></description>
-          <long-description><![CDATA[<p>The given userID is compared to the <em>userID</em> of the User table.</p>
-=======
-    </class>
-    <markers>
-      <todo line="52">Implement create_qcomment and create_acomment so that it adds a question or answer comment to the database and returns the new comment's commentID. Then create its documentation, using phpdoc comments. See get_acomments for an example.</todo>
-      <todo line="61">Implement update_comment so that it updates the body of the comment specified by $cid. Then implement delete_comment so that it deletes the comment specified by $cid. Create documentation for both functions, using phpdoc comments. See get_acomments for an example.</todo>
-    </markers>
-    <parse_markers>
-      <error line="53" code="50010">No DocBlock was found for method create_qcomment()</error>
-      <error line="57" code="50010">No DocBlock was found for method create_acomment()</error>
-      <error line="62" code="50010">No DocBlock was found for method update_comment()</error>
-      <error line="66" code="50010">No DocBlock was found for method delete_comment()</error>
-    </parse_markers>
-  </file>
-  <file path="models/answer_model.php" hash="d312a3b7865b3328b9235b946c0345a4" package="Default">
-    <class final="false" abstract="false" namespace="" line="14" package="models">
-      <extends>CI_Model</extends>
-      <name>Answer_model</name>
-      <full_name>\Answer_model</full_name>
-      <docblock line="14">
-        <description><![CDATA[the answer model]]></description>
-        <long-description><![CDATA[<p>Provides CRUD functionality for answers.</p>
-
-<p>It uses the following database tables:</p>
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
-
-<p>The user will be deleted if that userID is found.</p>]]></long-description>
-          <tag line="54" name="author" description="Huma Yari"/>
-          <tag line="54" name="param" description="The userID" type="int" variable="$uid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="54" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="54">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-<<<<<<< HEAD
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="70" package="models">
-        <name>add_user</name>
-        <full_name>add_user</full_name>
-        <docblock line="70">
-          <description><![CDATA[adding new user]]></description>
-          <long-description><![CDATA[<p>adding new user in the User table with initial data *(username,password and email address)</p>]]></long-description>
-          <tag line="70" name="author" description="ASHUQULLAH ALIZAI"/>
-          <tag line="70" name="param" description="is the username for the user" type="string" variable="$name">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="70" name="param" description="is password specified by user" type="string" variable="$password">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="70" name="param" description="is email specified by user" type="string" variable="$email">
-=======
-    </class>
-  </file>
-  <file path="models/category_model.php" hash="0af6523b4fb7798061199a1b60120fc1" package="Default">
-    <class final="false" abstract="false" namespace="" line="5" package="Default">
-      <extends>CI_Model</extends>
-      <name>Category_model</name>
-      <full_name>\Category_model</full_name>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="8" package="Default">
-        <name>add_cat</name>
-        <full_name>add_cat</full_name>
-        <argument line="8">
-          <name>$catName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="8">
-          <name>$fieldID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="17" package="Default">
-        <name>update_cat</name>
-        <full_name>update_cat</full_name>
-        <argument line="17">
-          <name>$catID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="17">
-          <name>$catName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="25" package="Default">
-        <name>get_categories</name>
-        <full_name>get_categories</full_name>
-        <argument line="25">
-          <name>$fieldID</name>
-          <default><![CDATA[0]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="32" package="Default">
-        <name>delete_cat</name>
-        <full_name>delete_cat</full_name>
-        <argument line="32">
-          <name>$catID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <markers>
-      <todo line="3">complete the category_model documentation, using phpdoc comments like in question_model.php</todo>
-    </markers>
-    <parse_markers>
-      <error line="5" code="50000">No DocBlock was found for \Category_model</error>
-      <error line="8" code="50010">No DocBlock was found for method add_cat()</error>
-      <error line="17" code="50010">No DocBlock was found for method update_cat()</error>
-      <error line="25" code="50010">No DocBlock was found for method get_categories()</error>
-      <error line="32" code="50010">No DocBlock was found for method delete_cat()</error>
-    </parse_markers>
-  </file>
-  <file path="models/field_model.php" hash="9dbb68a8530d22fc34b9572ae50c5cc0" package="Default">
-    <class final="false" abstract="false" namespace="" line="5" package="Default">
-      <extends>CI_Model</extends>
-      <name>Field_model</name>
-      <full_name>\Field_model</full_name>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="8" package="Default">
-        <name>get_fields</name>
-        <full_name>get_fields</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="15" package="Default">
-        <name>add_field</name>
-        <full_name>add_field</full_name>
-        <argument line="15">
-          <name>$fieldName</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="21" package="Default">
-        <name>delete_field</name>
-        <full_name>delete_field</full_name>
-        <argument line="21">
-          <name>$fieldID</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <markers>
-      <todo line="3">complete field_model documentation according to the guidelines</todo>
-    </markers>
-    <parse_markers>
-      <error line="5" code="50000">No DocBlock was found for \Field_model</error>
-      <error line="8" code="50010">No DocBlock was found for method get_fields()</error>
-      <error line="15" code="50010">No DocBlock was found for method add_field()</error>
-      <error line="21" code="50010">No DocBlock was found for method delete_field()</error>
-    </parse_markers>
-  </file>
-  <file path="controllers/test.php" hash="0a38fe8119449255d09ce944746c3e30" package="Default">
-    <class final="false" abstract="false" namespace="" line="13" package="controllers">
-      <extends>CI_Controller</extends>
-      <name>Test</name>
-      <full_name>\Test</full_name>
-      <docblock line="13">
-        <description><![CDATA[the test controller]]></description>
-        <long-description><![CDATA[<p>A controller for testing model.
-In the wiki there is a short howto that explains the testing process
-The comments in this file however should be self-explanatory.</p>]]></long-description>
-        <tag line="13" name="package" description="controllers"/>
-      </docblock>
-      <property final="false" static="false" visibility="private" line="16" namespace="" package="Default">
-        <name>$result</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="24" package="controllers">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-        <docblock line="24">
-          <description><![CDATA[constructor]]></description>
-          <long-description><![CDATA[<p>loads the model you want to test.</p>]]></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="36" package="controllers">
-        <name>_remap</name>
-        <full_name>_remap</full_name>
-        <argument line="36">
-          <name>$method</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="36">
-          <name>$params</name>
-          <default><![CDATA[array()]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="45" package="controllers">
-        <name>_report</name>
-        <full_name>_report</full_name>
-        <argument line="45">
-          <name>$result</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="45">
-          <name>$title</name>
-          <default><![CDATA['Unnamed']]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="55" package="controllers">
-        <name>gut</name>
-        <full_name>gut</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="64" package="controllers">
-        <name>logintest</name>
-        <full_name>logintest</full_name>
-        <argument line="64">
-          <name>$p1</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="64">
-          <name>$p2</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="78" package="controllers">
-        <name>deleteUserTest</name>
-        <full_name>deleteUserTest</full_name>
-        <argument line="78">
-          <name>$p1</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="92" package="controllers">
-        <name>test2</name>
-        <full_name>test2</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="98" package="controllers">
-        <name>multitest</name>
-        <full_name>multitest</full_name>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="16" code="50018">No DocBlock was found for property $result</error>
-      <error line="36" code="50010">No DocBlock was found for method _remap()</error>
-      <error line="45" code="50010">No DocBlock was found for method _report()</error>
-      <error line="55" code="50010">No DocBlock was found for method gut()</error>
-      <error line="64" code="50010">No DocBlock was found for method logintest()</error>
-      <error line="78" code="50010">No DocBlock was found for method deleteUserTest()</error>
-      <error line="92" code="50010">No DocBlock was found for method test2()</error>
-      <error line="98" code="50010">No DocBlock was found for method multitest()</error>
-    </parse_markers>
-  </file>
-  <file path="controllers/ajax.php" hash="6218514efa36404ec9c3f12ee71aa974" package="Default">
-    <class final="false" abstract="false" namespace="" line="12" package="controllers">
-      <extends>CI_Controller</extends>
-      <name>Ajax</name>
-      <full_name>\Ajax</full_name>
-      <docblock line="12">
-        <description><![CDATA[controller for AJAX requests]]></description>
-        <long-description><![CDATA[<p>This controller will handle all AJAX requests up to now.
-If more AJAX-functionality is added, this should be split into thematically
-organized controllers.</p>]]></long-description>
-        <tag line="12" name="package" description="controllers"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="14" package="controllers">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="29" package="controllers">
-        <name>qcomments</name>
-        <full_name>qcomments</full_name>
-        <docblock line="29">
-          <description><![CDATA[asynchronously get comments for a question]]></description>
-          <long-description><![CDATA[<p>calls <em>get_qcomments</em> from the comment model.
-presents its data using the <em>ajax/comments</em> view.</p>]]></long-description>
-          <tag line="29" name="param" description="the questionID" type="int" variable="$qid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="29" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="29">
-          <name>$qid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="14" code="50010">No DocBlock was found for method __construct()</error>
-    </parse_markers>
-  </file>
-  <file path="controllers/util.php" hash="0f1df72c2d63af6801622fbe5cb8ef4c" package="Default">
-    <class final="false" abstract="false" namespace="" line="11" package="controllers">
-      <extends>CI_Controller</extends>
-      <name>Util</name>
-      <full_name>\Util</full_name>
-      <docblock line="11">
-        <description><![CDATA[Utility controller]]></description>
-        <long-description><![CDATA[<p>a controller containing utility functions. It uses no views but sends the user back to the last URI saved in the session.
-e.g. used for changing the language globally.</p>]]></long-description>
-        <tag line="11" name="package" description="controllers"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
-        <name>lang</name>
-        <full_name>lang</full_name>
-        <docblock line="20">
-          <description><![CDATA[Load a language]]></description>
-          <long-description><![CDATA[<p>Changing the language my setting the session variable language.</p>]]></long-description>
-          <tag line="20" name="param" description="the language to load, named like the folder containing the language files" type="string" variable="$language">
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="70" name="return" description="inserted userID" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="70">
-          <name>$name</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-<<<<<<< HEAD
-        <argument line="70">
-          <name>$password</name>
-=======
-      </method>
-    </class>
-  </file>
-  <file path="controllers/main.php" hash="0abd48a6340410d87884c4e65cd66ecb" package="Default">
-    <class final="false" abstract="false" namespace="" line="11" package="controllers">
-      <extends>CI_Controller</extends>
-      <name>Main</name>
-      <full_name>\Main</full_name>
-      <docblock line="11">
-        <description><![CDATA[the main controller]]></description>
-        <long-description><![CDATA[<p>Handles the basic site functionality. Browsing questions and answers, etc.</p>]]></long-description>
-        <tag line="11" name="package" description="controllers"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
-        <docblock line="20">
-          <description><![CDATA[constructor]]></description>
-          <long-description><![CDATA[<p>loads question_model, answer_model, main_lang.</p>]]></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="50" package="controllers">
-        <name>_loadviews</name>
-        <full_name>_loadviews</full_name>
-        <argument line="50">
-          <name>$body_view</name>
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="70">
-          <name>$email</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="95" package="models">
-        <name>check_userName</name>
-        <full_name>check_userName</full_name>
-        <docblock line="95">
-          <description><![CDATA[checking the existancy of userName]]></description>
-          <long-description><![CDATA[<p>checks if the userName exist on the user table</p>]]></long-description>
-          <tag line="95" name="author" description="ASHUQULLAH ALIZAI"/>
-          <tag line="95" name="param" description="is the user name for user who wants to register for first time" type="\string_type" variable="$username">
-            <type by_reference="false">\string_type</type>
-          </tag>
-          <tag line="95" name="return" description="userID" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="95">
-          <name>$username</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-<<<<<<< HEAD
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="104" package="models">
-        <name>update_user</name>
-        <full_name>update_user</full_name>
-        <argument line="104">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="104">
-          <name>$user_data</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="110" package="models">
-        <name>get_userdata</name>
-        <full_name>get_userdata</full_name>
-        <argument line="110">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="122" package="models">
-        <name>change_usertype</name>
-        <full_name>change_usertype</full_name>
-        <argument line="122">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="122">
-          <name>$utid</name>
-=======
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="113" package="controllers">
-        <name>field</name>
-        <full_name>field</full_name>
-        <docblock line="113">
-          <description><![CDATA[shows a list of paginated questions]]></description>
-          <long-description><![CDATA[<p>which they belong to specific category.
-get the list of question(4 questions per page) wich they corrospond the specific fieldID</p>]]></long-description>
-          <tag line="113" name="param" description="the ID of field" type="int" variable="$fid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="113" name="param" description="the pagination offset" type="int" variable="$offset">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="113" name="return" description="Author Somaia Zabihi" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="113">
-          <name>$fid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="113">
-          <name>$offset</name>
-          <default><![CDATA[0]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="128" package="controllers">
-        <name>search</name>
-        <full_name>search</full_name>
-        <argument line="128">
-          <name>$term</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="128">
-          <name>$offset</name>
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-<<<<<<< HEAD
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="134" package="models">
-        <name>get_usertypes</name>
-        <full_name>get_usertypes</full_name>
-        <docblock line="134">
-          <description><![CDATA[]]></description>
-          <long-description><![CDATA[]]></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="144" package="models">
-        <name>get_usertype</name>
-        <full_name>get_usertype</full_name>
-        <docblock line="144">
-          <description><![CDATA[it is to return usertype]]></description>
-          <long-description><![CDATA[]]></long-description>
-        </docblock>
-        <argument line="144">
-          <name>$uid</name>
-=======
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="142" package="controllers">
-        <name>qshow</name>
-        <full_name>qshow</full_name>
-        <docblock line="142">
-          <description><![CDATA[show one question]]></description>
-          <long-description><![CDATA[<p>the <em>qdetails</em> view is shown, representing a question and its answers.</p>]]></long-description>
-          <tag line="142" name="param" description="the questionID" type="int" variable="$qid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="142" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="142">
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-          <name>$qid</name>
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-<<<<<<< HEAD
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="150" package="controllers">
-        <name>view</name>
-        <full_name>view</full_name>
-        <docblock line="150">
-          <description><![CDATA[show a certain body page]]></description>
-          <long-description><![CDATA[<p>this function shows a certain (static) page from the views/body directory.
-use this for static content like: about, contact, terms-of-use, etc.</p>]]></long-description>
-          <tag line="150" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="150" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="150">
-=======
-<<<<<<< HEAD
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="148" package="models">
-        <name>get_field</name>
-        <full_name>get_field</full_name>
-        <argument line="148">
-          <name>$uid</name>
-=======
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="162" package="controllers">
-        <name>view</name>
-        <full_name>view</full_name>
-        <docblock line="162">
-          <description><![CDATA[show a certain body page]]></description>
-          <long-description><![CDATA[<p>this function shows a certain (static) page from the views/body directory.
-use this for static content like: about, contact, terms-of-use, etc.</p>]]></long-description>
-          <tag line="162" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="162" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-        </docblock>
-        <argument line="162">
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-          <name>$page</name>
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <markers>
-<<<<<<< HEAD
-      <todo line="58">implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.</todo>
-      <todo line="103">Find out how the update_user() function can be used. Then document it using phpdoc. Use question_model::get_list() as an example.</todo>
-      <todo line="109">This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'</todo>
-      <todo line="121">implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.</todo>
-      <todo line="139">implement and document get_usertype() and get_field(). Both return a single integer indicating the usertypeID or fieldID of the user.</todo>
-    </markers>
-    <parse_markers>
-      <error line="104" code="50010">No DocBlock was found for method update_user()</error>
-      <error line="110" code="50010">No DocBlock was found for method get_userdata()</error>
-      <error line="122" code="50010">No DocBlock was found for method change_usertype()</error>
-      <error line="134" code="50012">No short description for method get_usertypes()</error>
-      <error line="144" code="50015">Argument $uid is missing from the Docblock of get_usertype()</error>
-      <error line="148" code="50010">No DocBlock was found for method get_field()</error>
-=======
-      <todo line="49">extend the _loadviews() function so it loads a different sidebar, depending on the type of user.</todo>
-<<<<<<< HEAD
-      <todo line="103">implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
-=======
-      <todo line="114">implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
-      <todo line="129">implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-    </markers>
-    <parse_markers>
-      <error line="50" code="50010">No DocBlock was found for method _loadviews()</error>
-      <error line="128" code="50010">No DocBlock was found for method search()</error>
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
-    </parse_markers>
-  </file>
-  <file path="controllers/util.php" hash="0f1df72c2d63af6801622fbe5cb8ef4c" package="Default">
-    <class final="false" abstract="false" namespace="" line="11" package="controllers">
-<<<<<<< HEAD
-      <name>Util</name>
-      <full_name>\Util</full_name>
-      <extends>CI_Controller</extends>
-=======
-      <extends>CI_Controller</extends>
-      <name>User</name>
-      <full_name>\User</full_name>
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-      <docblock line="11">
-        <description><![CDATA[Utility controller]]></description>
-        <long-description><![CDATA[<p>a controller containing utility functions. It uses no views but sends the user back to the last URI saved in the session.
-e.g. used for changing the language globally.</p>]]></long-description>
-        <tag line="11" name="package" description="controllers"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
-        <name>lang</name>
-        <full_name>lang</full_name>
-        <docblock line="20">
-          <description><![CDATA[Load a language]]></description>
-          <long-description><![CDATA[<p>Changing the language my setting the session variable language.</p>]]></long-description>
-          <tag line="20" name="param" description="the language to load, named like the folder containing the language files" type="string" variable="$language">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-        <argument line="20">
-          <name>$language</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-  </file>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  <file path="controllers/main.php" hash="053646e6a78ab224896f255ec939d513" package="Default">
-    <markers>
-      <todo line="49">extend the _loadviews() function so it loads a different sidebar, depending on the type of user.</todo>
-      <todo line="126">implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
-      <todo line="130">implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.</todo>
-    </markers>
-  </file>
-  <file path="controllers/util.php" hash="0f1df72c2d63af6801622fbe5cb8ef4c" package="Default">
-    <class final="false" abstract="false" namespace="" line="11" package="controllers">
-      <name>Util</name>
-      <full_name>\Util</full_name>
-      <extends>CI_Controller</extends>
-      <docblock line="11">
-        <description><![CDATA[Utility controller]]></description>
-        <long-description><![CDATA[<p>a controller containing utility functions. It uses no views but sends the user back to the last URI saved in the session.
-e.g. used for changing the language globally.</p>]]></long-description>
-        <tag line="11" name="package" description="controllers"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
-        <name>lang</name>
-        <full_name>lang</full_name>
-        <docblock line="20">
-          <description><![CDATA[Load a language]]></description>
-          <long-description><![CDATA[<p>Changing the language my setting the session variable language.</p>]]></long-description>
-          <tag line="20" name="param" description="the language to load, named like the folder containing the language files" type="string" variable="$language">
-            <type by_reference="false">string</type>
-          </tag>
-        </docblock>
-        <argument line="20">
-          <name>$language</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-  </file>
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-  <file path="controllers/test.php" hash="8019cc55cb8b4614400dbb8108d396e9" package="Default">
+  <file path="controllers/test.php" hash="4d8f3292fdba11740cf9948012b31591" package="Default">
     <class final="false" abstract="false" namespace="" line="13" package="controllers">
       <name>Test</name>
       <full_name>\Test</full_name>
@@ -2150,11 +1114,11 @@ The comments in this file however should be self-explanatory.</p>]]></long-descr
         <name>test1</name>
         <full_name>test1</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="69" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="68" package="controllers">
         <name>test2</name>
         <full_name>test2</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="75" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="74" package="controllers">
         <name>multitest</name>
         <full_name>multitest</full_name>
       </method>
@@ -2164,11 +1128,11 @@ The comments in this file however should be self-explanatory.</p>]]></long-descr
       <error line="36" code="50010">No DocBlock was found for method _remap()</error>
       <error line="45" code="50010">No DocBlock was found for method _report()</error>
       <error line="55" code="50010">No DocBlock was found for method test1()</error>
-      <error line="69" code="50010">No DocBlock was found for method test2()</error>
-      <error line="75" code="50010">No DocBlock was found for method multitest()</error>
+      <error line="68" code="50010">No DocBlock was found for method test2()</error>
+      <error line="74" code="50010">No DocBlock was found for method multitest()</error>
     </parse_markers>
   </file>
-  <file path="controllers/ajax.php" hash="6218514efa36404ec9c3f12ee71aa974" package="Default">
+  <file path="controllers/ajax.php" hash="fa20135f02dd1601f4aed0c4996534f2" package="Default">
     <class final="false" abstract="false" namespace="" line="12" package="controllers">
       <name>Ajax</name>
       <full_name>\Ajax</full_name>
@@ -2209,16 +1173,99 @@ presents its data using the <em>ajax/comments</em> view.</p>]]></long-descriptio
       <error line="14" code="50010">No DocBlock was found for method __construct()</error>
     </parse_markers>
   </file>
->>>>>>> 2dcb407fa223ff8ddadc2fe0de27618d592dfea0
+  <file path="helpers/formee_helper.php" hash="0944eccdd279a5c82829a4158dded156" package="Default">
+    <constant namespace="" line="16" package="Default">
+      <name>DIV_CLEAR</name>
+      <full_name>\\DIV_CLEAR</full_name>
+      <value><![CDATA[NULL]]></value>
+    </constant>
+    <function namespace="" line="11" package="Default">
+      <name>formee_open</name>
+      <full_name>\formee_open</full_name>
+      <docblock line="11">
+        <description><![CDATA[Open a Formee-form]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="11" name="param" description="Submit action URI (e.g. main/home)" type="string" variable="$action">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="11" name="param" description="options to pass on. class will be overwritten." type="array" variable="$options">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="11" name="return" description="contains html to open the form" type="string">
+          <type by_reference="false">string</type>
+        </tag>
+      </docblock>
+      <argument line="11">
+        <name>$action</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+      <argument line="11">
+        <name>$options</name>
+        <default><![CDATA[array()]]></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="24" package="Default">
+      <name>formee_div</name>
+      <full_name>\formee_div</full_name>
+      <docblock line="24">
+        <description><![CDATA[open a layout div, using Formee-layout (of12).]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="24" name="param" description="how many of 12 layout columns should the contained elements use. If 0 close a div tag." type="int" variable="$of12">
+          <type by_reference="false">int</type>
+        </tag>
+        <tag line="24" name="param" description="clear start new row" type="bool" variable="$clear">
+          <type by_reference="false">bool</type>
+        </tag>
+        <tag line="24" name="return" description="contains the generated html" type="string">
+          <type by_reference="false">string</type>
+        </tag>
+      </docblock>
+      <argument line="24">
+        <name>$of12</name>
+        <default><![CDATA[0]]></default>
+        <type/>
+      </argument>
+      <argument line="24">
+        <name>$clear</name>
+        <default><![CDATA[NULL]]></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="39" package="Default">
+      <name>formee_button</name>
+      <full_name>\formee_button</full_name>
+      <docblock line="39">
+        <description><![CDATA[create a formee submit button]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="39" name="param" description="the name and id of the button" type="string" variable="$name">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="39" name="param" description="the value" type="string" variable="$value">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="39" name="return" description="contains the generated html" type="string">
+          <type by_reference="false">string</type>
+        </tag>
+      </docblock>
+      <argument line="39">
+        <name>$name</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+      <argument line="39">
+        <name>$value</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+    </function>
+  </file>
   <package name="Default" full_name="Default"/>
   <package name="controllers" full_name="controllers"/>
   <package name="models" full_name="models"/>
   <namespace name="" full_name=""/>
-<<<<<<< HEAD
-  <marker count="11">todo</marker>
-=======
-  <marker count="13">todo</marker>
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
+  <marker count="10">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>
