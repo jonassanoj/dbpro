@@ -1,106 +1,130 @@
-body {
+@import url(font/gw_cabin.css);
+
+/***************************************************************************/
+/** 1. RESET   
+/********************
+/ remove default styling of page elements (margins, padding, border, etc.)	
+****************************************************************************/
+html, body, ul, ol, li, form, fieldset, legend {margin: 0;	padding: 0; }
+h1, h2, h3, h4, h5, h6, p { margin-top: 0; }
+fieldset,img { border: 0; }
+legend { color: #000; }
+li { list-style: none; }
+sup { vertical-align: text-top; }
+sub { vertical-align: text-bottom; }
+table {border-collapse: collapse; border-spacing: 0;}
+caption, th, td { text-align: left;	vertical-align: top; font-weight: normal; }
+
+/***************************************************************************/
+/** 2. Global Look
+/********************
+/ Some colors, look of basic elements.  	
+****************************************************************************/
+
+body { 
 	background: #D9C6B0;
-	font: normal 100% sans-serif;
-	line-height: 1.5;
-	color: black;
-}
+	color: black; 
+	line-height: 1.5; 
+	padding-top: 2em;
+	padding-right: 2em;}
 
-a,input[type=submit] {
-	text-decoration: none;
-	color: black;
-	cursor: pointer;
-}
+/* Links are black, become underlined only while mouse hovers. */
+a       { text-decoration: none; color: black; cursor: pointer; }
+a:hover { text-decoration: underline; }
 
-a:hover,input[type=submit]:hover {
-	color: #A67C7C;
-}
+h1 { font-size: 270%; color: #A67C7C; padding-top: 20px; }
+h2 { font-size: 160%; line-height: 1;}
+h3 { font-size: 120%; }
 
-h1, h2, h3, h4, h5, h6 {
-	text-decoration: none;
-	color: black;
-	margin: 0;
-	padding: 0;
-}
+/***************************************************************************/
+/** 2. Global Layout DIVs
+/********************
+/*   <#wrapper>
+/*     <#header />
+/*     <#middle>
+/*       <#container>
+/*         <#content />
+/*       <# />
+/*     <#sidebar />
+/*     <# />
+/*   <#/>
+/* <#footer />
 
-h1 {
-	font: normal 180%;
-	color: #A67C7C;
-}
-
-h2 {
-	font: normal 150% sans-serif;
-}
-
-h3 {
-	font: normal 120% sans-serif;
-	color: black;
-}
-
-#container {
+****************************************************************************/
+#wrapper {
 	background: #FFF;
+	width: 100%;
+	margin: 0 auto;
+	min-height: 90%;
+	height: auto !important;
+	height: 100%;
 	padding: 1em;
-	width: 80%;
-	min-width: 800px;
-	min-height: 600px;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 #header {
-	height: 120px;
-	float: top;
+	height: 130px;
 	background: transparent url(../img/logo.png) no-repeat top left;
 	background-size: 130px;
 	border-bottom: 1px dashed silver;
 	padding-left: 14em ;
-	padding-top: 1em ;
-	
 }
 
-#header #loginbox {
+#loginbox {
 	width: 300px;
+	height: 130px;
 	float: right;
 	padding: 0 ;
 	margin: 0, auto;
 	font-size: 90%;
 }
 
+#middle {
+	width: 100%;
+	padding: 0 0 50px;
+	height: 1%;
+	position: relative;
+}
 
-#leftnav {
+#middle:after {
+	content: '.';
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
+
+#container {
+	width: 100%;
 	float: left;
-	margin: 0;
-	padding: 0;
-	width: 10em;
-	border-right: 1px dashed silver;
-	min-height: 400px;
-}
-
-#leftnav ul {
-	font: normal 120% sans-serif;
-	list-style-type: none;
 	overflow: hidden;
-	margin: 0;
-	padding: 0;
+	minimum-height: 500px;
 }
 
-#leftnav li {
-	text-align: center;
-	font-weight: bold;
-	padding-top: 1em;
+#content {
+	padding: 2em 0 0 16em; /* top bottom right left */
 }
 
-#body {
-	margin-left: 10em;
-	min-height :400px;
-	padding: 1em;
+#sidebar {
+	float: left;
+	width: 14em;
+	margin-left: -100%;
+	position: relative;
+	border-right: 1px dashed silver;
+}
+
+#sidebar ul { /* list items in the navigation bar (menu) */
+	padding-left: 5em;
+	padding-top: 2em;
 }
 
 #footer {
-	clear: left;
-	height: 50px;
+	width: 100%;
+	height: 2em;
 	text-align: center;
 	border-top: 1px dashed silver;
-	float: bottom;
+	background: #D9C6B0;
+	position:fixed;
+    bottom:0px;
 }
 
 .question, .answer, .comment {
@@ -118,14 +142,15 @@ h3 {
 }
 
 .answer {
-	padding-left: 6em;
+	margin-left: 2em;
+	padding-left: 3em;
 	background: transparent url(../img/icons/answer.png) no-repeat top left;
 	background-size: 40px;
 }
 
 .comment {
 	padding-left: 8em;
-	font: italic 90% sans-serif;
+	font: italic 90%;
 }
 
 a.backlink {
@@ -151,13 +176,12 @@ a.backlink:hover {
 	padding-left: 2.5em;
 }
 
-.notification {
+.box {
 	border-width: 1px;
 	border-style: dashed;
 	border-color: red;
 	padding: 1em;
-	margin: 1em;
-	text-align: center;
-	}
-	
+	max-width: 40em;
+	margin: auto;
 }
+

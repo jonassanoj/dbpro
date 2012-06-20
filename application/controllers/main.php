@@ -1,4 +1,3 @@
-
 <?php
 /**
  * the main controller
@@ -12,7 +11,7 @@
 class Main extends CI_Controller {
 
 	/**
-	 * constructor
+	 * constructor 
 	 *
 	 * loads question_model, answer_model, main_lang.
 	 * 
@@ -31,73 +30,20 @@ class Main extends CI_Controller {
 	 * private helper function to build view
 	 *
 	 * every complete html-page sent to the client is constructed here.
-	 * currently, header and body are choosen dynamically.
 	 *
 	 * The following parts are sent in order:
 	 *
-	 * * _include/header.php_
-	 * * _header/loginbox | loggedin : a header with loginbox or with logout button
-
-	 * * _leftnav/_:
-	 * * ***If the user type is known, show specific leftnav bar depending on usertype.
-	 * ***usertype 1 for confirmed user
-	 * ***usertype 2 for editor
-	 * ***usertype 3 for admin
-	 * ***usertype 0 or else for unconfirmed user
-	 * * ***If the user type is unknown, show default or unconfirmed user leftnav bar.
-	 * ******************************************************************
-
-	 * * _body_/$body_view_: the body content given as a parameter
-	 * * _include/footer.php_
-	 *
-	 * @param string $body_view what should appear in the body
+	 * @param string $content what should appear in the body
 	 * @param array $data The data array to pass on to the views
 	 * @return void
 	 *
 	 */
 
-	
-	public function _loadviews($body_view, $data) {
-		// remember the current URL for creating backlinks
+	public function _loadviews($content, $data) {
 		$this -> session -> set_userdata('last_visited', current_url());
-		$this -> load -> view('include/header', $data);
-		if ($this -> session -> userdata('login'))
-		{ // user is logged in
-			$data['username'] = $this -> session -> userdata('username');
-			$this -> load -> view('header/loggedin',$data);
-		}
-		else {
-			$data['username'] = $this -> input -> cookie('username');
-			$this -> load -> view('header/loginbox',$data);
-		}
-
-
-		
-		
-
-		if($this -> session -> userdata('usertype')){
-
-			if ($this -> session -> userdata('usertype') == 1)
-			{
-				$this -> load -> view('leftnav/user');
-			}
-			elseif ($this -> session -> userdata('usertype') == 2)
-			{
-				$this -> load -> view('leftnav/editor');
-			}
-			elseif ($this -> session -> userdata('usertype') == 3)
-			{
-				$this -> load -> view('leftnav/admin');
-			}
-		
-		}	
-		else {
-			$this -> load -> view('leftnav/default');
-		}
-		
-		
-		$this -> load -> view('body/' . $body_view, $data);
-		$this -> load -> view('include/footer');
+		$data['loginbox']=TRUE;
+		$data['content']="content/$content";
+		$this -> load -> view('main_view',$data);
 	}
 	
 	/**
@@ -123,9 +69,7 @@ class Main extends CI_Controller {
 	 */
  
 	public function questions($offset = 0) {
-
 		$config['base_url'] = site_url('main/questions/');
-
 		$config['per_page'] = 5;
 		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page']);
 		$config['total_rows'] = $this -> question_model -> get_count();
@@ -134,46 +78,13 @@ class Main extends CI_Controller {
 		$data['title'] = lang('title_recent_questions');
 		$this -> _loadviews('qlist', $data);
 	}
-
-	/**
-	*shows a list of paginated questions
-	*
-        * which they belong to specific category.
-	* get the list of question(4 questions per page) wich they corrospond the specific fieldID 
-	* @param int $fid the ID of field
-	* @param int $offset the pagination offset
-	* @return void
-	 *
-	*Author Somaia Zabihi
-        */
 	
-	public function field($fid,$offset = 0) {
+	public function field($fid,$offset) {
 		// TODO: implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
-		//Author Somaia Zabihi
-		$config['base_url'] = site_url("main/field/$fid/");
-		$config['per_page'] = 4;
-		$config['uri_segment'] = 4;
-		$filter=array('fieldID'=>$fid);
-		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'],$filter);
-		$config['total_rows'] = $this -> question_model -> get_count($filter);
-		$this -> pagination -> initialize($config);
-		$data['pagelinks'] = $this -> pagination -> create_links();
-		$data['title'] = lang('title_recent_questions');
-		$this -> _loadviews('qlist', $data);
 	}
 	
 	public function search($term,$offset) {
-		$config['base_url'] = site_url('main/questions/');
-		$config['per_page'] = 5;
-		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page']);
-		$config['total_rows'] = $this -> question_model -> get_count();
-		$this -> pagination -> initialize($config);
-		$data['pagelinks'] = $this -> pagination -> create_links();
-		$data['title'] = lang('title_recent_questions');
-		$this -> _loadviews('qlist', $data);
-
-
-
+		// TODO: implement search($term,$offset). It should display a paginated view of the search results. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
 	}
 
 	/**
@@ -207,12 +118,10 @@ class Main extends CI_Controller {
 	 */
 
 	public function view($page) {
-		// if no view to show for $page, show 404 now.
-		if (! file_exists('application/views/body/' . $page . '.php')) show_404();
+		// if no content to show for $page, show 404 now.
+		if (! file_exists('application/views/content/' . $page . '.php')) show_404();
 		// try to translate the title, then capitalize it.
 		$data['title'] = mb_convert_case(lang('w_'.$page),MB_CASE_TITLE);
 		$this -> _loadviews($page,$data);
 	}
-
 }
-

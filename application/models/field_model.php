@@ -40,7 +40,7 @@ class Field_model extends CI_Model {
 	 * fieldID: can be an integer that has beent from coller function.
 	 * @param int $fieldID
 
-			 */
+	*/
 
 	function delete_field($fieldID) {
 		$this -> db -> where('fieldID', $fieldID);

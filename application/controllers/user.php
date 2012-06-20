@@ -29,28 +29,19 @@ class User extends CI_Controller {
 	 * private helper function to build view
 	 *
 	 * This loads views for the registration, failed-login, etc. screens
-	 * The following parts are sent in order:
 	 *
-	 * * _include/header.php_
-	 * * _header/simple.php_ : no login box
-	 * * _leftnav/default.php_: the default content of the navigation bar
-	 * * _body_/$body_view_: the body content given as a parameter
-	 * * _include/footer.php_
-	 *
-	 * @param string $body_view what should appear in the body
+	 * @param string $content what should appear as content
 	 * @param array $data The data array to pass on to the views
 	 * @return void
 	 *
 	 */
 	
-	public function _loadviews($body_view, $data) {
-		$this -> load -> view('include/header', $data);
-		$this -> load -> view('header/simple',$data);	
-		$this -> load -> view('leftnav/default');
-		$this -> load -> view('body/' . $body_view, $data);
-		$this -> load -> view('include/footer');
+	public function _loadviews($content, $data) {
+		$data['loginbox']=FALSE;
+		$data['content']="content/$content";
+		$this -> load -> view('main_view',$data);
 	}
-	
+
 	//TODO: Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).
 	
 	/**
@@ -106,16 +97,8 @@ class User extends CI_Controller {
 	* <ul><li>login</li> <li>userid(uid)</li> <li>usertype</li> <li>username</li></ul>
 	* will redirect after loging out, to the last visited place
 	* 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	* @param: void
 	* @return: void
-=======
-	* @return void
->>>>>>> 1f6989ec0b28363e39eae324eea203de1d9730b2
-=======
-
->>>>>>> a7eb895f8ab20439d44438eb01d497c0c84ae4d1
 	*/
 	public function logout()
 	{
@@ -149,10 +132,10 @@ class User extends CI_Controller {
 	    $this -> session -> set_userdata('failed_logins', $data['failed_logins']);
 		$data['title']=lang('msg_login_failed');
 		$data['username']=$user;
-		if($this -> session -> userdata('failed_logins') < 3)
+		//if($this -> session -> userdata('failed_logins') < 3)
 			$this -> _loadviews('login_failed', $data);
-		else 
-			redirect(site_url('user/recover/'. $user));
+		//else 
+			//redirect(site_url('user/recover/'. $user));
 	}
 	
 	public function register()
