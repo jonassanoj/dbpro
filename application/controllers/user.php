@@ -107,11 +107,15 @@ class User extends CI_Controller {
 	* will redirect after loging out, to the last visited place
 	* 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	* @param: void
 	* @return: void
 =======
 	* @return void
 >>>>>>> 1f6989ec0b28363e39eae324eea203de1d9730b2
+=======
+
+>>>>>>> a7eb895f8ab20439d44438eb01d497c0c84ae4d1
 	*/
 	public function logout()
 	{

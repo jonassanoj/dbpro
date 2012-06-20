@@ -52,18 +52,27 @@ class Test extends CI_Controller {
 ///  It's recommended not to push changes to this controller to the repository.
 /// 
 	
+<<<<<<< HEAD
 	public function test1()
 	{
 		// this calls a function from usermodel. 
 		// the resuts are reported by calling the $this->_report function.
 		
 		$this->_report( 
+=======
+	public function gut()
+	{$this->_report( 
+>>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
 			    // the return value will be shown in the test report:
 		 		$this -> user_model -> get_usertypes(),
 				// the second parameter will give a title to the report:
 				'Test of user_model -> get_usertypes()'
 		 		);
+<<<<<<< HEAD
 	}
+=======
+		}
+>>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
 
 
 	public function test2() {
