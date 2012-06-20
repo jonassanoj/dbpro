@@ -17,6 +17,8 @@
 	
 	// Main stylesheet. Always load first.
 	echo link_tag('css/main.css')."\n";
+	echo link_tag('css/formee-style.css')."\n";
+	echo link_tag('css/formee-structure.css')."\n";
 	
 
 	// Additional styles given in an array

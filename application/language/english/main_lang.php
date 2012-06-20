@@ -56,6 +56,7 @@ $lang['w_back'] = "back";
 $lang['w_lang_fa'] = "Persian";
 $lang['w_lang_de'] = "German";
 $lang['w_lang_en'] = "English";
+$lang['w_lang_ps'] = "Pashto";
 
 // Form
 $lang['form_username'] = "Username";

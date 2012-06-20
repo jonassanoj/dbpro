@@ -132,10 +132,10 @@ class User extends CI_Controller {
 	    $this -> session -> set_userdata('failed_logins', $data['failed_logins']);
 		$data['title']=lang('msg_login_failed');
 		$data['username']=$user;
-		if($this -> session -> userdata('failed_logins') < 3)
+		//if($this -> session -> userdata('failed_logins') < 3)
 			$this -> _loadviews('login_failed', $data);
-		else 
-			redirect(site_url('user/recover/'. $user));
+		//else 
+			//redirect(site_url('user/recover/'. $user));
 	}
 	
 	public function register()

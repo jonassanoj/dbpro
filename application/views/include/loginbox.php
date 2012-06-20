@@ -1,6 +1,6 @@
 <?php 
 if (!($this -> session -> userdata('login'))) {
-	echo form_open("user/login/",array('class'=>'formee formee-small'));
+	echo form_open("user/login/");//,array('class'=>'formee formee-small'));
 	echo formee_div(12); // line one: name box
 	    echo lang('form_username','username');
 	    $options = array("id" => "username", "name"  => "username");
@@ -12,10 +12,12 @@ if (!($this -> session -> userdata('login'))) {
 	echo '</div>'.formee_div(6,DIV_CLEAR); // line three: remember box, and two buttons
 		echo lang('form_remember','remember');
 		echo form_checkbox('remember', 'yes', TRUE);
-	echo '</div>'.formee_div(3);
-		echo formee_button('register',lang('form_register'));
-	echo '</div>'.formee_div(3);
-		echo formee_button('login',lang('form_login'));
+	//echo '</div>'.formee_div(3);
+	    echo '<input type="submit" id="'.'register'.'" name="'.'login'.'" value="'.lang('form_register').'" />';
+		//echo formee_button('register',lang('form_register'));
+	//echo '</div>'.formee_div(3);
+		echo '<input type="submit" id="'.'login'.'" name="'.'login'.'" value="'.lang('form_login').'" />';
+		//echo formee_button('login',lang('form_login'));
 		echo '</div>';
     echo form_close();
 }
