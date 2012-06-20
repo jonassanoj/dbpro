@@ -48,37 +48,37 @@ $lang['language_dir'] = "rtl"; // language direction can be ltr (left-to-right) 
 // Titles
 $lang['title_main'] = "گفتگو";  
 $lang['title_alt'] =  "Goftogo"; // alternative name 
-$lang['title_recent_questions'] = "Most recent questions";
-$lang['title_popular_questions'] = "Most popular questions";
-$lang['title_your_questions'] = "Your questions";
-$lang['title_your_interest'] = "Questions that could interest you";
-$lang['title_about'] = "About Goftogo";
+$lang['title_recent_questions'] = "آخرین سوالات ";
+$lang['title_popular_questions'] = "پربیننده ترین سوالات";
+$lang['title_your_questions'] = "سوالات شما ";
+$lang['title_your_interest'] = "سوالات که ممکن مورد علاقه شما باشد";
+$lang['title_about'] = "در باره گفتگو";
 
 // Words
-$lang['w_about'] = "about";
-$lang['w_home'] = "home";
-$lang['w_back'] = "back";
+$lang['w_about'] = "درباره";
+$lang['w_home'] = "صفحه اصلی";
+$lang['w_back'] = "برگشت";
+$lang['w_lang_ps'] = "‏پشتو";
 $lang['w_lang_fa'] = "‏درى‎";
-$lang['w_lang_de'] = "آلمان";
+$lang['w_lang_de'] = "آلمانی";
 $lang['w_lang_en'] = "انگلیسی";
 
 
 // Form
-$lang['form_username'] = "Username";
-$lang['form_password'] = "Password";
-$lang['form_remember'] = "Remember me";
-$lang['form_login'] = "Login";
-$lang['form_register'] = "Register";
+$lang['form_username'] = "نام ";
+$lang['form_password'] = "رمزعبور";
+$lang['form_remember'] = " مرا به یاد بسپار ";
+$lang['form_login'] = "ورود";
+$lang['form_register'] = "ثبت";
 
 // Messages 
-// Messages 
-$lang['msg_login_failed'] = "Login failed!";
-$lang['msgvar_username_taken'] = "Sorry, the username %s is already registered!";
-$lang['msgvar_users_online'] = "At the moment, %u registered users and %u guests are online.";
-$lang['msgvar_login_trial'] = "You tried %u times to login unsuccessully";
-// Paragraphs 
-$lang['par_about'] = "Goftogo (Dialogue) is a Computer Science related Q&A site, that wants to bring Afghan IT students, 
-teachers and professionals closer together. Whether you are just starting to learn about IT at university, are an experienced 
-programmer working daily with the most up-to-date technology or a professor with years of experience and a scientific background: 
-Join now to ask questions and receive answers, to give answers and receive gratitude. Unlike other things, knowledge only gets 
-bigger the more it is shared!";
+$lang['msg_login_failed'] = "ورود ناموفق است";
+$lang['msgvar_username_taken'] = "متاسفانه نام %s قبلا ثبت شده است ";
+$lang['msgvar_users_online'] = "اکنون %u کاربر عضو و %uکاربر مهامن انلاین هستند.";
+$lang['msgvar_login_trial'] = "شما %u مرتبه ورود ناموفق داشته اید.";
+// Paragraphs . 
+$lang['par_about'] = "
+گفتگو صفحه انترنتی  سوال و جواب درباره موضوعات کمپیوتر ساینس است که هدف آن تامین روابط نزدیک میان شاگردان استادان و افراد مسلکی رشته تکنالوژی معلوماتی میباشد. 
+اگر شما جدیدا تکنالوژی معلوماتی می آموزید یا هم برنامه نویس هستید که روزانه با تکنالوژی روز سر و کار دارید و یاهم پروفیسور با سابقه 
+علوم ساینسی و تکنالوژی هستید : همین اکنون با ما بپیوندید وبا طرح نمودن سوالات و یا ارایه پاسخ به سوالات دیگران  آنهارا یاری نموده  
+بر غنامندی علم خویش بیافزایید.علم با شریک ساختن و اموزاندن دیگران بیشتر میشود.";

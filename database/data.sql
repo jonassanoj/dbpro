@@ -1,3 +1,4 @@
+SET NAMES utf8;
 
 INSERT INTO `Answer` (`answerID`, `questionID`, `userID`, `body`, `rank`, `date`) VALUES
 (1, 1, 3, 'Why don''t you autoload the library?\r\nIt should be available to your model then.', 0, '2012-06-05 00:00:00'),

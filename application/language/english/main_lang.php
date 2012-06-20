@@ -80,5 +80,3 @@ teachers and professionals closer together. Whether you are just starting to lea
 programmer working daily with the most up-to-date technology or a professor with years of experience and a scientific background: 
 Join now to ask questions and receive answers, to give answers and receive gratitude. Unlike other things, knowledge only gets 
 bigger the more it is shared!";
-
-

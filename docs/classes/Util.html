@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » controllers</title>
+<title>phpDocumentor » \Util</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -67,73 +67,48 @@
                         </div></noscript>
 <div class="row">
 <div class="span4">
-<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
 <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
 </div>
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
-<i class="icon-map-marker"></i> Packages</li>
-<li>
-<a href="../packages/controllers.html" title="controllers"><i class="icon-folder-open"></i>controllers</a><ul class="nav nav-list nav-packages"></ul>
-</li>
-<li class="nav-header">
-<i class="icon-custom icon-class"></i> Classes</li>
-<<<<<<< HEAD
-<li><a href="#User" title="the user controller">User</a></li>
-<li><a href="#Main" title="the main controller">Main</a></li>
-=======
-<<<<<<< HEAD
-<li><a href="#User" title="the user controller">User</a></li>
->>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
-<li><a href="#Util" title="Utility controller">Util</a></li>
-<li><a href="#Test" title="the test controller">Test</a></li>
-<li><a href="#Ajax" title="controller for AJAX requests">Ajax</a></li>
-=======
-<li><a href="#Test" title="the test controller">Test</a></li>
-<li><a href="#Ajax" title="controller for AJAX requests">Ajax</a></li>
-<li><a href="#Util" title="Utility controller">Util</a></li>
-<li><a href="#Main" title="the main controller">Main</a></li>
-<li><a href="#User" title="the user controller">User</a></li>
->>>>>>> 790cc173d628cdc5425520b2c1b81ad511ae3e9e
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#lang" title="lang :: Load a language"><span class="description">Load a language</span><pre>lang()</pre></a></li>
 </ul>
 </div>
-<div class="span8 package-contents">
-<ul class="breadcrumb">
+<div class="span8">
+<a name="%5CUtil" id="\Util"></a><ul class="breadcrumb">
 <li>
-<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
-<li class="active"><a href="../packages/controllers.html">controllers</a></li>
+<li><a href="../namespaces/.html"></a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Util.html">Util</a>
+</li>
 </ul>
-<div class="package-indent">
-<h3>
-<i class="icon-custom icon-class"></i> Classes and interfaces</h3>
-<a name="Ajax" id="Ajax"></a><div class="element ajax clickable class" href="../classes/Ajax.html">
-<h1>Ajax<a href="../classes/Ajax.html">¶</a>
-</h1>
-<p class="short_description">controller for AJAX requests</p>
-<div class="details collapse"></div>
-<a href="../classes/Ajax.html" class="more">« More »</a>
-</div>
-<a name="Test" id="Test"></a><div class="element ajax clickable class" href="../classes/Test.html">
-<h1>Test<a href="../classes/Test.html">¶</a>
-</h1>
-<p class="short_description">the test controller</p>
-<div class="details collapse"></div>
-<a href="../classes/Test.html" class="more">« More »</a>
-</div>
-<a name="User" id="User"></a><div class="element ajax clickable class" href="../classes/User.html">
-<h1>User<a href="../classes/User.html">¶</a>
-</h1>
-<p class="short_description">the user controller</p>
-<div class="details collapse"></div>
-<a href="../classes/User.html" class="more">« More »</a>
-</div>
-<a name="Util" id="Util"></a><div class="element ajax clickable class" href="../classes/Util.html">
-<h1>Util<a href="../classes/Util.html">¶</a>
-</h1>
+<div href="../classes/Util.html" class="element class">
 <p class="short_description">Utility controller</p>
-<div class="details collapse"></div>
-<a href="../classes/Util.html" class="more">« More »</a>
+<div class="details">
+<p class="long_description"><p>a controller containing utility functions. It uses no views but sends the user back to the last URI saved in the session.
+e.g. used for changing the language globally.</p></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/controllers.html">controllers</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="lang" id="lang"></a><div class="element clickable method public lang" data-toggle="collapse" data-target=".lang .collapse">
+<h2>Load a language</h2>
+<pre>lang(string $language) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Changing the language my setting the session variable language.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$language</h4>
+<code>string</code><p>the language to load, named like the folder containing the language files</p></div>
+</div></div>
+</div>
 </div>
 </div>
 </div>

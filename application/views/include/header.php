@@ -4,7 +4,6 @@
 			echo 'lang='.lang('language_code').' xml:lang='.lang('language_code').' dir='.lang('language_dir');
 		?> xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-
 <head>
 <?php 
 	if (isset($scripts)) {
