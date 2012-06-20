@@ -59,11 +59,10 @@ class Comment_model extends CI_Model {
 	 * @author Abdul Razzaq 
 	 * @param int $qid the questionID
 	 * @param int $uid the userID
-	 * @param int $body the body
+	 * @param string $body the body
 	 * @return int commentID
 	 */
 
-	// TODO: Implement create_qcomment and create_acomment so that it adds a question or answer comment to the database and returns the 	new comment's commentID. Then create its documentation, using phpdoc comments. See get_acomments for an example.
 	public function create_qcomment($qid, $uid, $body) {
 		
 		$data = array('questionID' => $qid, 'userID' => $uid, 'body' => $body);
@@ -82,7 +81,7 @@ class Comment_model extends CI_Model {
 	 * @author Abdul Razzaq 
 	 * @param int $aid the answerID
 	 * @param int $uid the userID
-	 * @param int $body the body
+	 * @param string $body the body
 	 * @return int commentID
 	 */
 

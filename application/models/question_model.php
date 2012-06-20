@@ -42,7 +42,7 @@ class Question_model extends CI_Model {
 
 	public function get_list($offset, $limit, $filter = array()) {
 		$this -> db -> select('questionID,title');
-		$this -> db -> where($this->filter($filter));
+		$this->filter($filter);
 		$query = $this -> db -> get('Question', $limit, $offset);
 		return $query -> result();
 	}
@@ -87,8 +87,6 @@ class Question_model extends CI_Model {
 */
 
 private function filter($filter) {
-	// TODO: implement the filter function so that it works as documented.
-			
 	foreach ($filter as $key=>$value){
 				
 		if (array_key_exists('userID', $filter)) {		
@@ -105,7 +103,6 @@ private function filter($filter) {
 		
 		}
 	}
-	return array();
  }
 
 }

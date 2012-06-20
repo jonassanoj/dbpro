@@ -1,7 +1,5 @@
 <?php
 
-// TODO: complete the category_model documentation, using phpdoc comments like in question_model.php
-
 	/**
  	* The category model
  	*
@@ -22,7 +20,6 @@
 
 class Category_model extends CI_Model {
 
-         // this function will add category to the category table
 	 /**
 	 * Add new category.
 	 * 
@@ -42,7 +39,7 @@ class Category_model extends CI_Model {
 		return $this -> db -> insert_id();
 	}
 
- 	 // this function will alter the new name for category in Category Table
+
 	 /**
 	 * Update category.
 	 * 
@@ -60,7 +57,6 @@ class Category_model extends CI_Model {
 		return $this -> db -> affected_rows();
 	}
 
-         // this function will return all Categories in the category table
  	 /**
 	 * Retrieving all category.
 	 * 
@@ -79,7 +75,6 @@ class Category_model extends CI_Model {
 	}
 
 	 
-	 // this function will delete an unwanted category from category table
 	 /**
 	 * Delete a category.
 	 * 
