@@ -94,8 +94,8 @@ class User_model extends CI_Model {
 
 	public function check_userName($username) {   
 		$this->db->select('userID');
-		$query = $this->db->get_where('User', array('userName ='=> $username))->result(); 
-		return $query->result_array();
+		$query = $this->db->get_where('User', array('userName ='=> $username)); 
+		return $query->result();
 		
 	}
 	

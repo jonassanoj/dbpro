@@ -59,12 +59,38 @@ class Comment_model extends CI_Model {
 	}
 
     // TODO: Implement update_comment so that it updates the body of the comment specified by $cid. Then implement delete_comment so that it deletes the comment specified by $cid. Create documentation for both functions, using phpdoc comments. See get_acomments for an example.
-	public function update_comment($cid, $body) {
 
+	
+	/**
+	 * Update Comments by id 
+	 *
+	 *this function will update the comment body.
+	 *
+	 * @param int $cid the commentID
+	 * @param string $body the body 
+	 */
+	public function update_comment($cid, $body) {
+	
+	// Update comment set body = '$body' where commentId = $cid
+		//$query = $this -> db -> update_string("Comment", array('body' => $body), array('commentID'=>$cid));	
+		$data = array('body' => $body);
+		$this -> db -> where('commentID', $cid);
+		$this -> db -> update('Comment', $data);
 	}
     
-	public function delete_comment($cid) {
 
+	/**
+	 * Delete Comments by id 
+	 *
+	 *this function will delete the comment.
+	 *
+	 * @param int $cid the commentID
+	 
+	 */
+
+	public function delete_comment($cid) {
+		
+		return $this -> db -> delete('Comment', array('commentID'=>$cid));
 	}
 
 }

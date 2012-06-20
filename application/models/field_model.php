@@ -1,61 +1,49 @@
 <?php
 
-	/**
-	 * this model is for fields
-	 * 
-	 * Field_model: this class provide interfaces for geting
-	 * adding, deleting fields, from database, (Field) table
-	 * @author  Sayed Ahmad Mahboobi
-	 * @package models
-	 */
 
+/**
+ * the Field_model 
+ *
+ * Provides the following functions:
+ * _get_fields(): returns the field recoreds from table _Field.
+ * _add_field($fieldName): insert a new field recored to table _Field.
+ * _delete_field($fieldID): deletes a record from table _Field.
+ * It uses the table _Field.
+ *
+ * @package models
+ */
 class Field_model extends CI_Model {
 
-	
-	
 	/**
-	 * this function is for geting field
-	 * 
-	 * get_fields(): this function select all rows from Field table
-	 * 
-	 * @author Sayed Ahmad Mahbobi
-	 * @return: Array: it return an array of all rows in the Field table
-	 */
-	
+	 * retrives all records from table Field as record objects.
+	 * @param none
+	 * @return array holds fields objects with fieldIDs and fieldNames. 
+	 */ 
+
 	function get_fields() {
 		$query = $this -> db -> get('Field');
 		return $query -> result();
 	}
 
-
-
 	/**
-	 * it adds records in the field table
-	 * 
-	 * add_field(): This fuction add a new field into Field table
-	 * 
-	 * @author Sayed Ahmad Mahboobi
-	 * @param string $fieldName (String: needs a parameter which represent a field name)
-	 * @return int new_inserted_id (int: it return the new iserted field id)
+	 * insert a given fieldName into table _Field. 
+	 * fieldname: can be a string that indicates area of study or profession of a user. 
+	 * @param string $fieldName
 	 */
-	
+
 	function add_field($fieldName) {
 		$this -> db -> insert('Field', $fieldName);
 		return $this -> db -> insert_id();
 	}
 
-	
+
 	/**
-	 *deletes the feilds
-	 * 
-	 * delete_field(): This fuction delete a field from field table
-	 * Function takes an arguments which will be fieldID
-	 * 
-	 * @author Sayed Ahmad Mahboobi
-	 * @param int $fieldID (int: ID of the field to be delete)
-	 * @return: void
-	 */
-	
+	 * Deletes a specific record from table _Field that matches the given fieldID. 
+	 * fieldID: can be an integer that has beent from coller function.
+	 * @param int $fieldID
+
+			 */
+
 	function delete_field($fieldID) {
 		$this -> db -> where('fieldID', $fieldID);
 		$this -> db -> delete('Field');

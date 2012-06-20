@@ -1,3 +1,4 @@
+
 <?php
 /**
  * the main controller
@@ -36,7 +37,16 @@ class Main extends CI_Controller {
 	 *
 	 * * _include/header.php_
 	 * * _header/loginbox | loggedin : a header with loginbox or with logout button
-	 * * _leftnav/default.php_: the default content of the navigation bar
+
+	 * * _leftnav/_:
+	 * * ***If the user type is known, show specific leftnav bar depending on usertype.
+	 * ***usertype 1 for confirmed user
+	 * ***usertype 2 for editor
+	 * ***usertype 3 for admin
+	 * ***usertype 0 or else for unconfirmed user
+	 * * ***If the user type is unknown, show default or unconfirmed user leftnav bar.
+	 * ******************************************************************
+
 	 * * _body_/$body_view_: the body content given as a parameter
 	 * * _include/footer.php_
 	 *
@@ -46,7 +56,7 @@ class Main extends CI_Controller {
 	 *
 	 */
 
-	//TODO: extend the _loadviews() function so it loads a different sidebar, depending on the type of user.
+	
 	public function _loadviews($body_view, $data) {
 		// remember the current URL for creating backlinks
 		$this -> session -> set_userdata('last_visited', current_url());
@@ -60,8 +70,33 @@ class Main extends CI_Controller {
 			$data['username'] = $this -> input -> cookie('username');
 			$this -> load -> view('header/loginbox',$data);
 		}
-			
-		$this -> load -> view('leftnav/default');
+
+		//$this -> load -> view('leftnav/default');
+
+		if($this -> session -> userdata('usertype')){
+		
+			if ($this -> session -> userdata('usertype') == 1)
+			{
+				$this -> load -> view('leftnav/user');
+			}
+			elseif ($this -> session -> userdata('usertype') == 2)
+			{
+				$this -> load -> view('leftnav/editor');
+			}
+			elseif ($this -> session -> userdata('usertype') == 3)
+			{
+				$this -> load -> view('leftnav/admin');
+			}
+			else
+			{
+				$this -> load -> view('leftnav/default');
+			}
+		}
+		else{
+			$this -> load -> view('leftnav/default');
+		}
+		
+
 		$this -> load -> view('body/' . $body_view, $data);
 		$this -> load -> view('include/footer');
 	}
@@ -89,7 +124,9 @@ class Main extends CI_Controller {
 	 */
  
 	public function questions($offset = 0) {
+
 		$config['base_url'] = site_url('main/questions/');
+
 		$config['per_page'] = 5;
 		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page']);
 		$config['total_rows'] = $this -> question_model -> get_count();
@@ -98,22 +135,45 @@ class Main extends CI_Controller {
 		$data['title'] = lang('title_recent_questions');
 		$this -> _loadviews('qlist', $data);
 	}
+
+	/**
+	*shows a list of paginated questions
+	*
+        * which they belong to specific category.
+	* get the list of question(4 questions per page) wich they corrospond the specific fieldID 
+	* @param int $fid the ID of field
+	* @param int $offset the pagination offset
+	* @return void
+	 *
+	*Author Somaia Zabihi
+        */
 	
-	public function field($fid,$offset) {
+	public function field($fid,$offset = 0) {
 		// TODO: implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
+		//Author Somaia Zabihi
+		$config['base_url'] = site_url("main/field/$fid/");
+		$config['per_page'] = 4;
+		$config['uri_segment'] = 4;
+		$filter=array('fieldID'=>$fid);
+		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'],$filter);
+		$config['total_rows'] = $this -> question_model -> get_count($filter);
+		$this -> pagination -> initialize($config);
+		$data['pagelinks'] = $this -> pagination -> create_links();
+		$data['title'] = lang('title_recent_questions');
+		$this -> _loadviews('qlist', $data);
 	}
 	
-	public function search($offset, $term) {
-		$config['base_url'] = site_url('main/search/');
+	public function search($term,$offset) {
+		$config['base_url'] = site_url('main/questions/');
 		$config['per_page'] = 5;
-		$array = explode(' ', $term);
-		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $array);
+		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page']);
 		$config['total_rows'] = $this -> question_model -> get_count();
 		$this -> pagination -> initialize($config);
 		$data['pagelinks'] = $this -> pagination -> create_links();
 		$data['title'] = lang('title_recent_questions');
 		$this -> _loadviews('qlist', $data);
-		
+
+
 
 	}
 
@@ -156,3 +216,4 @@ class Main extends CI_Controller {
 	}
 
 }
+

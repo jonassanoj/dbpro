@@ -60,6 +60,7 @@
 <path fill="none" stroke="black" d="M227.994,-459.117C200.539,-455.483 166.664,-451 137.866,-447.188"/>
 <polygon fill="none" stroke="black" points="138.283,-443.713 127.911,-445.871 137.365,-450.652 138.283,-443.713"/>
 </g>
+<<<<<<< HEAD
 <!-- \\Field_model -->
 <g id="node5" class="node"><title>\\Field_model</title>
 <a xlink:href="models.field_model.html" xlink:title="Field_model" target="_parent">
@@ -101,6 +102,49 @@
 <a xlink:href="controllers.user.html" xlink:title="User" target="_parent">
 <polygon fill="none" stroke="black" points="307,-268 253,-268 253,-232 307,-232 307,-268"/>
 <text text-anchor="middle" x="280" y="-247.1" font-family="Courier,monospace" font-size="11.00">User</text>
+=======
+<!-- \\Answer_model -->
+<g id="node5" class="node"><title>\\Answer_model</title>
+<a xlink:href="models.answer_model.html" xlink:title="Answer_model" target="_parent">
+<polygon fill="none" stroke="black" points="329,-430 231,-430 231,-394 329,-394 329,-430"/>
+<text text-anchor="middle" x="280" y="-409.1" font-family="Courier,monospace" font-size="11.00">Answer_model</text>
+</a>
+</g>
+<!-- \\Answer_model&#45;&gt;CI_Model -->
+<g id="edge9" class="edge"><title>\\Answer_model&#45;&gt;CI_Model</title>
+<path fill="none" stroke="black" d="M230.877,-418.502C203.035,-422.187 167.928,-426.833 138.18,-430.77"/>
+<polygon fill="none" stroke="black" points="137.357,-427.349 127.902,-432.131 138.275,-434.288 137.357,-427.349"/>
+</g>
+<!-- \\Category_model -->
+<g id="node6" class="node"><title>\\Category_model</title>
+<a xlink:href="models.category_model.html" xlink:title="Category_model" target="_parent">
+<polygon fill="none" stroke="black" points="335,-376 225,-376 225,-340 335,-340 335,-376"/>
+<text text-anchor="middle" x="280" y="-355.1" font-family="Courier,monospace" font-size="11.00">Category_model</text>
+</a>
+</g>
+<!-- \\Category_model&#45;&gt;CI_Model -->
+<g id="edge11" class="edge"><title>\\Category_model&#45;&gt;CI_Model</title>
+<path fill="none" stroke="black" d="M234.472,-376.077C200.592,-389.53 154.573,-407.802 120.855,-421.19"/>
+<polygon fill="none" stroke="black" points="119.255,-418.059 111.253,-425.003 121.838,-424.565 119.255,-418.059"/>
+</g>
+<!-- \\Field_model -->
+<g id="node7" class="node"><title>\\Field_model</title>
+<a xlink:href="models.field_model.html" xlink:title="Field_model" target="_parent">
+<polygon fill="none" stroke="black" points="325,-322 235,-322 235,-286 325,-286 325,-322"/>
+<text text-anchor="middle" x="280" y="-301.1" font-family="Courier,monospace" font-size="11.00">Field_model</text>
+</a>
+</g>
+<!-- \\Field_model&#45;&gt;CI_Model -->
+<g id="edge13" class="edge"><title>\\Field_model&#45;&gt;CI_Model</title>
+<path fill="none" stroke="black" d="M234.188,-321.615C227.95,-324.505 221.729,-327.658 216,-331 173.709,-355.674 129.771,-391.526 102.654,-415.049"/>
+<polygon fill="none" stroke="black" points="100.017,-412.706 94.7992,-421.928 104.628,-417.973 100.017,-412.706"/>
+</g>
+<!-- \\Test -->
+<g id="node8" class="node"><title>\\Test</title>
+<a xlink:href="controllers.test.html" xlink:title="Test" target="_parent">
+<polygon fill="none" stroke="black" points="307,-268 253,-268 253,-232 307,-232 307,-268"/>
+<text text-anchor="middle" x="280" y="-247.1" font-family="Courier,monospace" font-size="11.00">Test</text>
+>>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
 </a>
 </g>
 <!-- CI_Controller -->
@@ -108,20 +152,25 @@
 <ellipse fill="none" stroke="black" cx="76" cy="-142" rx="75.1594" ry="18.3848"/>
 <text text-anchor="middle" x="76" y="-138.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">CI_Controller</text>
 </g>
+<<<<<<< HEAD
 <!-- \\User&#45;&gt;CI_Controller -->
 <g id="edge15" class="edge"><title>\\User&#45;&gt;CI_Controller</title>
+=======
+<!-- \\Test&#45;&gt;CI_Controller -->
+<g id="edge15" class="edge"><title>\\Test&#45;&gt;CI_Controller</title>
+>>>>>>> ae9c11e0c249aa5069bc0ee2d4e4bf89b25e4886
 <path fill="none" stroke="black" d="M252.882,-239.439C241.362,-234.728 227.875,-228.911 216,-223 179.48,-204.821 139.323,-181.189 111.418,-164.148"/>
 <polygon fill="none" stroke="black" points="113.162,-161.112 102.809,-158.862 109.499,-167.077 113.162,-161.112"/>
 </g>
-<!-- \\Main -->
-<g id="node9" class="node"><title>\\Main</title>
-<a xlink:href="controllers.main.html" xlink:title="Main" target="_parent">
+<!-- \\Ajax -->
+<g id="node9" class="node"><title>\\Ajax</title>
+<a xlink:href="controllers.ajax.html" xlink:title="Ajax" target="_parent">
 <polygon fill="none" stroke="black" points="307,-214 253,-214 253,-178 307,-178 307,-214"/>
-<text text-anchor="middle" x="280" y="-193.1" font-family="Courier,monospace" font-size="11.00">Main</text>
+<text text-anchor="middle" x="280" y="-193.1" font-family="Courier,monospace" font-size="11.00">Ajax</text>
 </a>
 </g>
-<!-- \\Main&#45;&gt;CI_Controller -->
-<g id="edge17" class="edge"><title>\\Main&#45;&gt;CI_Controller</title>
+<!-- \\Ajax&#45;&gt;CI_Controller -->
+<g id="edge17" class="edge"><title>\\Ajax&#45;&gt;CI_Controller</title>
 <path fill="none" stroke="black" d="M252.91,-188.829C223.461,-181.034 175.443,-168.323 136.86,-158.11"/>
 <polygon fill="none" stroke="black" points="137.326,-154.613 126.763,-155.437 135.534,-161.38 137.326,-154.613"/>
 </g>
@@ -137,27 +186,27 @@
 <path fill="none" stroke="black" d="M252.91,-142C229.534,-142 194.457,-142 161.687,-142"/>
 <polygon fill="none" stroke="black" points="161.607,-138.5 151.607,-142 161.606,-145.5 161.607,-138.5"/>
 </g>
-<!-- \\Test -->
-<g id="node11" class="node"><title>\\Test</title>
-<a xlink:href="controllers.test.html" xlink:title="Test" target="_parent">
+<!-- \\Main -->
+<g id="node11" class="node"><title>\\Main</title>
+<a xlink:href="controllers.main.html" xlink:title="Main" target="_parent">
 <polygon fill="none" stroke="black" points="307,-106 253,-106 253,-70 307,-70 307,-106"/>
-<text text-anchor="middle" x="280" y="-85.1" font-family="Courier,monospace" font-size="11.00">Test</text>
+<text text-anchor="middle" x="280" y="-85.1" font-family="Courier,monospace" font-size="11.00">Main</text>
 </a>
 </g>
-<!-- \\Test&#45;&gt;CI_Controller -->
-<g id="edge21" class="edge"><title>\\Test&#45;&gt;CI_Controller</title>
+<!-- \\Main&#45;&gt;CI_Controller -->
+<g id="edge21" class="edge"><title>\\Main&#45;&gt;CI_Controller</title>
 <path fill="none" stroke="black" d="M252.91,-95.1708C223.461,-102.966 175.443,-115.677 136.86,-125.89"/>
 <polygon fill="none" stroke="black" points="135.534,-122.62 126.763,-128.563 137.326,-129.387 135.534,-122.62"/>
 </g>
-<!-- \\Ajax -->
-<g id="node12" class="node"><title>\\Ajax</title>
-<a xlink:href="controllers.ajax.html" xlink:title="Ajax" target="_parent">
+<!-- \\User -->
+<g id="node12" class="node"><title>\\User</title>
+<a xlink:href="controllers.user.html" xlink:title="User" target="_parent">
 <polygon fill="none" stroke="black" points="307,-52 253,-52 253,-16 307,-16 307,-52"/>
-<text text-anchor="middle" x="280" y="-31.1" font-family="Courier,monospace" font-size="11.00">Ajax</text>
+<text text-anchor="middle" x="280" y="-31.1" font-family="Courier,monospace" font-size="11.00">User</text>
 </a>
 </g>
-<!-- \\Ajax&#45;&gt;CI_Controller -->
-<g id="edge23" class="edge"><title>\\Ajax&#45;&gt;CI_Controller</title>
+<!-- \\User&#45;&gt;CI_Controller -->
+<g id="edge23" class="edge"><title>\\User&#45;&gt;CI_Controller</title>
 <path fill="none" stroke="black" d="M252.882,-44.5608C241.362,-49.2724 227.875,-55.0887 216,-61 179.48,-79.1789 139.323,-102.811 111.418,-119.852"/>
 <polygon fill="none" stroke="black" points="109.499,-116.923 102.809,-125.138 113.162,-122.888 109.499,-116.923"/>
 </g>
