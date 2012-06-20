@@ -22,7 +22,7 @@
 		echo '<br>'; // clear left
 		$attribute = array("id" => "login",
 						   "name" => "login",
-						   "value" => "Login");
+						   "value" => lang('form_login'));
 		echo form_label('','login');
 		echo anchor("user/register/",lang('form_register'));
 		echo form_submit($attribute);
