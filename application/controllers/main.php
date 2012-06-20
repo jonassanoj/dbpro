@@ -87,10 +87,6 @@ class Main extends CI_Controller {
 			{
 				$this -> load -> view('leftnav/admin');
 			}
-			else
-			{
-				$this -> load -> view('leftnav/default');
-			}
 		}
 		else{
 			$this -> load -> view('leftnav/default');
