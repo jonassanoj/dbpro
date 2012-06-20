@@ -71,12 +71,14 @@ class Main extends CI_Controller {
 			$this -> load -> view('header/loginbox',$data);
 		}
 
+
 		
 		
 
 		if($this -> session -> userdata('usertype')){
 
 		
+
 			if ($this -> session -> userdata('usertype') == 1)
 			{
 				$this -> load -> view('leftnav/user');
@@ -89,8 +91,8 @@ class Main extends CI_Controller {
 			{
 				$this -> load -> view('leftnav/admin');
 			}
-		}
-		else{
+		
+		else {
 			$this -> load -> view('leftnav/default');
 		}
 		
