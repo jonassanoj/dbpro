@@ -124,5 +124,4 @@ class Main extends CI_Controller {
 		$data['title'] = mb_convert_case(lang('w_'.$page),MB_CASE_TITLE);
 		$this -> _loadviews($page,$data);
 	}
-
 }

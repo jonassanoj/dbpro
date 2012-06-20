@@ -34,7 +34,5 @@ if (isset($result))
 <?php endforeach ?>
 
 <?php echo $backlink?>
-
-
 </div> <!-- body -->
 

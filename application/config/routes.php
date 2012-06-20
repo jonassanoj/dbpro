@@ -39,7 +39,6 @@
 */
 
 $route['default_controller'] = 'main/home';
-$route['about'] = 'static/view/about';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

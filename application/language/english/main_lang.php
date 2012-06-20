@@ -57,6 +57,9 @@ $lang['w_lang_fa'] = "Persian";
 $lang['w_lang_de'] = "German";
 $lang['w_lang_en'] = "English";
 $lang['w_lang_ps'] = "Pashto";
+////// newly added to english:
+$lang['w_createnew'] = "create new";
+$lang['w_question'] = "question";
 
 // Form
 $lang['form_username'] = "Username";
