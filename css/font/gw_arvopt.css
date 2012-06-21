@@ -1,0 +1,16 @@
+/*	Arvo + PT Sans
+	
+	---- PT body (1) + Arvo (3)  (152)
+	@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic);	
+
+	font-family: 'Arvo', serif;
+	font-family: 'PT Sans', sans-serif;
+*/		
+	
+@import url(http://fonts.googleapis.com/css?family=Arvo:400,700,400italic|PT+Sans);
+
+/****************************************************************************************/
+
+body {font-family:"PT Sans", Helvetica, Arial, sans; }
+h1, h2, h3, h4, h5, h6, ul, ol {font-family:"Arvo", Georgia, Times, serif; }
+

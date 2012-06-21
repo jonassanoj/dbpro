@@ -53,10 +53,13 @@ $lang['title_about'] = "About Goftogo";
 $lang['w_about'] = "about";
 $lang['w_home'] = "home";
 $lang['w_back'] = "back";
-$lang['w_lang_ps'] = "‏Pashto";
 $lang['w_lang_fa'] = "Persian";
 $lang['w_lang_de'] = "German";
 $lang['w_lang_en'] = "English";
+$lang['w_lang_ps'] = "Pashto";
+////// newly added to english:
+$lang['w_createnew'] = "create new";
+$lang['w_question'] = "question";
 
 // Form
 $lang['form_username'] = "Username";
@@ -64,12 +67,16 @@ $lang['form_password'] = "Password";
 $lang['form_remember'] = "Remember me";
 $lang['form_login'] = "Login";
 $lang['form_register'] = "Register";
+////// newly added to english:
+$lang['form_logout'] = "Logout";
 
 // Messages 
 $lang['msg_login_failed'] = "Login failed!";
 $lang['msgvar_username_taken'] = "Sorry, the username %s is already registered!";
 $lang['msgvar_users_online'] = "At the moment, %u registered users and %u guests are online.";
 $lang['msgvar_login_trial'] = "You tried %u times to login unsuccessully";
+////// newly added to english:
+$lang['msgvar_loggedin_as'] = "You are logged in as %s.";
 
 // Paragraphs 
 $lang['par_about'] = "Goftogo (Dialogue) is a Computer Science related Q&A site, that wants to bring Afghan IT students, 
@@ -77,5 +84,3 @@ teachers and professionals closer together. Whether you are just starting to lea
 programmer working daily with the most up-to-date technology or a professor with years of experience and a scientific background: 
 Join now to ask questions and receive answers, to give answers and receive gratitude. Unlike other things, knowledge only gets 
 bigger the more it is shared!";
-
-

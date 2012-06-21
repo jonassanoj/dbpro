@@ -1,0 +1,83 @@
+/******** Droid Sans *********
+
+	 w/s: normal/normal
+	 w/s: bold/normal
+
+
+/******** Droid Serif *********
+
+	 w/s: normal/normal
+	 w/s: normal/italic
+	 w/s: bold/normal
+	 w/s: bold/italic
+	 
+****************************************************************************
+     comment out fonts you are not using. Rules begin in line 75 ...	
+****************************************************************************
+*/
+
+@font-face {
+    font-family: 'DroidSans';
+    src: url('DroidSans-webfont.eot');
+    src: url('DroidSans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DroidSans-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+@font-face {
+    font-family: 'DroidSans';
+    src: url('DroidSans-Bold-webfont.eot');
+    src: url('DroidSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DroidSans-Bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+*/
+
+@font-face {
+    font-family: 'DroidSerif';
+    src: url('DroidSerif-Regular-webfont.eot');
+    src: url('DroidSerif-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DroidSerif-Regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DroidSerif';
+    src: url('DroidSerif-Italic-webfont.eot');
+    src: url('DroidSerif-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DroidSerif-Italic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'DroidSerif';
+    src: url('DroidSerif-Bold-webfont.eot');
+    src: url('DroidSerif-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DroidSerif-Bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DroidSerif';
+    src: url('DroidSerif-BoldItalic-webfont.eot');
+    src: url('DroidSerif-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DroidSerif-BoldItalic-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+/****************************************************************************************/
+
+body {font-family:"DroidSerif", Georgia, serif;}
+h1, h2, h3, h4, h5, h6, ul, ol {font-family:"DroidSans", Helvetica, Arial, sans; }
+
+strong { font-weight:bold; }
+em { font-style:italic; }
+strong em { font-weight:bold; font-style:italic;}
+

@@ -14,7 +14,7 @@ class Main extends CI_Controller {
 	 * constructor
 	 *
 	 * loads question_model, answer_model, main_lang.
-	 * 
+	 *
 	 */
 
 	public function __construct() {
@@ -22,50 +22,32 @@ class Main extends CI_Controller {
 		$this -> load -> model('question_model');
 		$this -> load -> model('answer_model');
 		// if no language defined in session, load default language.
-		if (! $this -> session -> userdata('language')) $this->lang->load('main');
-		else $this->lang->load('main', $this -> session -> userdata('language'));
+		if (!$this -> session -> userdata('language'))
+			$this -> lang -> load('main');
+		else
+			$this -> lang -> load('main', $this -> session -> userdata('language'));
 	}
 
 	/**
 	 * private helper function to build view
 	 *
 	 * every complete html-page sent to the client is constructed here.
-	 * currently, header and body are choosen dynamically.
 	 *
 	 * The following parts are sent in order:
 	 *
-	 * * _include/header.php_
-	 * * _header/loginbox | loggedin : a header with loginbox or with logout button
-	 * * _leftnav/default.php_: the default content of the navigation bar
-	 * * _body_/$body_view_: the body content given as a parameter
-	 * * _include/footer.php_
-	 *
-	 * @param string $body_view what should appear in the body
+	 * @param string $content what should appear in the body
 	 * @param array $data The data array to pass on to the views
 	 * @return void
 	 *
 	 */
 
-	//TODO: extend the _loadviews() function so it loads a different sidebar, depending on the type of user.
-	public function _loadviews($body_view, $data) {
-		// remember the current URL for creating backlinks
+	public function _loadviews($content, $data) {
 		$this -> session -> set_userdata('last_visited', current_url());
-		$this -> load -> view('include/header', $data);
-		if ($this -> session -> userdata('login'))
-		{ // user is logged in
-			$data['username'] = $this -> session -> userdata('username');
-			$this -> load -> view('header/loggedin',$data);
-		}
-		else {
-			$data['username'] = $this -> input -> cookie('username');
-			$this -> load -> view('header/loginbox',$data);
-		}
-			
-		$this -> load -> view('leftnav/default');
-		$this -> load -> view('body/' . $body_view, $data);
-		$this -> load -> view('include/footer');
+		$data['loginbox'] = TRUE;
+		$data['content'] = "content/$content";
+		$this -> load -> view('main_view', $data);
 	}
-	
+
 	/**
 	 * home view
 	 *
@@ -87,7 +69,7 @@ class Main extends CI_Controller {
 	 * @return void
 	 *
 	 */
- 
+
 	public function questions($offset = 0) {
 		$config['base_url'] = site_url('main/questions/');
 		$config['per_page'] = 5;
@@ -98,23 +80,53 @@ class Main extends CI_Controller {
 		$data['title'] = lang('title_recent_questions');
 		$this -> _loadviews('qlist', $data);
 	}
-	
-	public function field($fid,$offset) {
-		// TODO: implement field($fid,$offset). It should display a paginated view of all the questions that belong to categories in a field. use the already documented $filter feature of the question_model. You only need to make changes in the body of this function.
-	}
-	
-	public function search($offset, $term) {
-		$config['base_url'] = site_url('main/search/');
+
+	/**
+	 * shows a list questions of a field
+	 *
+	 * show the paginated _qlist_ view with the questions belonging to one field.  
+	 *
+	 * @param int $fid the fieldID 
+	 * @param int $offset the pagination offset
+	 * @return void
+	 *
+	 */
+
+	public function field($fid, $offset = 0) {
+		$config['base_url'] = site_url("main/field/$fid/");
 		$config['per_page'] = 5;
-		$array = explode(' ', $term);
-		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $array);
-		$config['total_rows'] = $this -> question_model -> get_count();
+		$config['uri_segment'] = 4;
+		$filter = array('fieldID' => $fid);
+		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $filter);
+		$config['total_rows'] = $this -> question_model -> get_count($filter);
 		$this -> pagination -> initialize($config);
 		$data['pagelinks'] = $this -> pagination -> create_links();
-		$data['title'] = lang('title_recent_questions');
+		$data['title'] = lang('title_field_question');
 		$this -> _loadviews('qlist', $data);
-		
+	}
+	
+	/**
+	 * shows a list questions matching a search term
+	 *
+	 * show the paginated _qlist_ view with the questions belonging to one field.  
+	 *
+	 * @param int $term the ANDed search terms, separated by space  
+	 * @param int $offset the pagination offset
+	 * @return void
+	 *
+	 */
 
+	public function search($term, $offset) {
+		$config['base_url'] = site_url("main/field/$term/");
+		$config['per_page'] = 5;
+		$config['uri_segment'] = 4;
+		$filter = array('search' => $term);
+		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $filter);
+		$config['total_rows'] = $this -> question_model -> get_count($filter);
+		$this -> pagination -> initialize($config);
+		$data['pagelinks'] = $this -> pagination -> create_links();
+		$data['title'] = lang('title_search_question');
+		$this -> _loadviews('qlist', $data);
 	}
 
 	/**
@@ -126,10 +138,10 @@ class Main extends CI_Controller {
 	 * @return void
 	 *
 	 */
-	
+
 	public function qshow($qid) {
 		$data['question'] = $this -> question_model -> get_details($qid);
-		$data['title'] =lang('title_main').': '.$data['question'] -> title;
+		$data['title'] = lang('title_main') . ': ' . $data['question'] -> title;
 		$data['answers'] = $this -> answer_model -> get_answers($qid);
 		$data['backlink'] = anchor($this -> session -> userdata('last_visited'), lang('w_back'), "class=backlink");
 		$this -> _loadviews('qdetails', $data);
@@ -148,11 +160,12 @@ class Main extends CI_Controller {
 	 */
 
 	public function view($page) {
-		// if no view to show for $page, show 404 now.
-		if (! file_exists('application/views/body/' . $page . '.php')) show_404();
+		// if no content to show for $page, show 404 now.
+		if (!file_exists('application/views/content/' . $page . '.php'))
+			show_404();
 		// try to translate the title, then capitalize it.
-		$data['title'] = mb_convert_case(lang('w_'.$page),MB_CASE_TITLE);
-		$this -> _loadviews($page,$data);
+		$data['title'] = mb_convert_case(lang('w_' . $page), MB_CASE_TITLE);
+		$this -> _loadviews($page, $data);
 	}
 
 }

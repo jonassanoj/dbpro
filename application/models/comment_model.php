@@ -49,48 +49,74 @@ class Comment_model extends CI_Model {
 		return $query -> result();
 	}
 
-	// TODO: Implement create_qcomment and create_acomment so that it adds a question or answer comment to the database and returns the new comment's commentID. Then create its documentation, using phpdoc comments. See get_acomments for an example.
-	public function create_qcomment($qid, $uid, $body) {
+	/**
+	 * adds a question comment to the Comment table of database
+	 *
+	 * You will pass questionID, userID and body to Comment table in database.
+	 * after inserting successfully all parameter to the database, commentID will be return from database
+	 *
+	 *
+	 * @param int $qid the questionID
+	 * @param int $uid the userID
+	 * @param string $body the body
+	 * @return int the id of the newly inserted comment
+	 */
 
+	public function create_qcomment($qid, $uid, $body) {
+		$data = array('questionID' => $qid, 'userID' => $uid, 'body' => $body);
+		$this->db->insert('Comment',$data);
+		return $this -> db -> insert_id();
 	}
+	
+	/**
+	 * adds a answer comment to the Comment table of database
+	 *
+	 * You will pass answerID, userID and body to Comment table in database.
+	 * after inserting successfully all parameter to the database, commentID will be return from database
+	 *
+	 * 
+	 * @param int $aid the answerID
+	 * @param int $uid the userID
+	 * @param string $body the body
+	 * @return int the id of the newly inserted comment
+	 */
 
 	public function create_acomment($aid, $uid, $body) {
+		$data = array('answerID' => $aid, 'userID' => $uid, 'body' => $body);
+		$this->db->insert('Comment',$data);
+		return $this -> db -> insert_id();
+	}		
 
-	}
-
-    // TODO: Implement update_comment so that it updates the body of the comment specified by $cid. Then implement delete_comment so that it deletes the comment specified by $cid. Create documentation for both functions, using phpdoc comments. See get_acomments for an example.
-
-	
 	/**
 	 * Update Comments by id 
 	 *
-	 *this function will update the comment body.
+	 * this function will update the comment body.
 	 *
-	 * @param int $cid the commentID
-	 * @param string $body the body 
+	 * @param int $cid the commentID of the comment to change
+	 * @param string $body the new body text of the comment
+	 * @return int 0 if the comment was not found, 1 otherwise 
+	 * 	 
 	 */
 	public function update_comment($cid, $body) {
-	
-	// Update comment set body = '$body' where commentId = $cid
-		//$query = $this -> db -> update_string("Comment", array('body' => $body), array('commentID'=>$cid));	
 		$data = array('body' => $body);
 		$this -> db -> where('commentID', $cid);
 		$this -> db -> update('Comment', $data);
+		return $this -> db -> affected_rows(); 
 	}
     
 
 	/**
 	 * Delete Comments by id 
 	 *
-	 *this function will delete the comment.
+	 * this function will delete the comment with the specified id.
 	 *
 	 * @param int $cid the commentID
-	 
+	 * @return int 0 if the comment was not found, 1 otherwise
 	 */
 
 	public function delete_comment($cid) {
-		
-		return $this -> db -> delete('Comment', array('commentID'=>$cid));
+		$this -> db -> delete('Comment', array('commentID'=>$cid));
+		return $this -> db -> affected_rows();
 	}
 
 }

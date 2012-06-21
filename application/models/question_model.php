@@ -42,7 +42,7 @@ class Question_model extends CI_Model {
 
 	public function get_list($offset, $limit, $filter = array()) {
 		$this -> db -> select('questionID,title');
-		$this -> db -> where($this->filter($filter));
+		$this->filter($filter);
 		$query = $this -> db -> get('Question', $limit, $offset);
 		return $query -> result();
 	}
@@ -79,16 +79,30 @@ class Question_model extends CI_Model {
 	/**
 	 * create a filter for the where-clause
 	 *
-	 * A private function used by *get_count* and *get_list*. It takes the $filter$ array (as described in the _getlist_ documentation) 
-	 * and returns an array that can be passed to the db->where() active record function. 
-	 * 
-	 * @param array $filter the filter, see the get_list documentation 
-	 * @return array a list of key->value conditions applied to the query
-	 */
+* A private function used by *get_count* and *get_list*. It takes the $filter$ array (as described in the _getlist_ documentation) 
+* It executes active record functions to qualify the query. 
+* 
+* @param array $filter the filter, see the get_list documentation 
+* @return void no return value
+*/
 
-	private function filter($filter) {
-		// TODO: implement the filter function so that it works as documented.	
-		return array();
+private function filter($filter) {
+	foreach ($filter as $key=>$value){
+				
+		if (array_key_exists('userID', $filter)) {		
+				$this->db->where('userID=',$filter['userID']);
+		}
+		if (array_key_exists('catID', $filter)) {
+			$this->db->where('catID=', $filter['catID']);
+		
+		}
+		if (array_key_exists('search', $filter)){
+			$array = explode(' ', $value);
+				foreach ($array as $key=>$value)
+					$this->db->like('title',$value);
+		
+		}
 	}
+ }
 
 }
