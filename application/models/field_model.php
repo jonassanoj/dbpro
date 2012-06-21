@@ -3,7 +3,7 @@
 	/**
 	 * this model is for fields
 	 * 
-	 * Field_model: this class provide interfaces for geting
+	 * Field_model: this class provide interfaces for getting
 	 * adding, deleting fields, from database, (Field) table
 	 * @author  Sayed Ahmad Mahboobi
 	 * @package models
@@ -14,7 +14,7 @@ class Field_model extends CI_Model {
 	
 	
 	/**
-	 * this function is for geting field
+	 * this function is for getting field
 	 * 
 	 * get_fields(): this function select all rows from Field table
 	 * 

@@ -19,11 +19,11 @@ class User_model extends CI_Model {
 	 *
 	 * The _$name_ is compared to the _userName_ in User table.
 	 *
-	 * The _$password_ is compared if it is eqaul to that userName's password.
+	 * The _$password_ is compared if it is equal to that userName's password.
 	 *
 	 * @author Huma Yari
 	 * @param string $name The username
-	 * @param string $password The password
+	 * @param string $password The password as md5 hash
 	 * @return int the userID if exits or 0
 	 */
 
@@ -46,16 +46,16 @@ class User_model extends CI_Model {
 	 * The user will be deleted if that userID is found.
 	 *
 	 * @author Huma Yari
-	 * @param int The userID
-	 * @return void
-	 * 
+	 * @param int $uid The userID
+	 * @return int 0 if userID not found, 1 if delete successful
+	 *
 	 */
 
 	public function delete_user($uid) {
-		return $this -> db -> delete('User', array('userID' => $uid));
+		$this -> db -> delete('User', array('userID' => $uid));
+		return $this -> db -> affected_rows();
 	}
 
-	
 	/**
 	 * adding new user in the User table with initial data *(username,password and email address)
 	 * @author Ashuqullah Alizai
@@ -75,13 +75,13 @@ class User_model extends CI_Model {
 			$this -> db -> set('email', $email);
 			$this -> db -> set('accountCreationDate', $date);
 			$this -> db -> insert('User');
-			return $this -> db -> affected_rows();;
+			return $this -> db -> affected_rows();
 		}
 
 	}
 
 	/**
-	 * checks if username exists or not , 
+	 * checks if username exists or not ,
 	 *
 	 * @author Ashuqullah Alizai
 	 * @param  string $username is this name already in the database
@@ -89,7 +89,7 @@ class User_model extends CI_Model {
 	 */
 
 	public function exists_username($username) {
-		$this -> db -> where('userName',$username);
+		$this -> db -> where('userName', $username);
 		return $this -> db -> count_all_results('User');
 	}
 
@@ -133,8 +133,37 @@ class User_model extends CI_Model {
 		return $this -> db -> affected_rows();
 	}
 
-	// TODO: This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'
+	/**
+	 * retrieve all information about specific user and according to userID
+	 *
+	 * Returns all user included usertype and userfield data such as User.userName, User.fullName, User.email, User.password, User.imagePath, Field.fieldName, UserType.userType, User.acountCreationDate, User.rank, User.lastLogin, User.Organization, User.location, User.dateOfBirth, User.degree, User.detail
+	 * @author Hamidullah khanzai
+	 * @param int $uid
+	 * @return row  consist of follwoing order
+	 * --------------------------------
+	 * userName
+	 * fullName
+	 * email
+	 * password
+	 * imagePath
+	 * fieldName
+	 * userType
+	 * acountCreattionDate
+	 * rank
+	 * lastLogin
+	 * Organization
+	 * location
+	 * dateOfBirth
+	 * degree
+	 * detail
+	 * can be accessed row['userName'] and so one
+	 */
+	 
 	public function get_userdata($uid) {
+
+		$query = $this -> db -> query('SELECT User.userName, User.fullName, User.email, User.password, User.imagePath,Field.fieldName, UserType.userType, User.acountCreationDate, User.rank, User.lastLogin, User.Organization, User.location, User.dateOfBirth, User.degree, User.detail,FROM User, Field, UserType WHERE User.userTypeID = UserType.userTypeID AND User.fieldID = Field.fieldID and User.userID =' . $uid);
+		return $query -> row(0);
+
 	}
 
 	/**
@@ -144,8 +173,7 @@ class User_model extends CI_Model {
 	 * @return true.
 	 */
 
-	// TODO: implement change_usertype() so it changes the user specified by $uid to category number $utid. Document this function and get_usertypes using phpdoc.
-	public function change_usertype($uid, $utid) {
+	 public function change_usertype($uid, $utid) {
 		// return true if successful
 		$this -> db -> set('$userTypeID', $utid);
 		$this -> db -> where('$userID', $uid);

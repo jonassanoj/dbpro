@@ -55,15 +55,14 @@ class Category_model extends CI_Model {
 	 * This function will return all categories thats belongs to a specific field from Category tables,
 	 * if no parameter passed to this function in this case it will return the whole category table.
 	 *
-	 * @param int $fieldID Means field-ID.
-	 * @return array Containing columns and rows of Category table.
+	 * @param int $fieldID the id of the field, if left empty retrieve
+	 * @return array contains category object containing fieldID, catID and catName
 	 */
 	
 	function get_categories($fieldID=0) {
-		if (!$fieldID=0) $this -> db -> where('fieldID', $fieldID);
+		if (!$fieldID==0) $this -> db -> where('fieldID', $fieldID);
 		$query = $this -> db -> get('Category');
 		return $query -> result();
-			
 	}
 
 	 /**
@@ -71,7 +70,6 @@ class Category_model extends CI_Model {
 	 * 
 	 * This function is used to delete a specific category from a Category tables.
 	 *
-	 * @author Abdulaziz Akbary
 	 * @param int $catID Means category-ID.
 	 * @return int Category-ID of deleted row.
 	 */

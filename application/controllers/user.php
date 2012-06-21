@@ -95,7 +95,7 @@ class User extends CI_Controller {
 	* Fuction for loging out:
 	* 
 	* Session data of the current user will unset here:
-	* <ul><li>login</li> <li>userid(uid)</li> <li>usertype</li> <li>username</li></ul>
+	* login userid(uid) usertype username
 	* will redirect after loging out, to the last visited place
 	* 
 	* @param: void
