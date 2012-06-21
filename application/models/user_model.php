@@ -134,6 +134,7 @@ class User_model extends CI_Model {
 	 * @param array $user_data an associative array containing the columns to update
 	 * @return int 1 if successful, 0 otherwise
 	 *
+
 	 */
 	public function update_user($uid, $user_data) {
 		$this -> db -> query(update_string('User', $user_data, "userID = $uid"));
