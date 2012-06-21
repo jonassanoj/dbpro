@@ -58,6 +58,7 @@ class Question_model extends CI_Model {
 
 	public function get_count($filter = array()) {
 		$this -> db -> from('Question');
+		$this -> filter($filter);
 		return $this -> db -> count_all_results();
 	}
 

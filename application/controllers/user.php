@@ -84,7 +84,7 @@ class User extends CI_Controller {
 		// login successful
 		$this -> session -> unset_userdata('failed_logins');
 		$this -> session -> set_userdata('uid',$uid);
-		$this -> session -> set_userdata('username',$username);
+		$this -> session -> set_userdata('user',$this->user_model->get_userdata($uid));
 		$this -> session -> set_userdata('login', true);
 		redirect($this -> session -> userdata('last_visited'));
 	}
@@ -131,10 +131,10 @@ class User extends CI_Controller {
 	    $this -> session -> set_userdata('failed_logins', $data['failed_logins']);
 		$data['title']=lang('msg_login_failed');
 		$data['username']=$user;
-		//if($this -> session -> userdata('failed_logins') < 3)
+		if($this -> session -> userdata('failed_logins') < 3)
 			$this -> _loadviews('login_failed', $data);
-		//else 
-			//redirect(site_url('user/recover/'. $user));
+		else 
+			redirect(site_url('user/recover/'. $user));
 	}
 	
 	public function register()
@@ -144,7 +144,7 @@ class User extends CI_Controller {
 	
 	public function recover($user='')
 	{
-	
+		
 	}
 	
 }

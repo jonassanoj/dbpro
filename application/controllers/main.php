@@ -42,14 +42,15 @@ class Main extends CI_Controller {
 	 */
 
 	public function _loadviews($content, $data) {
-		$this -> session -> userdata('last_visited', current_url());
-		if ($this -> session -> set_userdata('login')) {
+		$this -> session -> set_userdata('last_visited', current_url());
+		if ($this -> session -> userdata('login')) {
+			$data['userinfo'] = $this -> session -> userdata('user');
 			// if a user is logged in define dynamic navigation items
 			$data['navigation'][0] = anchor('main/filter/userID/'.$this->session->userdata('uid'),lang('title_your_questions'));
 			$data['navigation'][1] = anchor('www.google.de','google');
-			
 		}
 		$data['loginbox'] = TRUE;
+		
 		$data['content'] = "content/$content";
 				$this -> load -> view('main_view', $data);
 	}
@@ -99,11 +100,11 @@ class Main extends CI_Controller {
 	 *
 	 */
 
-	public function filter($filter,$param, $offset) {
+	public function filter($filter,$param, $offset=0) {
 		$config['base_url'] = site_url("main/filter/$filter/$param/");
-		$config['per_page'] = 5;
+		$config['per_page'] = 2;
 		$config['uri_segment'] = 5;
-		$filter = array($filter => $term);
+		$filter = array($filter => $param);
 		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $filter);
 		$config['total_rows'] = $this -> question_model -> get_count($filter);
 		$this -> pagination -> initialize($config);

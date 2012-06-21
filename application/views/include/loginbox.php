@@ -1,6 +1,5 @@
 <?php 
-echo $this -> session -> userdata('login');
-if (!($this -> session -> userdata('login'))) {
+if (!isset($userinfo)) {
 	echo form_open("user/login/");//,array('class'=>'formee formee-small'));
 	echo formee_div(12); // line one: name box
 	    echo lang('form_username','username');
@@ -25,10 +24,10 @@ if (!($this -> session -> userdata('login'))) {
 else { 
 	echo form_open("user/logout/",array('class'=>'formee'));
 	echo formee_div(12); // line one: message
-		echo lang(sprintf('msgvar_loggedin_as', $this->session->get_userdate('username')),'logout');
+		echo sprintf(lang('msgvar_loggedin_as'), $userinfo->userName);
 	echo '</div>'.formee_div(12,DIV_CLEAR); // line two: logout button
 	echo formee_button('login',lang('form_logout'));
 	echo '</div>';
-echo form_close();
+	echo form_close();
 }
 	
