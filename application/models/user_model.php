@@ -33,7 +33,7 @@ class User_model extends CI_Model {
 		$this -> db -> select('userID');
 		$query = $this -> db -> get('User');
 		if ($query -> num_rows() > 0) {
-			return $query[0]['userID'];
+			return $query->first_row()->userID;
 		} else
 			return 0;
 	}
@@ -57,40 +57,47 @@ class User_model extends CI_Model {
 	}
 
 	/**
-	 * adding new user in the User table with initial data *(username,password and email address)
+	 * adding new user in the User table with initial data (username,password and email address)
+	 * 
 	 * @author Ashuqullah Alizai
 	 * @param string $name is the username for the user
 	 * @param string $password is password specified by user
 	 * @param string $email is email specify by user
-	 * @return boolean true if success
+	 * @return int the id of the newly inserted user, 0 if failed
 	 */
 	public function add_user($name, $password, $email) {
 		// check for existing user
-		if ($this -> exists_username($name)) {
+		if ($this -> get_userID($name)) {
 			return false;
 		} else {
 			$date = date('Y/m/d H:i:s');
 			$this -> db -> set('userName', $name);
 			$this -> db -> set('password', $password);
 			$this -> db -> set('email', $email);
+			$this -> db -> set('userTypeID', 0);
 			$this -> db -> set('accountCreationDate', $date);
 			$this -> db -> insert('User');
-			return $this -> db -> affected_rows();
+			return $this -> db -> insert_id();
 		}
 
 	}
 
 	/**
-	 * checks if username exists or not ,
+	 * Get the userID for a certain userName.
 	 *
 	 * @author Ashuqullah Alizai
 	 * @param  string $username is this name already in the database
-	 * @return boolean true if username exists in the database, false if it does not exist
+	 * @return int the userID if username exists, 0 otherwise
 	 */
 
-	public function exists_username($username) {
+	public function get_userID($username) {
+		$this -> db -> select('userID');
 		$this -> db -> where('userName', $username);
-		return $this -> db -> count_all_results('User');
+		$query = $this -> db -> get('User');
+		if ($query -> num_rows() > 0) {
+			return $query->first_row()->userID;
+		} else
+			return false;
 	}
 
 	/**
@@ -134,43 +141,35 @@ class User_model extends CI_Model {
 	}
 
 	/**
-	 * retrieve all information about specific user and according to userID
+	 * retrieve all information about a user
 	 *
-	 * Returns all user included usertype and userfield data such as User.userName, User.fullName, User.email, User.password, User.imagePath, Field.fieldName, UserType.userType, User.acountCreationDate, User.rank, User.lastLogin, User.Organization, User.location, User.dateOfBirth, User.degree, User.detail
-	 * @author Hamidullah khanzai
+	 * Returns a user object containing information about the user, including his field and userType as a string. 
+	 *
 	 * @param int $uid
-	 * @return row  consist of follwoing order
-	 * --------------------------------
-	 * userName
-	 * fullName
-	 * email
-	 * password
-	 * imagePath
-	 * fieldName
-	 * userType
-	 * acountCreattionDate
-	 * rank
-	 * lastLogin
-	 * Organization
-	 * location
-	 * dateOfBirth
-	 * degree
-	 * detail
-	 * can be accessed row['userName'] and so one
+	 * @return object|boolean a user object containing all the fields of the user, additionally fieldName and userType 
+	 * are included as a string. If user is not found, returns false	 
 	 */
 	 
 	public function get_userdata($uid) {
-
-		$query = $this -> db -> query('SELECT User.userName, User.fullName, User.email, User.password, User.imagePath,Field.fieldName, UserType.userType, User.acountCreationDate, User.rank, User.lastLogin, User.Organization, User.location, User.dateOfBirth, User.degree, User.detail,FROM User, Field, UserType WHERE User.userTypeID = UserType.userTypeID AND User.fieldID = Field.fieldID and User.userID =' . $uid);
-		return $query -> row(0);
-
+		$this->db->join('UserType', 'User.userTypeID = UserType.userTypeID');
+		$this->db->join('Field', 'User.fieldID = Field.fieldID','left');
+		$this->db->where('userID',$uid);
+		$query = $this->db->get('User');
+		if ($query -> num_rows() > 0) {
+			return $query->first_row();
+		} else
+			return false;
 	}
 
 	/**
+	 * Change the userType 
+	 * 
+	 * changes the user with a given userID to a new userTypeID 
+	 *
 	 * @author GhezalAhmad Zia
-	 * @param  The function change_usertype has two parameter which is $uid and $utid, this function
-	 * change the user 's type. like we have normal user we can change it to Admin.
-	 * @return true.
+	 * @param $uid integer the userID
+	 * @param $utid integer the userTypeID to set  
+	 * @return integer 0 if user is not found, 1 otherwise
 	 */
 
 	 public function change_usertype($uid, $utid) {
@@ -178,7 +177,7 @@ class User_model extends CI_Model {
 		$this -> db -> set('$userTypeID', $utid);
 		$this -> db -> where('$userID', $uid);
 		$this -> db -> update('User');
-		return true;
+		return $this -> db -> affected_rows();
 
 	}
 
@@ -188,7 +187,7 @@ class User_model extends CI_Model {
 	 * This function is used to return all types of users.the function takes no parameter.
 	 *
 	 * @author saminullah sameem
-	 * @return object user types
+	 * @return array userType objects with the attributes userTypeID and userType
 	 */
 	public function get_usertypes() {
 		$query = $this -> db -> get('UserType');
@@ -202,6 +201,7 @@ class User_model extends CI_Model {
 	 * named Administrator, Normal user,Editor and unconfirmed.
 	 *
 	 * @author saminullah sameem
+	 * @param int $uid the user's ID'
 	 * @return array user data
 	 */
 	public function get_usertype($uid) {
