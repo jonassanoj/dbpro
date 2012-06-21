@@ -2,18 +2,15 @@
 /**
  * the Field_model 
  *
- * Provides the following functions:
- * _get_fields(): returns the field recoreds from table _Field.
- * _add_field($fieldName): insert a new field recored to table _Field.
- * _delete_field($fieldID): deletes a record from table _Field.
- * It uses the table _Field.
+ * 
  *
  * @package models
  */
 class Field_model extends CI_Model {
 
 	/**
-	 * retrives all records from table Field as record objects.
+	 * retrieves all field names.
+	 * 
 	 * @param none
 	 * @return array holds fields objects with fieldIDs and fieldNames. 
 	 */ 
@@ -38,6 +35,7 @@ class Field_model extends CI_Model {
 	/**
 	 * Deletes a specific record from table _Field that matches the given fieldID. 
 	 * fieldID: can be an integer that has beent from coller function.
+	 * 
 	 * @param int $fieldID
 
 	*/

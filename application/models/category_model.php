@@ -5,12 +5,7 @@
  	*
  	* This model allows us to add, update, retrieve and delete category from category table.
 	*
-	* It uses the following database:
-	*
-	* * _goftogo_
-	* * _User_ (read only)
-	*
- 	* It uses the following tables of goftogo database:
+ 	* It uses the following tables:
  	*
  	* * _Category_
  	* * _User_ (read only)
@@ -57,12 +52,12 @@ class Category_model extends CI_Model {
  	 /**
 	 * Retrieving all category.
 	 * 
-	 * This function will return all categories thats belongs to a specific field from Category tables,if no parameter passed to this function in this case it will return the whole category table.
+	 * This function will return all categories thats belongs to a specific field from Category tables,
+	 * if no parameter passed to this function in this case it will return the whole category table.
 	 *
 	 * @param int $fieldID Means field-ID.
 	 * @return array Containing columns and rows of Category table.
 	 */
-
 	
 	function get_categories($fieldID=0) {
 		if (!$fieldID=0) $this -> db -> where('fieldID', $fieldID);
