@@ -107,17 +107,34 @@ class User_model extends CI_Model {
 	// TODO: This function should return the user object for the user with id $uid. Additionally to the data from the User table, it should contain the users category (userType) and field (fieldName). Create phpdoc for this function. Note: you will also need to update the class' phpdoc.'  
 	
 	/**
-	 * retrieve all information about specified user
+	 * retrieve all information about specific user and according to userID 
 	 *
 	 * Returns all user included usertype and userfield data such as User.userName, User.fullName, User.email, User.password, User.imagePath, Field.fieldName, UserType.userType, User.acountCreationDate, User.rank, User.lastLogin, User.Organization, User.location, User.dateOfBirth, User.degree, User.detail
 	 * @author Hamidullah khanzai
 	 * @param int $uid
-	 * @return array holds user objects with a fieldName and userType and all related data belongs to a user
-	 * 
+	 * @return row  consist of follwoing order
+	 * --------------------------------
+	 * userName
+	 * fullName 
+	 * email 
+	 * password
+	 * imagePath 
+	 * fieldName
+	 * userType
+	 * acountCreattionDate 
+	 * rank
+	 * lastLogin
+	 * Organization
+	 * location
+	 * dateOfBirth
+	 * degree
+	 * detail
+	 * can be accessed row['userName'] and so one 
 	 */
 	public function get_userdata($uid) {
-		$query=$this->db->query('SELECT User.userName, User.fullName, User.email, User.password, User.imagePath, Field.fieldName, UserType.userType, User.acountCreationDate, User.rank, User.lastLogin, User.Organization, User.location, User.dateOfBirth, User.degree, User.detail,FROM User, Field, UserType WHERE User.userTypeID = UserType.userTypeID AND User.fieldID = Field.fieldID and User.userID ='.$uid);
-		return $query->result();
+		$query=$this->db->query('SELECT User.userName, User.fullName, User.email, User.password, User.imagePath, 
+		Field.fieldName, UserType.userType, User.acountCreationDate, User.rank, User.lastLogin, User.Organization, User.location, User.dateOfBirth, User.degree, User.detail,FROM User, Field, UserType WHERE User.userTypeID = UserType.userTypeID AND User.fieldID = Field.fieldID and User.userID ='.$uid);
+		return $query->row(0);
 	
 	}
 	
