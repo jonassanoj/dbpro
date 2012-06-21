@@ -9,7 +9,7 @@
  * * _Question_
  * * _Answer_ (read only)
  *
- * 
+ *
  * @package models
  */
 
@@ -77,6 +77,42 @@ class Question_model extends CI_Model {
 	}
 
 	/**
+	 * create a new question, return its id
+	 *
+	 * @param string $title the question title
+	 * @param int $uid the user who created the question
+	 * @param int $cid the categoryID of the question
+	 * @param string $body the question body
+	 * @return int the id of the newly inserted question, 0 if failed
+	 */
+
+	public function create_question($title, $uid, $cid, $body) {
+		$date = date('Y/m/d H:i:s');
+		$this -> db -> set('title', $title);
+		$this -> db -> set('userID', $uid);
+		$this -> db -> set('catID', $cid);
+		$this -> db -> set('body', $body);
+		$this -> db -> set('date', $date);
+		$this -> db -> insert('Question');
+		return $this -> db -> insert_id();
+	}
+
+	/**
+	 * Update a question
+	 *
+	 * Updates a question via an associative array. 
+	 *
+	 * @param int $qid the id of the question to update.
+	 * @param array $question_data an associative array containing the columns to update. For valid keys see the question table schema.
+	 * @return int 1 if successful, 0 otherwise
+	 *
+	 */
+	public function update_question($qid, $question_data) {
+		$this -> db -> query(update_string('Question', $question_data, "questionID = $qid"));
+		return $this -> db -> affected_rows();
+	}
+
+	/**
 	 * create a filter for the where-clause
 	 *
 	 * A private function used by *get_count* and *get_list*. It takes the $filter$ array (as described in the _getlist_ documentation)
@@ -95,7 +131,7 @@ class Question_model extends CI_Model {
 			if (array_key_exists('catID', $filter)) {
 				$this -> db -> where('catID', $filter['catID']);
 			}
-	
+
 			if (array_key_exists('search', $filter)) {
 				$array = explode(' ', $value);
 				foreach ($array as $key => $value)

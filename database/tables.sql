@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(120) NOT NULL,
   `imagePath` varchar(100) DEFAULT NULL,
-  `acountCreationDate` datetime DEFAULT NULL,
+  `accountCreationDate` datetime DEFAULT NULL,
   `rank` int(11) DEFAULT '0',
   `lastLogin` datetime DEFAULT NULL,
   `organization` varchar(50) DEFAULT NULL,

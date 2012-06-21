@@ -9,7 +9,7 @@
 	if (isset($scripts)) {
 		foreach($scripts as $uri) echo '<script type="text/javascript" src="'.base_url($uri).'"></script>'."\n"; 
 	}
-	
+	echo'<script type="text/javascript" src="'.base_url('js/jquery-1.7.2.min.js').'"></script>'."\n"; 
 	echo "<title>$title</title>\n";
 	
 	// favicon
