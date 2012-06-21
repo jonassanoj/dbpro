@@ -44,26 +44,26 @@ class User extends CI_Controller {
 
 	//TODO: Document the login(), logout() and failed() function. Change the implementation of failed() so it accepts only 3 failed password logins. After the third failed login the user should be sent to the recover page (user/recover/$username).
 	
-	/**
-	* function for user login:
-	* 
-	* This function check the following condition, and perform the task
-	*  <ul><li> Getting values (username, password) from login form and checking it in database
-	*    also login form have an optional checkbox field (remember) this function also check
-	*    if someone checked this remember  checkbox, so it will create a cookie on client computer
-	*    which will be exist till 3 days, otherwise cookies will be delete </li>
-	*  <li>if user login failed so a failed(username) function will be called and this failed fuction 
-	*    is counting that how much time login is failed if it was more than 3 times and new recover page
-	*    wil open to user.</li> 
-	*  <li>if user login successfully session data will be set for this user where 
-	*    userid, username, usertype, login(true, false) will store </li>
-	*  <li>when user data set in the sessioin the user will be redirect to the last visiting place
-	*    which will take from session data. (last_visited)</li></ul>
-	*
-	* @return void
-	*/
+ 	/**
+	 * function for user login:
+	 *
+	 * This function check the following condition, and perform the task
+	 * Getting values (username, password) from login form and checking it in database
+	 * also login form have an optional checkbox field (remember) this function also check
+	 * if someone checked this remember  checkbox, so it will create a cookie on client computer
+	 * which will be exist till 3 days, otherwise cookies will be delete
+	 * if user login failed so a failed(username) function will be called and this failed fuction
+	 * is counting that how much time login is failed if it was more than 3 times and new recover page
+	 * wil open to user.
+	 * if user login successfully session data will be set for this user where
+	 * userid, username, usertype, login(true, false) will store
+	 * when user data set in the sessioin the user will be redirect to the last visiting place
+	 * which will take from session data. (last_visited)
+	 *
+	 * @return void
+	 */
 	public function login()
-	{
+		{
 		$username = $this -> input -> post('username');
 		$password = md5($this -> input -> post('password'));
 		
@@ -84,9 +84,8 @@ class User extends CI_Controller {
 		// login successful
 		$this -> session -> unset_userdata('failed_logins');
 		$this -> session -> set_userdata('uid',$uid);
-		$this -> session -> set_userdata('usertype',$this-> user_model -> get_usertype($uid));
+		$this -> session -> set_userdata('user',$this->user_model->get_userdata($uid));
 		$this -> session -> set_userdata('login', true);
-		$this -> session -> set_userdata('username', $username);
 		redirect($this -> session -> userdata('last_visited'));
 	}
 	
@@ -94,7 +93,7 @@ class User extends CI_Controller {
 	* Fuction for loging out:
 	* 
 	* Session data of the current user will unset here:
-	* <ul><li>login</li> <li>userid(uid)</li> <li>usertype</li> <li>username</li></ul>
+	* login userid(uid) usertype username
 	* will redirect after loging out, to the last visited place
 	* 
 	* @param: void
@@ -132,10 +131,10 @@ class User extends CI_Controller {
 	    $this -> session -> set_userdata('failed_logins', $data['failed_logins']);
 		$data['title']=lang('msg_login_failed');
 		$data['username']=$user;
-		//if($this -> session -> userdata('failed_logins') < 3)
+		if($this -> session -> userdata('failed_logins') < 3)
 			$this -> _loadviews('login_failed', $data);
-		//else 
-			//redirect(site_url('user/recover/'. $user));
+		else 
+			redirect(site_url('user/recover/'. $user));
 	}
 	
 	public function register()
@@ -145,7 +144,7 @@ class User extends CI_Controller {
 	
 	public function recover($user='')
 	{
-	
+		
 	}
 	
 }

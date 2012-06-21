@@ -7,7 +7,8 @@
  *  $title string -- the page title used as html title and the heading in the header
  *  $loginbox bool -- if true show loginbox
  *  $navigation array -- if set, show include/navigation_dynamic, else show include/navigation_default
- *  
+ *  $userinfo object -- a user object, contains user information if a user is logged in. 
+ * 
  *  variables processed by include/header: 
  *  $this->lang object -- if set, localizes the document
  *  $scripts array -- uris of scripts to load
