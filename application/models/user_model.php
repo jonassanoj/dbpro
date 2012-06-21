@@ -45,28 +45,28 @@ class User_model extends CI_Model {
 	 *
 	 * The user will be deleted if that userID is found.
 	 *
-	 *@author Huma Yari
-	 *@param int The userID
-	 *@return void
+	 * @author Huma Yari
+	 * @param int The userID
+	 * @return void
+	 * 
 	 */
 
 	public function delete_user($uid) {
 		return $this -> db -> delete('User', array('userID' => $uid));
 	}
 
-	// TODO: implement the add_user function. A new unconfirmed user (userTypeID=0) is created with the given parameters. Set the accountCreationDate to the current date. Document the function using phpdoc.
+	
 	/**
-	 ** adding new user in the User table with initial data *(username,password and email address)
-	 * @author ASHUQULLAH ALIZAI
+	 * adding new user in the User table with initial data *(username,password and email address)
+	 * @author Ashuqullah Alizai
 	 * @param string $name is the username for the user
-	 * @param string $password is password specify by user
+	 * @param string $password is password specified by user
 	 * @param string $email is email specify by user
 	 * @return boolean true if success
 	 */
 	public function add_user($name, $password, $email) {
 		// check for existing user
-		$check_user = $this -> check_userName($name);
-		if (!$check_user) {
+		if ($this -> exists_username($name)) {
 			return false;
 		} else {
 			$date = date('Y/m/d H:i:s');
@@ -75,28 +75,22 @@ class User_model extends CI_Model {
 			$this -> db -> set('email', $email);
 			$this -> db -> set('accountCreationDate', $date);
 			$this -> db -> insert('User');
-			// return true if successful
-			return true;
+			return $this -> db -> affected_rows();;
 		}
 
 	}
 
 	/**
-	 * @author ASHUQULLAH ALIZAI
-	 * @param string_type $username is the user name for user who wants to register for first time
-
-	 * *private function _check_userName checks if usename exists or not ,
-	 * @return boolean false if username exist in the database, retruns true if the username not exist
+	 * checks if username exists or not , 
+	 *
+	 * @author Ashuqullah Alizai
+	 * @param  string $username is this name already in the database
+	 * @return boolean true if username exists in the database, false if it does not exist
 	 */
 
-	public function check_userName($username) {
-		$query = $this -> db -> get_where('User', array('userName =' => $username)) -> result();
-		if ($query -> num_rows() > 0)
-			return false;
-		// if user exists
-		else
-			return true;
-		// if not exists
+	public function exists_username($username) {
+		$this -> db -> where('userName',$username);
+		return $this -> db -> count_all_results('User');
 	}
 
 	/**

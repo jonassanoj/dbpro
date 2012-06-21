@@ -101,7 +101,7 @@ class Main extends CI_Controller {
 		$config['total_rows'] = $this -> question_model -> get_count($filter);
 		$this -> pagination -> initialize($config);
 		$data['pagelinks'] = $this -> pagination -> create_links();
-		$data['title'] = lang('title_field_question');
+		$data['title'] = lang('title_field_questions');
 		$this -> _loadviews('qlist', $data);
 	}
 	
@@ -125,7 +125,7 @@ class Main extends CI_Controller {
 		$config['total_rows'] = $this -> question_model -> get_count($filter);
 		$this -> pagination -> initialize($config);
 		$data['pagelinks'] = $this -> pagination -> create_links();
-		$data['title'] = lang('title_search_question');
+		$data['title'] = lang('title_search_questions');
 		$this -> _loadviews('qlist', $data);
 	}
 

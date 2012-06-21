@@ -48,6 +48,9 @@ $lang['title_popular_questions'] = "Most popular questions";
 $lang['title_your_questions'] = "Your questions";
 $lang['title_your_interest'] = "Questions that could interest you";
 $lang['title_about'] = "About Goftogo";
+////// newly added to english:
+$lang['titlevar_search_questions'] = "Search results";
+$lang['titlevar_field_questions'] = "Search results";
 
 // Words
 $lang['w_about'] = "about";
