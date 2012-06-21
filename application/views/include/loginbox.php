@@ -1,4 +1,5 @@
 <?php 
+echo $this -> session -> userdata('login');
 if (!($this -> session -> userdata('login'))) {
 	echo form_open("user/login/");//,array('class'=>'formee formee-small'));
 	echo formee_div(12); // line one: name box

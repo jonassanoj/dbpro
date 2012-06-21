@@ -32,8 +32,8 @@ class Main extends CI_Controller {
 	 * private helper function to build view
 	 *
 	 * every complete html-page sent to the client is constructed here.
-	 *
-	 * The following parts are sent in order:
+	 * for the documentation of the $data array contents that are passed to the view
+	 * see the comments in views/main_view.php
 	 *
 	 * @param string $content what should appear in the body
 	 * @param array $data The data array to pass on to the views
@@ -42,10 +42,16 @@ class Main extends CI_Controller {
 	 */
 
 	public function _loadviews($content, $data) {
-		$this -> session -> set_userdata('last_visited', current_url());
+		$this -> session -> userdata('last_visited', current_url());
+		if ($this -> session -> set_userdata('login')) {
+			// if a user is logged in define dynamic navigation items
+			$data['navigation'][0] = anchor('main/filter/userID/'.$this->session->userdata('uid'),lang('title_your_questions'));
+			$data['navigation'][1] = anchor('www.google.de','google');
+			
+		}
 		$data['loginbox'] = TRUE;
 		$data['content'] = "content/$content";
-		$this -> load -> view('main_view', $data);
+				$this -> load -> view('main_view', $data);
 	}
 
 	/**
@@ -82,45 +88,22 @@ class Main extends CI_Controller {
 	}
 
 	/**
-	 * shows a list questions of a field
+	 * shows a list of questions filtered after one condition
 	 *
-	 * show the paginated _qlist_ view with the questions belonging to one field.  
+	 * show the paginated _qlist_ view with the questions matching a filter.  
 	 *
-	 * @param int $fid the fieldID 
+	 * @param string $filter the filter name can be userID, catID or search
+	 * @param string|int $param the parameter of the filter, can be userID, fieldID, catID or searchTerm   
 	 * @param int $offset the pagination offset
 	 * @return void
 	 *
 	 */
 
-	public function field($fid, $offset = 0) {
-		$config['base_url'] = site_url("main/field/$fid/");
+	public function filter($filter,$param, $offset) {
+		$config['base_url'] = site_url("main/filter/$filter/$param/");
 		$config['per_page'] = 5;
-		$config['uri_segment'] = 4;
-		$filter = array('fieldID' => $fid);
-		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $filter);
-		$config['total_rows'] = $this -> question_model -> get_count($filter);
-		$this -> pagination -> initialize($config);
-		$data['pagelinks'] = $this -> pagination -> create_links();
-		$data['title'] = lang('title_field_questions');
-		$this -> _loadviews('qlist', $data);
-	}
-	
-	/**
-	 * shows a list questions matching a search term
-	 *
-	 * show the paginated _qlist_ view with the questions belonging to one field.  
-	 *
-	 * @param int $term the ANDed search terms, separated by space  
-	 * @param int $offset the pagination offset
-	 * @return void
-	 *
-	 */
-
-	public function search($term, $offset) {
-		$config['base_url'] = site_url("main/field/$term/");
-		$config['per_page'] = 5;
-		$config['uri_segment'] = 4;
-		$filter = array('search' => $term);
+		$config['uri_segment'] = 5;
+		$filter = array($filter => $term);
 		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $filter);
 		$config['total_rows'] = $this -> question_model -> get_count($filter);
 		$this -> pagination -> initialize($config);

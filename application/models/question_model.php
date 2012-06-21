@@ -9,6 +9,7 @@
  * * _Question_
  * * _Answer_ (read only)
  *
+ * 
  * @package models
  */
 
@@ -24,7 +25,6 @@ class Question_model extends CI_Model {
 	 *
 	 * * userID: show only questions posted by a certain user id
 	 * * catID: show only questions in a specific category id
-	 * * fieldID: show only questions of a category that belong to a specific field id
 	 * * search: a search term as a string. Words separated by a whitespace are ANDed.
 	 *
 	 * **Usage Example**:
@@ -89,12 +89,12 @@ class Question_model extends CI_Model {
 		foreach ($filter as $key => $value) {
 
 			if (array_key_exists('userID', $filter)) {
-				$this -> db -> where('userID=', $filter['userID']);
+				$this -> db -> where('userID', $filter['userID']);
 			}
 			if (array_key_exists('catID', $filter)) {
-				$this -> db -> where('catID=', $filter['catID']);
-
+				$this -> db -> where('catID', $filter['catID']);
 			}
+	
 			if (array_key_exists('search', $filter)) {
 				$array = explode(' ', $value);
 				foreach ($array as $key => $value)

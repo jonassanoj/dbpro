@@ -206,9 +206,8 @@ class User_model extends CI_Model {
 	 * @return array user data
 	 */
 	public function get_usertype($uid) {
-		$query = $this -> db -> query('SELECT UserType.userType FROM User, UserType WHERE User.userTypeID = userType.userTypeID AND userID =' . $uid);
-
-		return $query -> result();
+		//$query = $this -> db -> query('SELECT UserType.userType FROM User, UserType WHERE User.userTypeID = userType.userTypeID AND userID =' . $uid);
+		//return $query -> result();
 	}
 
 	/**

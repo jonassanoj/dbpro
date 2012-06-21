@@ -64,8 +64,7 @@ class User extends CI_Controller {
 	 */
 	public function login()
 		{
-		$username = $this -> input -> post(
-	'username');
+		$username = $this -> input -> post('username');
 		$password = md5($this -> input -> post('password'));
 		
 		if ($this -> input -> post('remember')=='yes') {
@@ -85,9 +84,8 @@ class User extends CI_Controller {
 		// login successful
 		$this -> session -> unset_userdata('failed_logins');
 		$this -> session -> set_userdata('uid',$uid);
-		$this -> session -> set_userdata('usertype',$this-> user_model -> get_usertype($uid));
+		$this -> session -> set_userdata('username',$username);
 		$this -> session -> set_userdata('login', true);
-		$this -> session -> set_userdata('username', $username);
 		redirect($this -> session -> userdata('last_visited'));
 	}
 	

@@ -11,8 +11,6 @@
 
 class Field_model extends CI_Model {
 
-	
-	
 	/**
 	 * this function is for getting field
 	 * 
@@ -46,7 +44,7 @@ class Field_model extends CI_Model {
 
 	
 	/**
-	 *deletes the feilds
+	 *deletes the fields
 	 * 
 	 * delete_field(): This fuction delete a field from field table
 	 * Function takes an arguments which will be fieldID
