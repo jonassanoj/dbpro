@@ -3,8 +3,8 @@
 ****************************************************************************/
 
 form.login_small {
-        font-size: 10pt;
-        width: 20em;
+        font-size: 8pt;
+        width: 21em;
     }
  
 .login_small label{
@@ -12,7 +12,7 @@ form.login_small {
     float: left;
     text-align: right;
     width: 10em;
-    font-size: 8pt;
+    font-size: inherit;
     } 
  
 .login_small input{
@@ -24,15 +24,14 @@ form.login_small {
                 color-stop(0.0, #ffffff), color-stop(1.0, #f2f2f2));
     border: 1px solid #cacaca;
     color: #797979;
-    padding: 2px 3px;
     width: 10em;
-    height: 0.8em;
-    font-size: inherit;
+    height: 1em;
     float: right;
+    font-size: inherit;
   }
 
 .login_small input[type=checkbox]{
-    width: 2em;
+    width: 1em;
     float: left;
   }
 
@@ -49,15 +48,18 @@ form.login_small {
 }
 
 .login_small input[type=submit]{
-    width : 5em;
+    width : 4em;
     color : black;
     cursor: pointer;
-    margin-left: 0.5em;
-    height: 1.8em;
-    font-size: 8pt;    
+    margin-left: 0.2em;
+    height: 17px;
  }
-
-.login_small #login{
-    font-weight: bold;
+.login_small #register{
+    font-size:7pt;
+    width: 5.2em;
+    padding: 0 0 2px 2px;
     
+}
+.login_small #login{
+    font-weight: bold;   
 }
