@@ -54,7 +54,7 @@ class User extends CI_Controller {
 	 * which will be exist till 3 days, otherwise cookies will be delete
 	 * if user login failed so a failed(username) function will be called and this failed fuction
 	 * is counting that how much time login is failed if it was more than 3 times and new recover page
-	 * wil open to user.
+	 * will open to user.
 	 * if user login successfully session data will be set for this user where
 	 * userid, username, usertype, login(true, false) will store
 	 * when user data set in the sessioin the user will be redirect to the last visiting place

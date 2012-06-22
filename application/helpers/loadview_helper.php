@@ -17,6 +17,9 @@ function init_view_data($content,$data) {
 		$data['navigation'][0] = anchor('main/filter/userID/'.$CI->session->userdata('uid'),lang('title_your_questions'));
 		$data['navigation'][1] = anchor('http://www.google.de','google');
 	}
+	else {
+		$data['username']=$CI -> input -> cookie('username');
+	}
 	$data['content'] = "content/$content";
 	return $data;	
 }
