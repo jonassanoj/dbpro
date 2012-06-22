@@ -64,7 +64,7 @@ $lang['form_username'] = "Benutzername";
 $lang['form_password'] = "Passwort";
 $lang['form_remember'] = "Name merken";
 $lang['form_login'] = "Login";
-$lang['form_register'] = "Registrieren";
+$lang['form_register'] = "Anmelden";
 
 // Messages 
 $lang['msg_login_failed'] = "Login fehlgeschlagen!";

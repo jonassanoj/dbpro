@@ -1,33 +1,28 @@
 <?php 
 if (!isset($userinfo)) {
-	echo form_open("user/login/");//,array('class'=>'formee formee-small'));
-	echo formee_div(12); // line one: name box
-	    echo lang('form_username','username');
+	echo form_open("user/login/",array('class'=>'login_small'));
+	echo lang('form_username','username');
 	    $options = array("id" => "username", "name"  => "username");
 	    if (isset($username)) $options['value'] = $username;
 		echo form_input($options);
-	echo '</div>'.formee_div(12,DIV_CLEAR); // line two: password box
+		echo "<br>\n"; // new line
 		echo lang('form_password','password');
 		echo form_password(array("id" => "password", "name" => "password"));
-	echo '</div>'.formee_div(6,DIV_CLEAR); // line three: remember box, and two buttons
-		echo lang('form_remember','remember');
-		echo form_checkbox('remember', 'yes', TRUE);
-	//echo '</div>'.formee_div(3);
-	    echo '<input type="submit" id="'.'register'.'" name="'.'login'.'" value="'.lang('form_register').'" />';
-		//echo formee_button('register',lang('form_register'));
-	//echo '</div>'.formee_div(3);
-		echo '<input type="submit" id="'.'login'.'" name="'.'login'.'" value="'.lang('form_login').'" />';
-		//echo formee_button('login',lang('form_login'));
-		echo '</div>';
-    echo form_close();
+	    echo "<br>\n"; // new line
+		echo '<span class="floatright">'."\n"; // positioning
+				echo '<input type="submit" id="'.'login'.'" name="'.'login'.'" value="'.lang('form_login').'" />';
+				echo '<input type="submit" id="'.'register'.'" name="'.'register'.'" value="'.lang('form_register').'" />';
+				echo '<span class="floatright">'."\n"; // positioning
+				echo lang('form_remember','remember');
+				echo form_checkbox('remember', 'yes', TRUE);
+			echo '</span>'."\n"; 
+		echo '</span>'."\n"; 
+	echo form_close();
 }
 else { 
-	echo form_open("user/logout/",array('class'=>'formee'));
-	echo formee_div(12); // line one: message
-		echo sprintf(lang('msgvar_loggedin_as'), $userinfo->userName);
-	echo '</div>'.formee_div(12,DIV_CLEAR); // line two: logout button
-	echo formee_button('login',lang('form_logout'));
-	echo '</div>';
+	echo form_open("user/logout/",array('class'=>'login_small'));
+	echo sprintf(lang('msgvar_loggedin_as'), $userinfo->userName);
+	echo '<input type="submit" id="'.'logout'.'" name="'.'logout'.'" value="'.lang('form_logout').'" />';
 	echo form_close();
 }
 	

@@ -1,4 +1,6 @@
-@import url(font/gw_cabin.css);
+@import url(font/gw_cabin.css);  /* google web fonts */
+@import url(login_small.css);   /* layout for the small login form in the top right corner */
+@import url(markdown.css);   /* markup for text formatted by markdown */
 
 /***************************************************************************/
 /** 1. RESET   
@@ -6,7 +8,7 @@
 / remove default styling of page elements (margins, padding, border, etc.)	
 ****************************************************************************/
 html, body, ul, ol, li, form, fieldset, legend {margin: 0;	padding: 0; }
-h1, h2, h3, h4, h5, h6, p { margin-top: 0; }
+h1,h2,h3,h4,h5,h6, p { margin-top: 0; }
 fieldset,img { border: 0; }
 legend { color: #000; }
 li { list-style: none; }
@@ -70,12 +72,11 @@ h3 { font-size: 120%; }
 }
 
 #loginbox {
-	width: 300px;
+	width: 18em;
 	height: 130px;
 	float: right;
 	padding: 0 ;
 	margin: 0, auto;
-	font-size: 90%;
 }
 
 #middle {
@@ -102,6 +103,7 @@ h3 { font-size: 120%; }
 
 #content {
 	padding: 2em 0 0 16em; /* top bottom right left */
+	width: 800px;
 }
 
 #sidebar {
@@ -136,7 +138,7 @@ h3 { font-size: 120%; }
 }
 
 .question {
-	padding-left: 2.5em;
+	padding-left: 3em;
 	background: transparent url(../img/icons/question.png) no-repeat top left;
 	background-size: 40px;
 }
@@ -168,12 +170,6 @@ a.backlink {
 
 a.backlink:hover {
 	background-image: url(../img/icons/back_hover.png);
-}
-
-.question p {
-	border-left-width: 1px;
-	border-left-style: dashed;
-	padding-left: 2.5em;
 }
 
 .box {

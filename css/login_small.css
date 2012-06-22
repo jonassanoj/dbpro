@@ -1,0 +1,63 @@
+/***************************************************************************
+ ** Layout for the small login box   
+****************************************************************************/
+
+form.login_small {
+        font-size: 10pt;
+        width: 20em;
+    }
+ 
+.login_small label{
+    display: block;
+    float: left;
+    text-align: right;
+    width: 10em;
+    font-size: 8pt;
+    } 
+ 
+.login_small input{
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    background-color: #eaeaea;
+    background: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+    background: -webkit-gradient(linear, left top, left bottom,
+                color-stop(0.0, #ffffff), color-stop(1.0, #f2f2f2));
+    border: 1px solid #cacaca;
+    color: #797979;
+    padding: 2px 3px;
+    width: 10em;
+    height: 0.8em;
+    font-size: inherit;
+    float: right;
+  }
+
+.login_small input[type=checkbox]{
+    width: 2em;
+    float: left;
+  }
+
+ 
+.login_small:focus{
+    -webkit-box-shadow: 0px 0px 4px #aaa;
+    -moz-box-shadow: 0px 0px 4px #aaa;
+    box-shadow: 0px 0px 4px #aaa;
+    }
+ 
+.login_small .floatright{
+	display: block;
+	float: right;
+}
+
+.login_small input[type=submit]{
+    width : 5em;
+    color : black;
+    cursor: pointer;
+    margin-left: 0.5em;
+    height: 1.8em;
+    font-size: 8pt;    
+ }
+
+.login_small #login{
+    font-weight: bold;
+    
+}
