@@ -96,5 +96,18 @@ class Edit extends CI_Controller {
 		
 	}
 
-
+	/**
+	 * 
+	 * vote a question or answer up or down
+	 * 
+	 * @param int $qid the id of the question to vote on, can be 0 if $aid is given
+	 * @param int $aid the id of the answer, can be 0 if $qid is given
+	 * @param boolean $votedown optional, if set and true vote down, else vote up
+	 */
+	 
+	public function vote($qid,$aid,$votedown=false){
+		//TODO: implement this function and everything need for it to work
+		// each user can vote exactly once for each question or answer
+		// including a database table that records votes with uid and or ip adress
+	}
 }

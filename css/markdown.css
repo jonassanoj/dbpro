@@ -1,0 +1,18 @@
+/* Markup for the text displayed inside markdown boxes */
+/* make sure you put all the marked-down text inside a span or div of class .markdown */
+/* the rules here are just examples, feel free to choose your own */
+
+.markdown {
+	font-size: 90%;
+}
+
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+/* make sure headings are not as huge as the main headings. This still has to be improved to look good */
+	font-size: 100%;
+	font-family: inherit;
+}
+
+/* make sure unordered lists appear with bullets */
+.markdown ul li {
+	list-style: disc;
+}
