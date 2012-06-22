@@ -33,7 +33,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">12</span></a></li>
+                <span class="label label-info">11</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">1</span>
@@ -61,11 +61,10 @@
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#__construct" title="__construct :: constructor"><span class="description">constructor</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#_loadviews" title="_loadviews :: private helper function to build view"><span class="description">private helper function to build view</span><pre>_loadviews()</pre></a></li>
-<li class="method public "><a href="#field" title="field :: shows a list questions of a field"><span class="description">shows a list questions of a field</span><pre>field()</pre></a></li>
+<li class="method public "><a href="#filter" title="filter :: shows a list of questions filtered after one condition"><span class="description">shows a list of questions filtered after one condition</span><pre>filter()</pre></a></li>
 <li class="method public "><a href="#home" title="home :: home view"><span class="description">home view</span><pre>home()</pre></a></li>
 <li class="method public "><a href="#qshow" title="qshow :: show one question"><span class="description">show one question</span><pre>qshow()</pre></a></li>
 <li class="method public "><a href="#questions" title="questions :: show a list of questions"><span class="description">show a list of questions</span><pre>questions()</pre></a></li>
-<li class="method public "><a href="#search" title="search :: shows a list questions matching a search term"><span class="description">shows a list questions matching a search term</span><pre>search()</pre></a></li>
 <li class="method public "><a href="#view" title="view :: show a certain body page"><span class="description">show a certain body page</span><pre>view()</pre></a></li>
 </ul>
 </div>
@@ -100,9 +99,9 @@
 <pre>_loadviews(string $content, array $data) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>every complete html-page sent to the client is constructed here.</p>
-
-<p>The following parts are sent in order:</p></p>
+<p class="long_description"><p>every complete html-page sent to the client is constructed here.
+for the documentation of the $data array contents that are passed to the view
+see the comments in views/main_view.php</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$content</h4>
@@ -112,16 +111,19 @@
 <code>array</code><p>The data array to pass on to the views</p></div>
 </div></div>
 </div>
-<a name="field" id="field"></a><div class="element clickable method public field" data-toggle="collapse" data-target=".field .collapse">
-<h2>shows a list questions of a field</h2>
-<pre>field(int $fid, int $offset) : void</pre>
+<a name="filter" id="filter"></a><div class="element clickable method public filter" data-toggle="collapse" data-target=".filter .collapse">
+<h2>shows a list of questions filtered after one condition</h2>
+<pre>filter(string $filter, string | int $param, int $offset) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>show the paginated <em>qlist</em> view with the questions belonging to one field.</p></p>
+<p class="long_description"><p>show the paginated <em>qlist</em> view with the questions matching a filter.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$fid</h4>
-<code>int</code><p>the fieldID</p></div>
+<h4>$filter</h4>
+<code>string</code><p>the filter name can be userID, catID or search</p></div>
+<div class="subelement argument">
+<h4>$param</h4>
+<code>stringint</code><p>the parameter of the filter, can be userID, fieldID, catID or searchTerm</p></div>
 <div class="subelement argument">
 <h4>$offset</h4>
 <code>int</code><p>the pagination offset</p></div>
@@ -159,21 +161,6 @@ clicking on a question will display its details (answers, etc.)</p></p>
 <code>int</code><p>the pagination offset</p></div>
 </div></div>
 </div>
-<a name="search" id="search"></a><div class="element clickable method public search" data-toggle="collapse" data-target=".search .collapse">
-<h2>shows a list questions matching a search term</h2>
-<pre>search(int $term, int $offset) : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>show the paginated <em>qlist</em> view with the questions belonging to one field.</p></p>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$term</h4>
-<code>int</code><p>the ANDed search terms, separated by space</p></div>
-<div class="subelement argument">
-<h4>$offset</h4>
-<code>int</code><p>the pagination offset</p></div>
-</div></div>
-</div>
 <a name="view" id="view"></a><div class="element clickable method public view" data-toggle="collapse" data-target=".view .collapse">
 <h2>show a certain body page</h2>
 <pre>view(string $page) : void</pre>
@@ -195,7 +182,7 @@ use this for static content like: about, contact, terms-of-use, etc.</p></p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-            generated on 2012-06-21T15:23:18+02:00.<br></footer></div>
+            generated on 2012-06-21T19:19:07+02:00.<br></footer></div>
 </div>
 </body>
 </html>
