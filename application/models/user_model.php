@@ -168,13 +168,13 @@ class User_model extends CI_Model {
 	 * changes the user with a given userID to a new userTypeID 
 	 *
 	 * @author GhezalAhmad Zia
-	 * @param $uid integer the userID
-	 * @param $utid integer the userTypeID to set  
-	 * @return integer 0 if user is not found, 1 otherwise
+	 * @param int $uid the userID
+	 * @param int $utid the userTypeID to set  
+	 * @return int 0 if user is not found, 1 otherwise.
+	 * 
 	 */
 
 	 public function change_usertype($uid, $utid) {
-		// return true if successful
 		$this -> db -> set('$userTypeID', $utid);
 		$this -> db -> where('$userID', $uid);
 		$this -> db -> update('User');
