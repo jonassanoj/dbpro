@@ -131,7 +131,7 @@ class Main extends CI_Controller {
 	 * use this for static content like: about, contact, terms-of-use, etc.
 	 *
 	 * @param string $page the name of the page (without extension) in views/body
-	 * @return void
+	 * @return void	
 	 *
 	 */
 
