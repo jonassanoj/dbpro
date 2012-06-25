@@ -27,7 +27,7 @@ class Test extends CI_Controller {
 //////////////////////////////////////////////////////////////
 //  Load here all the models you want to test.
 //  
-		$this -> load -> model('user_model');
+		$this -> load -> model('question_model');
 
 	
 	}
@@ -52,17 +52,18 @@ class Test extends CI_Controller {
 ///  It's recommended not to push changes to this controller to the repository.
 /// 
 	
-	public function test1($a)
+	public function test1()
 	{
 		// this calls a function from usermodel. 
 		// the results are reported by calling the $this->_report function.
 	
 			$this->_report( 
 			    // the return value will be shown in the test report:
-				$this -> user_model -> get_userdata($a),
+				$this -> question_model -> update_question(1,array('userID'=>1,'body'=>'this is a stupid question')),
 				// the second parameter will give a title to the report:
 				'Test of user_model -> get_userdata()'
 		 		);
+				echo "test";
 	}
 	
 
