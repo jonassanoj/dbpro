@@ -44,9 +44,10 @@ class Edit extends CI_Controller {
 
 	public function _loadviews($content, $data) {
 		$this -> session -> set_userdata('last_visited', current_url());
-		$data['loginbox'] = TRUE;
-		$this -> load -> view('main_view', init_view_data($content, $data));	}
-
+		$data['loginbox']=TRUE;
+		$data['content']="content/$content";
+		$this -> load -> view('main_view',$data);
+	}
 	/**
 	 * 
 	 * create a new question or edit an existing one
@@ -88,7 +89,21 @@ class Edit extends CI_Controller {
 	 * @param int $cid optional, the commentID, if left blank, create a new comment
 	 */
 	public function comment($qid,$aid,$cid=0){
+		if (!$this->session->userdata('login')) redirect('main/home');
 		
+		if ($cid==0)
+		{
+			//create new comment
+		}
+		else {
+			$comment = $this -> comment_model -> get_comment($cid);
+			if (!$comment) redirect('main/home'); // if $comment is false (not found in db), send user back 
+			if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home'); 
+			$data['title']='Edit existing comment'; //TODO: localize
+			$data['comment_body'] = $comment -> body;
+			$this->_loadviews('editcomment',$data);
+			// modify existing comment
+		}
 		//TODO: check if $cid is the user's comment, otherwise send the user back where he came from
 		// show a form to edit or create a comment, if $cid does exist it should already be filled with the comment's text. 
 		// create the form to show as /views/content/form_comment.php. 
