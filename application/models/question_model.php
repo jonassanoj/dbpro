@@ -108,21 +108,7 @@ class Question_model extends CI_Model {
 	 *
 	 */
 	public function update_question($qid, $question_data) {
-		if(isset($question_data['userID']))
-			$this->db->set('userID',$question_data['userID']);
-		if(isset($question_data['title'])) 
-			$this->db->set('title',$question_data['title']);
-		if(isset($question_data['body']))
-			$this->db->set('body',$question_data['body']);
-		if(isset($question_data['rank']))
-			$this->db->set('rank',$question_data['rank']);
-		if(isset($question_data['date']))
-			$this->db->set('date',$question_data['date']);
-		if(isset($question_data['catID']))
-			$this->db->set('catID',$question_data['catID']);
-		$this->db->where('questionID',$qid);
-		$this->db->update('Question');
-		//$this -> db -> query(update_string('Question', $question_data, "questionID = $qid"));
+		$this -> db -> query($this->db->update_string('Question', $question_data, "questionID = $qid"));
 		return $this -> db -> affected_rows();
 	}
 

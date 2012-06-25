@@ -137,7 +137,7 @@ class User_model extends CI_Model {
 
 	 */
 	public function update_user($uid, $user_data) {
-		$this -> db -> query(update_string('User', $user_data, "userID = $uid"));
+		$this -> db -> query($this->db->update_string('User', $user_data, "userID = $uid"));
 		return $this -> db -> affected_rows();
 	}
 
