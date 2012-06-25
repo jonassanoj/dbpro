@@ -17,9 +17,40 @@ class Util extends CI_Controller {
 	 * 
 	 * @param string $language the language to load, named like the folder containing the language files
 	 */
+	
+		
 	public function lang($language) {
 		$this -> session -> set_userdata('language',$language);
 		redirect($this -> session -> userdata('last_visited'));
+	}
+	
+	
+
+	public function vote(){
+		
+		
+		if($this->input->post('up')){
+			$term = $this->input->post('up');
+		}
+		else 
+			$term = $this->input->post('down');
+		
+		
+		$questionID = $this->input->post('qid');
+		
+		
+		$questionID = (int)$questionID;
+		
+		$vote = ($term === 'up') ? '+' : '-';
+		
+		$sql = "UPDATE `Question` SET `rank` = `rank` {$vote} 1 WHERE `QuestionID` = {$questionID} ";
+		
+		mysql_query($sql);
+		
+		redirect('main/qshow/' .$questionID, 'refresh');
+		
+		
+	
 	}
 
 }

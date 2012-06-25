@@ -15,12 +15,13 @@ class Main extends CI_Controller {
 	 *
 	 * loads question_model, answer_model, main_lang.
 	 *
-	 */
+	 */	
 
 	public function __construct() {
 		parent::__construct();
 		$this -> load -> model('question_model');
 		$this -> load -> model('answer_model');
+		
 		// if no language defined in session, load default language.
 		if (!$this -> session -> userdata('language'))
 			$this -> lang -> load('main');
