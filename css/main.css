@@ -1,6 +1,5 @@
 @import url(font/gw_cabin.css);  /* google web fonts */
 @import url(login_small.css);   /* layout for the small login form in the top right corner */
-@import url(markdown.css);   /* markup for text formatted by markdown */
 
 /***************************************************************************/
 /** 1. RESET   
