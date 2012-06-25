@@ -34,7 +34,7 @@ INSERT INTO `Question` (`questionID`, `catID`, `userID`, `title`, `body`, `rank`
 (8, 1, 1, 'How are you doing today?', 'bla', 0, '2012-06-12 00:00:00'),
 (9, 1, 1, 'How are you doing tomorrow?', 'bla', 0, '2012-06-12 00:00:00');
 
-INSERT INTO `User` (`userID`, `userTypeID`, `fieldID`, `userName`, `fullName`, `email`, `password`, `imagePath`, `acountCreationDate`, `rank`, `lastLogin`, `organization`, `location`, `dateOfBirth`, `degree`, `detail`) VALUES
+INSERT INTO `User` (`userID`, `userTypeID`, `fieldID`, `userName`, `fullName`, `email`, `password`, `imagePath`, `accountCreationDate`, `rank`, `lastLogin`, `organization`, `location`, `dateOfBirth`, `degree`, `detail`) VALUES
 (1, 1, 3, 'SSameem', 'Saminullah Sameem ', 'SSameem@hotmail.com', '', NULL, '2012-06-06 00:00:00', 0, '2012-06-06 00:00:00', 'Khost University ', NULL, '0000-00-00', 'master', 'Saminullah is lecturer in khost university '),
 (2, 1, 2, 'Ghezal_Ahmad', 'Ghezal Ahmadzai', 'Ghezal@yahoo.com', '', NULL, '2012-06-06 00:00:00', 0, '2012-06-06 00:00:00', 'Kabul University', NULL, '0000-00-00', 'master', 'Ghezal Ahmad zia is the profisional person in Database '),
 (3, 2, 3, 'AAkbary', 'Abdul Aziz Akbary', 'Akbaty1@yahoo.com', '', NULL, '2012-06-05 00:00:00', 0, '2012-06-03 00:00:00', 'Khost University', NULL, '0000-00-00', 'master', NULL),
