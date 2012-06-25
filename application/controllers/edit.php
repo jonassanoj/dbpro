@@ -45,7 +45,6 @@ class Edit extends CI_Controller {
 	 */
 
 	public function _loadviews($content, $data) {
-		$this -> session -> set_userdata('last_visited', current_url());
 		$data['loginbox']=TRUE;
 		$this -> load -> view('main_view',init_view_data($content,$data));
 	}
@@ -113,6 +112,7 @@ class Edit extends CI_Controller {
 			// if the $qid is 0 then we diplay the form for creation fo question 
 			else{
 				$this->session->set_userdata('action',"save");
+				$data['title']='Create Question';
 				$data['question']=null; 
 				$_POST['titles']='Create Question';
 				$_POST['btn']='Save Question';
