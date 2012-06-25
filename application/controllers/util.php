@@ -10,6 +10,20 @@
 
 class Util extends CI_Controller {
 	
+	/**
+	 * constructor
+	 *
+	 * loads vote_model.
+	 *
+	 */
+	
+	public function __construct() {
+		parent::__construct();
+		$this -> load -> model('vote_model');
+		
+	}
+	
+	
 	/** 
 	 * Load a language
 	 * 
@@ -27,30 +41,17 @@ class Util extends CI_Controller {
 	
 
 	public function vote(){
+		$userID = 1;//$this->session->userdata('userID');
+		$qID = $this->input->post('qid');
 		
+		$result = $this-> vote_model -> check_user_vote($userID, $qID);
 		
-		if($this->input->post('up')){
-			$term = $this->input->post('up');
+		if(empty($result)){
+			$this -> vote_model -> insert_vote();
 		}
 		else 
-			$term = $this->input->post('down');
+			redirect('main/qshow/' .$qID);
 		
-		
-		$questionID = $this->input->post('qid');
-		
-		
-		$questionID = (int)$questionID;
-		
-		$vote = ($term === 'up') ? '+' : '-';
-		
-		$sql = "UPDATE `Question` SET `rank` = `rank` {$vote} 1 WHERE `QuestionID` = {$questionID} ";
-		
-		mysql_query($sql);
-		
-		redirect('main/qshow/' .$questionID, 'refresh');
-		
-		
-	
 	}
 
 }

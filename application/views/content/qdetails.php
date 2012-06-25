@@ -1,10 +1,7 @@
 
 
-        $("#ajaxresult").load("<?php echo site_url('ajax/qcomments/'.$question->questionID); ?>");
-    });
-   
- }); 
-</script>
+
+<script type="text/javascript"> 
 
 
 
@@ -53,14 +50,14 @@
 	 * @package views
 	 */
 </script> <!-- javascript is closed -->
+
 <div class="question">
 		<h3><?php echo $question->title; ?></h3>
-
-		<?php echo $question->body; ?>
-<div style="visibility:hidden" id="ajaxresult">
-<form action="" method="POST">
-  <input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
-  		
+		<p><?php echo $question->body; ?></p>
+		<form action="" method="POST">
+  		<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
+	</form> 
+	
 </form> 
 <form action="http:/index.php/util/vote" name="voting" method="POST">
 <div>
@@ -75,10 +72,6 @@
 </div>
 </form>
 
-		<p><?php echo $question->body; ?></p>
-		<form action="" method="POST">
-  		<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
-	</form> 
 <div id="ajaxresult">
 
 <?php
@@ -91,16 +84,10 @@ if (isset($result))
 <?php foreach ($answers as $answer): ?>
 	<div class="answer">
 		<?php echo $answer->body; ?>
-
-		
-	</div>
-
 	</div> <!-- answer dic closed -->
-
 <?php endforeach ?>
 
 <?php echo $backlink?>
 
 
 </div> <!-- body -->
-
