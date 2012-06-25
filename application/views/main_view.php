@@ -41,6 +41,7 @@ $this->load->view('include/header');
 		<div id="middle">
 			<div id="container">
 				<div id="content">
+					<?php $this->load->view('include/catbar');?>
 					<?php $this->load->view($content);?>
 				</div><!-- #content-->
 			</div><!-- #container-->

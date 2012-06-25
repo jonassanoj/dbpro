@@ -137,7 +137,7 @@ class User_model extends CI_Model {
 
 	 */
 	public function update_user($uid, $user_data) {
-		$this -> db -> query(update_string('User', $user_data, "userID = $uid"));
+		$this -> db -> query($this->db->update_string('User', $user_data, "userID = $uid"));
 		return $this -> db -> affected_rows();
 	}
 
@@ -201,13 +201,16 @@ class User_model extends CI_Model {
 	 * This Function takes user_id from the user table and returns a specific type of user e.g Administrator.We have four types of users
 	 * named Administrator, Normal user,Editor and unconfirmed.
 	 *
-	 * @author saminullah sameem
 	 * @param int $uid the user's ID'
-	 * @return array user data
+	 * @return int user type ID
 	 */
 	public function get_usertype($uid) {
-		//$query = $this -> db -> query('SELECT UserType.userType FROM User, UserType WHERE User.userTypeID = userType.userTypeID AND userID =' . $uid);
-		//return $query -> result();
+		$this-> db -> select('userTypeID');
+		$this-> db -> get_where('User',array('userID'=>$uid));
+		if ($query -> num_rows() > 0) {
+			return $query->first_row()->userTypeID;
+		} else
+			return false;
 	}
 
 	/**

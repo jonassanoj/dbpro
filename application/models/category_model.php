@@ -64,6 +64,18 @@ class Category_model extends CI_Model {
 		$query = $this -> db -> get('Category');
 		return $query -> result();
 	}
+ 	 /**
+	 * Retrieve the 5 most popular Categories
+	 * 
+	 *
+	 * @return array contains category object containing fieldID, catID and catName
+	 */
+	
+	function get_popular() {
+		//TODO: update query to use activerecords!
+		$query = $this->db->query("SELECT count(*),catName,Category.catID FROM Question,Category WHERE Question.catID=Category.catID group by Category.catID ORDER BY count(*)  DESC LIMIT 5");
+		return $query -> result();
+	}
 
 	 /**
 	 * Delete a category.

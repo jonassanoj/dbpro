@@ -136,7 +136,7 @@ class User extends CI_Controller {
 		else 
 			redirect(site_url('user/recover/'. $user));
 	}
-	
+
 	public function register()
 	{
 		
