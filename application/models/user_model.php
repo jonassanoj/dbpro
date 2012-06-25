@@ -229,5 +229,8 @@ class User_model extends CI_Model {
 
 		return $query -> result();
 	}
-
+	function get_paged_list($limit = 10, $offset = 0){
+		$this->db->order_by('userID','asc');
+		return $this->db->get('User', $limit, $offset);
+	}
 }

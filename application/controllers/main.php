@@ -21,6 +21,7 @@ class Main extends CI_Controller {
 		parent::__construct();
 		$this -> load -> model('question_model');
 		$this -> load -> model('answer_model');
+		
 		// if no language defined in session, load default language.
 		if (!$this -> session -> userdata('language'))
 			$this -> lang -> load('main');
@@ -46,16 +47,6 @@ class Main extends CI_Controller {
 		$data['loginbox'] = TRUE;
 		$this -> load -> view('main_view', init_view_data($content, $data));
 	}
-
-public function adminview() {
-		$data['loginbox'] = TRUE;
-		$data['title'] = 'Admin View';
-		$data['navigation'][0] = anchor('main/admin/activeusers/','Active Users');
-		$data['navigation'][1] = anchor('http://www.google.de','List All Users');
-		$data['navigation'][2] = anchor('http://www.google.de','Delete All Users');
-		$data['content'] = 'content/form';
-		$this -> load -> view('main_view', $data);
-}
 
 	/**
 	 * home view
