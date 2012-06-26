@@ -13,34 +13,45 @@ class Admin extends CI_Controller {
 		// load helper
 		$this->load->helper('url');		
 		// load model
-		$this->load->model('Person_model','',TRUE);
+		$this->load->model('User_model','',TRUE);
 		$this->load->library('session');
-		//$this->load->library('UsersOnline');
-		//$userdata['username'] = $this->session->username;
-		//$userdata['id']=$this->session->userID;
-		//$this->onlineusers->set_data($userdata);
+		if (!$this -> session -> userdata('language'))
+			$this -> lang -> load('main');
+		else
+			$this -> lang -> load('main', $this -> session -> userdata('language'));
+		
+	}
+	/**
+	 * 
+	 * @author Ashuqullah Alziai
+	 * @param unknown_type $offset
+	 */
+	
+	function index(){
+		
+		$this->mainf();
 	}
 	
-	function index($offset = 0)
-	{
-		$data['loginbox'] = TRUE;
+	function mainf($offset = 0){
+
+		$data['loginbox'] = false;
 		$data['title'] = 'Admin View Users List';
-		$data['navigation'][0] = anchor("admin/add/","Add new user",array('class'=>'add'));
-		$data['navigation'][1] = anchor('admin/online/','Show online User',array('class'=>'user'));
+		$data['navigation'][0] = anchor("main/home","Home",array('class'=>'home'));
+		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
+		$data['navigation'][2] = anchor('admin/online/','Show online User',array('class'=>'user'));
 		$data['content'] = 'content/personList';
-		
 		// offset
 		$uri_segment = 3;
 		$offset = $this->uri->segment($uri_segment);
 		
 		// load data
-		$persons = $this->Person_model->get_paged_list($this->limit, $offset)->result();
+		$persons = $this->User_model->get_paged_list($this->limit, $offset)->result();
 		
 		
 		// generate pagination
 		$this->load->library('pagination');
 		$config['base_url'] = site_url('admin/index/');
- 		$config['total_rows'] = $this->Person_model->count_all();
+ 		$config['total_rows'] = $this->User_model->count_all();
  		$config['per_page'] = $this->limit;
 		$config['uri_segment'] = $uri_segment;
 		$this->pagination->initialize($config);
@@ -54,47 +65,52 @@ class Admin extends CI_Controller {
 		     
 		foreach ($persons as $person)
 		{
-		$type = $this->Person_model->get_type($person->userTypeID);
-	        $field = $this->Person_model->get_feild($person->fieldID);
-		$this->table->add_row(++$i,$person->fullName, $person->userName,$person->email,$person->organization,$person->degree,	$type[0]->userType,$field[0]->fieldName,
+			$type = $this->User_model->get_type($person->userTypeID);
+	        $field = $this->User_model->get_feild($person->fieldID);
+			$this->table->add_row(++$i,$person->fullName, $person->userName,$person->email,$person->organization,$person->degree,	$type[0]->userType,$field[0]->fieldName,
 				anchor('admin/view/'.$person->userID,'view',array('class'=>'view')).' '.
 				anchor('admin/update/'.$person->userID,'update',array('class'=>'update')).' '.
 				anchor('admin/types/'.$person->userID,'upgrade',array('class'=>'upgrade')).' '.
 				anchor('admin/delete/'.$person->userID,'delete',array('class'=>'delete','onclick'=>"return confirm('Are you sure want to delete this person?')"))
 			);
 		}
-		$data['table'] = $this->table->generate();
-		
+		$data['table'] = $this->table->generate();		
 		// load view
 		$this -> load -> view('main_view', $data);
-		//$this->load->view('content/personList', $data);
 	}
+	/**
+	 * 
+	 * @author Ashuqullah Alziai
+	 * 
+	 */
+	
 	function types(){
-	$types = $this->Person_model->get_types()->result();
+	$types = $this->User_model->get_types()->result();
 	// generate table data
 		$this->load->library('table');
          	$this->table->set_empty("&nbsp;");
 		$this->table->set_heading('No', 'Name');
-	foreach ($types as $type){
-		
-		$this->table->add_row($type->userType);
-
+		foreach ($types as $type){		
+			$this->table->add_row($type->userType);
 		}
-		$data['table'] = $this->table->generate();
-		
+		$data['table'] = $this->table->generate();		
 		// load view
 		$this->load->view('upgrade', $data);
 	}
+	/**
+	 * 
+	 * @author ashuqullah alizai
+	 */
 	function online(){
 		// offset
 		$uri_segment = 3;
 		$offset = $this->uri->segment($uri_segment);
 		// load data
-		$persons = $this->Person_model->get_paged_list($this->limit, $offset)->result();
+		$persons = $this->User_model->get_paged_list($this->limit, $offset)->result();
 		// generate pagination
 		$this->load->library('pagination');
 		$config['base_url'] = site_url('admin/index/');
- 		$config['total_rows'] = $this->Person_model->count_all();
+ 		$config['total_rows'] = $this->User_model->count_all();
  		$config['per_page'] = $this->limit;
 		$config['uri_segment'] = $uri_segment;
 		$this->pagination->initialize($config);
@@ -116,8 +132,30 @@ class Admin extends CI_Controller {
 				anchor('admin/delete/'.$person->userID,'delete',array('class'=>'delete','onclick'=>"return confirm 						('Are you sure want to delete this person?')"))
 			);
 		}
+		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
+		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
+		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back')); 
 		$data['table'] = $this->table->generate();
-		$this->load->view('content/onlineuser', $data);
+		$data['title'] = 'View Online User';
+		$data['content'] = 'content/onlineuser';
+		$this->load->view('main_view', $data);
+	}
+	function ugrade(){
+		
+		$this->form_data->userName = $person->userName;
+		$this->form_data->userType = $person->userTypeID;
+		
+		upgrade_user($uid,$tid)
+		$userTypeID => $this->input->post('userType');
+		
+		$data['action'] = site_url('admin/upgrade');
+		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
+		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
+		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
+		$data['table'] = $this->table->generate();
+		$data['title'] = 'View Online User';
+		$data['content'] = 'content/upgrade';
+		$this->load->view('main_view', $data);
 	}
 	function add()
 	{
@@ -129,55 +167,81 @@ class Admin extends CI_Controller {
 		// set common properties
 		$data['title'] = 'Add new person';
 		$data['message'] = '';
-		$data['action'] = site_url('person/addPerson');
-		$data['link_back'] = anchor('person/index/','Back to list of persons',array('class'=>'back'));
+		$data['action'] = site_url('admin/addUser');
+		$data['link_back'] = anchor('admin/index/','Back to User List',array('class'=>'back'));
 	
 		// load view
-		$this->load->view('personEdit', $data);
+		
+		$data['content'] = 'content/addUser';
+		$this->load->view('main_view', $data);
 	}
-	
-	function addPerson()
+	/**
+	 * 
+	 * 
+	 */
+	function addUser()
 	{
 		// set common properties
 		$data['title'] = 'Add new person';
-		$data['action'] = site_url('person/addPerson');
-		$data['link_back'] = anchor('person/index/','Back to list of persons',array('class'=>'back'));
+		$data['action'] = site_url('admin/addUser');
+		$data['link_back'] = anchor('admin/index/','Back to User List',array('class'=>'back'));
 		
 		// set empty default form field values
 		$this->_set_fields();
 		// set validation properties
 		$this->_set_rules();
 		
-		// run validation
+		/* run validation
 		if ($this->form_validation->run() == FALSE)
 		{
 			$data['message'] = '';
 		}
 		else
 		{
-			// save data
-			$person = array('name' => $this->input->post('name'),
-							'dob' => date('Y-m-d', strtotime($this->input->post('dob'))));
-			$id = $this->Person_model->save($person);
+		*/	// save data
+			$person = array('fullName' => $this->input->post('fullName'),
+					'userName' => $this->input->post('userName'),
+					'email' => $this->input->post('email'),
+					'organization' => $this->input->post('orgonization'),
+					'location' => $this->input->post('location'),
+					'degree' => $this->input->post('degree'),
+					'userTypeID' => $this->input->post('userType'),
+					'fieldID' => $this->input->post('field'),
+					'detail' => $this->input->post('details'),
+					'dateOfBirth' => date('Y-m-d', strtotime($this->input->post('dob'))));
+					$id = $this->User_model->save($person);
 			
 			// set user message
 			$data['message'] = '<div class="success">add new person success</div>';
-		}
+		//}
 		
 		// load view
-		$this->load->view('personEdit', $data);
+		$this->load->view('content/addUser', $data);
 	}
+	/**
+	 * show user details 
+	 * 
+	 * this function will show details of the user with _id_ specifyed as parameter 
+	 * 
+	 * @author Ashuqullah Alizai
+	 * @param int_type $id is user ID 
+	 * 
+	 */
 	
 	function view($id)
 	{
 		// set common properties
-		$data['title'] = 'Admin View Person Details';
+		$data['title'] = 'Admin View User Details';
 		$data['link_back'] = anchor('admin/index/','Back to list of persons',array('class'=>'back'));
 		
 		// get person details
-		$data['person'] = $this->Person_model->get_by_id($id)->row();
+		$data['person'] = $this->User_model->get_by_id($id)->row();
 		
 		// load view
+		//$data['title'] = 'User Details';
+		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
+		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
+		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
 		$data['content'] = 'content/personView';
 		$this->load->view('main_view', $data);
 	}
@@ -188,82 +252,111 @@ class Admin extends CI_Controller {
 		$this->_set_rules();
 		
 		// prefill form values
-		$person = $this->Person_model->get_by_id($id)->row();
+		$person = $this->User_model->get_by_id($id)->row();
 		$this->form_data->id = $id;
-		$this->form_data->name = $person->name;
-		$this->form_data->gender = strtoupper($person->gender);
-		$this->form_data->dob = date('d-m-Y',strtotime($person->dob));
+		$this->form_data->fullName = $person->fullName;
+		$this->form_data->userName = $person->userName;
+		$this->form_data->email = $person->email;
+		$this->form_data->orgonization = $person->organization;
+		$this->form_data->location = $person->location;
+		$this->form_data->degree = $person->degree;
+		$this->form_data->userType = $person->userTypeID;
+		$this->form_data->field = $person->fieldID;
+		$this->form_data->dob = $person->dateOfBirth;
+		$this->form_data->details = $person->detail;
+		//$this->form_data->dob = date('d-m-Y',strtotime($person->dob));
 		
 		// set common properties
 		$data['title'] = 'Update person';
 		$data['message'] = '';
-		$data['action'] = site_url('person/updatePerson');
-		$data['link_back'] = anchor('person/index/','Back to list of persons',array('class'=>'back'));
+		$data['action'] = site_url('admin/updatePerson');
+		$data['link_back'] = anchor('admin/index/','Back to Users List',array('class'=>'back'));
 	
 		// load view
-		
-		$this->load->view('personEdit', $data);
+		$data['navigation'][0] = anchor("main/home","Home",array('class'=>'home'));
+		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
+		$data['navigation'][2] = anchor('admin/online/','Show online User',array('class'=>'user'));
+		$data['content'] = 'content/addUser';
+		$this->load->view('main_view', $data);
 	}
 	
 	function updatePerson()
 	{
 		// set common properties
 		$data['title'] = 'Update person';
-		$data['action'] = site_url('person/updatePerson');
-		$data['link_back'] = anchor('person/index/','Back to list of persons',array('class'=>'back'));
+		$data['action'] = site_url('admin/updatePerson');
+		$data['link_back'] = anchor('admin/index/','Back to list of persons',array('class'=>'back'));
 		
 		// set empty default form field values
 		$this->_set_fields();
 		// set validation properties
-		$this->_set_rules();
+		//$this->_set_rules();
 		
 		// run validation
-		if ($this->form_validation->run() == FALSE)
-		{
+		//if ($this->form_validation->run() == FALSE)
+		//{
 			$data['message'] = '';
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			// save data
 			$id = $this->input->post('id');
-			$person = array('name' => $this->input->post('name'),
-							'gender' => $this->input->post('gender'),
-							'dob' => date('Y-m-d', strtotime($this->input->post('dob'))));
-			$this->Person_model->update($id,$person);
+			$person = array('fullName' => $this->input->post('fullName'),
+					'userName' => $this->input->post('userName'),
+					'email' => $this->input->post('email'),
+					'organization' => $this->input->post('orgonization'),
+					'location' => $this->input->post('location'),
+					'degree' => $this->input->post('degree'),
+					'userTypeID' => $this->input->post('userType'),
+					'fieldID' => $this->input->post('field'),
+					'detail' => $this->input->post('details'),
+					'dateOfBirth' => date('Y-m-d', strtotime($this->input->post('dob'))));
+					
+			$this->User_model->update_user($id,$person);
 			
 			// set user message
 			$data['message'] = '<div class="success">update person success</div>';
-		}
+		//}
 		
 		// load view
-		$this->load->view('personEdit', $data);
+		$this->load->view('content/addUser', $data);
 	}
-	
+	/**
+	 * delete user 
+	 * 
+	 * this function delete user with _$id_from user table
+	 * 
+	 * @author ashuqullah alizai
+	 * @param int_type $id is user ID 
+	 */
 	function delete($id)
 	{
-		// delete person
-		$this->Person_model->delete($id);
-		
-		// redirect to person list page
-		redirect('person/index/','refresh');
+		$this->User_model->delete_user($id);
+		redirect('admin/index/','refresh');
 	}
 	
 	// set empty default form field values
 	function _set_fields()
 	{
 		$this->form_data->id = '';
-		$this->form_data->name = '';
-		$this->form_data->gender = '';
+		$this->form_data->fullName = '';
+		$this->form_data->userName = '';
+		$this->form_data->email = '';
+		$this->form_data->orgonization = '';
+		$this->form_data->location = '';
+		$this->form_data->degree = '';
+		$this->form_data->userType = '';
+		$this->form_data->field = '';
 		$this->form_data->dob = '';
+		$this->form_data->details = '';
+		
 	}
 	
 	// validation rules
 	function _set_rules()
 	{
 		$this->form_validation->set_rules('name', 'Name', 'trim|required');
-		$this->form_validation->set_rules('gender', 'Gender', 'trim|required');
-		$this->form_validation->set_rules('dob', 'DoB', 'trim|required|callback_valid_date');
-		
+		$this->form_validation->set_rules('dob', 'DoB', 'trim|required|callback_valid_date');		
 		$this->form_validation->set_message('required', '* required');
 		$this->form_validation->set_message('isset', '* required');
 		$this->form_validation->set_message('valid_date', 'date format is not valid. dd-mm-yyyy');
@@ -285,5 +378,6 @@ class Admin extends CI_Controller {
 		else
 			return false;
 	}
+   
 }
 ?>

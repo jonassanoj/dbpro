@@ -137,7 +137,7 @@ class User_model extends CI_Model {
 
 	 */
 	public function update_user($uid, $user_data) {
-		$this -> db -> query(update_string('User', $user_data, "userID = $uid"));
+		$this -> db -> query($this->db->update_string('User', $user_data, "userID = $uid"));
 		return $this -> db -> affected_rows();
 	}
 
@@ -229,8 +229,83 @@ class User_model extends CI_Model {
 
 		return $query -> result();
 	}
+	/**
+	 * get all users from user table 
+	 * 
+	 * this function will return all users from user table 
+	 * 
+	 * @author Ashuqullah Alziai
+	 * @param int $limit
+	 * @param int $offse
+	 * @return array of users 
+	 */
 	function get_paged_list($limit = 10, $offset = 0){
 		$this->db->order_by('userID','asc');
 		return $this->db->get('User', $limit, $offset);
+	}
+	/**
+	 * 
+	 * @author Ashuqullah Alizai
+	 */
+	function count_all(){
+		return $this->db->count_all('User');
+	}
+	/**
+	 * @author alizai
+	
+	 */	
+	function list_all(){
+		$this->db->order_by('userID','asc');
+		return $this->db->get('User');
+	}
+	/**
+	 * @author alizai
+	
+	 * @param unknown_type $id
+	 */	
+		
+	function get_by_id($id){
+		$this->db->where('userID', $id);
+		return $this->db->get('User');
+	}
+	/**
+	 * @author alizai
+	
+	 * @param unknown_type $person
+	 */
+	function save($person){
+		$this->db->insert('User', $person);
+		return $this->db->insert_id();
+	}
+	
+	/**
+	 * @author alizai
+	
+	 * @param unknown_type $fid
+	 */
+	
+	function get_feild($fid){
+		$this->db->select('fieldName');
+		$this->db->where('fieldID', $fid);
+		$query = $this->db->get('Field');
+		return $query -> result();
+	}
+	/**
+	 * @author alizai
+	
+	 * @param unknown_type $tid
+	 */
+	function get_type($tid){
+		$this->db->select('userType');
+		$this -> db -> where('userTypeID' , $tid);
+		$query = $this->db->get('UserType');
+		return $query -> result();
+	}
+	function upgrade_user($uid,$tid){
+		
+		$this -> db -> set('userTypeID', $tid);
+		$this -> db -> where('userID' , $uid);
+		$this -> db -> update('User');
+		
 	}
 }

@@ -43,3 +43,5 @@ Thumbs.db
 .project
 .settings
 application/config/config.php
+/.htaccess
+application/config/config.php

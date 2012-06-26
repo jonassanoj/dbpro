@@ -21,7 +21,7 @@ class Main extends CI_Controller {
 		parent::__construct();
 		$this -> load -> model('question_model');
 		$this -> load -> model('answer_model');
-		
+		$this -> load -> model('category_model');
 		// if no language defined in session, load default language.
 		if (!$this -> session -> userdata('language'))
 			$this -> lang -> load('main');
@@ -94,7 +94,7 @@ class Main extends CI_Controller {
 	 */
 
 	public function filter($filter,$param, $offset=0) {
-		$config['base_url'] = site_url("main/filter/$filter/$param/");
+		$config['base_url'] = site_url("main/filter/$filter/$param/"); 
 		$config['per_page'] = 5;
 		$config['uri_segment'] = 5;
 		$filter = array($filter => $param);

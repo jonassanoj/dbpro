@@ -67,6 +67,25 @@ class Comment_model extends CI_Model {
 		$this->db->insert('Comment',$data);
 		return $this -> db -> insert_id();
 	}
+
+	/**
+	 * get a comment by commentID
+	 *
+	 * Returns a comment object identified by the commentID. It has the attributes 
+	 * questionID, answerID, userID and body.
+	 *
+	 * @param int $cid the commentID
+	 * @return object|boolean false if the comment is not found, the comment object otherwise.
+	 */
+	public function get_comment($cid) {
+		$this->db->where('commentID',$cid);
+		$query = $this->db->get('Comment');
+		if ($query -> num_rows() > 0) {
+			return $query->first_row();
+		} else
+			return false;
+	}
+	
 	
 	/**
 	 * adds a answer comment to the Comment table of database

@@ -108,7 +108,7 @@ class Question_model extends CI_Model {
 	 *
 	 */
 	public function update_question($qid, $question_data) {
-		$this -> db -> query(update_string('Question', $question_data, "questionID = $qid"));
+		$this -> db -> query($this->db->update_string('Question', $question_data, "questionID = $qid"));
 		return $this -> db -> affected_rows();
 	}
 
