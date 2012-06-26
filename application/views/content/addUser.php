@@ -90,7 +90,6 @@
 		</div>
 		</form>
 		<br />
-		<?php echo $link_back; ?>
-	</div>
+		</div>
 </body>
 </html>
