@@ -44,4 +44,3 @@ Thumbs.db
 .settings
 application/config/config.php
 application/config/database.php
-.htaccess
