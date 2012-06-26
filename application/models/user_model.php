@@ -229,5 +229,23 @@ class User_model extends CI_Model {
 
 		return $query -> result();
 	}
+	
+	const DEACTIVATE = 0;
+	const ANONYMIZE = 1;
+	const CASCADE = 2; 
+	
+	public function delete($uid, $deletion_type=self::DEACTIVATE){
+		
+		if ($deletion_type==self::ANONYMIZE) {
+			//delete and make anonymous
+		}
+		elseif ($deletion_type==self::CASCADE) {
+			//delete and cascade! 
+		}
+		// DELETION TYPE = 0 
+		else {
+			//deactivate
+		}
+	}
 
 }
