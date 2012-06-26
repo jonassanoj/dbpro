@@ -174,7 +174,7 @@ class Edit extends CI_Controller {
 	 * @param int $cid optional, the commentID, if left blank, create a new comment
 	 */
 	public function comment($qid,$aid,$cid=0){
-		if (!$this->session->userdata('login')) redirect('main/home');		
+		if (!$this->session->userdata('login')) redirect('main/view/login_needed');		
 		if ($cid==0)
 		{
 			$data['title']='Create new comment'; //TODO: localize

@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » \User</title>
+<title>phpDocumentor » \Edit</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -61,29 +61,27 @@
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#__construct" title="__construct :: constructor"><span class="description">constructor</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#_loadviews" title="_loadviews :: private helper function to build view"><span class="description">private helper function to build view</span><pre>_loadviews()</pre></a></li>
-<li class="method public "><a href="#failed" title="failed :: Function to count userlogin failing:"><span class="description">Function to count userlogin failing:</span><pre>failed()</pre></a></li>
-<li class="method public "><a href="#login" title="login :: function for user login:"><span class="description">function for user login:</span><pre>login()</pre></a></li>
-<li class="method public "><a href="#logout" title="logout :: Fuction for loging out:"><span class="description">Fuction for loging out:</span><pre>logout()</pre></a></li>
-<li class="method public "><a href="#recover" title="recover :: "><span class="description">recover()
-        </span><pre>recover()</pre></a></li>
-<li class="method public "><a href="#register" title="register :: "><span class="description">register()
-        </span><pre>register()</pre></a></li>
+<li class="method public "><a href="#answer" title="answer :: create a new answer or edit an existing one"><span class="description">create a new answer or edit an existing one</span><pre>answer()</pre></a></li>
+<li class="method public "><a href="#comment" title="comment :: create a new comment or edit an existing one"><span class="description">create a new comment or edit an existing one</span><pre>comment()</pre></a></li>
+<li class="method public "><a href="#listCategory" title="listCategory :: Helper method which is used to slect category from the Category Table"><span class="description">Helper method which is used to slect category from the Category Table</span><pre>listCategory()</pre></a></li>
+<li class="method public "><a href="#question" title="question :: create a new question or edit an existing one"><span class="description">create a new question or edit an existing one</span><pre>question()</pre></a></li>
+<li class="method public "><a href="#vote" title="vote :: vote a question or answer up or down"><span class="description">vote a question or answer up or down</span><pre>vote()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CUser" id="\User"></a><ul class="breadcrumb">
+<a name="%5CEdit" id="\Edit"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/.html"></a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/User.html">User</a>
+<span class="divider">\</span><a href="../classes/Edit.html">Edit</a>
 </li>
 </ul>
-<div href="../classes/User.html" class="element class">
-<p class="short_description">the user controller</p>
+<div href="../classes/Edit.html" class="element class">
+<p class="short_description">the edit controller</p>
 <div class="details">
-<p class="long_description"><p>Handles logging in and registering users.</p></p>
+<p class="long_description"><p>Handles forms to ask, answer and edit questions, answers and comments</p></p>
 <table class="table table-bordered"><tr>
 <th>package</th>
 <td><a href="../packages/controllers.html">controllers</a></td>
@@ -94,97 +92,100 @@
 <h2>constructor</h2>
 <pre>__construct() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"><p>loads: user_model, main_lang</p></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>loads question_model, answer_model, comment_model, main_lang.</p></p></div></div>
 </div>
 <a name="_loadviews" id="_loadviews"></a><div class="element clickable method public _loadviews" data-toggle="collapse" data-target="._loadviews .collapse">
 <h2>private helper function to build view</h2>
 <pre>_loadviews(string $content, array $data) : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This loads views for the registration, failed-login, etc. screens</p></p>
+<p class="long_description"><p>every complete html-page sent to the client is constructed here.
+for the documentation of the $data array contents that are passed to the view
+see the comments in views/main_view.php</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$content</h4>
-<code>string</code><p>what should appear as content</p></div>
+<code>string</code><p>what should appear in the body</p></div>
 <div class="subelement argument">
 <h4>$data</h4>
 <code>array</code><p>The data array to pass on to the views</p></div>
 </div></div>
 </div>
-<a name="failed" id="failed"></a><div class="element clickable method public failed" data-toggle="collapse" data-target=".failed .collapse">
-<h2>Function to count userlogin failing:</h2>
-<pre>failed(String $user) : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This funciton is for counting user login failing and to show login failed page, or account recover page
-It checks wheather the failed_logins variable set in the session data or not if not,
-it make a failed_logins index and storing 1st time login fail or if the failed_logins
-was already set in the session data it just increment it (last_value + 1)
-than it set a data array to store error and username there,
-This function also check if the user login failed less than 3 times it will redirect to the login_failed page
-and if the login failed 3 times it will redirect user to recover page, where he/she can recoreved his/her password</p></p>
-<table class="table table-bordered"><tr>
-<th>Note</th>
-<td>: Error message taken from Language helper class, lang('message_index'); it return the specified error
-message in current language.</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$user</h4>
-<code>String</code><p>it represent username default-value = ''</p>
-</div>
-</div></div>
-</div>
-<a name="login" id="login"></a><div class="element clickable method public login" data-toggle="collapse" data-target=".login .collapse">
-<h2>function for user login:</h2>
-<pre>login() : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"><p>This function check the following condition, and perform the task
-Getting values (username, password) from login form and checking it in database
-also login form have an optional checkbox field (remember) this function also check
-if someone checked this remember  checkbox, so it will create a cookie on client computer
-which will be exist till 3 days, otherwise cookies will be delete
-if user login failed so a failed(username) function will be called and this failed fuction
-is counting that how much time login is failed if it was more than 3 times and new recover page
-will open to user.
-if user login successfully session data will be set for this user where
-userid, username, usertype, login(true, false) will store
-when user data set in the sessioin the user will be redirect to the last visiting place
-which will take from session data. (last_visited)</p></p></div></div>
-</div>
-<a name="logout" id="logout"></a><div class="element clickable method public logout" data-toggle="collapse" data-target=".logout .collapse">
-<h2>Fuction for loging out:</h2>
-<pre>logout() : \:</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>Session data of the current user will unset here:
-login userid(uid) usertype username
-will redirect after loging out, to the last visited place</p></p>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>\:</code>void</div>
-</div></div>
-</div>
-<a name="recover" id="recover"></a><div class="element clickable method public recover" data-toggle="collapse" data-target=".recover .collapse">
-<h2>recover()
-        </h2>
-<pre>recover($user) </pre>
+<a name="answer" id="answer"></a><div class="element clickable method public answer" data-toggle="collapse" data-target=".answer .collapse">
+<h2>create a new answer or edit an existing one</h2>
+<pre>answer(int $qid, int $aid) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$user</h4>
-<code></code>
-</div>
+<h4>$qid</h4>
+<code>int</code><p>the id of the question to answer.</p></div>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>optional, the id of the answer, if left blank, create a new answer.</p></div>
 </div></div>
 </div>
-<a name="register" id="register"></a><div class="element clickable method public register" data-toggle="collapse" data-target=".register .collapse">
-<h2>register()
-        </h2>
-<pre>register() </pre>
+<a name="comment" id="comment"></a><div class="element clickable method public comment" data-toggle="collapse" data-target=".comment .collapse">
+<h2>create a new comment or edit an existing one</h2>
+<pre>comment(int $qid, int $aid, int $cid) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$qid</h4>
+<code>int</code><p>the id of the question to comment on</p></div>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>the id of the answer</p></div>
+<div class="subelement argument">
+<h4>$cid</h4>
+<code>int</code><p>optional, the commentID, if left blank, create a new comment</p></div>
+</div></div>
+</div>
+<a name="listCategory" id="listCategory"></a><div class="element clickable method public listCategory" data-toggle="collapse" data-target=".listCategory .collapse">
+<h2>Helper method which is used to slect category from the Category Table</h2>
+<pre>listCategory() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of category</div>
+</div></div>
+</div>
+<a name="question" id="question"></a><div class="element clickable method public question" data-toggle="collapse" data-target=".question .collapse">
+<h2>create a new question or edit an existing one</h2>
+<pre>question(int $qid) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$qid</h4>
+<code>int</code><p>the id of the question to edit. if left blank, create a new question.</p></div>
+</div></div>
+</div>
+<a name="vote" id="vote"></a><div class="element clickable method public vote" data-toggle="collapse" data-target=".vote .collapse">
+<h2>vote a question or answer up or down</h2>
+<pre>vote(int $qid, int $aid, boolean $votedown) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$qid</h4>
+<code>int</code><p>the id of the question to vote on, can be 0 if $aid is given</p>
+</div>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>the id of the answer, can be 0 if $qid is given</p>
+</div>
+<div class="subelement argument">
+<h4>$votedown</h4>
+<code>boolean</code><p>optional, if set and true vote down, else vote up</p></div>
+</div></div>
 </div>
 </div>
 </div>

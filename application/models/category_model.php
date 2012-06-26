@@ -8,8 +8,10 @@
  	* It uses the following tables:
  	*
  	* * _Category_
+	* * _Field_ (read only)
  	* * _User_ (read only)
- 	*
+ 	* * _Question_ (read only)
+	* 
  	* @package models
  	*/
 
@@ -50,18 +52,53 @@ class Category_model extends CI_Model {
 	}
 
  	 /**
-	 * Retrieving all category.
+	 * Retrieves all categories.
 	 * 
-	 * This function will return all categories thats belongs to a specific field from Category tables,
+	 * This function will return all categories thats belong to a specific field from Category tables,
 	 * if no parameter passed to this function in this case it will return the whole category table.
 	 *
-	 * @param int $fieldID the id of the field, if left empty retrieve
+	 * @param int $fieldID the id of the field, if left empty retrieve all categories
+	 * @param int $return what to return. default is ARRAY_OF_OBJECTS, 
+	 * FLAT_ARRAY will return a one-dimensional array (catID => catName) that can be used by form-helper directly
+	 * MULTI_ARRAY will return a two-dimensional array ()   
+	 * @return array contains category objects with fieldID, catID and catName. Can return different arrays if specified by $return. 
+	 */
+	 
+	// constants for parameters:
+	const ARRAY_OF_OBJECTS = 0;
+	const FLAT_ARRAY = 1;
+	const MULTI_ARRAY = 2; 
+	 	
+	function get_categories($fieldID=0,$return=self::ARRAY_OF_OBJECTS) {
+		if ($fieldID) $this -> db -> where('fieldID', $fieldID);
+		$this -> db -> join('Field','Category.fieldID=Field.fieldID');
+		$this -> db -> select('catID, catName, Category.fieldID, fieldName');
+		$query = $this -> db -> get('Category');
+		
+		if ($return==self::FLAT_ARRAY) {
+			foreach($query -> result() as $category)
+				$flat[$category->catID]=$category->catName;
+			return $flat;
+		}
+		elseif ($return==self::MULTI_ARRAY) {
+			foreach($query -> result() as $category)
+				$multi[$category->fieldName][$category->catID]=$category->catName;
+			return $multi;			
+		}
+		// ARRAY_OF_OBJECTS
+		else return $query -> result();
+	}
+	
+ 	 /**
+	 * Retrieve the 5 most popular Categories
+	 * 
+	 *
 	 * @return array contains category object containing fieldID, catID and catName
 	 */
 	
-	function get_categories($fieldID=0) {
-		if (!$fieldID==0) $this -> db -> where('fieldID', $fieldID);
-		$query = $this -> db -> get('Category');
+	function get_popular() {
+		//TODO: update query to use activerecords!
+		$query = $this->db->query("SELECT count(*),catName,Category.catID FROM Question,Category WHERE Question.catID=Category.catID group by Category.catID ORDER BY count(*)  DESC LIMIT 5");
 		return $query -> result();
 	}
 

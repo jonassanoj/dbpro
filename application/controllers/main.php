@@ -21,6 +21,7 @@ class Main extends CI_Controller {
 		parent::__construct();
 		$this -> load -> model('question_model');
 		$this -> load -> model('answer_model');
+		$this -> load -> model('category_model');
 		// if no language defined in session, load default language.
 		if (!$this -> session -> userdata('language'))
 			$this -> lang -> load('main');
@@ -46,16 +47,6 @@ class Main extends CI_Controller {
 		$data['loginbox'] = TRUE;
 		$this -> load -> view('main_view', init_view_data($content, $data));
 	}
-
-public function adminview() {
-		$data['loginbox'] = TRUE;
-		$data['title'] = 'Admin View';
-		$data['navigation'][0] = anchor('main/admin/activeusers/','Active Users');
-		$data['navigation'][1] = anchor('http://www.google.de','List All Users');
-		$data['navigation'][2] = anchor('http://www.google.de','Delete All Users');
-		$data['content'] = 'content/form';
-		$this -> load -> view('main_view', $data);
-}
 
 	/**
 	 * home view
@@ -103,7 +94,7 @@ public function adminview() {
 	 */
 
 	public function filter($filter,$param, $offset=0) {
-		$config['base_url'] = site_url("main/filter/$filter/$param/");
+		$config['base_url'] = site_url("main/filter/$filter/$param/"); 
 		$config['per_page'] = 5;
 		$config['uri_segment'] = 5;
 		$filter = array($filter => $param);
@@ -150,7 +141,7 @@ public function adminview() {
 		if (!file_exists('application/views/content/' . $page . '.php'))
 			show_404();
 		// try to translate the title, then capitalize it.
-		$data['title'] = mb_convert_case(lang('w_' . $page), MB_CASE_TITLE);
+		$data['title'] = mb_convert_case(lang('title_' . $page), MB_CASE_TITLE);
 		$this -> _loadviews($page, $data);
 	}
 

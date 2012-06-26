@@ -9,7 +9,7 @@
  * * _User_
  * * _UserType_ (read only)
  *
- * @package models
+ *@package models
  */
 
 class User_model extends CI_Model {
@@ -229,5 +229,117 @@ class User_model extends CI_Model {
 
 		return $query -> result();
 	}
-
+	/**
+	 * get all users from user table 
+	 * 
+	 * this function will return all users from user table 
+	 * 
+	 * @author Ashuqullah Alziai
+	 * @param int $limit
+	 * @param int $offse
+	 * @return array of users 
+	 */
+	function get_paged_list($limit = 10, $offset = 0){
+		$this->db->order_by('userID','asc');
+		return $this->db->get('User', $limit, $offset);
+	}
+	/**
+	 * Count users
+	 * 
+	 * This function is used to count all existing users in the database.
+	 * 
+	 * @author Ashuqullah Alizai
+	 * @return array of users
+	 * 
+	 */
+	function count_all(){
+		return $this->db->count_all('User');
+	}
+	/**
+	 * List users
+	 * 
+	 * This function is used to list all users ordered by userID.
+	 * 
+	 * @author Ashuqullah Alizai & Ghezal Ahmad
+	 * @return array of users.
+	 */
+	function list_all(){
+		$this->db->order_by('userID','asc');
+		return $this->db->get('User');
+	}
+	/**
+	 * get users
+	 * 
+	 * This function is used to get users by userID
+	 * 
+	 * @author alizai
+	 * @param  int $id get user by id.
+	 * @return array of users
+	 */
+		
+	function get_by_id($id){
+		$this->db->where('userID', $id);
+		return $this->db->get('User');
+	}
+	/**
+	 * Add person
+	 * 
+	 * This function use to add persons to User table.
+	 * 
+	 * @author Ghezal Ahmad
+	 * @param  String $person the name to save in the database.
+	 * @return int $id the inserted id.
+	 */
+	function save($person){
+		$this->db->insert('User', $person);
+		return $this->db->insert_id();
+	}
+	
+	/**
+	 * Get field name
+	 * 
+	 * This function used to show the field name.
+	 * 
+	 * @author alizai
+	 * @param  int $fid the field id.
+	 * @return String $fieldName field name
+	 */
+	
+	function get_feild($fid){
+		$this->db->select('fieldName');
+		$this->db->where('fieldID', $fid);
+		$query = $this->db->get('Field');
+		return $query -> result();
+	}
+	/**
+	 * Get user type
+	 * 
+	 * show the user type from user type table [Admin | Normal | Editor |Unconfirmed Users] for givin userTypeID .
+	 * 
+	 * @author Ashuquallah alizai & Ghezal Ahmad
+	 * @param int $tid user type id.
+	 * @return String $UserType user type
+	 */
+	function get_type($tid){
+		$this->db->select('userType');
+		$this -> db -> where('userTypeID' , $tid);
+		$query = $this->db->get('UserType');
+		return $query -> result();
+	}
+	/**
+	 * funcrtion is to upgrade user type 
+	 * 
+	 * this function is to upgrade use type, the function will use by admin for upgrading user privileges 
+	 * 
+	 * @author ashuqullah Alizai
+	 * @param int_type $uid is user ID frome user table 
+	 * @param int_type $tid id userTpeID from UserTupe table 
+	 */
+	function upgrade_user($uid,$tid){
+		
+		$this -> db -> set('userTypeID', $tid);
+		$this -> db -> where('userID' , $uid);
+		$this -> db -> update('User');
+	}
+	
 }
