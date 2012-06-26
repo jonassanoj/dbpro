@@ -280,11 +280,7 @@ class Admin extends CI_Controller {
 		//}
 		
 		// load view
-			$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
-			$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
-			$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
-			$data['content'] = 'content/addUser';
-			$this->load->view('main_view', $data);
+			$this->mainf();
 
 	}
 	/**
@@ -397,7 +393,7 @@ class Admin extends CI_Controller {
 		 //}
 		
 		// load view
-		$this->load->view('content/addUser', $data);
+		    $this->mainf();
 	}
 	/**
 	 * delete user 
