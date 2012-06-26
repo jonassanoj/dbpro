@@ -24,6 +24,8 @@ class Edit extends CI_Controller {
 		$this -> load -> model('comment_model');
 		// load category model 
 		$this->load->model('category_model');		
+		// load form validation
+		$this->load->library('form_validation');
 		// if no language defined in session, load default language.
 		if (!$this -> session -> userdata('language'))
 			$this -> lang -> load('main');
@@ -57,34 +59,34 @@ class Edit extends CI_Controller {
 	 */
 	public function question($qid=0){
 		
-		// load form validation
-		$this->load->library('form_validation');
+		
 		// setting validation rules for form_question
-		$this->form_validation->set_rules('title','Question Title','trim|required|min_length[10]');
-		$this->form_validation->set_rules('body','Question Body','trim|required|min_length[20]');
+		$this->form_validation->set_rules('title','Question Title','trim|required|min_length[4]');
+		$this->form_validation->set_rules('body','Question Body','trim|required|min_length[10]');
 		$this->form_validation->set_rules('catID','Category','trim|required');
 		
 		// This method run only if validation rules have been followed 
-		if($this->form_validation->run()){
-		
-				if($this->session->userdata('action')=="edit"){
+		if($this->form_validation->run()){		
+				if($_POST['btn']=="Save Changes"){
 					//echo	$this->session->userdata('qid').'hi';
 					if(isset($_POST['btn'])) unset($_POST['btn']);
-					if($this->question_model->update_question($this->session->userdata('qid'),$_POST)){
+					
+					$nqid=$_POST['qid'];
+					unset($_POST['qid']);
+					if($this->question_model->update_question($nqid,$_POST)){
 						echo "Your Question successfully updated";
-						//redirect($this->session->userdata('last_visited'));
-						$this->session->unset_userdata('qid');
+					
 					}
 				
 				}
-				else{//($title, $uid, $cid, $body) {
+				else{
 					
 					if($this->question_model->create_question($_POST['title'],$this->session->userdata('uid'),$_POST['catID'],$_POST['body'])!=0){
 						echo "Your Question have been successfully created";
 					}
 				}
 			
-			}
+		}
 		// call function listCategory for the pupose of filling dropdownlist
 		$data['catList']=$this->listCategory();
 		// if quesiton id is greater then zero then it means to perform edite action 
@@ -97,7 +99,6 @@ class Edit extends CI_Controller {
 			if($data){
 				// check if the question belong to the current user
 				if(true){ //$question->userID==$this->session->userdata('uid')
-						$_POST['title']='Edit Question';
 						$_POST['btn']='Save Changes';
 						$data['title']='Edit Question';
 						$this->_loadviews('form_question',$data);
@@ -114,7 +115,6 @@ class Edit extends CI_Controller {
 				$this->session->set_userdata('action',"save");
 				$data['title']='Create Question';
 				$data['question']=null; 
-				$_POST['titles']='Create Question';
 				$_POST['btn']='Save Question';
 				$this->_loadviews('form_question',$data);
 			} 
@@ -128,7 +128,7 @@ class Edit extends CI_Controller {
 		 */
 		
 		function listCategory(){
-			$this->load->model('question_model');
+			
 			$catData=$this->category_model->get_categories();
 			if($catData){
 			$catList=array();
