@@ -67,7 +67,6 @@
 		</table>
 		</div>
 		<br />
-		<?php echo $link_back; ?>
-	</div>
+		</div>
 </body>
 </html>

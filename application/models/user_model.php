@@ -341,7 +341,7 @@ class User_model extends CI_Model {
 	/**
 	 * Get user type
 	 * 
-	 * show the user type from user type table [Admin | Normal | Editor |Unconfirmed Users] for givin userTypeID .
+	 * show the users type from user type table [Admin | Normal | Editor |Unconfirmed Users] for a givin userTypeID .
 	 * 
 	 * @author Ashuquallah alizai & Ghezal Ahmad
 	 * @param int $tid user type id.
@@ -355,13 +355,13 @@ class User_model extends CI_Model {
 	}
 	
 	/**
-	 * funcrtion is to upgrade user type 
+	 * upgrade user type 
 	 * 
-	 * this function is to upgrade use type, the function will use by admin for upgrading user privileges 
+	 * this function is to upgrade user type, the function will use by admin for upgrading user privileges 
 	 * 
 	 * @author ashuqullah Alizai
-	 * @param int_type $uid is user ID frome user table 
-	 * @param int_type $tid id userTpeID from UserTupe table 
+	 * @param int $uid is user ID from user table 
+	 * @param int $tid id userTpeID from UserType table 
 	 */
 	function upgrade_user($uid,$tid){
 		
@@ -369,5 +369,4 @@ class User_model extends CI_Model {
 		$this -> db -> where('userID' , $uid);
 		$this -> db -> update('User');
 	}
-
 }
