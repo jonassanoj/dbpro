@@ -13,6 +13,13 @@
  */
 
 class User_model extends CI_Model {
+	
+	const TYPE_NORMAL = 1;
+	const TYPE_EDITOR = 2;
+	const TYPE_ADMIN = 3;
+
+	const TYPE_UNCONFIRMED = 8;
+	const TYPE_DEACTIVATED = 9;
 
 	/**
 	 * Checks if the username exists
@@ -74,7 +81,7 @@ class User_model extends CI_Model {
 			$this -> db -> set('userName', $name);
 			$this -> db -> set('password', $password);
 			$this -> db -> set('email', $email);
-			$this -> db -> set('userTypeID', 0);
+			$this -> db -> set('userTypeID', self::TYPE_UNCONFIRMED);
 			$this -> db -> set('accountCreationDate', $date);
 			$this -> db -> insert('User');
 			return $this -> db -> insert_id();
