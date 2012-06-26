@@ -1,10 +1,23 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * the admin controller
+ *
+ * Handles the basic admin functionality. List Users,upgrade usere's privileges, delete users, update users data,add new user, list onsite users 
+ *
+ *
+ * @package controllers
+ * @author Ashuqullah Alizai & Ghezal Ahmad Zai
+ */
 class Admin extends CI_Controller {
 
 	// num of records per page
 	private $limit = 10;
-	
+	/**
+	 * constructor
+	 *
+	 * loads user_model, helper , main_lang, session library , table library.
+	 *
+	 */
 	function __construct()
 	{
 		parent::__construct();
@@ -22,15 +35,36 @@ class Admin extends CI_Controller {
 		
 	}
 	/**
+	 * main function 
 	 * 
-	 * @author Ashuqullah Alziai
+	 * this funciton will check the userdata from session,if the user is admin it will access the admin table if not will redirect to main/home view 
+	 *
+	 * @author Ashuqullah Alziai/ghezal 
 	 * @param unknown_type $offset
+	 * @return void load views 
 	 */
 	
 	function index(){
+		if($this->session->userdata('userTypeID' == 3))
+		{
+			$this->mainf();
+		}
+		else
+		{
+			redirect('main/home', 'refresh');
+		}
 		
-		$this->mainf();
 	}
+	/**
+	 * list all user in the data base 
+	 * 
+	 * this function will list all user with it is premarly data('Name', 'User Name', 'Email', 'Orgonization','Degree','User Type','Study Field') in a table and will load the personList view  
+	 * 
+	 * @param int_type $offset
+	 * @author Ashuqullah Alizai
+	 * @return void load the personList view 
+	 * 
+	 */
 	
 	function mainf($offset = 0){
 
@@ -70,7 +104,7 @@ class Admin extends CI_Controller {
 			$this->table->add_row(++$i,$person->fullName, $person->userName,$person->email,$person->organization,$person->degree,	$type[0]->userType,$field[0]->fieldName,
 				anchor('admin/view/'.$person->userID,'view',array('class'=>'view')).' '.
 				anchor('admin/update/'.$person->userID,'update',array('class'=>'update')).' '.
-				anchor('admin/types/'.$person->userID,'upgrade',array('class'=>'upgrade')).' '.
+				anchor('admin/upgrade/'.$person->userID,'upgrade',array('class'=>'upgrade')).' '.
 				anchor('admin/delete/'.$person->userID,'delete',array('class'=>'delete','onclick'=>"return confirm('Are you sure want to delete this person?')"))
 			);
 		}
@@ -78,28 +112,65 @@ class Admin extends CI_Controller {
 		// load view
 		$this -> load -> view('main_view', $data);
 	}
+	
 	/**
+	 * retrive current privileges for user
 	 * 
-	 * @author Ashuqullah Alziai
+	 * this function is for retreving the current privileges data of the user and will load the upgrade view 
+	 * 
+	 * @author alizai	
+	 *@return void load upgrade view 
+	 */
+	function upgrade($uid){
+		$person = $this->User_model->get_by_id($uid)->row();
+		$this->form_data->id = $uid;
+		$this->form_data->userName = $person->userName;
+		$this->form_data->userType = $person->userTypeID;
+		$data['action'] = site_url('admin/upgrade_user');
+		$data['message'] ='';
+		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
+		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
+		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
+		$data['title'] = 'View Online User';
+		$data['content'] = 'content/upgrade';
+		$this->load->view('main_view', $data);
+	}
+	/**
+	 * upgrade user privileges
+	 * 
+	 * this function is for upgrading user privileges as per admin decision from one level to other 
+	 * 
+	 * @author Alizai
+	 * @return void
 	 * 
 	 */
 	
-	function types(){
-	$types = $this->User_model->get_types()->result();
-	// generate table data
-		$this->load->library('table');
-         	$this->table->set_empty("&nbsp;");
-		$this->table->set_heading('No', 'Name');
-		foreach ($types as $type){		
-			$this->table->add_row($type->userType);
-		}
-		$data['table'] = $this->table->generate();		
-		// load view
-		$this->load->view('upgrade', $data);
+	function ugrade_user(){
+	
+	
+		// $uid = $this->input->post('id');
+		// $userTypeID => $this->input->post('userType');
+		 
+		// $this->User_model->upgrade_user($uid,$userTypeID);
+	
+		$data['message'] = '<div class="success">upgrade person success</div>';
+		$data['action'] = site_url('admin/upgrade_user');
+		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
+		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
+		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
+		$data['title'] = 'View Online User';
+		$data['content'] = 'content/upgrade';
+		$this->load->view('main_view', $data);
 	}
+	
+	
 	/**
+	 * show onsite user 
 	 * 
-	 * @author ashuqullah alizai
+	 * this function will load the view that will show the user name of the online user and the ip fro un registerd user 
+	 * 
+	 * @return void
+	 * @author ashuqullah alizai&ghezal Ahmadzai
 	 */
 	function online(){
 		// offset
@@ -140,23 +211,14 @@ class Admin extends CI_Controller {
 		$data['content'] = 'content/onlineuser';
 		$this->load->view('main_view', $data);
 	}
-	function ugrade(){
-		
-		$this->form_data->userName = $person->userName;
-		$this->form_data->userType = $person->userTypeID;
-		
-		upgrade_user($uid,$tid)
-		$userTypeID => $this->input->post('userType');
-		
-		$data['action'] = site_url('admin/upgrade');
-		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
-		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
-		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
-		$data['table'] = $this->table->generate();
-		$data['title'] = 'View Online User';
-		$data['content'] = 'content/upgrade';
-		$this->load->view('main_view', $data);
-	}
+	/**
+	 * add new user view 
+	 *
+	 *this function will load the addUser view for adding user data and than load the addUser function to store the data in to the database 
+	 *
+	 *@author Ashuqullah Alizai
+	 *@return void 
+	 */
 	function add()
 	{
 		// set empty default form field values
@@ -176,8 +238,12 @@ class Admin extends CI_Controller {
 		$this->load->view('main_view', $data);
 	}
 	/**
+	 * add new user 
 	 * 
+	 * this function is to create new user it will get the data for user from the addUser view and send to data base 
 	 * 
+	 * @author alizai
+	 * @return void
 	 */
 	function addUser()
 	{
@@ -245,7 +311,15 @@ class Admin extends CI_Controller {
 		$data['content'] = 'content/personView';
 		$this->load->view('main_view', $data);
 	}
-	
+	/**
+	 * retrive current data for update 
+	 * 
+	 * this function will retrive existing data for a user with given id _$id_ for updating and will load the data in the update view 
+	 *  
+	 * @param int_type $id is user ID 
+	 * @author Alizai
+	 * @return void
+	 */
 	function update($id)
 	{
 		// set validation properties
@@ -279,7 +353,13 @@ class Admin extends CI_Controller {
 		$data['content'] = 'content/addUser';
 		$this->load->view('main_view', $data);
 	}
-	
+	/**
+	 * update the person information 
+	 * 
+	 * this function will update the information of the person with new inserted data from the view and save to the database 
+	 * @author Alizai
+	 * @return void
+	 */
 	function updatePerson()
 	{
 		// set common properties
@@ -295,7 +375,7 @@ class Admin extends CI_Controller {
 		// run validation
 		//if ($this->form_validation->run() == FALSE)
 		//{
-			$data['message'] = '';
+		//	$data['message'] = '';
 		//}
 		//else
 		//{
@@ -316,7 +396,7 @@ class Admin extends CI_Controller {
 			
 			// set user message
 			$data['message'] = '<div class="success">update person success</div>';
-		//}
+		 //}
 		
 		// load view
 		$this->load->view('content/addUser', $data);
@@ -324,17 +404,26 @@ class Admin extends CI_Controller {
 	/**
 	 * delete user 
 	 * 
-	 * this function delete user with _$id_from user table
+	 * this function delete the user with _$id_from user table
 	 * 
 	 * @author ashuqullah alizai
 	 * @param int_type $id is user ID 
+	 * @return void
 	 */
 	function delete($id)
 	{
 		$this->User_model->delete_user($id);
 		redirect('admin/index/','refresh');
 	}
-	
+	/**
+	 * set field value 
+	 * 
+	 * this private fuction will set the field value for other fuctions to be used 
+	 * 
+	 * @author Ashuqullah Alizai
+	 * @return void
+	 * 
+	 */
 	// set empty default form field values
 	function _set_fields()
 	{
@@ -352,7 +441,14 @@ class Admin extends CI_Controller {
 		
 	}
 	
-	// validation rules
+	/**
+	 *set validation rules
+	 * 
+	 * set validation rule for inserted data in the text field of veiw 
+	 * 
+	 * @author Ashuqullah Alizai
+	 * @return string message for required fields 
+	 */
 	function _set_rules()
 	{
 		$this->form_validation->set_rules('name', 'Name', 'trim|required');
@@ -362,8 +458,15 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_message('valid_date', 'date format is not valid. dd-mm-yyyy');
 		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 	}
+	/**
+	 * validate the data 
+	 * fuction will validate the inserted data format 
+	 * 
+	 * @author Ashuqullah Alizai
+	 * @return boolean true if match and false if not match 
+	 * @param $str string 
+	 */
 	
-	// date_validation callback
 	function valid_date($str)
 	{
 		//match the format of the date
@@ -378,6 +481,31 @@ class Admin extends CI_Controller {
 		else
 			return false;
 	}
+	/**
+	 * List current onsite user 
+	 *
+	 * if users types [Admin | Normal | Editor ] are currently in the site return his name
+	 *
+	 * users types [Unconfirmed or logout] return his ip-address.
+	 *
+	 * @author  Ghezal Ahmad
+	 * @return array string user name for current users on the site
+	 * @return array string ip address fo unconfirmed users 
+	 *
+	 */
+	function list_users()
+	{
+		if($this->session->userdata('userTypeID'== 1 | 2 | 3))
+		{
+			return $this->session->userdata('userName');
+		}
+		else
+		{
+				
+			return $this->session->userdata('ip_address');
+		}
+	}
+	
    
 }
 ?>
