@@ -13,6 +13,13 @@
  */
 
 class User_model extends CI_Model {
+	
+	const TYPE_NORMAL = 1;
+	const TYPE_EDITOR = 2;
+	const TYPE_ADMIN = 3;
+
+	const TYPE_UNCONFIRMED = 8;
+	const TYPE_DEACTIVATED = 9;
 
 	/**
 	 * Checks if the username exists
@@ -74,7 +81,7 @@ class User_model extends CI_Model {
 			$this -> db -> set('userName', $name);
 			$this -> db -> set('password', $password);
 			$this -> db -> set('email', $email);
-			$this -> db -> set('userTypeID', 0);
+			$this -> db -> set('userTypeID', self::TYPE_UNCONFIRMED);
 			$this -> db -> set('accountCreationDate', $date);
 			$this -> db -> insert('User');
 			return $this -> db -> insert_id();
@@ -134,7 +141,6 @@ class User_model extends CI_Model {
 	 * @param array $user_data an associative array containing the columns to update
 	 * @return int 1 if successful, 0 otherwise
 	 *
-
 	 */
 	public function update_user($uid, $user_data) {
 		$this -> db -> query($this->db->update_string('User', $user_data, "userID = $uid"));
@@ -229,5 +235,138 @@ class User_model extends CI_Model {
 
 		return $query -> result();
 	}
+	
+	const DEACTIVATE = 0;
+	const ANONYMIZE = 1;
+	const CASCADE = 2; 
+	
+	public function delete($uid, $deletion_type=self::DEACTIVATE){
+		
+		if ($deletion_type==self::ANONYMIZE) {
+			//delete and make anonymous
+		}
+		elseif ($deletion_type==self::CASCADE) {
+			//delete and cascade! 
+		}
+		// DELETION TYPE = 0 
+		else {
+			//deactivate
+		}
+	}
+	
 
+	/**
+	 * get all users from user table 
+	 * 
+	 * this function will return all users from user table 
+	 * 
+	 * @author Ashuqullah Alziai
+	 * @param int $limit
+	 * @param int $offse
+	 * @return array of users 
+	 */
+	function get_paged_list($limit = 10, $offset = 0){
+		$this->db->order_by('userID','asc');
+		return $this->db->get('User', $limit, $offset);
+	}
+	/**
+	 * Count users
+	 * 
+	 * This function is used to count all existing users in the database.
+	 * 
+	 * @author Ashuqullah Alizai
+	 * @return array of users
+	 * 
+	 */
+	function count_all(){
+		return $this->db->count_all('User');
+	}
+	/**
+	 * List users
+	 * 
+	 * This function is used to list all users ordered by userID.
+	 * 
+	 * @author Ashuqullah Alizai & Ghezal Ahmad
+	 * @return array of users.
+	 */
+	function list_all(){
+		$this->db->order_by('userID','asc');
+		return $this->db->get('User');
+	}
+	/**
+	 * get users
+	 * 
+	 * This function is used to get users by userID
+	 * 
+	 * @author alizai
+	 * @param  int $id get user by id.
+	 * @return array of users
+	 */
+		
+	function get_by_id($id){
+		$this->db->where('userID', $id);
+		return $this->db->get('User');
+	}
+	/**
+	 * Add person
+	 * 
+	 * This function use to add persons to User table.
+	 * 
+	 * @author Ghezal Ahmad
+	 * @param  String $person the name to save in the database.
+	 * @return int $id the inserted id.
+	 */
+	function save($person){
+		$this->db->insert('User', $person);
+		return $this->db->insert_id();
+	}
+	
+	/**
+	 * Get field name
+	 * 
+	 * This function used to show the field name.
+	 * 
+	 * @author alizai
+	 * @param  int $fid the field id.
+	 * @return String $fieldName field name
+	 */
+	
+	function get_feild($fid){
+		$this->db->select('fieldName');
+		$this->db->where('fieldID', $fid);
+		$query = $this->db->get('Field');
+		return $query -> result();
+	}
+	
+	/**
+	 * Get user type
+	 * 
+	 * show the users type from user type table [Admin | Normal | Editor |Unconfirmed Users] for a givin userTypeID .
+	 * 
+	 * @author Ashuquallah alizai & Ghezal Ahmad
+	 * @param int $tid user type id.
+	 * @return String $UserType user type
+	 */
+	function get_type($tid){
+		$this->db->select('userType');
+		$this -> db -> where('userTypeID' , $tid);
+		$query = $this->db->get('UserType');
+		return $query -> result();
+	}
+	
+	/**
+	 * upgrade user type 
+	 * 
+	 * this function is to upgrade user type, the function will use by admin for upgrading user privileges 
+	 * 
+	 * @author ashuqullah Alizai
+	 * @param int $uid is user ID from user table 
+	 * @param int $tid id userTpeID from UserType table 
+	 */
+	function upgrade_user($uid,$tid){
+		
+		$this -> db -> set('userTypeID', $tid);
+		$this -> db -> where('userID' , $uid);
+		$this -> db -> update('User');
+	}
 }

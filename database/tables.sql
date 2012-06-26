@@ -85,7 +85,8 @@ CREATE TABLE IF NOT EXISTS `AnswerVote` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 INSERT INTO `UserType` (`userTypeID`, `userType`) VALUES
-(0, 'unconfirmed'),
+(8, 'unconfirmed'),
+(9, 'deactivated'),
 (1, 'Normal User'),
 (2, 'Editor'),
 (3, 'Admin');

@@ -1,0 +1,122 @@
+body {
+	font-family:tahoma;
+	padding:0px;
+	margin:0px;
+	background:#f5f5f5
+}
+
+div.content {
+	padding:10px 20px;
+}
+div.content h1 {
+	font-size:18pt;
+	border-bottom:5px solid #a00;
+	padding:0px;
+	margin:10px 0px 20px;
+	width:80%;
+}
+
+div.content div.data table {
+	border:2px solid #000;
+	background:#fff;
+	width:80%;
+}
+div.content div.data table td {
+	font-size:10pt;
+	padding:5px 10px;
+	border-bottom:1px solid #ddd;
+	text-align: left;
+}
+div.content div.data table th {
+	text-align: left;
+	font-size: 8pt;
+	padding: 10px 10px 7px;
+	text-transform: uppercase;
+	color: #fff;
+	background:url(../img/icons/head.gif) left -5px repeat-x;
+}
+
+div.paging {
+	font-size: 9pt;
+	margin:5px 0px;
+}
+div.paging a {
+	color:#900;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+div.paging a:hover {
+	color:#c00;
+}
+div.paging b {
+	color:#900;
+}
+
+div.success {
+	font-size:14pt;
+	background:url(../img/icons/accept.png) left 5px no-repeat;
+	padding:0px;
+	padding-left:20px;
+	margin:0px 0px 10px;
+	color:#060;
+	width:80%;
+}
+
+a.update, a.delete, a.view,a.upgrade{
+	font-size: 9pt;
+	color:#900;
+	font-wight:bold;
+	padding-left:20px;
+	text-decoration: none;
+}
+ a.add, a.back,a.user,a.online,a.home {
+	font-size: 13pt;
+	color:#900;
+	font-wight:bold;
+	padding-left:20px;
+	text-decoration: none;
+}
+a.update {
+	background:url(../img/icons/update.png) left center no-repeat;
+}
+a.upgrade {
+	background:url(../img/icons/upgrade.png) left center no-repeat;
+}
+a.delete {
+	background:url(../img/icons/delete.png) left center no-repeat;
+}
+a.add {
+	background:url(../img/icons/add.png) left center no-repeat;
+}
+a.user {
+	background:url(../img/icons/user.png) left center no-repeat;
+}
+a.online {
+	background:url(../img/icons/online.png) left center no-repeat;
+}
+a.view {
+	background:url(../img/icons/view.png) left center no-repeat;
+}
+a.back {
+	background:url(../img/icons/prev.gif) left center no-repeat;
+}
+a.home {
+	background:url(../img/icons/home.png) left center no-repeat;
+}
+a.update:hover, a.delete:hover, a.add:hover, a.view:hover {
+	color:#000;
+}
+
+input.text {
+	border:2px solid #aaa;
+}
+
+.error {
+	background: #FBE6F2 none repeat scroll 0 0;
+	border: 1px solid #D893A1;
+	color: #333333;
+	margin: 5px 0 0;
+	padding: 5px;
+	font-size: 10px;
+	font-family: Lucida Grande,Verdana,Geneva,Sans-serif;
+}

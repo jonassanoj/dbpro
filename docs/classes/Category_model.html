@@ -33,7 +33,11 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+<<<<<<< HEAD
                 <span class="label label-info">104</span></a></li>
+=======
+                <span class="label label-info">105</span></a></li>
+>>>>>>> 748556e7efb6401421a91862658ee455cd078a9e
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">8</span>
@@ -61,9 +65,19 @@
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#add_cat" title="add_cat :: Add new category."><span class="description">Add new category.</span><pre>add_cat()</pre></a></li>
 <li class="method public "><a href="#delete_cat" title="delete_cat :: Delete a category."><span class="description">Delete a category.</span><pre>delete_cat()</pre></a></li>
+<<<<<<< HEAD
 <li class="method public "><a href="#get_categories" title="get_categories :: Retrieving all category."><span class="description">Retrieving all category.</span><pre>get_categories()</pre></a></li>
+=======
+<li class="method public "><a href="#get_categories" title="get_categories :: "><span class="description">get_categories()
+        </span><pre>get_categories()</pre></a></li>
+>>>>>>> 748556e7efb6401421a91862658ee455cd078a9e
 <li class="method public "><a href="#get_popular" title="get_popular :: Retrieve the 5 most popular Categories"><span class="description">Retrieve the 5 most popular Categories</span><pre>get_popular()</pre></a></li>
 <li class="method public "><a href="#update_cat" title="update_cat :: Update category."><span class="description">Update category.</span><pre>update_cat()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#ARRAY_OF_OBJECTS" title="ARRAY_OF_OBJECTS :: "><span class="description">ARRAY_OF_OBJECTS</span><pre>ARRAY_OF_OBJECTS</pre></a></li>
+<li class="constant  "><a href="#FLAT_ARRAY" title="FLAT_ARRAY :: "><span class="description">FLAT_ARRAY</span><pre>FLAT_ARRAY</pre></a></li>
+<li class="constant  "><a href="#MULTI_ARRAY" title="MULTI_ARRAY :: "><span class="description">MULTI_ARRAY</span><pre>MULTI_ARRAY</pre></a></li>
 </ul>
 </div>
 <div class="span8">
@@ -85,7 +99,9 @@
 
 <ul>
 <li><em>Category</em></li>
+<li><em>Field</em> (read only)</li>
 <li><em>User</em> (read only)</li>
+<li><em>Question</em> (read only)</li>
 </ul></p>
 <table class="table table-bordered"><tr>
 <th>package</th>
@@ -130,16 +146,29 @@
 </div></div>
 </div>
 <a name="get_categories" id="get_categories"></a><div class="element clickable method public get_categories" data-toggle="collapse" data-target=".get_categories .collapse">
-<h2>Retrieving all category.</h2>
-<pre>get_categories(int $fieldID) : array</pre>
+<h2>get_categories()
+        </h2>
+<pre>get_categories($fieldID, $return) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This function will return all categories thats belongs to a specific field from Category tables,
-if no parameter passed to this function in this case it will return the whole category table.</p></p>
+<p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$fieldID</h4>
-<code>int</code><p>the id of the field, if left empty retrieve</p></div>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$return</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="get_popular" id="get_popular"></a><div class="element clickable method public get_popular" data-toggle="collapse" data-target=".get_popular .collapse">
+<h2>Retrieve the 5 most popular Categories</h2>
+<pre>get_popular() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
 <code>array</code>contains category object containing fieldID, catID and catName</div>
@@ -176,14 +205,39 @@ if no parameter passed to this function in this case it will return the whole ca
 <code>int</code>Category-ID of updated category.</div>
 </div></div>
 </div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="ARRAY_OF_OBJECTS" id="ARRAY_OF_OBJECTS"> </a><div class="element clickable constant  ARRAY_OF_OBJECTS" data-toggle="collapse" data-target=".ARRAY_OF_OBJECTS .collapse">
+<h2>ARRAY_OF_OBJECTS</h2>
+<pre>ARRAY_OF_OBJECTS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="FLAT_ARRAY" id="FLAT_ARRAY"> </a><div class="element clickable constant  FLAT_ARRAY" data-toggle="collapse" data-target=".FLAT_ARRAY .collapse">
+<h2>FLAT_ARRAY</h2>
+<pre>FLAT_ARRAY </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="MULTI_ARRAY" id="MULTI_ARRAY"> </a><div class="element clickable constant  MULTI_ARRAY" data-toggle="collapse" data-target=".MULTI_ARRAY .collapse">
+<h2>MULTI_ARRAY</h2>
+<pre>MULTI_ARRAY </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+<<<<<<< HEAD
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
             generated on 2012-06-26T18:10:22+02:00.<br></footer></div>
+=======
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a6</a> and<br>
+            generated on 2012-06-26T14:06:18+02:00.<br></footer></div>
+>>>>>>> 748556e7efb6401421a91862658ee455cd078a9e
 </div>
 </body>
 </html>

@@ -49,16 +49,6 @@ class Main extends CI_Controller {
 		$this -> load -> view('main_view', init_view_data($content, $data));
 	}
 
-public function adminview() {
-		$data['loginbox'] = TRUE;
-		$data['title'] = 'Admin View';
-		$data['navigation'][0] = anchor('main/admin/activeusers/','Active Users');
-		$data['navigation'][1] = anchor('http://www.google.de','List All Users');
-		$data['navigation'][2] = anchor('http://www.google.de','Delete All Users');
-		$data['content'] = 'content/form';
-		$this -> load -> view('main_view', $data);
-}
-
 	/**
 	 * home view
 	 *
@@ -152,7 +142,7 @@ public function adminview() {
 		if (!file_exists('application/views/content/' . $page . '.php'))
 			show_404();
 		// try to translate the title, then capitalize it.
-		$data['title'] = mb_convert_case(lang('w_' . $page), MB_CASE_TITLE);
+		$data['title'] = mb_convert_case(lang('title_' . $page), MB_CASE_TITLE);
 		$this -> _loadviews($page, $data);
 	}
 

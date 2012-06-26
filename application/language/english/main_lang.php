@@ -50,6 +50,7 @@ $lang['title_your_interest'] = "Questions that could interest you";
 $lang['title_about'] = "About Goftogo";
 ////// newly added to english:
 $lang['title_search_questions'] = "Search results";
+$lang['title_login_needed'] = "Login required";
 
 // Words
 $lang['w_about'] = "about";
@@ -76,9 +77,13 @@ $lang['form_logout'] = "Logout";
 $lang['msg_login_failed'] = "Login failed!";
 $lang['msgvar_username_taken'] = "Sorry, the username %s is already registered!";
 $lang['msgvar_users_online'] = "At the moment, %u registered users and %u guests are online.";
-$lang['msgvar_login_trial'] = "You tried %u times to login unsuccessully";
+$lang['msgvar_login_trial'] = "You tried %u times to login unsuccessfully";
 ////// newly added to english:
 $lang['msgvar_loggedin_as'] = "You are logged in as %s.";
+$lang['msg_login_needed'] = "The page you are trying to view is only available to registered users. Please login with your username and password to access it.";
+$lang['msg_login_register'] = "If you do not have a user account yet, you can get one by clicking on ".$lang['form_register'].".";
+$lang['msg_registration_about'] = "Setting up a user account is completely free and takes just a minute. ";
+
 
 // Paragraphs 
 $lang['par_about'] = "Goftogo (Dialogue) is a Computer Science related Q&A site, that wants to bring Afghan IT students, 

@@ -2,14 +2,28 @@
 
 <?=form_open('edit/question')?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<fieldset style="width: 780px; vertical-align:middle; height:520px; border: 1px solid #D0D0D0; background-color: #f9f9f9; color: #002166; ;">
-<legend><?=$this->input->post('titles')?></legend>
+<fieldset style="width: 800px; vertical-align:center; height:600px; border: 1px solid #D0D0D0; background-color: #f9f9f9; color: #002166; ;">
+
 <table>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+
 <tr>
 <td><label>Title</label></d>
 <td>
 <?=form_input('title',set_value('title',($question!=null?$question->title:"")),'style="width: 400px; height:30px; font-size: 13px"')?>
-<?=form_error('questionTitle')?>
+<?=form_error('title')?>
 </td>
 
 </tr>
@@ -22,7 +36,7 @@
 <?=form_error('body')?>
 </td>
 </tr>
-<tr><td></td><td></td></tr>
+<tr><td></td><td><?=form_hidden('qid',($question!=null?$question->questionID:""))?></td></tr>
 <tr>
 <td><label>Category</label></td>
 <td>
@@ -30,7 +44,7 @@
 
  &nbsp; &nbsp;  &nbsp; &nbsp;<?=form_dropdown('catID',$catList,set_value('catID',($question!=null?$question->catID:1)), 'style="width: 240px; height:30px; font-size: 13px"');?> &nbsp; &nbsp; &nbsp; &nbsp;
  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-						 <?=form_submit('',$this->input->post('btn'),'style="width: 200px; height:30px; font-size: 13px"')?>
+						 <?=form_submit('btn',$this->input->post('btn'),'style="width: 200px; height:30px; font-size: 13px"')?>
 <?=form_error('catagory')?>
 </td>
 </tr>
