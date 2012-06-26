@@ -9,10 +9,17 @@
  * * _User_
  * * _UserType_ (read only)
  *
- *@package models
+ * @package models
  */
 
 class User_model extends CI_Model {
+	
+	const TYPE_NORMAL = 1;
+	const TYPE_EDITOR = 2;
+	const TYPE_ADMIN = 3;
+
+	const TYPE_UNCONFIRMED = 8;
+	const TYPE_DEACTIVATED = 9;
 
 	/**
 	 * Checks if the username exists
@@ -74,7 +81,7 @@ class User_model extends CI_Model {
 			$this -> db -> set('userName', $name);
 			$this -> db -> set('password', $password);
 			$this -> db -> set('email', $email);
-			$this -> db -> set('userTypeID', 0);
+			$this -> db -> set('userTypeID', self::TYPE_UNCONFIRMED);
 			$this -> db -> set('accountCreationDate', $date);
 			$this -> db -> insert('User');
 			return $this -> db -> insert_id();
@@ -134,7 +141,6 @@ class User_model extends CI_Model {
 	 * @param array $user_data an associative array containing the columns to update
 	 * @return int 1 if successful, 0 otherwise
 	 *
-
 	 */
 	public function update_user($uid, $user_data) {
 		$this -> db -> query($this->db->update_string('User', $user_data, "userID = $uid"));
@@ -229,6 +235,26 @@ class User_model extends CI_Model {
 
 		return $query -> result();
 	}
+	
+	const DEACTIVATE = 0;
+	const ANONYMIZE = 1;
+	const CASCADE = 2; 
+	
+	public function delete($uid, $deletion_type=self::DEACTIVATE){
+		
+		if ($deletion_type==self::ANONYMIZE) {
+			//delete and make anonymous
+		}
+		elseif ($deletion_type==self::CASCADE) {
+			//delete and cascade! 
+		}
+		// DELETION TYPE = 0 
+		else {
+			//deactivate
+		}
+	}
+	
+
 	/**
 	 * get all users from user table 
 	 * 
@@ -311,6 +337,7 @@ class User_model extends CI_Model {
 		$query = $this->db->get('Field');
 		return $query -> result();
 	}
+	
 	/**
 	 * Get user type
 	 * 
@@ -326,6 +353,7 @@ class User_model extends CI_Model {
 		$query = $this->db->get('UserType');
 		return $query -> result();
 	}
+	
 	/**
 	 * upgrade user type 
 	 * 
@@ -341,5 +369,4 @@ class User_model extends CI_Model {
 		$this -> db -> where('userID' , $uid);
 		$this -> db -> update('User');
 	}
-	
 }
