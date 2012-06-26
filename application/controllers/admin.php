@@ -2,24 +2,26 @@
 /**
  * the admin controller
  *
- * Handles the basic admin functionality. List Users,upgrade usere's privileges, delete users, update users data,add new user, list onsite users 
+ * Handles the basic admin functionality. List Users,upgrade usere's privileges, delete users, update users data,add new user, list onsite users
  *
  *
  * @package controllers
  * @author Ashuqullah Alizai & Ghezal Ahmad Zai
  */
+
 class Admin extends CI_Controller {
 
 	// num of records per page
 	private $limit = 10;
+	
 	/**
 	 * constructor
 	 *
-	 * loads user_model, helper , main_lang, session library , table library.
+	 * loads user_model, helper , main_lang, session library , table library
 	 *
 	 */
-	function __construct()
-	{
+	
+	function __construct(){
 		parent::__construct();
 		// load library
 		$this->load->library(array('table','form_validation'));		
@@ -35,26 +37,26 @@ class Admin extends CI_Controller {
 		
 	}
 	/**
-	 * main function 
-	 * 
-	 * this funciton will check the userdata from session,if the user is admin it will access the admin table if not will redirect to main/home view 
+	 * main function
 	 *
-	 * @author Ashuqullah Alziai/ghezal 
+	 * this funciton will check the userdata from session,if the user is admin it will access the admin table if not will redirect to main/home view
+	 *
+	 * @author Ashuqullah Alziai/ghezal
 	 * @param unknown_type $offset
-	 * @return void load views 
+	 * @return void load views
 	 */
 	
 	function index(){
-		if($this->session->userdata('userTypeID' == 3))
-		{
+		// we put the not sign now for checing the admin function because we dont have and session data it will always redirect us
+		if(!$this->session->userdata('userTypeID' == 3)){
 			$this->mainf();
 		}
-		else
-		{
+		else{
 			redirect('main/home', 'refresh');
 		}
 		
 	}
+	
 	/**
 	 * list all user in the data base 
 	 * 
@@ -97,8 +99,7 @@ class Admin extends CI_Controller {
 		$this->table->set_heading('No', 'Name', 'User Name', 'Email', 'Orgonization','Degree','User Type','Study Field','  ');
 		$i = 0 + $offset;
 		     
-		foreach ($persons as $person)
-		{
+		foreach ($persons as $person){
 			$type = $this->User_model->get_type($person->userTypeID);
 	        $field = $this->User_model->get_feild($person->fieldID);
 			$this->table->add_row(++$i,$person->fullName, $person->userName,$person->email,$person->organization,$person->degree,	$type[0]->userType,$field[0]->fieldName,
@@ -219,8 +220,7 @@ class Admin extends CI_Controller {
 	 *@author Ashuqullah Alizai
 	 *@return void 
 	 */
-	function add()
-	{
+	function add(){
 		// set empty default form field values
 		$this->_set_fields();
 		// set validation properties
@@ -245,8 +245,7 @@ class Admin extends CI_Controller {
 	 * @author alizai
 	 * @return void
 	 */
-	function addUser()
-	{
+	function addUser(){
 		// set common properties
 		$data['title'] = 'Add new person';
 		$data['action'] = site_url('admin/addUser');
@@ -294,8 +293,7 @@ class Admin extends CI_Controller {
 	 * 
 	 */
 	
-	function view($id)
-	{
+	function view($id){
 		// set common properties
 		$data['title'] = 'Admin View User Details';
 		$data['link_back'] = anchor('admin/index/','Back to list of persons',array('class'=>'back'));
@@ -320,8 +318,7 @@ class Admin extends CI_Controller {
 	 * @author Alizai
 	 * @return void
 	 */
-	function update($id)
-	{
+	function update($id){
 		// set validation properties
 		$this->_set_rules();
 		
@@ -360,8 +357,7 @@ class Admin extends CI_Controller {
 	 * @author Alizai
 	 * @return void
 	 */
-	function updatePerson()
-	{
+	function updatePerson(){
 		// set common properties
 		$data['title'] = 'Update person';
 		$data['action'] = site_url('admin/updatePerson');
@@ -410,8 +406,7 @@ class Admin extends CI_Controller {
 	 * @param int_type $id is user ID 
 	 * @return void
 	 */
-	function delete($id)
-	{
+	function delete($id){
 		$this->User_model->delete_user($id);
 		redirect('admin/index/','refresh');
 	}
@@ -424,9 +419,8 @@ class Admin extends CI_Controller {
 	 * @return void
 	 * 
 	 */
-	// set empty default form field values
-	function _set_fields()
-	{
+	
+	function _set_fields(){
 		$this->form_data->id = '';
 		$this->form_data->fullName = '';
 		$this->form_data->userName = '';
@@ -449,8 +443,7 @@ class Admin extends CI_Controller {
 	 * @author Ashuqullah Alizai
 	 * @return string message for required fields 
 	 */
-	function _set_rules()
-	{
+	function _set_rules(){
 		$this->form_validation->set_rules('name', 'Name', 'trim|required');
 		$this->form_validation->set_rules('dob', 'DoB', 'trim|required|callback_valid_date');		
 		$this->form_validation->set_message('required', '* required');
@@ -467,8 +460,7 @@ class Admin extends CI_Controller {
 	 * @param $str string 
 	 */
 	
-	function valid_date($str)
-	{
+	function valid_date($str){
 		//match the format of the date
 		if (preg_match ("/^([0-9]{2})-([0-9]{2})-([0-9]{4})$/", $str, $parts))
 		{
@@ -481,6 +473,7 @@ class Admin extends CI_Controller {
 		else
 			return false;
 	}
+	
 	/**
 	 * List current onsite user 
 	 *
@@ -493,8 +486,7 @@ class Admin extends CI_Controller {
 	 * @return array string ip address fo unconfirmed users 
 	 *
 	 */
-	function list_users()
-	{
+	function list_users(){
 		if($this->session->userdata('userTypeID'== 1 | 2 | 3))
 		{
 			return $this->session->userdata('userName');
@@ -506,6 +498,7 @@ class Admin extends CI_Controller {
 		}
 	}
 	
-   
+
 }
+
 ?>
