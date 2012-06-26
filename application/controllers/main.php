@@ -151,7 +151,7 @@ public function adminview() {
 		if (!file_exists('application/views/content/' . $page . '.php'))
 			show_404();
 		// try to translate the title, then capitalize it.
-		$data['title'] = mb_convert_case(lang('w_' . $page), MB_CASE_TITLE);
+		$data['title'] = mb_convert_case(lang('title_' . $page), MB_CASE_TITLE);
 		$this -> _loadviews($page, $data);
 	}
 
