@@ -280,6 +280,7 @@ class User_model extends CI_Model {
 	 */
 	function count_all(){
 		return $this->db->count_all('User');
+	}
 	/**
 	 * List users
 	 * 
@@ -367,7 +368,6 @@ class User_model extends CI_Model {
 		$this -> db -> set('userTypeID', $tid);
 		$this -> db -> where('userID' , $uid);
 		$this -> db -> update('User');
-		
 	}
 
 }
