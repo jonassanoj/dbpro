@@ -50,12 +50,20 @@ class Edit extends CI_Controller {
 		$data['loginbox']=TRUE;
 		$this -> load -> view('main_view',init_view_data($content,$data));
 	}
+	
+	
 	/**
+	 * Create a new question or edit an existing one
 	 * 
-	 * create a new question or edit an existing one
+	 * This Method is used to  checke the user questions, if the question  belongs to the current user, then the form will display with content of current quesiton 
+	 * The form will contain Question Title, Question Body and a drop down list for choosing category of the question
+	 * if the user update the question the form first would be validated according to the pre existed rules of the form validation 
+	 * if the user entered valid data then the quesiton will be created or edited. 
+	 * If the quesiton does not belongs to the user the user will be redirected to the last visited page
 	 * 
+	 * @author Abdulaziz Akbary and Hamidullah Khanzai
 	 * @param int $qid the id of the question to edit. if left blank, create a new question.
-	 * 
+	 * @retrun void The user will redirecte to the main page.
 	 */
 	public function question($qid=0){
 		
@@ -74,7 +82,8 @@ class Edit extends CI_Controller {
 					$nqid=$_POST['qid'];
 					unset($_POST['qid']);
 					if($this->question_model->update_question($nqid,$_POST)){
-						echo "Your Question successfully updated";
+						//echo "Your Question successfully updated";
+						redirect('main/qshow/'.$nqid); 
 					
 					}
 				
@@ -83,12 +92,13 @@ class Edit extends CI_Controller {
 					
 					if($this->question_model->create_question($_POST['title'],$this->session->userdata('uid'),$_POST['catID'],$_POST['body'])!=0){
 						echo "Your Question have been successfully created";
+						redirect('main/home'); 
 					}
 				}
 			
 		}
 		// call function listCategory for the pupose of filling dropdownlist
-		$data['catList']=$this->listCategory();
+		$data['catList']=$this->category_model->get_categories(0,Category_model::FLAT_ARRAY);
 		// if quesiton id is greater then zero then it means to perform edite action 
 		if($qid>0){
 			$this->session->set_userdata('qid',$qid);
@@ -112,7 +122,7 @@ class Edit extends CI_Controller {
 			}
 			// if the $qid is 0 then we diplay the form for creation fo question 
 			else{
-				$this->session->set_userdata('action',"save");
+				
 				$data['title']='Create Question';
 				$data['question']=null; 
 				$_POST['btn']='Save Question';
@@ -121,33 +131,13 @@ class Edit extends CI_Controller {
 		
 		}
 		
-		/**
-		 * Helper method which is used to slect category from the Category Table 
-		 * @param 
-		 * @return array of category 
-		 */
-		
-		function listCategory(){
-			
-			$catData=$this->category_model->get_categories();
-			if($catData){
-			$catList=array();
-			foreach($catData as $row){
-				$catList[$row->catID]=$row->catName;
-			}
-			return $catList;
-			
-		}
-		
-		
-		
 		
 		//TODO: check if $qid is the user's question, otherwise send the user back where he came from (hint: see controllers/user.php for how to do this)
 		// show a form to edit a question if $qid does not exist it's empty, otherwise it should already contain the question's data
 		// create the form to show as /views/content/form_question.php. It should contain fields for title, body and a drop-down list with all the names of the categories to choose from.
 		// use form validation to make sure all required fields are entered. if everything is okay, update the database.
 		
-	}
+
 	
 	/**
 	 * 
