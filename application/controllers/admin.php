@@ -1,8 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+ 
 /**
  * the admin controller
  *
- * Handles the basic admin functionality. List Users,upgrade usere's privileges, delete users, update users data,add new user, list onsite users
+ * Handles the basic admin functionality. List Users,upgrade usere's privileges, delete users, update users data,add new user, list on site users
  *
  *
  * @package controllers
@@ -36,18 +38,21 @@ class Admin extends CI_Controller {
 			$this -> lang -> load('main', $this -> session -> userdata('language'));
 		
 	}
+
 	/**
-	 * main function
+	 * main(index) function
 	 *
 	 * this funciton will check the userdata from session,if the user is admin it will access the admin table if not will redirect to main/home view
 	 *
-	 * @author Ashuqullah Alziai/ghezal
+	 * @author Ashuqullah Alziai & Ghezal Ahmad
 	 * @param unknown_type $offset
 	 * @return void load views
 	 */
 	
 	function index(){
-		// we put the not sign now for checing the admin function because we dont have and session data it will always redirect us
+		// we put the not sign now for checking the admin function, because we dont have
+		// any session data it will always redirect us.
+
 		if(!$this->session->userdata('userTypeID' == 3)){
 			$this->mainf();
 		}
@@ -56,11 +61,13 @@ class Admin extends CI_Controller {
 		}
 		
 	}
+
+
 	
 	/**
-	 * list all user in the data base 
+	 * list all user in the database 
 	 * 
-	 * this function will list all user with it is premarly data('Name', 'User Name', 'Email', 'Orgonization','Degree','User Type','Study Field') in a table and will load the personList view  
+	 * this function will list all user with it is primarly data('Name', 'UserName', 'Email', 		 * 'Orgonization','Degree','User Type','Study Field') in a table and will load the personList 		 *  view  
 	 * 
 	 * @param int_type $offset
 	 * @author Ashuqullah Alizai
@@ -166,12 +173,12 @@ class Admin extends CI_Controller {
 	
 	
 	/**
-	 * show onsite user 
+	 * show currently users on site.
 	 * 
-	 * this function will load the view that will show the user name of the online user and the ip fro un registerd user 
+	 * this function will load the view that will show the user name of the online user and the ip from un registerd user 
 	 * 
 	 * @return void
-	 * @author ashuqullah alizai&ghezal Ahmadzai
+	 * @author ashuqullah alizai & Ghezal Ahmadzai
 	 */
 	function online(){
 		// offset
@@ -237,10 +244,11 @@ class Admin extends CI_Controller {
 		$data['content'] = 'content/addUser';
 		$this->load->view('main_view', $data);
 	}
+
 	/**
 	 * add new user 
 	 * 
-	 * this function is to create new user it will get the data for user from the addUser view and send to data base 
+	 * this function is to create new user it will get the data for user from the addUser view and send to database 
 	 * 
 	 * @author alizai
 	 * @return void
@@ -283,13 +291,15 @@ class Admin extends CI_Controller {
 		// load view
 		$this->load->view('content/addUser', $data);
 	}
+
+
 	/**
 	 * show user details 
 	 * 
 	 * this function will show details of the user with _id_ specifyed as parameter 
 	 * 
 	 * @author Ashuqullah Alizai
-	 * @param int_type $id is user ID 
+	 * @param int $id is user id 
 	 * 
 	 */
 	
@@ -309,12 +319,14 @@ class Admin extends CI_Controller {
 		$data['content'] = 'content/personView';
 		$this->load->view('main_view', $data);
 	}
+
+
 	/**
 	 * retrive current data for update 
 	 * 
 	 * this function will retrive existing data for a user with given id _$id_ for updating and will load the data in the update view 
 	 *  
-	 * @param int_type $id is user ID 
+	 * @param int $id is user id
 	 * @author Alizai
 	 * @return void
 	 */
@@ -350,6 +362,8 @@ class Admin extends CI_Controller {
 		$data['content'] = 'content/addUser';
 		$this->load->view('main_view', $data);
 	}
+
+
 	/**
 	 * update the person information 
 	 * 
@@ -403,7 +417,7 @@ class Admin extends CI_Controller {
 	 * this function delete the user with _$id_from user table
 	 * 
 	 * @author ashuqullah alizai
-	 * @param int_type $id is user ID 
+	 * @param int $id is user ID 
 	 * @return void
 	 */
 	function delete($id){
@@ -475,7 +489,7 @@ class Admin extends CI_Controller {
 	}
 	
 	/**
-	 * List current onsite user 
+	 * List current on site user 
 	 *
 	 * if users types [Admin | Normal | Editor ] are currently in the site return his name
 	 *
@@ -483,7 +497,7 @@ class Admin extends CI_Controller {
 	 *
 	 * @author  Ghezal Ahmad
 	 * @return array string user name for current users on the site
-	 * @return array string ip address fo unconfirmed users 
+	 * @return array string ip address for unconfirmed users 
 	 *
 	 */
 	function list_users(){
