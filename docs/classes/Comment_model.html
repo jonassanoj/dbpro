@@ -33,10 +33,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">11</span></a></li>
+                <span class="label label-info">104</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">1</span>
+                <span class="label label-info">8</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -63,6 +63,7 @@
 <li class="method public "><a href="#create_qcomment" title="create_qcomment :: adds a question comment to the Comment table of database"><span class="description">adds a question comment to the Comment table of database</span><pre>create_qcomment()</pre></a></li>
 <li class="method public "><a href="#delete_comment" title="delete_comment :: Delete Comments by id"><span class="description">Delete Comments by id</span><pre>delete_comment()</pre></a></li>
 <li class="method public "><a href="#get_acomments" title="get_acomments :: retrieve comments for an answer"><span class="description">retrieve comments for an answer</span><pre>get_acomments()</pre></a></li>
+<li class="method public "><a href="#get_comment" title="get_comment :: get a comment by commentID"><span class="description">get a comment by commentID</span><pre>get_comment()</pre></a></li>
 <li class="method public "><a href="#get_qcomments" title="get_qcomments :: retrieve comments for a question"><span class="description">retrieve comments for a question</span><pre>get_qcomments()</pre></a></li>
 <li class="method public "><a href="#update_comment" title="update_comment :: Update Comments by id"><span class="description">Update Comments by id</span><pre>update_comment()</pre></a></li>
 </ul>
@@ -168,6 +169,22 @@ after inserting successfully all parameter to the database, commentID will be re
 <code>array</code>holds comment objects with userName and body properties</div>
 </div></div>
 </div>
+<a name="get_comment" id="get_comment"></a><div class="element clickable method public get_comment" data-toggle="collapse" data-target=".get_comment .collapse">
+<h2>get a comment by commentID</h2>
+<pre>get_comment(int $cid) : object | boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Returns a comment object identified by the commentID. It has the attributes
+questionID, answerID, userID and body.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$cid</h4>
+<code>int</code><p>the commentID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code><code>boolean</code>false if the comment is not found, the comment object otherwise.</div>
+</div></div>
+</div>
 <a name="get_qcomments" id="get_qcomments"></a><div class="element clickable method public get_qcomments" data-toggle="collapse" data-target=".get_qcomments .collapse">
 <h2>retrieve comments for a question</h2>
 <pre>get_qcomments(int $qid) : array</pre>
@@ -208,7 +225,7 @@ after inserting successfully all parameter to the database, commentID will be re
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-            generated on 2012-06-21T19:19:07+02:00.<br></footer></div>
+            generated on 2012-06-26T18:10:22+02:00.<br></footer></div>
 </div>
 </body>
 </html>

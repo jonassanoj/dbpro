@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a5" title="">
-  <file path="models/category_model.php" hash="4d498ce7dafc270ca52c4d0c7078cb19" package="Default">
+  <file path="models/category_model.php" hash="0653835ccf405dea8e9ff6d393df2568" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
       <name>Category_model</name>
       <full_name>\Category_model</full_name>
@@ -91,26 +91,40 @@ if no parameter passed to this function in this case it will return the whole ca
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="77" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="74" package="models">
+        <name>get_popular</name>
+        <full_name>get_popular</full_name>
+        <docblock line="74">
+          <description><![CDATA[Retrieve the 5 most popular Categories]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="74" name="return" description="contains category object containing fieldID, catID and catName" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="89" package="models">
         <name>delete_cat</name>
         <full_name>delete_cat</full_name>
-        <docblock line="77">
+        <docblock line="89">
           <description><![CDATA[Delete a category.]]></description>
           <long-description><![CDATA[<p>This function is used to delete a specific category from a Category tables.</p>]]></long-description>
-          <tag line="77" name="param" description="Means category-ID." type="int" variable="$catID">
+          <tag line="89" name="param" description="Means category-ID." type="int" variable="$catID">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="77" name="return" description="Category-ID of deleted row." type="int">
+          <tag line="89" name="return" description="Category-ID of deleted row." type="int">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="77">
+        <argument line="89">
           <name>$catID</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
+    <markers>
+      <todo line="75">update query to use activerecords!</todo>
+    </markers>
   </file>
   <file path="models/answer_model.php" hash="d312a3b7865b3328b9235b946c0345a4" package="Default">
     <class final="false" abstract="false" namespace="" line="14" package="models">
@@ -149,7 +163,7 @@ if no parameter passed to this function in this case it will return the whole ca
       </method>
     </class>
   </file>
-  <file path="models/comment_model.php" hash="8010b5dbee132937a2b4bb995dd07cdf" package="Default">
+  <file path="models/comment_model.php" hash="587cbc9a7f718fe2d672fd30b55fadc3" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
       <name>Comment_model</name>
       <full_name>\Comment_model</full_name>
@@ -240,83 +254,104 @@ after inserting successfully all parameter to the database, commentID will be re
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="84" package="models">
-        <name>create_acomment</name>
-        <full_name>create_acomment</full_name>
-        <docblock line="84">
-          <description><![CDATA[adds a answer comment to the Comment table of database]]></description>
-          <long-description><![CDATA[<p>You will pass answerID, userID and body to Comment table in database.
-after inserting successfully all parameter to the database, commentID will be return from database</p>]]></long-description>
-          <tag line="84" name="param" description="the answerID" type="int" variable="$aid">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="80" package="models">
+        <name>get_comment</name>
+        <full_name>get_comment</full_name>
+        <docblock line="80">
+          <description><![CDATA[get a comment by commentID]]></description>
+          <long-description><![CDATA[<p>Returns a comment object identified by the commentID. It has the attributes
+questionID, answerID, userID and body.</p>]]></long-description>
+          <tag line="80" name="param" description="the commentID" type="int" variable="$cid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="84" name="param" description="the userID" type="int" variable="$uid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="84" name="param" description="the body" type="string" variable="$body">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="84" name="return" description="the id of the newly inserted comment" type="int">
-            <type by_reference="false">int</type>
+          <tag line="80" name="return" description="false if the comment is not found, the comment object otherwise." type="object|boolean">
+            <type by_reference="false">object</type>
+            <type by_reference="false">boolean</type>
           </tag>
         </docblock>
-        <argument line="84">
-          <name>$aid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="84">
-          <name>$uid</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="84">
-          <name>$body</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="100" package="models">
-        <name>update_comment</name>
-        <full_name>update_comment</full_name>
-        <docblock line="100">
-          <description><![CDATA[Update Comments by id]]></description>
-          <long-description><![CDATA[<p>this function will update the comment body.</p>]]></long-description>
-          <tag line="100" name="param" description="the commentID of the comment to change" type="int" variable="$cid">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="100" name="param" description="the new body text of the comment" type="string" variable="$body">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="100" name="return" description="0 if the comment was not found, 1 otherwise" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-        </docblock>
-        <argument line="100">
+        <argument line="80">
           <name>$cid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="100">
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="103" package="models">
+        <name>create_acomment</name>
+        <full_name>create_acomment</full_name>
+        <docblock line="103">
+          <description><![CDATA[adds a answer comment to the Comment table of database]]></description>
+          <long-description><![CDATA[<p>You will pass answerID, userID and body to Comment table in database.
+after inserting successfully all parameter to the database, commentID will be return from database</p>]]></long-description>
+          <tag line="103" name="param" description="the answerID" type="int" variable="$aid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="103" name="param" description="the userID" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="103" name="param" description="the body" type="string" variable="$body">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="103" name="return" description="the id of the newly inserted comment" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="103">
+          <name>$aid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="103">
+          <name>$uid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="103">
           <name>$body</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="117" package="models">
-        <name>delete_comment</name>
-        <full_name>delete_comment</full_name>
-        <docblock line="117">
-          <description><![CDATA[Delete Comments by id]]></description>
-          <long-description><![CDATA[<p>this function will delete the comment with the specified id.</p>]]></long-description>
-          <tag line="117" name="param" description="the commentID" type="int" variable="$cid">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="119" package="models">
+        <name>update_comment</name>
+        <full_name>update_comment</full_name>
+        <docblock line="119">
+          <description><![CDATA[Update Comments by id]]></description>
+          <long-description><![CDATA[<p>this function will update the comment body.</p>]]></long-description>
+          <tag line="119" name="param" description="the commentID of the comment to change" type="int" variable="$cid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="117" name="return" description="0 if the comment was not found, 1 otherwise" type="int">
+          <tag line="119" name="param" description="the new body text of the comment" type="string" variable="$body">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="119" name="return" description="0 if the comment was not found, 1 otherwise" type="int">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="117">
+        <argument line="119">
+          <name>$cid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="119">
+          <name>$body</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="136" package="models">
+        <name>delete_comment</name>
+        <full_name>delete_comment</full_name>
+        <docblock line="136">
+          <description><![CDATA[Delete Comments by id]]></description>
+          <long-description><![CDATA[<p>this function will delete the comment with the specified id.</p>]]></long-description>
+          <tag line="136" name="param" description="the commentID" type="int" variable="$cid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="136" name="return" description="0 if the comment was not found, 1 otherwise" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="136">
           <name>$cid</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -324,7 +359,7 @@ after inserting successfully all parameter to the database, commentID will be re
       </method>
     </class>
   </file>
-  <file path="models/field_model.php" hash="7c0977daf36476ce6e683ec1fab963b9" package="Default">
+  <file path="models/field_model.php" hash="3f822eac69def505088fa7d2681c1f39" package="Default">
     <class final="false" abstract="false" namespace="" line="12" package="models">
       <name>Field_model</name>
       <full_name>\Field_model</full_name>
@@ -348,42 +383,42 @@ adding, deleting fields, from database, (Field) table</p>]]></long-description>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="40" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="38" package="models">
         <name>add_field</name>
         <full_name>add_field</full_name>
-        <docblock line="40">
+        <docblock line="38">
           <description><![CDATA[it adds records in the field table]]></description>
           <long-description><![CDATA[<p>add_field(): This fuction add a new field into Field table</p>]]></long-description>
-          <tag line="40" name="author" description="Sayed Ahmad Mahboobi"/>
-          <tag line="40" name="param" description="(String: needs a parameter which represent a field name)" type="string" variable="$fieldName">
+          <tag line="38" name="author" description="Sayed Ahmad Mahboobi"/>
+          <tag line="38" name="param" description="(String: needs a parameter which represent a field name)" type="string" variable="$fieldName">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="40" name="return" description="new_inserted_id (int: it return the new iserted field id)" type="int">
+          <tag line="38" name="return" description="new_inserted_id (int: it return the new iserted field id)" type="int">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="40">
+        <argument line="38">
           <name>$fieldName</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="57" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="55" package="models">
         <name>delete_field</name>
         <full_name>delete_field</full_name>
-        <docblock line="57">
+        <docblock line="55">
           <description><![CDATA[deletes the fields]]></description>
           <long-description><![CDATA[<p>delete_field(): This fuction delete a field from field table
 Function takes an arguments which will be fieldID</p>]]></long-description>
-          <tag line="57" name="author" description="Sayed Ahmad Mahboobi"/>
-          <tag line="57" name="param" description="(int: ID of the field to be delete)" type="int" variable="$fieldID">
+          <tag line="55" name="author" description="Sayed Ahmad Mahboobi"/>
+          <tag line="55" name="param" description="(int: ID of the field to be delete)" type="int" variable="$fieldID">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="57" name="return" description="void" type="\:">
+          <tag line="55" name="return" description="void" type="\:">
             <type by_reference="false">\:</type>
           </tag>
         </docblock>
-        <argument line="57">
+        <argument line="55">
           <name>$fieldID</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -391,7 +426,7 @@ Function takes an arguments which will be fieldID</p>]]></long-description>
       </method>
     </class>
   </file>
-  <file path="models/question_model.php" hash="1f3336522ab30bc8b043066df46fbd13" package="Default">
+  <file path="models/question_model.php" hash="9321704ad533cdbd97e7341053457675" package="Default">
     <class final="false" abstract="false" namespace="" line="16" package="models">
       <name>Question_model</name>
       <full_name>\Question_model</full_name>
@@ -498,21 +533,91 @@ get the first 10 questions matching the terms <em>php</em> and <em>apache</em> :
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="89" package="models">
-        <name>filter</name>
-        <full_name>filter</full_name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="89" package="models">
+        <name>create_question</name>
+        <full_name>create_question</full_name>
         <docblock line="89">
-          <description><![CDATA[create a filter for the where-clause]]></description>
-          <long-description><![CDATA[<p>A private function used by <em>get_count</em> and <em>get_list</em>. It takes the $filter$ array (as described in the <em>getlist</em> documentation)
-It executes active record functions to qualify the query.</p>]]></long-description>
-          <tag line="89" name="param" description="the filter, see the get_list documentation" type="array" variable="$filter">
-            <type by_reference="false">array</type>
+          <description><![CDATA[create a new question, return its id]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="89" name="param" description="the question title" type="string" variable="$title">
+            <type by_reference="false">string</type>
           </tag>
-          <tag line="89" name="return" description="no return value" type="void">
-            <type by_reference="false">void</type>
+          <tag line="89" name="param" description="the user who created the question" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="89" name="param" description="the categoryID of the question" type="int" variable="$cid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="89" name="param" description="the question body" type="string" variable="$body">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="89" name="return" description="the id of the newly inserted question, 0 if failed" type="int">
+            <type by_reference="false">int</type>
           </tag>
         </docblock>
         <argument line="89">
+          <name>$title</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="89">
+          <name>$uid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="89">
+          <name>$cid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="89">
+          <name>$body</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="110" package="models">
+        <name>update_question</name>
+        <full_name>update_question</full_name>
+        <docblock line="110">
+          <description><![CDATA[Update a question]]></description>
+          <long-description><![CDATA[<p>Updates a question via an associative array.</p>]]></long-description>
+          <tag line="110" name="param" description="the id of the question to update." type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="110" name="param" description="an associative array containing the columns to update. For valid keys see the question table schema." type="array" variable="$question_data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="110" name="return" description="1 if successful, 0 otherwise" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="110">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="110">
+          <name>$question_data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="125" package="models">
+        <name>filter</name>
+        <full_name>filter</full_name>
+        <docblock line="125">
+          <description><![CDATA[create a filter for the where-clause]]></description>
+          <long-description><![CDATA[<p>A private function used by <em>get_count</em> and <em>get_list</em>. It takes the $filter$ array (as described in the <em>getlist</em> documentation)
+It executes active record functions to qualify the query.</p>]]></long-description>
+          <tag line="125" name="param" description="the filter, see the get_list documentation" type="array" variable="$filter">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="125" name="return" description="no return value" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="125">
           <name>$filter</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -520,7 +625,134 @@ It executes active record functions to qualify the query.</p>]]></long-descripti
       </method>
     </class>
   </file>
-  <file path="models/user_model.php" hash="4315282fefa1c6bb4e6e17cc03a22d0c" package="Default">
+  <file path="models/vote_model.php" hash="4543c0850dcdaf4515298eb4fe8c8b4e" package="Default">
+    <class final="false" abstract="false" namespace="" line="18" package="models">
+      <name>Vote_model</name>
+      <full_name>\Vote_model</full_name>
+      <extends>CI_Model</extends>
+      <docblock line="18">
+        <description><![CDATA[the vote model]]></description>
+        <long-description><![CDATA[<p>Provides checking and adding votes functionality for questions and answers.</p>
+
+<p>It uses the following database tables:</p>
+
+<ul>
+<li><em>QuestionVote</em></li>
+<li><em>AnswerVote</em></li>
+<li><em>Answer</em></li>
+<li><em>Answer</em></li>
+</ul>]]></long-description>
+        <tag line="18" name="package" description="models"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="30" package="models">
+        <name>add_q_vote</name>
+        <full_name>add_q_vote</full_name>
+        <docblock line="30">
+          <description><![CDATA[upvote or downvote a question]]></description>
+          <long-description><![CDATA[<p>Record the user who vote along with the questionID for which he/she voted.</p>]]></long-description>
+          <tag line="30" name="param" description="the userID" type="int" variable="$userID">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="30" name="param" description="the questionID" type="int" variable="$questionID">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="30">
+          <name>$userID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="30">
+          <name>$questionID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="63" package="models">
+        <name>add_a_vote</name>
+        <full_name>add_a_vote</full_name>
+        <docblock line="63">
+          <description><![CDATA[upvote or downvote an answer]]></description>
+          <long-description><![CDATA[<p>Record the user who vote along with the answerID for which he/she voted.</p>]]></long-description>
+          <tag line="63" name="param" description="the userID" type="int" variable="$userID">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="63" name="param" description="the answerID" type="int" variable="$answerID">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="63">
+          <name>$userID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="63">
+          <name>$answerID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="98" package="models">
+        <name>check_q_vote</name>
+        <full_name>check_q_vote</full_name>
+        <docblock line="98">
+          <description><![CDATA[Check a user voted or did not.]]></description>
+          <long-description><![CDATA[<p>Search a user voted or did not for a specific question.</p>]]></long-description>
+          <tag line="98" name="param" description="the userID who want to vote." type="int" variable="$userID">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="98" name="param" description="the questionID" type="int" variable="$quesionID">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="98" name="return" description="a single question object, containing column values as attributes." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="98">
+          <name>$userID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="98">
+          <name>$questionID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="118" package="models">
+        <name>check_a_vote</name>
+        <full_name>check_a_vote</full_name>
+        <docblock line="118">
+          <description><![CDATA[Check a user voted or did not.]]></description>
+          <long-description><![CDATA[<p>Search a user voted or did not for an specific answer.</p>]]></long-description>
+          <tag line="118" name="param" description="the userID who want to vote." type="int" variable="$userID">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="118" name="param" description="the answerID" type="int" variable="$answerID">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="118" name="return" description="a single question object, containing column values as attributes." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="118">
+          <name>$userID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="118">
+          <name>$answerID</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="98" code="50014">Name of argument $questionID does not match with the DocBlock's name $quesionID in check_q_vote()</error>
+      <notice line="98" code="50013">Parameter $quesionID could not be found in check_q_vote()</notice>
+    </parse_markers>
+  </file>
+  <file path="models/user_model.php" hash="7c68d31ddfd7c0c176134e8b4ff2388a" package="Default">
     <class final="false" abstract="false" namespace="" line="15" package="models">
       <name>User_model</name>
       <full_name>\User_model</full_name>
@@ -722,29 +954,29 @@ User data is an array. It updates the user information in table user where UserI
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="176" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="177" package="models">
         <name>change_usertype</name>
         <full_name>change_usertype</full_name>
-        <docblock line="176">
+        <docblock line="177">
           <description><![CDATA[Change the userType]]></description>
           <long-description><![CDATA[<p>changes the user with a given userID to a new userTypeID</p>]]></long-description>
-          <tag line="176" name="author" description="GhezalAhmad Zia"/>
-          <tag line="176" name="param" description="integer the userID" type="\$uid" variable="$uid">
-            <type by_reference="false">\$uid</type>
+          <tag line="177" name="author" description="GhezalAhmad Zia"/>
+          <tag line="177" name="param" description="the userID" type="int" variable="$uid">
+            <type by_reference="false">int</type>
           </tag>
-          <tag line="176" name="param" description="integer the userTypeID to set" type="\$utid" variable="$utid">
-            <type by_reference="false">\$utid</type>
+          <tag line="177" name="param" description="the userTypeID to set" type="int" variable="$utid">
+            <type by_reference="false">int</type>
           </tag>
-          <tag line="176" name="return" description="0 if user is not found, 1 otherwise" type="integer">
-            <type by_reference="false">integer</type>
+          <tag line="177" name="return" description="0 if user is not found, 1 otherwise." type="int">
+            <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="176">
+        <argument line="177">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="176">
+        <argument line="177">
           <name>$utid</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -762,40 +994,39 @@ User data is an array. It updates the user information in table user where UserI
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="208" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="207" package="models">
         <name>get_usertype</name>
         <full_name>get_usertype</full_name>
-        <docblock line="208">
+        <docblock line="207">
           <description><![CDATA[returns specific user type.]]></description>
           <long-description><![CDATA[<p>This Function takes user_id from the user table and returns a specific type of user e.g Administrator.We have four types of users
 named Administrator, Normal user,Editor and unconfirmed.</p>]]></long-description>
-          <tag line="208" name="author" description="saminullah sameem"/>
-          <tag line="208" name="param" description="the user's ID'" type="int" variable="$uid">
+          <tag line="207" name="param" description="the user's ID'" type="int" variable="$uid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="208" name="return" description="user data" type="array">
-            <type by_reference="false">array</type>
+          <tag line="207" name="return" description="user type ID" type="int">
+            <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="208">
+        <argument line="207">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="224" package="models">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="227" package="models">
         <name>get_field</name>
         <full_name>get_field</full_name>
-        <docblock line="224">
+        <docblock line="227">
           <description><![CDATA[returns user field.]]></description>
           <long-description><![CDATA[<p>This function is used  to return user's field. this function takes user_id as argument and return a specific field of user. for example a user belong to
 software engineering, Data base management system etc.</p>]]></long-description>
-          <tag line="224" name="author" description="saminullah sameem"/>
-          <tag line="224" name="return" description="user field" type="object">
+          <tag line="227" name="author" description="saminullah sameem"/>
+          <tag line="227" name="return" description="user field" type="object">
             <type by_reference="false">object</type>
           </tag>
         </docblock>
-        <argument line="224">
+        <argument line="227">
           <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -803,10 +1034,186 @@ software engineering, Data base management system etc.</p>]]></long-description>
       </method>
     </class>
     <parse_markers>
-      <error line="224" code="50015">Argument $uid is missing from the Docblock of get_field()</error>
+      <error line="227" code="50015">Argument $uid is missing from the Docblock of get_field()</error>
     </parse_markers>
   </file>
-  <file path="controllers/user.php" hash="84b92ead8e9233ec5028791c55359f08" package="Default">
+  <file path="controllers/edit.php" hash="8d6f5ceffa0deddeebf733aa76236707" package="Default">
+    <class final="false" abstract="false" namespace="" line="11" package="controllers">
+      <name>Edit</name>
+      <full_name>\Edit</full_name>
+      <extends>CI_Controller</extends>
+      <docblock line="11">
+        <description><![CDATA[the edit controller]]></description>
+        <long-description><![CDATA[<p>Handles forms to ask, answer and edit questions, answers and comments</p>]]></long-description>
+        <tag line="11" name="package" description="controllers"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="20">
+          <description><![CDATA[constructor]]></description>
+          <long-description><![CDATA[<p>loads question_model, answer_model, comment_model, main_lang.</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="47" package="controllers">
+        <name>_loadviews</name>
+        <full_name>_loadviews</full_name>
+        <docblock line="47">
+          <description><![CDATA[private helper function to build view]]></description>
+          <long-description><![CDATA[<p>every complete html-page sent to the client is constructed here.
+for the documentation of the $data array contents that are passed to the view
+see the comments in views/main_view.php</p>]]></long-description>
+          <tag line="47" name="param" description="what should appear in the body" type="string" variable="$content">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="47" name="param" description="The data array to pass on to the views" type="array" variable="$data">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="47" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="47">
+          <name>$content</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="47">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="58" package="controllers">
+        <name>question</name>
+        <full_name>question</full_name>
+        <docblock line="58">
+          <description><![CDATA[create a new question or edit an existing one]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="58" name="param" description="the id of the question to edit. if left blank, create a new question." type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="58">
+          <name>$qid</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="130" package="controllers">
+        <name>listCategory</name>
+        <full_name>listCategory</full_name>
+        <docblock line="130">
+          <description><![CDATA[Helper method which is used to slect category from the Category Table]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="130" name="param" description="" type="" variable=""/>
+          <tag line="130" name="return" description="of category" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="160" package="controllers">
+        <name>answer</name>
+        <full_name>answer</full_name>
+        <docblock line="160">
+          <description><![CDATA[create a new answer or edit an existing one]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="160" name="param" description="the id of the question to answer." type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="160" name="param" description="optional, the id of the answer, if left blank, create a new answer." type="int" variable="$aid">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="160">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="160">
+          <name>$aid</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="176" package="controllers">
+        <name>comment</name>
+        <full_name>comment</full_name>
+        <docblock line="176">
+          <description><![CDATA[create a new comment or edit an existing one]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="176" name="param" description="the id of the question to comment on" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="176" name="param" description="the id of the answer" type="int" variable="$aid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="176" name="param" description="optional, the commentID, if left blank, create a new comment" type="int" variable="$cid">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="176">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="176">
+          <name>$aid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="176">
+          <name>$cid</name>
+          <default><![CDATA[0]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="209" package="controllers">
+        <name>vote</name>
+        <full_name>vote</full_name>
+        <docblock line="209">
+          <description><![CDATA[vote a question or answer up or down]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="209" name="param" description="the id of the question to vote on, can be 0 if $aid is given" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="209" name="param" description="the id of the answer, can be 0 if $qid is given" type="int" variable="$aid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="209" name="param" description="optional, if set and true vote down, else vote up" type="boolean" variable="$votedown">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="209">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="209">
+          <name>$aid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="209">
+          <name>$votedown</name>
+          <default><![CDATA[NULL]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="145">check if $qid is the user's question, otherwise send the user back where he came from (hint: see controllers/user.php for how to do this)</todo>
+      <todo line="162">check if $aid is the user's answer, otherwise send the user back where he came from</todo>
+      <todo line="180">localize</todo>
+      <todo line="187">localize</todo>
+      <todo line="193">check if $cid is the user's comment, otherwise send the user back where he came from</todo>
+      <todo line="210">implement this function and everything need for it to work</todo>
+    </markers>
+    <parse_markers>
+      <notice line="130" code="50013">Parameter  could not be found in listCategory()</notice>
+    </parse_markers>
+  </file>
+  <file path="controllers/user.php" hash="bc546fbe77f1f52e283b0fec424d42bb" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <name>User</name>
       <full_name>\User</full_name>
@@ -863,7 +1270,7 @@ if someone checked this remember  checkbox, so it will create a cookie on client
 which will be exist till 3 days, otherwise cookies will be delete
 if user login failed so a failed(username) function will be called and this failed fuction
 is counting that how much time login is failed if it was more than 3 times and new recover page
-wil open to user.
+will open to user.
 if user login successfully session data will be set for this user where
 userid, username, usertype, login(true, false) will store
 when user data set in the sessioin the user will be redirect to the last visiting place
@@ -938,7 +1345,7 @@ and if the login failed 3 times it will redirect user to recover page, where he/
       <error line="145" code="50010">No DocBlock was found for method recover()</error>
     </parse_markers>
   </file>
-  <file path="controllers/main.php" hash="9b69718f4a46da64d217d45d5c67f253" package="Default">
+  <file path="controllers/main.php" hash="b05410560e68c40316738f3ef87ae66b" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <name>Main</name>
       <full_name>\Main</full_name>
@@ -956,142 +1363,149 @@ and if the login failed 3 times it will redirect user to recover page, where he/
           <long-description><![CDATA[<p>loads question_model, answer_model, main_lang.</p>]]></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="44" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="46" package="controllers">
         <name>_loadviews</name>
         <full_name>_loadviews</full_name>
-        <docblock line="44">
+        <docblock line="46">
           <description><![CDATA[private helper function to build view]]></description>
           <long-description><![CDATA[<p>every complete html-page sent to the client is constructed here.
 for the documentation of the $data array contents that are passed to the view
 see the comments in views/main_view.php</p>]]></long-description>
-          <tag line="44" name="param" description="what should appear in the body" type="string" variable="$content">
+          <tag line="46" name="param" description="what should appear in the body" type="string" variable="$content">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="44" name="param" description="The data array to pass on to the views" type="array" variable="$data">
+          <tag line="46" name="param" description="The data array to pass on to the views" type="array" variable="$data">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="44" name="return" description="" type="void">
+          <tag line="46" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="44">
+        <argument line="46">
           <name>$content</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="44">
+        <argument line="46">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="65" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="52" package="controllers">
+        <name>adminview</name>
+        <full_name>adminview</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="69" package="controllers">
         <name>home</name>
         <full_name>home</full_name>
-        <docblock line="65">
+        <docblock line="69">
           <description><![CDATA[home view]]></description>
           <long-description><![CDATA[<p>this is where the default route and the home links will point to.
 it just calls an appropriate function.</p>]]></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="80" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="84" package="controllers">
         <name>questions</name>
         <full_name>questions</full_name>
-        <docblock line="80">
+        <docblock line="84">
           <description><![CDATA[show a list of questions]]></description>
           <long-description><![CDATA[<p>the paginated <em>qlist</em> view is shown, representing a clickable list of questions.
 clicking on a question will display its details (answers, etc.)</p>]]></long-description>
-          <tag line="80" name="param" description="the pagination offset" type="int" variable="$offset">
+          <tag line="84" name="param" description="the pagination offset" type="int" variable="$offset">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="80" name="return" description="" type="void">
+          <tag line="84" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="80">
+        <argument line="84">
           <name>$offset</name>
           <default><![CDATA[0]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="103" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="107" package="controllers">
         <name>filter</name>
         <full_name>filter</full_name>
-        <docblock line="103">
+        <docblock line="107">
           <description><![CDATA[shows a list of questions filtered after one condition]]></description>
           <long-description><![CDATA[<p>show the paginated <em>qlist</em> view with the questions matching a filter.</p>]]></long-description>
-          <tag line="103" name="param" description="the filter name can be userID, catID or search" type="string" variable="$filter">
+          <tag line="107" name="param" description="the filter name can be userID, catID or search" type="string" variable="$filter">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="103" name="param" description="the parameter of the filter, can be userID, fieldID, catID or searchTerm" type="string|int" variable="$param">
+          <tag line="107" name="param" description="the parameter of the filter, can be userID, fieldID, catID or searchTerm" type="string|int" variable="$param">
             <type by_reference="false">string</type>
             <type by_reference="false">int</type>
           </tag>
-          <tag line="103" name="param" description="the pagination offset" type="int" variable="$offset">
+          <tag line="107" name="param" description="the pagination offset" type="int" variable="$offset">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="103" name="return" description="" type="void">
+          <tag line="107" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="103">
+        <argument line="107">
           <name>$filter</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="103">
+        <argument line="107">
           <name>$param</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="103">
+        <argument line="107">
           <name>$offset</name>
           <default><![CDATA[0]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="126" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="130" package="controllers">
         <name>qshow</name>
         <full_name>qshow</full_name>
-        <docblock line="126">
+        <docblock line="130">
           <description><![CDATA[show one question]]></description>
           <long-description><![CDATA[<p>the <em>qdetails</em> view is shown, representing a question and its answers.</p>]]></long-description>
-          <tag line="126" name="param" description="the questionID" type="int" variable="$qid">
+          <tag line="130" name="param" description="the questionID" type="int" variable="$qid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="126" name="return" description="" type="void">
+          <tag line="130" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="126">
+        <argument line="130">
           <name>$qid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="146" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="150" package="controllers">
         <name>view</name>
         <full_name>view</full_name>
-        <docblock line="146">
+        <docblock line="150">
           <description><![CDATA[show a certain body page]]></description>
           <long-description><![CDATA[<p>this function shows a certain (static) page from the views/body directory.
 use this for static content like: about, contact, terms-of-use, etc.</p>]]></long-description>
-          <tag line="146" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
+          <tag line="150" name="param" description="the name of the page (without extension) in views/body" type="string" variable="$page">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="146" name="return" description="" type="void">
+          <tag line="150" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="146">
+        <argument line="150">
           <name>$page</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
     </class>
+    <parse_markers>
+      <error line="52" code="50010">No DocBlock was found for method adminview()</error>
+    </parse_markers>
   </file>
-  <file path="controllers/util.php" hash="5258aab63923c523ee0799d797d73d88" package="Default">
+  <file path="controllers/util.php" hash="39069e0633a303314d82a58fbd74e272" package="Default">
     <class final="false" abstract="false" namespace="" line="11" package="controllers">
       <name>Util</name>
       <full_name>\Util</full_name>
@@ -1103,24 +1517,48 @@ e.g. used for changing the language globally.</p>]]></long-description>
         <tag line="11" name="package" description="controllers"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="controllers">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="20">
+          <description><![CDATA[constructor]]></description>
+          <long-description><![CDATA[<p>loads vote_model.</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="36" package="controllers">
         <name>lang</name>
         <full_name>lang</full_name>
-        <docblock line="20">
+        <docblock line="36">
           <description><![CDATA[Load a language]]></description>
           <long-description><![CDATA[<p>Changing the language my setting the session variable language.</p>]]></long-description>
-          <tag line="20" name="param" description="the language to load, named like the folder containing the language files" type="string" variable="$language">
+          <tag line="36" name="param" description="the language to load, named like the folder containing the language files" type="string" variable="$language">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="20">
+        <argument line="36">
           <name>$language</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="48" package="controllers">
+        <name>q_vote</name>
+        <full_name>q_vote</full_name>
+        <docblock line="48">
+          <description><![CDATA[Add vote for a question]]></description>
+          <long-description><![CDATA[<p>Check user to find out  did he/she voted for a specific question, if not add his/her vote.</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="69" package="controllers">
+        <name>a_vote</name>
+        <full_name>a_vote</full_name>
+        <docblock line="69">
+          <description><![CDATA[Add vote for an answer]]></description>
+          <long-description><![CDATA[<p>Check user to find out did he/she voted for an specific answer, if not add his/her vote.</p>]]></long-description>
+        </docblock>
+      </method>
     </class>
   </file>
-  <file path="controllers/test.php" hash="044cf79e53776f3f139ef751d38bb7b7" package="Default">
+  <file path="controllers/test.php" hash="8c3e4a7a14f798c44ac3b0df98425b51" package="Default">
     <class final="false" abstract="false" namespace="" line="13" package="controllers">
       <name>Test</name>
       <full_name>\Test</full_name>
@@ -1175,17 +1613,12 @@ The comments in this file however should be self-explanatory.</p>]]></long-descr
       <method final="false" abstract="false" static="false" visibility="public" namespace="" line="55" package="controllers">
         <name>test1</name>
         <full_name>test1</full_name>
-        <argument line="55">
-          <name>$a</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="69" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="70" package="controllers">
         <name>test2</name>
         <full_name>test2</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="75" package="controllers">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="76" package="controllers">
         <name>multitest</name>
         <full_name>multitest</full_name>
       </method>
@@ -1195,8 +1628,8 @@ The comments in this file however should be self-explanatory.</p>]]></long-descr
       <error line="36" code="50010">No DocBlock was found for method _remap()</error>
       <error line="45" code="50010">No DocBlock was found for method _report()</error>
       <error line="55" code="50010">No DocBlock was found for method test1()</error>
-      <error line="69" code="50010">No DocBlock was found for method test2()</error>
-      <error line="75" code="50010">No DocBlock was found for method multitest()</error>
+      <error line="70" code="50010">No DocBlock was found for method test2()</error>
+      <error line="76" code="50010">No DocBlock was found for method multitest()</error>
     </parse_markers>
   </file>
   <file path="controllers/ajax.php" hash="fa20135f02dd1601f4aed0c4996534f2" package="Default">
@@ -1238,6 +1671,834 @@ presents its data using the <em>ajax/comments</em> view.</p>]]></long-descriptio
     </class>
     <parse_markers>
       <error line="14" code="50010">No DocBlock was found for method __construct()</error>
+    </parse_markers>
+  </file>
+  <file path="helpers/loadview_helper.php" hash="fa6baa96f21ae7498b8978af2924f9c2" package="Default">
+    <function namespace="" line="12" package="Default">
+      <name>init_view_data</name>
+      <full_name>\init_view_data</full_name>
+      <docblock line="12">
+        <description><![CDATA[Create dynamic navigation and other view variables]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="12" name="param" description="the main content to display" type="string" variable="$content">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="12" name="param" description="the array that will be passed to the view" type="array" variable="$data">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="12" name="return" description="the updated data array" type="array">
+          <type by_reference="false">array</type>
+        </tag>
+      </docblock>
+      <argument line="12">
+        <name>$content</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+      <argument line="12">
+        <name>$data</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+    </function>
+  </file>
+  <file path="helpers/markdown_helper.php" hash="bd5182ae54ca797ec68c7fc6495e7bfe" package="Default">
+    <include line="168" type="Include Once" package="Default">
+      <name>smartypants.php</name>
+    </include>
+    <constant namespace="" line="15" package="Default">
+      <name>MARKDOWN_VERSION</name>
+      <full_name>\\MARKDOWN_VERSION</full_name>
+      <value><![CDATA['1.0.1o']]></value>
+    </constant>
+    <constant namespace="" line="23" package="Default">
+      <name>MARKDOWN_EMPTY_ELEMENT_SUFFIX</name>
+      <full_name>\\MARKDOWN_EMPTY_ELEMENT_SUFFIX</full_name>
+      <value><![CDATA[' />']]></value>
+    </constant>
+    <constant namespace="" line="26" package="Default">
+      <name>MARKDOWN_TAB_WIDTH</name>
+      <full_name>\\MARKDOWN_TAB_WIDTH</full_name>
+      <value><![CDATA[4]]></value>
+    </constant>
+    <constant namespace="" line="34" package="Default">
+      <name>MARKDOWN_WP_POSTS</name>
+      <full_name>\\MARKDOWN_WP_POSTS</full_name>
+      <value><![CDATA[NULL]]></value>
+    </constant>
+    <constant namespace="" line="35" package="Default">
+      <name>MARKDOWN_WP_COMMENTS</name>
+      <full_name>\\MARKDOWN_WP_COMMENTS</full_name>
+      <value><![CDATA[NULL]]></value>
+    </constant>
+    <constant namespace="" line="41" package="Default">
+      <name>MARKDOWN_PARSER_CLASS</name>
+      <full_name>\\MARKDOWN_PARSER_CLASS</full_name>
+      <value><![CDATA['Markdown_Parser']]></value>
+    </constant>
+    <function namespace="" line="43" package="Default">
+      <name>Markdown</name>
+      <full_name>\Markdown</full_name>
+      <argument line="43">
+        <name>$text</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="118" package="Default">
+      <name>mdwp_add_p</name>
+      <full_name>\mdwp_add_p</full_name>
+      <argument line="118">
+        <name>$text</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="126" package="Default">
+      <name>mdwp_strip_p</name>
+      <full_name>\mdwp_strip_p</full_name>
+      <argument line="126">
+        <name>$t</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="128" package="Default">
+      <name>mdwp_hide_tags</name>
+      <full_name>\mdwp_hide_tags</full_name>
+      <argument line="128">
+        <name>$text</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="132" package="Default">
+      <name>mdwp_show_tags</name>
+      <full_name>\mdwp_show_tags</full_name>
+      <argument line="132">
+        <name>$text</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="141" package="Default">
+      <name>identify_modifier_markdown</name>
+      <full_name>\identify_modifier_markdown</full_name>
+    </function>
+    <function namespace="" line="157" package="Default">
+      <name>smarty_modifier_markdown</name>
+      <full_name>\smarty_modifier_markdown</full_name>
+      <argument line="157">
+        <name>$text</name>
+        <default><![CDATA[]]></default>
+        <type/>
+      </argument>
+    </function>
+    <class final="false" abstract="false" namespace="" line="170" package="Default">
+      <name>Textile</name>
+      <full_name>\Textile</full_name>
+      <extends/>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="171" package="Default">
+        <name>TextileThis</name>
+        <full_name>TextileThis</full_name>
+        <argument line="171">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="171">
+          <name>$lite</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+        <argument line="171">
+          <name>$encode</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="177" package="Default">
+        <name>TextileRestricted</name>
+        <full_name>TextileRestricted</full_name>
+        <argument line="177">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="177">
+          <name>$lite</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+        <argument line="177">
+          <name>$noimage</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="181" package="Default">
+        <name>blockLite</name>
+        <full_name>blockLite</full_name>
+        <argument line="181">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <class final="false" abstract="false" namespace="" line="191" package="Default">
+      <name>Markdown_Parser</name>
+      <full_name>\Markdown_Parser</full_name>
+      <extends/>
+      <property final="false" static="false" visibility="public" line="195" namespace="" package="Default">
+        <name>$nested_brackets_depth</name>
+        <default><![CDATA[6]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="196" namespace="" package="Default">
+        <name>$nested_brackets_re</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="198" namespace="" package="Default">
+        <name>$nested_url_parenthesis_depth</name>
+        <default><![CDATA[4]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="199" namespace="" package="Default">
+        <name>$nested_url_parenthesis_re</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="202" namespace="" package="Default">
+        <name>$escape_chars</name>
+        <default><![CDATA['\\`*_{}[]()>#+-.!']]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="203" namespace="" package="Default">
+        <name>$escape_chars_re</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="206" namespace="" package="Default">
+        <name>$empty_element_suffix</name>
+        <default><![CDATA[NULL]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="207" namespace="" package="Default">
+        <name>$tab_width</name>
+        <default><![CDATA[NULL]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="210" namespace="" package="Default">
+        <name>$no_markup</name>
+        <default><![CDATA[NULL]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="211" namespace="" package="Default">
+        <name>$no_entities</name>
+        <default><![CDATA[NULL]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="214" namespace="" package="Default">
+        <name>$predef_urls</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="215" namespace="" package="Default">
+        <name>$predef_titles</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="243" namespace="" package="Default">
+        <name>$urls</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="244" namespace="" package="Default">
+        <name>$titles</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="245" namespace="" package="Default">
+        <name>$html_hashes</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="248" namespace="" package="Default">
+        <name>$in_anchor</name>
+        <default><![CDATA[NULL]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="314" namespace="" package="Default">
+        <name>$document_gamut</name>
+        <default><![CDATA[array('stripLinkDefinitions' => 20, 'runBasicBlockGamut' => 30)]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="540" namespace="" package="Default">
+        <name>$block_gamut</name>
+        <default><![CDATA[array('doHeaders' => 10, 'doHorizontalRules' => 20, 'doLists' => 40, 'doCodeBlocks' => 50, 'doBlockQuotes' => 60)]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="602" namespace="" package="Default">
+        <name>$span_gamut</name>
+        <default><![CDATA[array('parseSpan' => NULL, 'doImages' => 10, 'doAnchors' => 20, 'doAutoLinks' => 30, 'encodeAmpsAndAngles' => 40, 'doItalicsAndBold' => 50, 'doHardBreaks' => 60)]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="1005" namespace="" package="Default">
+        <name>$list_level</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="1119" namespace="" package="Default">
+        <name>$em_relist</name>
+        <default><![CDATA[array('' => '(?:(?<!\\*)\\*(?!\\*)|(?<!_)_(?!_))(?=\\S|$)(?![\\.,:;]\\s)', '*' => '(?<=\\S|^)(?<!\\*)\\*(?!\\*)', '_' => '(?<=\\S|^)(?<!_)_(?!_)')]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="1124" namespace="" package="Default">
+        <name>$strong_relist</name>
+        <default><![CDATA[array('' => '(?:(?<!\\*)\\*\\*(?!\\*)|(?<!_)__(?!_))(?=\\S|$)(?![\\.,:;]\\s)', '**' => '(?<=\\S|^)(?<!\\*)\\*\\*(?!\\*)', '__' => '(?<=\\S|^)(?<!_)__(?!_)')]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="1129" namespace="" package="Default">
+        <name>$em_strong_relist</name>
+        <default><![CDATA[array('' => '(?:(?<!\\*)\\*\\*\\*(?!\\*)|(?<!_)___(?!_))(?=\\S|$)(?![\\.,:;]\\s)', '***' => '(?<=\\S|^)(?<!\\*)\\*\\*\\*(?!\\*)', '___' => '(?<=\\S|^)(?<!_)___(?!_)')]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="1134" namespace="" package="Default">
+        <name>$em_strong_prepared_relist</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="1589" namespace="" package="Default">
+        <name>$utf8_strlen</name>
+        <default><![CDATA['mb_strlen']]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="218" package="Default">
+        <name>Markdown_Parser</name>
+        <full_name>Markdown_Parser</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="251" package="Default">
+        <name>setup</name>
+        <full_name>setup</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="264" package="Default">
+        <name>teardown</name>
+        <full_name>teardown</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="275" package="Default">
+        <name>transform</name>
+        <full_name>transform</full_name>
+        <argument line="275">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="322" package="Default">
+        <name>stripLinkDefinitions</name>
+        <full_name>stripLinkDefinitions</full_name>
+        <argument line="322">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="356" package="Default">
+        <name>_stripLinkDefinitions_callback</name>
+        <full_name>_stripLinkDefinitions_callback</full_name>
+        <argument line="356">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="365" package="Default">
+        <name>hashHTMLBlocks</name>
+        <full_name>hashHTMLBlocks</full_name>
+        <argument line="365">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="502" package="Default">
+        <name>_hashHTMLBlocks_callback</name>
+        <full_name>_hashHTMLBlocks_callback</full_name>
+        <argument line="502">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="509" package="Default">
+        <name>hashPart</name>
+        <full_name>hashPart</full_name>
+        <argument line="509">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="509">
+          <name>$boundary</name>
+          <default><![CDATA['X']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="532" package="Default">
+        <name>hashBlock</name>
+        <full_name>hashBlock</full_name>
+        <argument line="532">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="553" package="Default">
+        <name>runBlockGamut</name>
+        <full_name>runBlockGamut</full_name>
+        <argument line="553">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="567" package="Default">
+        <name>runBasicBlockGamut</name>
+        <full_name>runBasicBlockGamut</full_name>
+        <argument line="567">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="584" package="Default">
+        <name>doHorizontalRules</name>
+        <full_name>doHorizontalRules</full_name>
+        <argument line="584">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="626" package="Default">
+        <name>runSpanGamut</name>
+        <full_name>runSpanGamut</full_name>
+        <argument line="626">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="638" package="Default">
+        <name>doHardBreaks</name>
+        <full_name>doHardBreaks</full_name>
+        <argument line="638">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="643" package="Default">
+        <name>_doHardBreaks_callback</name>
+        <full_name>_doHardBreaks_callback</full_name>
+        <argument line="643">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="648" package="Default">
+        <name>doAnchors</name>
+        <full_name>doAnchors</full_name>
+        <argument line="648">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="718" package="Default">
+        <name>_doAnchors_reference_callback</name>
+        <full_name>_doAnchors_reference_callback</full_name>
+        <argument line="718">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="752" package="Default">
+        <name>_doAnchors_inline_callback</name>
+        <full_name>_doAnchors_inline_callback</full_name>
+        <argument line="752">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="773" package="Default">
+        <name>doImages</name>
+        <full_name>doImages</full_name>
+        <argument line="773">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="828" package="Default">
+        <name>_doImages_reference_callback</name>
+        <full_name>_doImages_reference_callback</full_name>
+        <argument line="828">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="856" package="Default">
+        <name>_doImages_inline_callback</name>
+        <full_name>_doImages_inline_callback</full_name>
+        <argument line="856">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="875" package="Default">
+        <name>doHeaders</name>
+        <full_name>doHeaders</full_name>
+        <argument line="875">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="905" package="Default">
+        <name>_doHeaders_callback_setext</name>
+        <full_name>_doHeaders_callback_setext</full_name>
+        <argument line="905">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="914" package="Default">
+        <name>_doHeaders_callback_atx</name>
+        <full_name>_doHeaders_callback_atx</full_name>
+        <argument line="914">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="921" package="Default">
+        <name>doLists</name>
+        <full_name>doLists</full_name>
+        <argument line="921">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="987" package="Default">
+        <name>_doLists_callback</name>
+        <full_name>_doLists_callback</full_name>
+        <argument line="987">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1007" package="Default">
+        <name>processListItems</name>
+        <full_name>processListItems</full_name>
+        <argument line="1007">
+          <name>$list_str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1007">
+          <name>$marker_any_re</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1053" package="Default">
+        <name>_processListItems_callback</name>
+        <full_name>_processListItems_callback</full_name>
+        <argument line="1053">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1078" package="Default">
+        <name>doCodeBlocks</name>
+        <full_name>doCodeBlocks</full_name>
+        <argument line="1078">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1096" package="Default">
+        <name>_doCodeBlocks_callback</name>
+        <full_name>_doCodeBlocks_callback</full_name>
+        <argument line="1096">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1110" package="Default">
+        <name>makeCodeSpan</name>
+        <full_name>makeCodeSpan</full_name>
+        <argument line="1110">
+          <name>$code</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1136" package="Default">
+        <name>prepareItalicsAndBold</name>
+        <full_name>prepareItalicsAndBold</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1158" package="Default">
+        <name>doItalicsAndBold</name>
+        <full_name>doItalicsAndBold</full_name>
+        <argument line="1158">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1281" package="Default">
+        <name>doBlockQuotes</name>
+        <full_name>doBlockQuotes</full_name>
+        <argument line="1281">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1296" package="Default">
+        <name>_doBlockQuotes_callback</name>
+        <full_name>_doBlockQuotes_callback</full_name>
+        <argument line="1296">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1310" package="Default">
+        <name>_doBlockQuotes_callback2</name>
+        <full_name>_doBlockQuotes_callback2</full_name>
+        <argument line="1310">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1317" package="Default">
+        <name>formParagraphs</name>
+        <full_name>formParagraphs</full_name>
+        <argument line="1317">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1387" package="Default">
+        <name>encodeAttribute</name>
+        <full_name>encodeAttribute</full_name>
+        <argument line="1387">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1398" package="Default">
+        <name>encodeAmpsAndAngles</name>
+        <full_name>encodeAmpsAndAngles</full_name>
+        <argument line="1398">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1419" package="Default">
+        <name>doAutoLinks</name>
+        <full_name>doAutoLinks</full_name>
+        <argument line="1419">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1446" package="Default">
+        <name>_doAutoLinks_url_callback</name>
+        <full_name>_doAutoLinks_url_callback</full_name>
+        <argument line="1446">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1451" package="Default">
+        <name>_doAutoLinks_email_callback</name>
+        <full_name>_doAutoLinks_email_callback</full_name>
+        <argument line="1451">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1458" package="Default">
+        <name>encodeEmailAddress</name>
+        <full_name>encodeEmailAddress</full_name>
+        <argument line="1458">
+          <name>$addr</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1499" package="Default">
+        <name>parseSpan</name>
+        <full_name>parseSpan</full_name>
+        <argument line="1499">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1555" package="Default">
+        <name>handleSpanToken</name>
+        <full_name>handleSpanToken</full_name>
+        <argument line="1555">
+          <name>$token</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="1555">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1579" package="Default">
+        <name>outdent</name>
+        <full_name>outdent</full_name>
+        <argument line="1579">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1591" package="Default">
+        <name>detab</name>
+        <full_name>detab</full_name>
+        <argument line="1591">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1604" package="Default">
+        <name>_detab_callback</name>
+        <full_name>_detab_callback</full_name>
+        <argument line="1604">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1621" package="Default">
+        <name>_initDetab</name>
+        <full_name>_initDetab</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1635" package="Default">
+        <name>unhash</name>
+        <full_name>unhash</full_name>
+        <argument line="1635">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1642" package="Default">
+        <name>_unhash_callback</name>
+        <full_name>_unhash_callback</full_name>
+        <argument line="1642">
+          <name>$matches</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="43" code="50009">No DocBlock was found for function \Markdown()</error>
+      <error line="118" code="50009">No DocBlock was found for function \mdwp_add_p()</error>
+      <error line="126" code="50009">No DocBlock was found for function \mdwp_strip_p()</error>
+      <error line="128" code="50009">No DocBlock was found for function \mdwp_hide_tags()</error>
+      <error line="132" code="50009">No DocBlock was found for function \mdwp_show_tags()</error>
+      <error line="141" code="50009">No DocBlock was found for function \identify_modifier_markdown()</error>
+      <error line="157" code="50009">No DocBlock was found for function \smarty_modifier_markdown()</error>
+      <error line="170" code="50000">No DocBlock was found for \Textile</error>
+      <error line="171" code="50010">No DocBlock was found for method TextileThis()</error>
+      <error line="177" code="50010">No DocBlock was found for method TextileRestricted()</error>
+      <error line="181" code="50010">No DocBlock was found for method blockLite()</error>
+      <error line="191" code="50000">No DocBlock was found for \Markdown_Parser</error>
+      <error line="195" code="50018">No DocBlock was found for property $nested_brackets_depth</error>
+      <error line="196" code="50018">No DocBlock was found for property $nested_brackets_re</error>
+      <error line="198" code="50018">No DocBlock was found for property $nested_url_parenthesis_depth</error>
+      <error line="199" code="50018">No DocBlock was found for property $nested_url_parenthesis_re</error>
+      <error line="202" code="50018">No DocBlock was found for property $escape_chars</error>
+      <error line="203" code="50018">No DocBlock was found for property $escape_chars_re</error>
+      <error line="206" code="50018">No DocBlock was found for property $empty_element_suffix</error>
+      <error line="207" code="50018">No DocBlock was found for property $tab_width</error>
+      <error line="210" code="50018">No DocBlock was found for property $no_markup</error>
+      <error line="211" code="50018">No DocBlock was found for property $no_entities</error>
+      <error line="214" code="50018">No DocBlock was found for property $predef_urls</error>
+      <error line="215" code="50018">No DocBlock was found for property $predef_titles</error>
+      <error line="243" code="50018">No DocBlock was found for property $urls</error>
+      <error line="244" code="50018">No DocBlock was found for property $titles</error>
+      <error line="245" code="50018">No DocBlock was found for property $html_hashes</error>
+      <error line="248" code="50018">No DocBlock was found for property $in_anchor</error>
+      <error line="314" code="50018">No DocBlock was found for property $document_gamut</error>
+      <error line="540" code="50018">No DocBlock was found for property $block_gamut</error>
+      <error line="602" code="50018">No DocBlock was found for property $span_gamut</error>
+      <error line="1005" code="50018">No DocBlock was found for property $list_level</error>
+      <error line="1119" code="50018">No DocBlock was found for property $em_relist</error>
+      <error line="1124" code="50018">No DocBlock was found for property $strong_relist</error>
+      <error line="1129" code="50018">No DocBlock was found for property $em_strong_relist</error>
+      <error line="1134" code="50018">No DocBlock was found for property $em_strong_prepared_relist</error>
+      <error line="1589" code="50018">No DocBlock was found for property $utf8_strlen</error>
+      <error line="218" code="50010">No DocBlock was found for method Markdown_Parser()</error>
+      <error line="251" code="50010">No DocBlock was found for method setup()</error>
+      <error line="264" code="50010">No DocBlock was found for method teardown()</error>
+      <error line="275" code="50010">No DocBlock was found for method transform()</error>
+      <error line="322" code="50010">No DocBlock was found for method stripLinkDefinitions()</error>
+      <error line="356" code="50010">No DocBlock was found for method _stripLinkDefinitions_callback()</error>
+      <error line="365" code="50010">No DocBlock was found for method hashHTMLBlocks()</error>
+      <error line="502" code="50010">No DocBlock was found for method _hashHTMLBlocks_callback()</error>
+      <error line="509" code="50010">No DocBlock was found for method hashPart()</error>
+      <error line="532" code="50010">No DocBlock was found for method hashBlock()</error>
+      <error line="553" code="50010">No DocBlock was found for method runBlockGamut()</error>
+      <error line="567" code="50010">No DocBlock was found for method runBasicBlockGamut()</error>
+      <error line="584" code="50010">No DocBlock was found for method doHorizontalRules()</error>
+      <error line="626" code="50010">No DocBlock was found for method runSpanGamut()</error>
+      <error line="638" code="50010">No DocBlock was found for method doHardBreaks()</error>
+      <error line="643" code="50010">No DocBlock was found for method _doHardBreaks_callback()</error>
+      <error line="648" code="50010">No DocBlock was found for method doAnchors()</error>
+      <error line="718" code="50010">No DocBlock was found for method _doAnchors_reference_callback()</error>
+      <error line="752" code="50010">No DocBlock was found for method _doAnchors_inline_callback()</error>
+      <error line="773" code="50010">No DocBlock was found for method doImages()</error>
+      <error line="828" code="50010">No DocBlock was found for method _doImages_reference_callback()</error>
+      <error line="856" code="50010">No DocBlock was found for method _doImages_inline_callback()</error>
+      <error line="875" code="50010">No DocBlock was found for method doHeaders()</error>
+      <error line="905" code="50010">No DocBlock was found for method _doHeaders_callback_setext()</error>
+      <error line="914" code="50010">No DocBlock was found for method _doHeaders_callback_atx()</error>
+      <error line="921" code="50010">No DocBlock was found for method doLists()</error>
+      <error line="987" code="50010">No DocBlock was found for method _doLists_callback()</error>
+      <error line="1007" code="50010">No DocBlock was found for method processListItems()</error>
+      <error line="1053" code="50010">No DocBlock was found for method _processListItems_callback()</error>
+      <error line="1078" code="50010">No DocBlock was found for method doCodeBlocks()</error>
+      <error line="1096" code="50010">No DocBlock was found for method _doCodeBlocks_callback()</error>
+      <error line="1110" code="50010">No DocBlock was found for method makeCodeSpan()</error>
+      <error line="1136" code="50010">No DocBlock was found for method prepareItalicsAndBold()</error>
+      <error line="1158" code="50010">No DocBlock was found for method doItalicsAndBold()</error>
+      <error line="1281" code="50010">No DocBlock was found for method doBlockQuotes()</error>
+      <error line="1296" code="50010">No DocBlock was found for method _doBlockQuotes_callback()</error>
+      <error line="1310" code="50010">No DocBlock was found for method _doBlockQuotes_callback2()</error>
+      <error line="1317" code="50010">No DocBlock was found for method formParagraphs()</error>
+      <error line="1387" code="50010">No DocBlock was found for method encodeAttribute()</error>
+      <error line="1398" code="50010">No DocBlock was found for method encodeAmpsAndAngles()</error>
+      <error line="1419" code="50010">No DocBlock was found for method doAutoLinks()</error>
+      <error line="1446" code="50010">No DocBlock was found for method _doAutoLinks_url_callback()</error>
+      <error line="1451" code="50010">No DocBlock was found for method _doAutoLinks_email_callback()</error>
+      <error line="1458" code="50010">No DocBlock was found for method encodeEmailAddress()</error>
+      <error line="1499" code="50010">No DocBlock was found for method parseSpan()</error>
+      <error line="1555" code="50010">No DocBlock was found for method handleSpanToken()</error>
+      <error line="1579" code="50010">No DocBlock was found for method outdent()</error>
+      <error line="1591" code="50010">No DocBlock was found for method detab()</error>
+      <error line="1604" code="50010">No DocBlock was found for method _detab_callback()</error>
+      <error line="1621" code="50010">No DocBlock was found for method _initDetab()</error>
+      <error line="1635" code="50010">No DocBlock was found for method unhash()</error>
+      <error line="1642" code="50010">No DocBlock was found for method _unhash_callback()</error>
     </parse_markers>
   </file>
   <file path="helpers/formee_helper.php" hash="0944eccdd279a5c82829a4158dded156" package="Default">
@@ -1332,7 +2593,7 @@ presents its data using the <em>ajax/comments</em> view.</p>]]></long-descriptio
   <package name="controllers" full_name="controllers"/>
   <package name="models" full_name="models"/>
   <namespace name="" full_name=""/>
-  <marker count="1">todo</marker>
+  <marker count="8">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>

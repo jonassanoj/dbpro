@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » \Test</title>
+<title>phpDocumentor » \Edit</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -60,38 +60,28 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#__construct" title="__construct :: constructor"><span class="description">constructor</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#_remap" title="_remap :: "><span class="description">_remap()
-        </span><pre>_remap()</pre></a></li>
-<li class="method public "><a href="#_report" title="_report :: "><span class="description">_report()
-        </span><pre>_report()</pre></a></li>
-<li class="method public "><a href="#multitest" title="multitest :: "><span class="description">multitest()
-        </span><pre>multitest()</pre></a></li>
-<li class="method public "><a href="#test1" title="test1 :: "><span class="description">test1()
-        </span><pre>test1()</pre></a></li>
-<li class="method public "><a href="#test2" title="test2 :: "><span class="description">test2()
-        </span><pre>test2()</pre></a></li>
-<li class="nav-header">
-<i class="icon-custom icon-property"></i> Properties</li>
-<li class="nav-header private">» Private</li>
-<li class="property private "><a href="#%24result" title="$result :: "><span class="description">$result</span><pre>$result</pre></a></li>
+<li class="method public "><a href="#_loadviews" title="_loadviews :: private helper function to build view"><span class="description">private helper function to build view</span><pre>_loadviews()</pre></a></li>
+<li class="method public "><a href="#answer" title="answer :: create a new answer or edit an existing one"><span class="description">create a new answer or edit an existing one</span><pre>answer()</pre></a></li>
+<li class="method public "><a href="#comment" title="comment :: create a new comment or edit an existing one"><span class="description">create a new comment or edit an existing one</span><pre>comment()</pre></a></li>
+<li class="method public "><a href="#listCategory" title="listCategory :: Helper method which is used to slect category from the Category Table"><span class="description">Helper method which is used to slect category from the Category Table</span><pre>listCategory()</pre></a></li>
+<li class="method public "><a href="#question" title="question :: create a new question or edit an existing one"><span class="description">create a new question or edit an existing one</span><pre>question()</pre></a></li>
+<li class="method public "><a href="#vote" title="vote :: vote a question or answer up or down"><span class="description">vote a question or answer up or down</span><pre>vote()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CTest" id="\Test"></a><ul class="breadcrumb">
+<a name="%5CEdit" id="\Edit"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/.html"></a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/Test.html">Test</a>
+<span class="divider">\</span><a href="../classes/Edit.html">Edit</a>
 </li>
 </ul>
-<div href="../classes/Test.html" class="element class">
-<p class="short_description">the test controller</p>
+<div href="../classes/Edit.html" class="element class">
+<p class="short_description">the edit controller</p>
 <div class="details">
-<p class="long_description"><p>A controller for testing model.
-In the wiki there is a short howto that explains the testing process
-The comments in this file however should be self-explanatory.</p></p>
+<p class="long_description"><p>Handles forms to ask, answer and edit questions, answers and comments</p></p>
 <table class="table table-bordered"><tr>
 <th>package</th>
 <td><a href="../packages/controllers.html">controllers</a></td>
@@ -102,72 +92,100 @@ The comments in this file however should be self-explanatory.</p></p>
 <h2>constructor</h2>
 <pre>__construct() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"><p>loads the model you want to test.</p></p></div></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>loads question_model, answer_model, comment_model, main_lang.</p></p></div></div>
 </div>
-<a name="_remap" id="_remap"></a><div class="element clickable method public _remap" data-toggle="collapse" data-target="._remap .collapse">
-<h2>_remap()
-        </h2>
-<pre>_remap($method, $params) </pre>
+<a name="_loadviews" id="_loadviews"></a><div class="element clickable method public _loadviews" data-toggle="collapse" data-target="._loadviews .collapse">
+<h2>private helper function to build view</h2>
+<pre>_loadviews(string $content, array $data) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>every complete html-page sent to the client is constructed here.
+for the documentation of the $data array contents that are passed to the view
+see the comments in views/main_view.php</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$content</h4>
+<code>string</code><p>what should appear in the body</p></div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code>array</code><p>The data array to pass on to the views</p></div>
+</div></div>
+</div>
+<a name="answer" id="answer"></a><div class="element clickable method public answer" data-toggle="collapse" data-target=".answer .collapse">
+<h2>create a new answer or edit an existing one</h2>
+<pre>answer(int $qid, int $aid) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$method</h4>
-<code></code>
-</div>
+<h4>$qid</h4>
+<code>int</code><p>the id of the question to answer.</p></div>
 <div class="subelement argument">
-<h4>$params</h4>
-<code></code>
-</div>
+<h4>$aid</h4>
+<code>int</code><p>optional, the id of the answer, if left blank, create a new answer.</p></div>
 </div></div>
 </div>
-<a name="_report" id="_report"></a><div class="element clickable method public _report" data-toggle="collapse" data-target="._report .collapse">
-<h2>_report()
-        </h2>
-<pre>_report($result, $title) </pre>
+<a name="comment" id="comment"></a><div class="element clickable method public comment" data-toggle="collapse" data-target=".comment .collapse">
+<h2>create a new comment or edit an existing one</h2>
+<pre>comment(int $qid, int $aid, int $cid) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$result</h4>
-<code></code>
-</div>
+<h4>$qid</h4>
+<code>int</code><p>the id of the question to comment on</p></div>
 <div class="subelement argument">
-<h4>$title</h4>
-<code></code>
-</div>
+<h4>$aid</h4>
+<code>int</code><p>the id of the answer</p></div>
+<div class="subelement argument">
+<h4>$cid</h4>
+<code>int</code><p>optional, the commentID, if left blank, create a new comment</p></div>
 </div></div>
 </div>
-<a name="multitest" id="multitest"></a><div class="element clickable method public multitest" data-toggle="collapse" data-target=".multitest .collapse">
-<h2>multitest()
-        </h2>
-<pre>multitest() </pre>
+<a name="listCategory" id="listCategory"></a><div class="element clickable method public listCategory" data-toggle="collapse" data-target=".listCategory .collapse">
+<h2>Helper method which is used to slect category from the Category Table</h2>
+<pre>listCategory() : array</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of category</div>
+</div></div>
 </div>
-<a name="test1" id="test1"></a><div class="element clickable method public test1" data-toggle="collapse" data-target=".test1 .collapse">
-<h2>test1()
-        </h2>
-<pre>test1() </pre>
+<a name="question" id="question"></a><div class="element clickable method public question" data-toggle="collapse" data-target=".question .collapse">
+<h2>create a new question or edit an existing one</h2>
+<pre>question(int $qid) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$qid</h4>
+<code>int</code><p>the id of the question to edit. if left blank, create a new question.</p></div>
+</div></div>
 </div>
-<a name="test2" id="test2"></a><div class="element clickable method public test2" data-toggle="collapse" data-target=".test2 .collapse">
-<h2>test2()
-        </h2>
-<pre>test2() </pre>
+<a name="vote" id="vote"></a><div class="element clickable method public vote" data-toggle="collapse" data-target=".vote .collapse">
+<h2>vote a question or answer up or down</h2>
+<pre>vote(int $qid, int $aid, boolean $votedown) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$qid</h4>
+<code>int</code><p>the id of the question to vote on, can be 0 if $aid is given</p>
 </div>
-<h3>
-<i class="icon-custom icon-property"></i> Properties</h3>
-<a name="%24result" id="$result"> </a><div class="element clickable property private $result" data-toggle="collapse" data-target=".$result .collapse">
-<h2>$result</h2>
-<pre>$result </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>the id of the answer, can be 0 if $qid is given</p>
+</div>
+<div class="subelement argument">
+<h4>$votedown</h4>
+<code>boolean</code><p>optional, if set and true vote down, else vote up</p></div>
+</div></div>
 </div>
 </div>
 </div>

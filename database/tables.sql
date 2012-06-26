@@ -70,6 +70,20 @@ CREATE TABLE IF NOT EXISTS `UserType` (
   PRIMARY KEY (`userTypeID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
+CREATE TABLE IF NOT EXISTS `QuestionVote` (
+  `voteID` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `questionID` int(11) NOT NULL,
+  PRIMARY KEY (`voteID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+CREATE TABLE IF NOT EXISTS `AnswerVote` (
+  `voteID` int(11) NOT NULL AUTO_INCREMENT,
+  `userID` int(11) NOT NULL,
+  `answerID` int(11) NOT NULL,
+  PRIMARY KEY (`voteID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
 INSERT INTO `UserType` (`userTypeID`, `userType`) VALUES
 (0, 'unconfirmed'),
 (1, 'Normal User'),

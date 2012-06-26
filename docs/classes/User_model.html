@@ -33,10 +33,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">11</span></a></li>
+                <span class="label label-info">104</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">1</span>
+                <span class="label label-info">8</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -125,7 +125,7 @@
 </div>
 <a name="change_usertype" id="change_usertype"></a><div class="element clickable method public change_usertype" data-toggle="collapse" data-target=".change_usertype .collapse">
 <h2>Change the userType</h2>
-<pre>change_usertype(\$uid $uid, \$utid $utid) : integer</pre>
+<pre>change_usertype(int $uid, int $utid) : int</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>changes the user with a given userID to a new userTypeID</p></p>
@@ -136,13 +136,13 @@
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$uid</h4>
-<code>\$uid</code><p>integer the userID</p></div>
+<code>int</code><p>the userID</p></div>
 <div class="subelement argument">
 <h4>$utid</h4>
-<code>\$utid</code><p>integer the userTypeID to set</p></div>
+<code>int</code><p>the userTypeID to set</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>integer</code>0 if user is not found, 1 otherwise</div>
+<code>int</code>0 if user is not found, 1 otherwise.</div>
 </div></div>
 </div>
 <a name="delete_user" id="delete_user"></a><div class="element clickable method public delete_user" data-toggle="collapse" data-target=".delete_user .collapse">
@@ -224,15 +224,11 @@ software engineering, Data base management system etc.</p></p>
 </div>
 <a name="get_usertype" id="get_usertype"></a><div class="element clickable method public get_usertype" data-toggle="collapse" data-target=".get_usertype .collapse">
 <h2>returns specific user type.</h2>
-<pre>get_usertype(int $uid) : array</pre>
+<pre>get_usertype(int $uid) : int</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>This Function takes user_id from the user table and returns a specific type of user e.g Administrator.We have four types of users
 named Administrator, Normal user,Editor and unconfirmed.</p></p>
-<table class="table table-bordered"><tr>
-<th>author</th>
-<td><a href="">saminullah sameem</a></td>
-</tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$uid</h4>
@@ -240,7 +236,7 @@ named Administrator, Normal user,Editor and unconfirmed.</p></p>
 </div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>array</code>user data</div>
+<code>int</code>user type ID</div>
 </div></div>
 </div>
 <a name="get_usertypes" id="get_usertypes"></a><div class="element clickable method public get_usertypes" data-toggle="collapse" data-target=".get_usertypes .collapse">
@@ -337,7 +333,7 @@ User data is an array. It updates the user information in table user where UserI
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-            generated on 2012-06-21T19:19:07+02:00.<br></footer></div>
+            generated on 2012-06-26T18:10:22+02:00.<br></footer></div>
 </div>
 </body>
 </html>

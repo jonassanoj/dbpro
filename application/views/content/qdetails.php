@@ -1,6 +1,3 @@
-
-
-
 <script type="text/javascript"> 
 
 
@@ -59,17 +56,17 @@
 	</form> 
 	
 </form> 
-<form action="http:/index.php/util/vote" name="voting" method="POST">
-<div>
-	 <input type="submit" name="up" value="up" /> 
-	<input type="submit" name="down" value="down"/> 
-	<input type="hidden" value="<?php echo $question->questionID; ?>" name="qid" />
+
+<form action="http:/index.php/util/q_vote" name="voting" method="POST">
+	<div>
+	 	<input type="submit" name="up" value="up" /> 
+		<input type="submit" name="down" value="down"/> 
+		<input type="hidden" value="<?php echo $question->questionID; ?>" name="qid" />
 
 	 <!--   <a href="?vote=up&amp;id=" >Up</a>
 	<a href="?vote=down&amp;id=" >Down</a> -->
 		
-
-</div>
+	</div>
 </form>
 
 <div id="ajaxresult">
@@ -84,7 +81,19 @@ if (isset($result))
 <?php foreach ($answers as $answer): ?>
 	<div class="answer">
 		<?php echo $answer->body; ?>
+	
+	
+<form action="http:/index.php/util/a_vote" name="answer_voting" method="POST">
+	<div>
+		 <input type="submit" name="aup" value="up" /> 
+		<input type="submit" name="adown" value="down"/> 
+		<input type="hidden" value="<?php echo $answer->answerID; ?>" name="aid" />
+		<input type="hidden" value="<?php echo $this->uri->segment(3); ?>" name="aqid" />
+		
+	</div>
+</form>
 	</div> <!-- answer dic closed -->
+	
 <?php endforeach ?>
 
 <?php echo $backlink?>

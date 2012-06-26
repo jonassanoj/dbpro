@@ -38,20 +38,47 @@ class Util extends CI_Controller {
 		redirect($this -> session -> userdata('last_visited'));
 	}
 	
+	/**
+	 * Add vote for a question
+	 *
+	 * Check user to find out  did he/she voted for a specific question, if not add his/her vote.
+	 *
+	 */
 	
-
-	public function vote(){
-		$userID = 1;//$this->session->userdata('userID');
+	public function q_vote(){
+		$userID = 2;//$this->session->userdata('userID');
 		$qID = $this->input->post('qid');
 		
-		$result = $this-> vote_model -> check_user_vote($userID, $qID);
+		
+		$result = $this-> vote_model -> check_q_vote($userID, $qID);
 		
 		if(empty($result)){
-			$this -> vote_model -> insert_vote();
+			$this -> vote_model -> add_q_vote($userID, $qID);
 		}
 		else 
 			redirect('main/qshow/' .$qID);
+	}
+	
+	/**
+	 * Add vote for an answer
+	 *
+	 * Check user to find out did he/she voted for an specific answer, if not add his/her vote.
+	 *
+	 */
+	
+	public function a_vote(){
 		
+		$userID = 1;//$this->session->userdata('userID');
+		$qID = $this->input->post('aqid');
+		$aID = $this->input->post('aid');
+		
+		$result = $this-> vote_model -> check_a_vote($userID, $aID);
+	
+		if(empty($result)){
+			$this -> vote_model -> add_a_vote($userID, $aID);
+		}
+		else
+			redirect('main/qshow/' .$qID);
 	}
 
 }
