@@ -237,10 +237,10 @@ class Admin extends CI_Controller {
 		$data['title'] = 'Add new person';
 		$data['message'] = '';
 		$data['action'] = site_url('admin/addUser');
-		$data['link_back'] = anchor('admin/index/','Back to User List',array('class'=>'back'));
-	
-		// load view
-		
+				// load view
+		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
+		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
+		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
 		$data['content'] = 'content/addUser';
 		$this->load->view('main_view', $data);
 	}
@@ -257,8 +257,7 @@ class Admin extends CI_Controller {
 		// set common properties
 		$data['title'] = 'Add new person';
 		$data['action'] = site_url('admin/addUser');
-		$data['link_back'] = anchor('admin/index/','Back to User List',array('class'=>'back'));
-		
+			
 		// set empty default form field values
 		$this->_set_fields();
 		// set validation properties
@@ -289,7 +288,8 @@ class Admin extends CI_Controller {
 		//}
 		
 		// load view
-		$this->load->view('content/addUser', $data);
+			$this->mainf();
+
 	}
 
 
@@ -306,8 +306,7 @@ class Admin extends CI_Controller {
 	function view($id){
 		// set common properties
 		$data['title'] = 'Admin View User Details';
-		$data['link_back'] = anchor('admin/index/','Back to list of persons',array('class'=>'back'));
-		
+			
 		// get person details
 		$data['person'] = $this->User_model->get_by_id($id)->row();
 		
@@ -375,8 +374,7 @@ class Admin extends CI_Controller {
 		// set common properties
 		$data['title'] = 'Update person';
 		$data['action'] = site_url('admin/updatePerson');
-		$data['link_back'] = anchor('admin/index/','Back to list of persons',array('class'=>'back'));
-		
+			
 		// set empty default form field values
 		$this->_set_fields();
 		// set validation properties
@@ -409,7 +407,7 @@ class Admin extends CI_Controller {
 		 //}
 		
 		// load view
-		$this->load->view('content/addUser', $data);
+		    $this->mainf();
 	}
 	/**
 	 * delete user 
