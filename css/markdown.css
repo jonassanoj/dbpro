@@ -7,36 +7,27 @@
 }
 
 .markdown h1{
-	font-size: 270%; color: #A67C7C; padding-top: 20px; 
-	font-size: 160%; line-height: 1;
-	font-size: 120%; 
+	font-size: 220%; color: #A67C7C; padding-top: 20px; 
+	
 } .markdown h2{
-	font-size: 270%; color: #A67C7C; padding-top: 20px; 
-	font-size: 160%; line-height: 1;
-	font-size: 120%; 
+	font-size:200%; color: #A67C7C; padding-top: 20px; 
 } .markdown h3 {
-	font-size: 270%; color: #A67C7C; padding-top: 20px; 
-	font-size: 160%; line-height: 1;
-	font-size: 120%; 
+	font-size: 180%; color: #A67C7C; padding-top: 20px; 
 } .markdown h4 {
-	font-size: 270%; color: #A67C7C; padding-top: 20px; 
-	font-size: 160%; line-height: 1;
-	font-size: 120%; 
+	font-size: 160%; color: #A67C7C; padding-top: 20px; 
 } .markdown h5 {
-	font-size: 270%; color: #A67C7C; padding-top: 20px; 
-	font-size: 160%; line-height: 1;
-	font-size: 120%; 
+	font-size: 140%; color: #A67C7C; padding-top: 20px; 
 } .markdown h6 {
 /* make sure headings are not as huge as the main headings. This still has to be improved to look good */
-	font-size: 100%;
+	font-size: 120%;
 	font-family: inherit;
 	font-size: 270%; color: #A67C7C; padding-top: 20px; 
-	font-size: 160%; line-height: 1;
-	font-size: 120%; 
 }
 
 /* make sure unordered lists appear with bullets */
-.markdown ul li {
+.markdown ul{
+	 }
+.markdown li {
 	list-style: disc;
 	
 }
