@@ -111,6 +111,23 @@ class Question_model extends CI_Model {
 		$this -> db -> query($this->db->update_string('Question', $question_data, "questionID = $qid"));
 		return $this -> db -> affected_rows();
 	}
+	
+	/**
+	 * cascading Delete question
+	 *
+	 * Delete a question and all associative answers and comments to that qid in different tables.
+	 * by passing an array of table names into delete() you will delete data from more than 1 table
+	 * at end return the number of affected rows
+	 * 
+	 * @param int $qid the questionID.
+	 * @return int number of affected rows if successful, 0 otherwise
+	 */
+	public function delete_question($qid){
+	$tables = array('Comment', 'Answer', 'Question');
+	$this->db->where('questionID', $qid);
+	$this->db->delete($tables);
+	return $this -> db -> affected_rows();
+	}
 
 	/**
 	 * create a filter for the where-clause
@@ -127,7 +144,7 @@ class Question_model extends CI_Model {
 
 			if (array_key_exists('userID', $filter)) {
 				$this -> db -> where('userID', $filter['userID']);
-			}
+			}question
 			if (array_key_exists('catID', $filter)) {
 				$this -> db -> where('catID', $filter['catID']);
 			}
