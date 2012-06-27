@@ -15,13 +15,14 @@ class Main extends CI_Controller {
 	 *
 	 * loads question_model, answer_model, main_lang.
 	 *
-	 */
+	 */	
 
 	public function __construct() {
 		parent::__construct();
 		$this -> load -> model('question_model');
 		$this -> load -> model('answer_model');
 		$this -> load -> model('category_model');
+
 		// if no language defined in session, load default language.
 		if (!$this -> session -> userdata('language'))
 			$this -> lang -> load('main');
@@ -132,7 +133,7 @@ class Main extends CI_Controller {
 	 * use this for static content like: about, contact, terms-of-use, etc.
 	 *
 	 * @param string $page the name of the page (without extension) in views/body
-	 * @return void
+	 * @return void	
 	 *
 	 */
 
@@ -144,5 +145,40 @@ class Main extends CI_Controller {
 		$data['title'] = mb_convert_case(lang('title_' . $page), MB_CASE_TITLE);
 		$this -> _loadviews($page, $data);
 	}
-
+/**
+	 * shows the User Account Information 
+	 *
+	 * this function will retreive account data from the database about the logged in user
+	 * first it will check if the user is logged in or not and than will retrieve each field into the array
+	 * this will than load the my_account form and pass the array created from the user account data
+	 *
+	 * @param 
+	 * @return void
+	 * Author Sayed Ahmad
+	 *
+	 */
+	public function view_account() 
+	{
+		//if(!$this -> session -> userdata('login')) redirect('main/home');
+		$this -> load -> model('user_model');
+		$userdata = $this -> user_model -> get_userdata(1); //$this -> session -> userdata('uid'));
+		if(!$userdata)
+		redirect('main/home');
+		$this -> load -> model('field_model');
+		$data['fields'] = $this -> field_model -> get_fields();
+		$data['title'] = 'My profile';
+		$data['fullName'] = $userdata -> fullName;
+		$data['email'] = $userdata -> email;
+		$data['imagePath'] = $userdata -> imagePath;
+		$data['organization'] = $userdata -> organization;
+		$data['location'] = $userdata -> location;
+		$data['dateOfBirth'] = $userdata -> dateOfBirth;
+		$data['degree'] = $userdata -> degree;
+		$data['detail'] = $userdata -> detail;
+		$data['fieldID'] = $userdata -> fieldID;
+		
+		$this -> _loadviews('my_account', $data);
+		
+		
+	}
 }
