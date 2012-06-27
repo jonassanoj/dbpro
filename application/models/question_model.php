@@ -144,7 +144,7 @@ class Question_model extends CI_Model {
 
 			if (array_key_exists('userID', $filter)) {
 				$this -> db -> where('userID', $filter['userID']);
-			}question
+			}
 			if (array_key_exists('catID', $filter)) {
 				$this -> db -> where('catID', $filter['catID']);
 			}
