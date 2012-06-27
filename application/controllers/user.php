@@ -154,7 +154,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 		$this->form_validation->set_rules('degree','Degree','alpha');
 	if($this->form_validation->run() == false) {
-		$this->load->view("view_account ", $this -> session -> userdata('uid')););
+		$this->load->view("view_account ", $this -> session -> userdata('uid'));
 		}
 		else {
 		$data['fullName'] = $this -> input -> post('fullName');
@@ -165,9 +165,9 @@ class User extends CI_Controller {
 		$data['fullName'] = $this -> input -> post('imagePath');
 		$data['fullName'] = $this -> input -> post('degree');
 		$data['fullName'] = $this -> input -> post('fieldID');
-		$this -> load -> model('user_model');
-		$this -> user_model -> update_user($this -> session -> userdata('uid')),$data);
-		$this->load->"main/home";
+		//$this -> load -> model('user_model');
+		//$this -> user_model -> update_user($this -> session -> userdata('uid')),$data);
+		//$this->load->"main/home";
 		}
 	}
 

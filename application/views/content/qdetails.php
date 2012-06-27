@@ -1,7 +1,5 @@
 <script type="text/javascript"> 
 
-
-
 	 /**
 	 * this is Javascript and will call Ajax  
 	 * 
@@ -97,6 +95,4 @@ if (isset($result))
 
 <?php echo $backlink?>
 
-
-</div> <!-- body -->
 
