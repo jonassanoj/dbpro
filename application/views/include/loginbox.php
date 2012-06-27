@@ -15,6 +15,7 @@ if (!isset($userinfo)) {
 				echo '<span class="floatright">'."\n"; // positioning
 				echo lang('form_remember','remember');
 				echo form_checkbox('remember', 'yes', TRUE);
+				echo "<a href='http://localhost/index.php/main/view_account'> My Account </a>"; 
 			echo '</span>'."\n"; 
 		echo '</span>'."\n"; 
 	echo form_close();
