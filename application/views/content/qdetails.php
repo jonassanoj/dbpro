@@ -15,13 +15,13 @@
 	 */
 	$(document).ready(function() {
    		 $("#submitit").click(function() {
-			document.getElementById("submitit").src="<?php echo base_url('img/icons/iconminus.png'); ?>";
+			document.getElementById("submitit").src="<?php echo base_url('img/icons/minus.png'); ?>";
 			$("#ajaxresult").load("<?php echo site_url('ajax/qcomments/'.$question->questionID); ?>");    });
 		
 			$("#submitit").toggle(function() { $("#ajaxresult").toggle();
 				document.getElementById("submitit").src="<?php echo base_url('img/icons/plus.png'); ?>";},
 			function() { $("#ajaxresult").toggle();
-				document.getElementById("submitit").src="<?php echo base_url('img/icons/iconminus.png'); ?>";});
+				document.getElementById("submitit").src="<?php echo base_url('img/icons/minus.png'); ?>";});
  
  }); 		
    	
