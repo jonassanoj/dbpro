@@ -23,7 +23,8 @@ class Edit extends CI_Controller {
 		$this -> load -> model('answer_model');
 		$this -> load -> model('comment_model');
 		// load category model 
-		$this->load->model('category_model');		
+		$this->load->model('category_model');	
+		$this->load->library('form_validation');	
 		// if no language defined in session, load default language.
 		if (!$this -> session -> userdata('language'))
 			$this -> lang -> load('main');
@@ -73,6 +74,7 @@ class Edit extends CI_Controller {
 		
 		// This method run only if validation rules have been followed 
 		if($this->form_validation->run()){		
+				
 				if($_POST['btn']=="Save Changes"){
 					//echo	$this->session->userdata('qid').'hi';
 					if(isset($_POST['btn'])) unset($_POST['btn']);

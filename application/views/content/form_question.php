@@ -22,7 +22,7 @@
 <?=form_error('body')?>
 </td>
 </tr>
-<tr><td></td><td></td></tr>
+<tr><td></td><td></td><?=form_hidden('qid',($question!=null?$question->questionID:""))?></tr>
 <tr>
 <td><label>Category</label></td>
 <td>
@@ -30,7 +30,7 @@
 
  &nbsp; &nbsp;  &nbsp; &nbsp;<?=form_dropdown('catID',$catList,set_value('catID',($question!=null?$question->catID:1)), 'style="width: 240px; height:30px; font-size: 13px"');?> &nbsp; &nbsp; &nbsp; &nbsp;
  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-						 <?=form_submit('',$this->input->post('btn'),'style="width: 200px; height:30px; font-size: 13px"')?>
+						 <?=form_submit('btn',$this->input->post('btn'),'style="width: 200px; height:30px; font-size: 13px"')?>
 <?=form_error('catagory')?>
 </td>
 </tr>
