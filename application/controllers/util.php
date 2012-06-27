@@ -49,15 +49,14 @@ class Util extends CI_Controller {
 		$userID = 2;//$this->session->userdata('userID');
 		$qID = $this->input->post('qid');
 		
-		
 		$result = $this-> vote_model -> check_q_vote($userID, $qID);
 		
 		if(empty($result)){
 			$this -> vote_model -> add_q_vote($userID, $qID);
 		}
 		else 
-			redirect('main/qshow/' .$qID);
-	}
+			redirect($this -> session -> userdata('last_visited'));
+				}
 	
 	/**
 	 * Add vote for an answer
@@ -69,7 +68,6 @@ class Util extends CI_Controller {
 	public function a_vote(){
 		
 		$userID = 1;//$this->session->userdata('userID');
-		$qID = $this->input->post('aqid');
 		$aID = $this->input->post('aid');
 		
 		$result = $this-> vote_model -> check_a_vote($userID, $aID);
@@ -78,7 +76,7 @@ class Util extends CI_Controller {
 			$this -> vote_model -> add_a_vote($userID, $aID);
 		}
 		else
-			redirect('main/qshow/' .$qID);
-	}
+			redirect($this -> session -> userdata('last_visited'));
+				}
 
 }

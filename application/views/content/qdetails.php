@@ -88,9 +88,7 @@ if (isset($result))
 	<div>
 		 <input type="submit" name="aup" value="up" /> 
 		<input type="submit" name="adown" value="down"/> 
-		<input type="hidden" value="<?php echo $answer->answerID; ?>" name="aid" />
-		<input type="hidden" value="<?php echo $this->uri->segment(3); ?>" name="aqid" />
-		
+		<input type="hidden" value="<?php echo $answer->answerID; ?>" name="aid" />		
 	</div>
 </form>
 	</div> <!-- answer dic closed -->
@@ -100,9 +98,5 @@ if (isset($result))
 <?php echo $backlink?>
 
 
-<<<<<<< HEAD
 </div> <!-- body -->
-=======
 
-
->>>>>>> 748556e7efb6401421a91862658ee455cd078a9e

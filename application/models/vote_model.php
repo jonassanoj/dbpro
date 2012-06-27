@@ -47,7 +47,7 @@ class Vote_model extends CI_Model {
 		mysql_query($query);
 		mysql_query($query1);
 		
-		redirect('main/qshow/' .$questionID);
+		redirect($this -> session -> userdata('last_visited'));
 	}
 	
 	/**
@@ -64,14 +64,12 @@ class Vote_model extends CI_Model {
 	
 		if($this->input->post('aup')){
 			$term = $this->input->post('aup');
-			
 		}
 		else{
 			$term = $this->input->post('adown');
-			
 		}
 	
-		$questionID = $this->input->post('aqid');
+		
 		$answerID = (int)$answerID;
 		
 		$vote = ($term === 'up') ? '+' : '-';
@@ -81,7 +79,7 @@ class Vote_model extends CI_Model {
 		mysql_query($sql);
 		mysql_query($sql1);
 	
-		redirect('main/qshow/' .$questionID);
+		redirect($this -> session -> userdata('last_visited'));
 	}
 	
 	
