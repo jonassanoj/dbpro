@@ -48,7 +48,10 @@
 </script> <!-- javascript is closed -->
 <div class="question">
 		<h3><?php echo $question->title; ?></h3>
-		<p><?php echo Markdown($question->body); ?></p>
+		<div class="markdown">
+		<?php echo Markdown($question->body); ?>
+		</div>
+		
 		
 		<form action="" method="POST">
   		<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
@@ -64,7 +67,9 @@ if (isset($result))
 
 <?php foreach ($answers as $answer): ?>
 	<div class="answer">
-		<?php echo $answer->body; ?>
+	<div class="markdown">
+		<?php echo Markdown($answer->body); ?>
+	</div>
 	</div> <!-- answer dic closed -->
 <?php endforeach ?>
 
