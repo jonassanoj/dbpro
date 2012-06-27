@@ -153,5 +153,40 @@ public function adminview() {
 		$data['title'] = mb_convert_case(lang('w_' . $page), MB_CASE_TITLE);
 		$this -> _loadviews($page, $data);
 	}
-
+/**
+	 * shows the User Account Information 
+	 *
+	 * this function will retreive account data from the database about the logged in user
+	 * first it will check if the user is logged in or not and than will retrieve each field into the array
+	 * this will than load the my_account form and pass the array created from the user account data
+	 *
+	 * @param 
+	 * @return void
+	 * Author Sayed Ahmad
+	 *
+	 */
+	public function view_account() 
+	{
+		//if(!$this -> session -> userdata('login')) redirect('main/home');
+		$this -> load -> model('user_model');
+		$userdata = $this -> user_model -> get_userdata(1); //$this -> session -> userdata('uid'));
+		if(!$userdata)
+		redirect('main/home');
+		$this -> load -> model('field_model');
+		$data['fields'] = $this -> field_model -> get_fields();
+		$data['title'] = 'My profile';
+		$data['fullName'] = $userdata -> fullName;
+		$data['email'] = $userdata -> email;
+		$data['imagePath'] = $userdata -> imagePath;
+		$data['organization'] = $userdata -> organization;
+		$data['location'] = $userdata -> location;
+		$data['dateOfBirth'] = $userdata -> dateOfBirth;
+		$data['degree'] = $userdata -> degree;
+		$data['detail'] = $userdata -> detail;
+		$data['fieldID'] = $userdata -> fieldID;
+		
+		$this -> _loadviews('my_account', $data);
+		
+		
+	}
 }
