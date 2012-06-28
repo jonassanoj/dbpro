@@ -90,7 +90,7 @@ class User extends CI_Controller {
 	}
 	
 	/**
-	* Fuction for loging out:
+	* Function for logging out:
 	* 
 	* Session data of the current user will unset here:
 	* login userid(uid) usertype username
@@ -102,9 +102,9 @@ class User extends CI_Controller {
 	public function logout()
 	{
 		$this -> session -> unset_userdata('login');
+		$this -> session -> unset_userdata('user');
 		$this -> session -> unset_userdata('uid');
-		$this -> session -> unset_userdata('usertype');
-		$this -> session -> unset_userdata('username');
+		
 		redirect($this -> session -> userdata('last_visited'));
 	}
 	
