@@ -9,7 +9,7 @@
 <td><label>Title</label></d>
 <td>
 <?=form_input('title',set_value('title',($question!=null?$question->title:"")),'style="width: 400px; height:30px; font-size: 13px"')?>
-<?=form_error('questionTitle')?>
+<?=form_error('title')?>
 </td>
 
 </tr>
