@@ -255,31 +255,6 @@ class User_model extends CI_Model {
 	 * @return int the number of affected rows otherwise 0
 	 */
 
-	/**
-	 * Delete a user in 3 case
-	 *
-	 * first of all we consider that we can have 3 possiblity to delete user and always by if condition we will check in which scenario we decided to delete
-	 * for this we declear 3 static constant variable ( DEACTIVATE=0, ANONYMIZE=1, CASCADE=2 )
-	 *
-	 * first case: if ($deletion_type==self::ANONYMIZE) ==>> if $deletion_type is equal ANONYMIZE it means we passed 1 to function,
-	 * we will assign userID = 999 and change other filds for this uid(userID) in User table....
-	 *
-	 * second case: elseif ($deletion_type==self::CASCADE) ==>> if $deletion_type is equal CASCADE it means we passed 2 to function,
-	 * then we will delete all relevent question, answer, comment, vote from different tables for this uid(userID)
-	 *
-	 * thered case: ($deletion_type=self::DEACTIVATE) by defult $deletion_type is equal DEACTIVATE it means we passed 0 to function,
-	 * then in this case we will call change_usertype($uid, self::TYPE_DEACTIVATED) function and change userTypeID to TYPE_DEACTIVATED
-	 * it means code number 9 in User table.
-	 *
-	 * self::
-	 * in php we use $this to refer to the current object. and we use self to refer to the current class.
-	 * In other words, use $this->member for non-static members, use self::$member for static members.
-	 *
-	 * @param int $uid the userID
-	 * @param const $deletion_type the DEACTIVATE, ANONYMIZE, CASCADE
-	 * @return int the number of affected rows otherwise 0
-	 */
-
 	const DEACTIVATE = 0;
 	const ANONYMIZE = 1;
 	const CASCADE = 2;

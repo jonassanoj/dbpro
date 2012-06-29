@@ -172,7 +172,7 @@ class Edit extends CI_Controller {
 			$data['aid'] = $aid;	
 		if ($cid==0)
 		{ 
-				if(!empty($qid) || $qid != '') {
+				if(!empty($qid) || $qid != '') { 
 					$result = $this -> question_model -> get_details($qid);
 					$data['source_of_comment'] = $result -> body;
 				}
@@ -192,7 +192,7 @@ class Edit extends CI_Controller {
 			//if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home'); 
 			$uid = 3;
 			$data['cid'] = $cid;
-			if(!empty($comment -> questionID) || $comment -> questionID != '') {
+			if(!empty($comment -> questionID) || $comment -> questionID != '') {  
 				$result = $this -> question_model -> get_details($comment->questionID);
 				$data['source_of_comment'] = $result -> body;
 			}
@@ -202,7 +202,7 @@ class Edit extends CI_Controller {
 				$data['source_of_comment'] = $result[0] -> body;
 			}
 			
-			$data['title']='Edit an existing comment !';    //TODO: localize
+			$data['title']=lang('title_edit_comment');    //TODO: localize
 			$data['comment'] = $comment -> body;
 			// modify existing comment
 		}
