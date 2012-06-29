@@ -58,13 +58,15 @@
 	
 </form> 
 
-<form action="http:/index.php/util/q_vote" name="voting" method="POST">
-	<div>
-	 	<input type="submit" name="up" value="up" /> 
-		<input type="submit" name="down" value="down"/> 
-		<input type="hidden" value="<?php echo $question->questionID; ?>" name="qid" />
+<form action="<?php echo site_url('util/q_vote/'.$question->questionID)?>" name="voting" method="POST">
+	<div class="vote">
+	 	
+		<input type="image" title="upvote" src=<?php echo base_url('img/icons/upvote.jpg'); ?> width=30 name="up" value="up" />
+		&nbsp;&nbsp;<input type="image" title="downvote" src=<?php echo base_url('img/icons/downvote.jpg'); ?> width=30 name="down" value="down" />
+		
+		<!--<input type="hidden" value="<?php echo $question->questionID; ?>" name="qid" />
 
-	 <!--   <a href="?vote=up&amp;id=" >Up</a>
+	   <a href="?vote=up&amp;id=" >Up</a>
 	<a href="?vote=down&amp;id=" >Down</a> -->
 		
 	</div>
@@ -84,11 +86,10 @@ if (isset($result))
 		<?php echo $answer->body; ?>
 	
 	
-<form action="http:/index.php/util/a_vote" name="answer_voting" method="POST">
+<form action="<?php echo site_url('util/a_vote/'.$answer->answerID)?>" name="answer_voting" method="POST">
 	<div>
-		 <input type="submit" name="aup" value="up" /> 
-		<input type="submit" name="adown" value="down"/> 
-		<input type="hidden" value="<?php echo $answer->answerID; ?>" name="aid" />		
+		 <input type="image" title="upvote" src=<?php echo base_url('img/icons/upvote.jpg'); ?> width=30 name="aup" value="up" />
+		&nbsp;&nbsp;<input type="image" title="downvote" src=<?php echo base_url('img/icons/downvote.jpg'); ?> width=30 name="adown" value="down" />
 	</div>
 </form>
 	</div> <!-- answer dic closed -->

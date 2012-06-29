@@ -42,41 +42,55 @@ class Util extends CI_Controller {
 	 * Add vote for a question
 	 *
 	 * Check user to find out  did he/she voted for a specific question, if not add his/her vote.
-	 *
+	 * 
+	 * @param int $qid the questionID that user want to vote.
 	 */
 	
-	public function q_vote(){
-		$userID = 2;//$this->session->userdata('userID');
-		$qID = $this->input->post('qid');
+	public function q_vote($qid){
 		
-		$result = $this-> vote_model -> check_q_vote($userID, $qID);
+		$userid = 2;//$this->session->userdata('uid');
+		if($this->input->post('up')){
+			$term = $this->input->post('up');
+		}
+		else
+			$term = $this->input->post('down');
+		
+		$vote = ($term === 'up') ? '+' : '-';
+		$result = $this-> vote_model -> check_q_vote($userid, $qid);
 		
 		if(empty($result)){
-			$this -> vote_model -> add_q_vote($userID, $qID);
+			$this -> vote_model -> add_q_vote($userid, $qid, $vote);
 		}
 		else 
 			redirect($this -> session -> userdata('last_visited'));
-				}
+	}
 	
 	/**
 	 * Add vote for an answer
 	 *
 	 * Check user to find out did he/she voted for an specific answer, if not add his/her vote.
-	 *
+	 * 
+	 * @param int $aid the answerID that user want to vote.
 	 */
 	
-	public function a_vote(){
+	public function a_vote($aid){
 		
-		$userID = 1;//$this->session->userdata('userID');
-		$aID = $this->input->post('aid');
+		$userid = 2;//$this->session->userdata('uid');
+		if($this->input->post('aup')){
+			$term = $this->input->post('aup');
+		}
+		else{
+			$term = $this->input->post('adown');
+		}
 		
-		$result = $this-> vote_model -> check_a_vote($userID, $aID);
+		$vote = ($term === 'up') ? '+' : '-';
+		$result = $this-> vote_model -> check_a_vote($userid, $aid);
 	
 		if(empty($result)){
-			$this -> vote_model -> add_a_vote($userID, $aID);
+			$this -> vote_model -> add_a_vote($userid, $aid, $vote);
 		}
 		else
 			redirect($this -> session -> userdata('last_visited'));
-				}
+	}
 
 }
