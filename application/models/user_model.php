@@ -175,8 +175,8 @@ class User_model extends CI_Model {
 	 */
 
 	public function change_usertype($uid, $utid) {
-		$this -> db -> set('$userTypeID', $utid);
-		$this -> db -> where('$userID', $uid);
+		$this -> db -> set('userTypeID', $utid);
+		$this -> db -> where('userID', $uid);
 		$this -> db -> update('User');
 		return $this -> db -> affected_rows();
 
