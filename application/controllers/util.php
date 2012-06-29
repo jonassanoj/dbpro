@@ -10,20 +10,6 @@
 
 class Util extends CI_Controller {
 	
-	/**
-	 * constructor
-	 *
-	 * loads vote_model.
-	 *
-	 */
-	
-	public function __construct() {
-		parent::__construct();
-		$this -> load -> model('vote_model');
-		
-	}
-	
-	
 	/** 
 	 * Load a language
 	 * 
@@ -31,12 +17,11 @@ class Util extends CI_Controller {
 	 * 
 	 * @param string $language the language to load, named like the folder containing the language files
 	 */
-	
-		
 	public function lang($language) {
 		$this -> session -> set_userdata('language',$language);
 		redirect($this -> session -> userdata('last_visited'));
 	}
+
 	
 	/**
 	 * Add vote for a question

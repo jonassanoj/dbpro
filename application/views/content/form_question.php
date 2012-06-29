@@ -2,23 +2,9 @@
 
 <?=form_open('edit/question')?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<fieldset style="width: 800px; vertical-align:center; height:600px; border: 1px solid #D0D0D0; background-color: #f9f9f9; color: #002166; ;">
-
+<fieldset style="width: 780px; vertical-align:middle; height:520px; border: 1px solid #D0D0D0; background-color: #f9f9f9; color: #002166; ;">
+<legend><?=$this->input->post('titles')?></legend>
 <table>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-<tr><td></td><td></td></tr>
-
 <tr>
 <td><label>Title</label></d>
 <td>
@@ -36,7 +22,7 @@
 <?=form_error('body')?>
 </td>
 </tr>
-<tr><td></td><td><?=form_hidden('qid',($question!=null?$question->questionID:""))?></td></tr>
+<tr><td></td><td></td><?=form_hidden('qid',($question!=null?$question->questionID:""))?></tr>
 <tr>
 <td><label>Category</label></td>
 <td>

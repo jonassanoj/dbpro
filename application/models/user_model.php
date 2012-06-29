@@ -9,17 +9,10 @@
  * * _User_
  * * _UserType_ (read only)
  *
- * @package models
+ *@package models
  */
 
 class User_model extends CI_Model {
-	
-	const TYPE_NORMAL = 1;
-	const TYPE_EDITOR = 2;
-	const TYPE_ADMIN = 3;
-
-	const TYPE_UNCONFIRMED = 8;
-	const TYPE_DEACTIVATED = 9;
 
 	/**
 	 * Checks if the username exists
@@ -40,7 +33,7 @@ class User_model extends CI_Model {
 		$this -> db -> select('userID');
 		$query = $this -> db -> get('User');
 		if ($query -> num_rows() > 0) {
-			return $query->first_row()->userID;
+			return $query -> first_row() -> userID;
 		} else
 			return 0;
 	}
@@ -65,7 +58,7 @@ class User_model extends CI_Model {
 
 	/**
 	 * adding new user in the User table with initial data (username,password and email address)
-	 * 
+	 *
 	 * @author Ashuqullah Alizai
 	 * @param string $name is the username for the user
 	 * @param string $password is password specified by user
@@ -81,7 +74,7 @@ class User_model extends CI_Model {
 			$this -> db -> set('userName', $name);
 			$this -> db -> set('password', $password);
 			$this -> db -> set('email', $email);
-			$this -> db -> set('userTypeID', self::TYPE_UNCONFIRMED);
+			$this -> db -> set('userTypeID', 0);
 			$this -> db -> set('accountCreationDate', $date);
 			$this -> db -> insert('User');
 			return $this -> db -> insert_id();
@@ -102,7 +95,7 @@ class User_model extends CI_Model {
 		$this -> db -> where('userName', $username);
 		$query = $this -> db -> get('User');
 		if ($query -> num_rows() > 0) {
-			return $query->first_row()->userID;
+			return $query -> first_row() -> userID;
 		} else
 			return false;
 	}
@@ -141,46 +134,47 @@ class User_model extends CI_Model {
 	 * @param array $user_data an associative array containing the columns to update
 	 * @return int 1 if successful, 0 otherwise
 	 *
+
 	 */
 	public function update_user($uid, $user_data) {
-		$this -> db -> query($this->db->update_string('User', $user_data, "userID = $uid"));
+		$this -> db -> query($this -> db -> update_string('User', $user_data, "userID = $uid"));
 		return $this -> db -> affected_rows();
 	}
 
 	/**
 	 * retrieve all information about a user
 	 *
-	 * Returns a user object containing information about the user, including his field and userType as a string. 
+	 * Returns a user object containing information about the user, including his field and userType as a string.
 	 *
 	 * @param int $uid
-	 * @return object|boolean a user object containing all the fields of the user, additionally fieldName and userType 
-	 * are included as a string. If user is not found, returns false	 
+	 * @return object|boolean a user object containing all the fields of the user, additionally fieldName and userType
+	 * are included as a string. If user is not found, returns false
 	 */
-	 
+
 	public function get_userdata($uid) {
-		$this->db->join('UserType', 'User.userTypeID = UserType.userTypeID');
-		$this->db->join('Field', 'User.fieldID = Field.fieldID','left');
-		$this->db->where('userID',$uid);
-		$query = $this->db->get('User');
+		$this -> db -> join('UserType', 'User.userTypeID = UserType.userTypeID');
+		$this -> db -> join('Field', 'User.fieldID = Field.fieldID', 'left');
+		$this -> db -> where('userID', $uid);
+		$query = $this -> db -> get('User');
 		if ($query -> num_rows() > 0) {
-			return $query->first_row();
+			return $query -> first_row();
 		} else
 			return false;
 	}
 
 	/**
-	 * Change the userType 
-	 * 
-	 * changes the user with a given userID to a new userTypeID 
+	 * Change the userType
+	 *
+	 * changes the user with a given userID to a new userTypeID
 	 *
 	 * @author GhezalAhmad Zia
 	 * @param int $uid the userID
-	 * @param int $utid the userTypeID to set  
+	 * @param int $utid the userTypeID to set
 	 * @return int 0 if user is not found, 1 otherwise.
-	 * 
+	 *
 	 */
 
-	 public function change_usertype($uid, $utid) {
+	public function change_usertype($uid, $utid) {
 		$this -> db -> set('$userTypeID', $utid);
 		$this -> db -> where('$userID', $uid);
 		$this -> db -> update('User');
@@ -211,10 +205,10 @@ class User_model extends CI_Model {
 	 * @return int user type ID
 	 */
 	public function get_usertype($uid) {
-		$this-> db -> select('userTypeID');
-		$this-> db -> get_where('User',array('userID'=>$uid));
+		$this -> db -> select('userTypeID');
+		$this -> db -> get_where('User', array('userID' => $uid));
 		if ($query -> num_rows() > 0) {
-			return $query->first_row()->userTypeID;
+			return $query -> first_row() -> userTypeID;
 		} else
 			return false;
 	}
@@ -235,138 +229,57 @@ class User_model extends CI_Model {
 
 		return $query -> result();
 	}
-	
-	const DEACTIVATE = 0;
-	const ANONYMIZE = 1;
-	const CASCADE = 2; 
-	
-	public function delete($uid, $deletion_type=self::DEACTIVATE){
-		
-		if ($deletion_type==self::ANONYMIZE) {
-			//delete and make anonymous
-		}
-		elseif ($deletion_type==self::CASCADE) {
-			//delete and cascade! 
-		}
-		// DELETION TYPE = 0 
-		else {
-			//deactivate
-		}
-	}
-	
 
 	/**
-	 * get all users from user table 
-	 * 
-	 * this function will return all users from user table 
-	 * 
-	 * @author Ashuqullah Alziai
-	 * @param int $limit
-	 * @param int $offse
-	 * @return array of users 
+	 * Delete a user in 3 case
+	 *
+	 * first of all we consider that we can have 3 possiblity to delete user and always by if condition we will check in which scenario we decided to delete
+	 * for this we declear 3 static constant variable ( DEACTIVATE=0, ANONYMIZE=1, CASCADE=2 )
+	 *
+	 * first case: if ($deletion_type==self::ANONYMIZE) ==>> if $deletion_type is equal ANONYMIZE it means we passed 1 to function,
+	 * we will assign userID = 999 and change other filds for this uid(userID) in User table....
+	 *
+	 * second case: elseif ($deletion_type==self::CASCADE) ==>> if $deletion_type is equal CASCADE it means we passed 2 to function,
+	 * then we will delete all relevent question, answer, comment, vote from different tables for this uid(userID)
+	 *
+	 * thered case: ($deletion_type=self::DEACTIVATE) by defult $deletion_type is equal DEACTIVATE it means we passed 0 to function,
+	 * then in this case we will call change_usertype($uid, self::TYPE_DEACTIVATED) function and change userTypeID to TYPE_DEACTIVATED
+	 * it means code number 9 in User table.
+	 *
+	 * self::
+	 * in php we use $this to refer to the current object. and we use self to refer to the current class.
+	 * In other words, use $this->member for non-static members, use self::$member for static members.
+	 *
+	 * @param int $uid the userID
+	 * @param const $deletion_type the DEACTIVATE, ANONYMIZE, CASCADE
+	 * @return int the number of affected rows otherwise 0
 	 */
-	function get_paged_list($limit = 10, $offset = 0){
-		$this->db->order_by('userID','asc');
-		return $this->db->get('User', $limit, $offset);
+
+	const DEACTIVATE = 0;
+	const ANONYMIZE = 1;
+	const CASCADE = 2;
+
+	public function delete($uid, $deletion_type = self::DEACTIVATE) {
+
+		//delete and make anonymous
+		if ($deletion_type == self::ANONYMIZE) {
+			$data = array('userID' => '999', 'userName' => 'anonymize', 'fullName' => '', 'email' => '', 'pasword' => '', 'imagePath' => Null, 'organization' => '', 'location' => '', 'detail' => '');
+			$this -> db -> where('userID', $uid);
+			$this -> db -> update('User', $data);
+			return $this -> db -> affected_rows();
+		}
+		//delete and cascade!
+		elseif ($deletion_type == self::CASCADE) {
+			$tables = array('AnswerVote', 'QuestionVote', 'Comment', 'Answer', 'Question', 'User');
+			$this -> db -> where('userID', $uid);
+			$this -> db -> delete($tables);
+			return $this -> db -> affected_rows();
+		}
+		//deactivate, DELETION TYPE = 0
+		else {
+
+			return change_usertype($uid, self::TYPE_DEACTIVATED);
+		}
 	}
-	/**
-	 * Count users
-	 * 
-	 * This function is used to count all existing users in the database.
-	 * 
-	 * @author Ashuqullah Alizai
-	 * @return array of users
-	 * 
-	 */
-	function count_all(){
-		return $this->db->count_all('User');
-	}
-	/**
-	 * List users
-	 * 
-	 * This function is used to list all users ordered by userID.
-	 * 
-	 * @author Ashuqullah Alizai & Ghezal Ahmad
-	 * @return array of users.
-	 */
-	function list_all(){
-		$this->db->order_by('userID','asc');
-		return $this->db->get('User');
-	}
-	/**
-	 * get users
-	 * 
-	 * This function is used to get users by userID
-	 * 
-	 * @author alizai
-	 * @param  int $id get user by id.
-	 * @return array of users
-	 */
-		
-	function get_by_id($id){
-		$this->db->where('userID', $id);
-		return $this->db->get('User');
-	}
-	/**
-	 * Add person
-	 * 
-	 * This function use to add persons to User table.
-	 * 
-	 * @author Ghezal Ahmad
-	 * @param  String $person the name to save in the database.
-	 * @return int $id the inserted id.
-	 */
-	function save($person){
-		$this->db->insert('User', $person);
-		return $this->db->insert_id();
-	}
-	
-	/**
-	 * Get field name
-	 * 
-	 * This function used to show the field name.
-	 * 
-	 * @author alizai
-	 * @param  int $fid the field id.
-	 * @return String $fieldName field name
-	 */
-	
-	function get_feild($fid){
-		$this->db->select('fieldName');
-		$this->db->where('fieldID', $fid);
-		$query = $this->db->get('Field');
-		return $query -> result();
-	}
-	
-	/**
-	 * Get user type
-	 * 
-	 * show the users type from user type table [Admin | Normal | Editor |Unconfirmed Users] for a givin userTypeID .
-	 * 
-	 * @author Ashuquallah alizai & Ghezal Ahmad
-	 * @param int $tid user type id.
-	 * @return String $UserType user type
-	 */
-	function get_type($tid){
-		$this->db->select('userType');
-		$this -> db -> where('userTypeID' , $tid);
-		$query = $this->db->get('UserType');
-		return $query -> result();
-	}
-	
-	/**
-	 * upgrade user type 
-	 * 
-	 * this function is to upgrade user type, the function will use by admin for upgrading user privileges 
-	 * 
-	 * @author ashuqullah Alizai
-	 * @param int $uid is user ID from user table 
-	 * @param int $tid id userTpeID from UserType table 
-	 */
-	function upgrade_user($uid,$tid){
-		
-		$this -> db -> set('userTypeID', $tid);
-		$this -> db -> where('userID' , $uid);
-		$this -> db -> update('User');
-	}
+
 }

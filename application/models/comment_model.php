@@ -122,7 +122,6 @@ class Comment_model extends CI_Model {
 		$this -> db -> update('Comment', $data);
 		return $this -> db -> affected_rows(); 
 	}
-    
 
 	/**
 	 * Delete Comments by id 

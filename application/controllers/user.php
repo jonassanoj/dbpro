@@ -90,7 +90,7 @@ class User extends CI_Controller {
 	}
 	
 	/**
-	* Fuction for loging out:
+	* Function for logging out:
 	* 
 	* Session data of the current user will unset here:
 	* login userid(uid) usertype username
@@ -102,9 +102,9 @@ class User extends CI_Controller {
 	public function logout()
 	{
 		$this -> session -> unset_userdata('login');
+		$this -> session -> unset_userdata('user');
 		$this -> session -> unset_userdata('uid');
-		$this -> session -> unset_userdata('usertype');
-		$this -> session -> unset_userdata('username');
+		
 		redirect($this -> session -> userdata('last_visited'));
 	}
 	
@@ -135,40 +135,6 @@ class User extends CI_Controller {
 			$this -> _loadviews('login_failed', $data);
 		else 
 			redirect(site_url('user/recover/'. $user));
-	}
-
-	/**
-	 * Update the user Information
-	 *
-	 * this function will get the date from the form and will check for its validaty and than insert it into the database if valid
-	 * the user picture can also be uploaded 
-	 *
-	 * @param 
-	 * @return void
-	 * Author Sayed Ahmad
-	 *
-	 */
-	public function update_user() {
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('fullName', 'Username', 'required|min_length[5]|max_length[12]|is_unique[users.username]');
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-		$this->form_validation->set_rules('degree','Degree','alpha');
-	if($this->form_validation->run() == false) {
-		$this->load->view("view_account ", $this -> session -> userdata('uid')););
-		}
-		else {
-		$data['fullName'] = $this -> input -> post('fullName');
-		$data['fullName'] = $this -> input -> post('email');
-		$data['fullName'] = $this -> input -> post('dateOfBirth');
-		$data['fullName'] = $this -> input -> post('organization');
-		$data['fullName'] = $this -> input -> post('location');
-		$data['fullName'] = $this -> input -> post('imagePath');
-		$data['fullName'] = $this -> input -> post('degree');
-		$data['fullName'] = $this -> input -> post('fieldID');
-		$this -> load -> model('user_model');
-		$this -> user_model -> update_user($this -> session -> userdata('uid')),$data);
-		$this->load->"main/home";
-		}
 	}
 
 	public function register()

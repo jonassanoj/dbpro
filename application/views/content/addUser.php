@@ -1,16 +1,3 @@
-<?php
-/*
-
-*  The addUser view is going the create a from for displaying the users informations in a table or form.
-*  
-*  Variables which are used in the view are:
-*  $message string -- 
-*  ........
-*  ........
-*/
-?>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -103,6 +90,7 @@
 		</div>
 		</form>
 		<br />
-		</div>
+		<?php echo $link_back; ?>
+	</div>
 </body>
 </html>

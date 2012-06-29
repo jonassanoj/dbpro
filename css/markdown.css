@@ -4,30 +4,84 @@
 
 .markdown {
 	font-size: 90%;
+	font-family: Arial, Helvetica, sans-serif;
 }
-
+.markdown h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style:normal;
+}
 .markdown h1{
-	font-size: 220%; color: #A67C7C; padding-top: 20px; 
+	padding: 0px;
+	font-size: 120%; color:#000000;
+	cursor: text;
 	
-} .markdown h2{
-	font-size:200%; color: #A67C7C; padding-top: 20px; 
-} .markdown h3 {
-	font-size: 180%; color: #A67C7C; padding-top: 20px; 
-} .markdown h4 {
-	font-size: 160%; color: #A67C7C; padding-top: 20px; 
-} .markdown h5 {
-	font-size: 140%; color: #A67C7C; padding-top: 20px; 
-} .markdown h6 {
+} 
+.markdown h2{
+	font-size:100%; color: #000000; 
+} 
+.markdown h3 {
+	font-size: 90%; color: #000000; 
+} 
+.markdown h4 {
+	font-size: 80%; color: #000000; 
+} 
+.markdown h5 {
+	font-size: 70%; color: #000000;
+} 
+.markdown h6 {
 /* make sure headings are not as huge as the main headings. This still has to be improved to look good */
-	font-size: 120%;
-	font-family: inherit;
-	font-size: 270%; color: #A67C7C; padding-top: 20px; 
+	font-size: 60%;
+    color: #000000; 
 }
 
 /* make sure unordered lists appear with bullets */
 .markdown ul{
+	margin: -6px 0 13px;
+	padding-left: 30px;
+	font-weight: normal;
 	 }
-.markdown li {
+.markdown ul li {
 	list-style: disc;
+    margin: 0 12px 0 0;
 	
+}
+.markdown ol{
+	margin: -6px 0 13px;
+	padding-left: 30px;
+	font-weight: normal;
+	 }
+.markdown ol li{
+	list-style: decimal;
+	margin: 0 12px 0 0;
+}
+
+.markdown code{
+	display: block;
+	border-style:none;
+	background-color:#F2F2F2;
+}
+
+.markdown a {
+	color: blue;
+	font-style: italic;
+}
+
+.markdown a:hover {
+	font-size: 16px;
+	color: red;
+}
+
+blockquote {
+	color: #000000;
+	font-weight: normal;
+	font-style: italic;
+	margin: 1em 3em; 
+	background-color: #EAEAEA;
+}
+blockquote p:before {
+	content: '"'; 
+}
+blockquote p:after {
+	content: '"'; 
 }
