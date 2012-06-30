@@ -19,7 +19,7 @@ if (!isset($userinfo)) {
 		echo '</span>'."\n"; 
 	echo form_close();
 }
-else { 
+else {
 	echo form_open("user/logout/",array('class'=>'login_small'));
 	echo sprintf(lang('msgvar_loggedin_as'), $userinfo->userName);
 	echo '<input type="submit" id="'.'logout'.'" name="'.'logout'.'" value="'.lang('form_logout').'" />';
