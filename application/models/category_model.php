@@ -70,7 +70,7 @@ class Category_model extends CI_Model {
 	const MULTI_ARRAY = 2; 
 	 	
 	function get_categories($fieldID=0,$return=self::ARRAY_OF_OBJECTS) {
-		if ($fieldID) $this -> db -> where('fieldID', $fieldID);
+		if ($fieldID) $this -> db -> where('Category.fieldID', $fieldID);
 		$this -> db -> join('Field','Category.fieldID=Field.fieldID');
 		$this -> db -> select('catID, catName, Category.fieldID, fieldName');
 		$query = $this -> db -> get('Category');

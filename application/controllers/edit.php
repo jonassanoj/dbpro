@@ -132,14 +132,10 @@ class Edit extends CI_Controller {
 		}
 		
 		
-		//TODO: check if $qid is the user's question, otherwise send the user back where he came from (hint: see controllers/user.php for how to do this)
-		// show a form to edit a question if $qid does not exist it's empty, otherwise it should already contain the question's data
-		// create the form to show as /views/content/form_question.php. It should contain fields for title, body and a drop-down list with all the names of the categories to choose from.
-		// use form validation to make sure all required fields are entered. if everything is okay, update the database.
-		
 	
 	/**
-	 * 
+	 * creation and edition of answer
+	 *
 	 * create a new answer or edit an existing one
 	 * 
 	 * @param int $qid the id of the question to answer. 
@@ -148,13 +144,107 @@ class Edit extends CI_Controller {
 	 */
 	public function answer($qid,$aid=0){
 		
-		//TODO: check if $aid is the user's answer, otherwise send the user back where he came from
-		// show a form to edit an answer, if $aid does not exist display a form to answer question $qid instead.
-		// create the form to show as /views/content/form_answer.php. It should contain a field for body
-		// implement and document the missing functions to update and delete a question in the answer model. Use the question model as an example.
+		//TODO: every message should be in selected language
+		//if (!$this->session->userdata('login')) redirect('main/home');
+		$this->form_validation->set_message('required', 'Please write answer than submit');
+		// here we are loading question for which user will write an answer
+		$question = $this -> question_model -> get_details($qid);
+		$data['questiontitle'] = $question -> title;
+		$data['question'] = $question -> body;
 		
+		if($this -> session -> userdata('form') == 'new') {
+			
+			
+			$this -> form_validation -> set_rules('answer_body','Your answer', 'required|xss_clean');
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data['title'] = 'Add New Answer';
+				$data['qid'] = $qid;
+				$data['aid'] = $aid;
+			}
+			else
+			{
+				unset($data['questiontitle']);
+				unset($data['question']);
+				$data['title'] = 'Answer added';
+				$body = $this -> input -> post('answer_body');
+		 		$flag = $this -> answer_model -> add_answer($qid, $this -> session -> userdata('uid'), $body);
+				$data['message'] = 'Answer added successfully';
+				if(!$flag)
+				$data['message'] = 'Answer did not save, please try later again';
+				$this -> session -> unset_userdata('form');
+			}	 		
+	 		$this -> _loadviews('form_answer', $data);
+			
+		} else if($this -> session -> userdata('form') == 'update') {
+			
+			$this -> form_validation -> set_rules('answer_body', 'Your answer', 'required|xss_clean');	
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data['title'] = 'Editing answer';
+				$data['qid'] = $qid;
+				$data['aid'] = $aid;
+			}
+			else
+			{
+				unset($data['questiontitle']);
+				unset($data['question']);
+				$body = $this -> input -> post('answer_body');
+				$flag = $this -> answer_model -> update_answer($aid, $body);
+				$data['title'] = 'Answer updated';
+				$data['message'] = 'Answer updated successfully';
+				if(!$flag)
+				$data['message'] = 'Answer did not update, please try later again';
+				$this -> session -> unset_userdata('form'); 
+				
+			}
+			$this -> _loadviews('form_answer', $data);
+		}
+		else {
+			$data['qid'] = $qid;
+			$data['aid'] = $aid;
+			if($aid == 0) {
+				$data['title'] = 'Add New Answer';
+				$this -> session -> set_userdata('form', 'new');
+				$this -> _loadviews('form_answer', $data);
+			}
+			else {
+				
+				$answer = $this -> answer_model -> is_user_answer($aid, $this -> session -> userdata('uid'));
+				if(!$answer) {
+					redirect('main/home');
+				}
+				$this -> session -> set_userdata('form', 'update');
+				$data['title'] = 'Editing answer';
+				$data['body'] = $answer -> body;
+				$this -> _loadviews('form_answer', $data);		
+			}	
+		}	
 	}
 	/**
+	* delete user's answer
+	*
+	* This function is for deleting a login user's answer
+	* 
+	* @param int $aid the id of the answer 
+	*/
+	public function delete_answer($aid = 0) {
+		//if(!$this-> session -> userdata('login') || $aid == 0 )
+		//redirect('main/home');
+		$this -> session -> unset_userdata('form');
+		if(!$this -> answer_model -> is_user_answer($aid, $this -> session -> userdata('uid')))
+		redirect('main/home');
+		$flag = $this -> answer_model -> delete_answer($aid, $this -> session -> userdata('uid'));
+		// These messages should take from language files
+		$data['message'] = 'Your answer deleted successfully';
+		if(!$flag)
+		$data['message'] = 'Sorry! your answer did not delete, tray again later';
+		$data['title'] = 'Answer deletion';
+		// for now we just call the same form again 
+		$this -> _loadviews('form_answer', $data);
+		
+	}
+/**
 	 * 
 	 * Creates a new comment or edits an existing one
 	 * 
@@ -165,34 +255,24 @@ class Edit extends CI_Controller {
 	 * @return void
 	 */
 	public function comment($qid,$aid,$cid=0){
-		
-		$comment = $this -> comment_model -> get_comment($cid);
-		//if (!$this->session->userdata('login')) redirect('main/home');	
-			
+		if (!$this->session->userdata('login')) redirect('main/home');	
+				
+			$data['qid'] = $qid;
 			$data['aid'] = $aid;	
 		if ($cid==0)
-		{ 
-				if(!empty($qid) || $qid != '') { 
-					$result = $this -> question_model -> get_details($qid);
-					$data['source_of_comment'] = $result -> body;
-				}
-				else if(!empty($aid) || $aid != '') {
-					$result = $this -> answer_model -> get_answers($qid);
-					$data['source_of_comment'] = $result[0] -> body;
-				}
+		{
 			$data['cid'] = 0;
-			$data['title']='You can create new comment !';       //TODO: localize	
+			$data['title']='Create new comment';       //TODO: localize		
 		}
 		else {
 			
-			
+			$comment = $this -> comment_model -> get_comment($cid);
 			// if $comment is false (not found in db), send user back
 			if (!$comment) redirect('main/home'); 
 			// if the editor is not the owner of the comment,send him back	
-			//if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home'); 
-			$uid = 3;
+			if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home'); 
 			$data['cid'] = $cid;
-			if(!empty($comment -> questionID) || $comment -> questionID != '') {  
+			if(!empty($comment -> questionID) || $comment -> questionID != '') {
 				$result = $this -> question_model -> get_details($comment->questionID);
 				$data['source_of_comment'] = $result -> body;
 			}
@@ -202,11 +282,10 @@ class Edit extends CI_Controller {
 				$data['source_of_comment'] = $result[0] -> body;
 			}
 			
-			$data['title']=lang('title_edit_comment');    //TODO: localize
+			$data['title']='Edit an existing comment !';    //TODO: localize
 			$data['comment'] = $comment -> body;
 			// modify existing comment
 		}
-			
 		$this->_loadviews('form_comment',$data);
 		
 	}
@@ -230,7 +309,6 @@ class Edit extends CI_Controller {
 		$data['cid'] = $cid;
 		$data['title'] = 'You can update or create a comment !';  //TODO: localize
 			// Now it will create new comment.
-		if($this -> input -> post('btn_save')){
 			if($cid == 0) {
 				$return = -1;
 				if($aid != 0 && is_int($aid))
@@ -252,23 +330,6 @@ class Edit extends CI_Controller {
 			 	$data['msg'] = 'Comment did not updated please try later !';
 			
 			}
-		}
-		else if($this -> input -> post('btn_delete')){
-			//$cid = $this -> input -> post('cid');
-			$comment = $this -> comment_model -> get_comment($cid);
-			//if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home');
-			$return = $this -> comment_model-> delete_comment($cid);
-			$data['title'] = 'You can modify the comment !';
-			if($return)
-				$data['msg'] = 'Comment is deleted !';
-			
-			else
-				$data['msg'] = 'Comment is not found to be deleted!';
-			 
-			$this -> _loadviews('form_comment', $data);
-			
-		}
-		else redirect('main/home');
 			$this -> _loadviews('form_comment', $data);
 			
 	}
@@ -278,15 +339,15 @@ class Edit extends CI_Controller {
 	 *  Processes the deletion functionality
 	 *  
 	 * @author Foawziah and Huma
-	 * @param int @cid the id of the comment 
+	 * @param int $cid the id of the comment 
 	 * @return void
 	 */
 
-	/*public function delete_comment($cid){
-		//if(!$this -> session -> userdata('login')) redirect('main/home');
+	public function delete_comment($cid){
+		if(!$this -> session -> userdata('login')) redirect('main/home');
 		
 		$comment = $this -> comment_model -> get_comment($cid);
-		//if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home');
+		if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home');
 		$return = $this -> comment_model-> delete_comment($cid);
 		$data['title'] = 'You can modify the comment !';
 		if($return)
@@ -296,21 +357,5 @@ class Edit extends CI_Controller {
 	    		$data['msg'] = 'Comment is not found to be deleted!';
 	    
 		$this -> _loadviews('form_comment', $data);		
-	}
-*/
-
-	/**
-	 * 
-	 * vote a question or answer up or down
-	 * 
-	 * @param int $qid the id of the question to vote on, can be 0 if $aid is given
-	 * @param int $aid the id of the answer, can be 0 if $qid is given
-	 * @param boolean $votedown optional, if set and true vote down, else vote up
-	 */
-	 
-	public function vote($qid,$aid,$votedown=false){
-		//TODO: implement this function and everything need for it to work
-		// each user can vote exactly once for each question or answer
-		// including a database table that records votes with uid and or ip adress
 	}
 }

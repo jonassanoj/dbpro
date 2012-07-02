@@ -55,7 +55,18 @@
 		
 		<form action="" method="POST">
   		<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
-	</form> 
+		</form>
+<form action="http:/index.php/util/q_vote" name="voting" method="POST">
+	<div>
+	 	<input type="submit" name="up" value="up" /> 
+		<input type="submit" name="down" value="down"/> 
+		<input type="hidden" value="<?php echo $question->questionID; ?>" name="qid" />
+
+	 <!--   <a href="?vote=up&amp;id=" >Up</a>
+	<a href="?vote=down&amp;id=" >Down</a> -->
+		
+	</div>
+</form> 
 <div id="ajaxresult">
 
 <?php
@@ -69,6 +80,13 @@ if (isset($result))
 	<div class="answer">
 	<div class="markdown">
 		<?php echo Markdown($answer->body); ?>
+	<form action="http:/index.php/util/a_vote" name="answer_voting" method="POST">
+	<div>
+		 <input type="submit" name="aup" value="up" /> 
+		<input type="submit" name="adown" value="down"/> 
+		<input type="hidden" value="<?php echo $answer->answerID; ?>" name="aid" />		
+	</div>
+	</form>
 	</div>
 	</div> <!-- answer dic closed -->
 <?php endforeach ?>

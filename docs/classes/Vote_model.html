@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » \Category_model</title>
+<title>phpDocumentor » \Vote_model</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -59,41 +59,34 @@
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
-<li class="method public "><a href="#add_cat" title="add_cat :: Add new category."><span class="description">Add new category.</span><pre>add_cat()</pre></a></li>
-<li class="method public "><a href="#delete_cat" title="delete_cat :: Delete a category."><span class="description">Delete a category.</span><pre>delete_cat()</pre></a></li>
-<li class="method public "><a href="#get_categories" title="get_categories :: "><span class="description">get_categories()
-        </span><pre>get_categories()</pre></a></li>
-<li class="method public "><a href="#get_popular" title="get_popular :: Retrieve the 5 most popular Categories"><span class="description">Retrieve the 5 most popular Categories</span><pre>get_popular()</pre></a></li>
-<li class="method public "><a href="#update_cat" title="update_cat :: Update category."><span class="description">Update category.</span><pre>update_cat()</pre></a></li>
-<li class="nav-header">
-<i class="icon-custom icon-constant"></i> Constants</li>
-<li class="constant  "><a href="#ARRAY_OF_OBJECTS" title="ARRAY_OF_OBJECTS :: "><span class="description">ARRAY_OF_OBJECTS</span><pre>ARRAY_OF_OBJECTS</pre></a></li>
-<li class="constant  "><a href="#FLAT_ARRAY" title="FLAT_ARRAY :: "><span class="description">FLAT_ARRAY</span><pre>FLAT_ARRAY</pre></a></li>
-<li class="constant  "><a href="#MULTI_ARRAY" title="MULTI_ARRAY :: "><span class="description">MULTI_ARRAY</span><pre>MULTI_ARRAY</pre></a></li>
+<li class="method public "><a href="#add_a_vote" title="add_a_vote :: upvote or downvote an answer"><span class="description">upvote or downvote an answer</span><pre>add_a_vote()</pre></a></li>
+<li class="method public "><a href="#add_q_vote" title="add_q_vote :: upvote or downvote a question"><span class="description">upvote or downvote a question</span><pre>add_q_vote()</pre></a></li>
+<li class="method public "><a href="#check_a_vote" title="check_a_vote :: Check a user voted or did not."><span class="description">Check a user voted or did not.</span><pre>check_a_vote()</pre></a></li>
+<li class="method public "><a href="#check_q_vote" title="check_q_vote :: Check a user voted or did not."><span class="description">Check a user voted or did not.</span><pre>check_q_vote()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CCategory_model" id="\Category_model"></a><ul class="breadcrumb">
+<a name="%5CVote_model" id="\Vote_model"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/.html"></a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/Category_model.html">Category_model</a>
+<span class="divider">\</span><a href="../classes/Vote_model.html">Vote_model</a>
 </li>
 </ul>
-<div href="../classes/Category_model.html" class="element class">
-<p class="short_description">The category model</p>
+<div href="../classes/Vote_model.html" class="element class">
+<p class="short_description">the vote model</p>
 <div class="details">
-<p class="long_description"><p>This model allows us to add, update, retrieve and delete category from category table.</p>
+<p class="long_description"><p>Provides checking and adding votes functionality for questions and answers.</p>
 
-<p>It uses the following tables:</p>
+<p>It uses the following database tables:</p>
 
 <ul>
-<li><em>Category</em></li>
-<li><em>Field</em> (read only)</li>
-<li><em>User</em> (read only)</li>
-<li><em>Question</em> (read only)</li>
+<li><em>QuestionVote</em></li>
+<li><em>AnswerVote</em></li>
+<li><em>Answer</em></li>
+<li><em>Answer</em></li>
 </ul></p>
 <table class="table table-bordered"><tr>
 <th>package</th>
@@ -101,110 +94,72 @@
 </tr></table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<a name="add_cat" id="add_cat"></a><div class="element clickable method public add_cat" data-toggle="collapse" data-target=".add_cat .collapse">
-<h2>Add new category.</h2>
-<pre>add_cat(string $catName, int $fieldID) : int</pre>
+<a name="add_a_vote" id="add_a_vote"></a><div class="element clickable method public add_a_vote" data-toggle="collapse" data-target=".add_a_vote .collapse">
+<h2>upvote or downvote an answer</h2>
+<pre>add_a_vote(int $userID, int $answerID) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This function will add new category to a specified field in Category tables and return category ID.</p></p>
+<p class="long_description"><p>Record the user who vote along with the answerID for which he/she voted.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$catName</h4>
-<code>string</code><p>Means category-Name.</p>
-</div>
+<h4>$userID</h4>
+<code>int</code><p>the userID</p></div>
 <div class="subelement argument">
-<h4>$fieldID</h4>
-<code>int</code><p>Means field-ID.</p>
-</div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>int</code>Category-ID of new inserted category.</div>
+<h4>$answerID</h4>
+<code>int</code><p>the answerID</p></div>
 </div></div>
 </div>
-<a name="delete_cat" id="delete_cat"></a><div class="element clickable method public delete_cat" data-toggle="collapse" data-target=".delete_cat .collapse">
-<h2>Delete a category.</h2>
-<pre>delete_cat(int $catID) : int</pre>
+<a name="add_q_vote" id="add_q_vote"></a><div class="element clickable method public add_q_vote" data-toggle="collapse" data-target=".add_q_vote .collapse">
+<h2>upvote or downvote a question</h2>
+<pre>add_q_vote(int $userID, int $questionID) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This function is used to delete a specific category from a Category tables.</p></p>
+<p class="long_description"><p>Record the user who vote along with the questionID for which he/she voted.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$catID</h4>
-<code>int</code><p>Means category-ID.</p>
-</div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>int</code>Category-ID of deleted row.</div>
+<h4>$userID</h4>
+<code>int</code><p>the userID</p></div>
+<div class="subelement argument">
+<h4>$questionID</h4>
+<code>int</code><p>the questionID</p></div>
 </div></div>
 </div>
-<a name="get_categories" id="get_categories"></a><div class="element clickable method public get_categories" data-toggle="collapse" data-target=".get_categories .collapse">
-<h2>get_categories()
-        </h2>
-<pre>get_categories($fieldID, $return) </pre>
+<a name="check_a_vote" id="check_a_vote"></a><div class="element clickable method public check_a_vote" data-toggle="collapse" data-target=".check_a_vote .collapse">
+<h2>Check a user voted or did not.</h2>
+<pre>check_a_vote(int $userID, int $answerID) : object</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
+<p class="long_description"><p>Search a user voted or did not for an specific answer.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$fieldID</h4>
+<h4>$userID</h4>
+<code>int</code><p>the userID who want to vote.</p></div>
+<div class="subelement argument">
+<h4>$answerID</h4>
+<code>int</code><p>the answerID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>a single question object, containing column values as attributes.</div>
+</div></div>
+</div>
+<a name="check_q_vote" id="check_q_vote"></a><div class="element clickable method public check_q_vote" data-toggle="collapse" data-target=".check_q_vote .collapse">
+<h2>Check a user voted or did not.</h2>
+<pre>check_q_vote(int $userID, $questionID) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Search a user voted or did not for a specific question.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$userID</h4>
+<code>int</code><p>the userID who want to vote.</p></div>
+<div class="subelement argument">
+<h4>$questionID</h4>
 <code></code>
 </div>
-<div class="subelement argument">
-<h4>$return</h4>
-<code></code>
-</div>
-</div></div>
-</div>
-<a name="get_popular" id="get_popular"></a><div class="element clickable method public get_popular" data-toggle="collapse" data-target=".get_popular .collapse">
-<h2>Retrieve the 5 most popular Categories</h2>
-<pre>get_popular() : array</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"></p>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>array</code>contains category object containing fieldID, catID and catName</div>
+<code>object</code>a single question object, containing column values as attributes.</div>
 </div></div>
-</div>
-<a name="update_cat" id="update_cat"></a><div class="element clickable method public update_cat" data-toggle="collapse" data-target=".update_cat .collapse">
-<h2>Update category.</h2>
-<pre>update_cat(int $catID, string $catName) : int</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This function is used to update previouse existed category in a Category tables.</p></p>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$catID</h4>
-<code>int</code><p>Means category-ID.</p>
-</div>
-<div class="subelement argument">
-<h4>$catName</h4>
-<code>string</code><p>Means category-Name.</p>
-</div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>int</code>Category-ID of updated category.</div>
-</div></div>
-</div>
-<h3>
-<i class="icon-custom icon-constant"></i> Constants</h3>
-<a name="ARRAY_OF_OBJECTS" id="ARRAY_OF_OBJECTS"> </a><div class="element clickable constant  ARRAY_OF_OBJECTS" data-toggle="collapse" data-target=".ARRAY_OF_OBJECTS .collapse">
-<h2>ARRAY_OF_OBJECTS</h2>
-<pre>ARRAY_OF_OBJECTS </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
-</div>
-<a name="FLAT_ARRAY" id="FLAT_ARRAY"> </a><div class="element clickable constant  FLAT_ARRAY" data-toggle="collapse" data-target=".FLAT_ARRAY .collapse">
-<h2>FLAT_ARRAY</h2>
-<pre>FLAT_ARRAY </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
-</div>
-<a name="MULTI_ARRAY" id="MULTI_ARRAY"> </a><div class="element clickable constant  MULTI_ARRAY" data-toggle="collapse" data-target=".MULTI_ARRAY .collapse">
-<h2>MULTI_ARRAY</h2>
-<pre>MULTI_ARRAY </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
 </div>
 </div>

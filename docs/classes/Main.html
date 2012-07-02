@@ -33,10 +33,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">105</span></a></li>
+                <span class="label label-info">110</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">8</span>
+                <span class="label label-info">6</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -66,6 +66,7 @@
 <li class="method public "><a href="#qshow" title="qshow :: show one question"><span class="description">show one question</span><pre>qshow()</pre></a></li>
 <li class="method public "><a href="#questions" title="questions :: show a list of questions"><span class="description">show a list of questions</span><pre>questions()</pre></a></li>
 <li class="method public "><a href="#view" title="view :: show a certain body page"><span class="description">show a certain body page</span><pre>view()</pre></a></li>
+<li class="method public "><a href="#view_account" title="view_account :: shows the User Account Information"><span class="description">shows the User Account Information</span><pre>view_account()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
@@ -175,14 +176,22 @@ use this for static content like: about, contact, terms-of-use, etc.</p></p>
 </div>
 </div></div>
 </div>
+<a name="view_account" id="view_account"></a><div class="element clickable method public view_account" data-toggle="collapse" data-target=".view_account .collapse">
+<h2>shows the User Account Information</h2>
+<pre>view_account() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"><p>this function will retreive account data from the database about the logged in user
+first it will check if the user is logged in or not and than will retrieve each field into the array
+this will than load the my_account form and pass the array created from the user account data</p></p></div></div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a6</a> and<br>
-            generated on 2012-06-26T14:06:18+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
+            generated on 2012-07-02T12:26:32+02:00.<br></footer></div>
 </div>
 </body>
 </html>
