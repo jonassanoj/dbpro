@@ -24,5 +24,6 @@ else {
 	echo sprintf(lang('msgvar_loggedin_as'), $userinfo->userName);
 	echo '<input type="submit" id="'.'logout'.'" name="'.'logout'.'" value="'.lang('form_logout').'" />';
 	echo form_close();
+	echo anchor('user/view_account','My Account'); 
 }
 	

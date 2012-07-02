@@ -14,6 +14,12 @@
 
 class User_model extends CI_Model {
 
+	const TYPE_NORMAL = 1;
+	const TYPE_EDITOR = 2;
+	const TYPE_ADMIN = 3;
+	const TYPE_UNCONFIRMED = 8;
+	const TYPE_DEACTIVATED = 9;
+
 	/**
 	 * Checks if the username exists
 	 *
@@ -28,8 +34,12 @@ class User_model extends CI_Model {
 	 */
 
 	public function login($name, $password) {
-		$this -> db -> where('userName', $name);
-		$this -> db -> where('password', $password);
+		$array = array('userName' => $name, 'password' => $password, 
+						  	'userTypeID !=' => self::TYPE_DEACTIVATED);
+		$this->db->where($array);
+		//$this -> db -> where('userName', $name);
+		//$this -> db -> where('password', $password);
+		//$this -> db -> where('userTypeID!=', self::TYPE_DEACTIVATED);
 		$this -> db -> select('userID');
 		$query = $this -> db -> get('User');
 		if ($query -> num_rows() > 0) {
@@ -175,8 +185,8 @@ class User_model extends CI_Model {
 	 */
 
 	public function change_usertype($uid, $utid) {
-		$this -> db -> set('$userTypeID', $utid);
-		$this -> db -> where('$userID', $uid);
+		$this -> db -> set('userTypeID', $utid);
+		$this -> db -> where('userID', $uid);
 		$this -> db -> update('User');
 		return $this -> db -> affected_rows();
 
@@ -242,7 +252,7 @@ class User_model extends CI_Model {
 	 * second case: elseif ($deletion_type==self::CASCADE) ==>> if $deletion_type is equal CASCADE it means we passed 2 to function,
 	 * then we will delete all relevent question, answer, comment, vote from different tables for this uid(userID)
 	 *
-	 * thered case: ($deletion_type=self::DEACTIVATE) by defult $deletion_type is equal DEACTIVATE it means we passed 0 to function,
+	 * third case: ($deletion_type=self::DEACTIVATE) by defult $deletion_type is equal DEACTIVATE it means we passed 0 to function,
 	 * then in this case we will call change_usertype($uid, self::TYPE_DEACTIVATED) function and change userTypeID to TYPE_DEACTIVATED
 	 * it means code number 9 in User table.
 	 *
@@ -258,14 +268,22 @@ class User_model extends CI_Model {
 	const DEACTIVATE = 0;
 	const ANONYMIZE = 1;
 	const CASCADE = 2;
+	const ANONYMOUS_ID = 9999;
 
 	public function delete($uid, $deletion_type = self::DEACTIVATE) {
 
 		//delete and make anonymous
 		if ($deletion_type == self::ANONYMIZE) {
-			$data = array('userID' => '999', 'userName' => 'anonymize', 'fullName' => '', 'email' => '', 'pasword' => '', 'imagePath' => Null, 'organization' => '', 'location' => '', 'detail' => '');
-			$this -> db -> where('userID', $uid);
-			$this -> db -> update('User', $data);
+			//$tables = array('Comment', 'Answer', 'Question');
+			
+			$data = array('userID' => self::ANONYMOUS_ID);
+			$where = array('userID' => $uid);
+			
+			$this -> db -> update('Comment',$data,$where);
+			$this -> db -> update('Answer',$data,$where);
+			$this -> db -> update('Question',$data,$where);
+			$this -> db -> delete('User',$where);
+			
 			return $this -> db -> affected_rows();
 		}
 		//delete and cascade!
@@ -277,8 +295,9 @@ class User_model extends CI_Model {
 		}
 		//deactivate, DELETION TYPE = 0
 		else {
-
-			return change_usertype($uid, self::TYPE_DEACTIVATED);
+			
+			return $this -> change_usertype($uid, self::TYPE_DEACTIVATED);
+			
 		}
 	}
 

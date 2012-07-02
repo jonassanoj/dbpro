@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » \Answer_model</title>
+<title>phpDocumentor » \Vote_model</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -59,31 +59,33 @@
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
-<li class="method public "><a href="#add_answer" title="add_answer :: Adding new answer to a question"><span class="description">Adding new answer to a question</span><pre>add_answer()</pre></a></li>
-<li class="method public "><a href="#delete_answer" title="delete_answer :: cascading Delete answer"><span class="description">cascading Delete answer</span><pre>delete_answer()</pre></a></li>
-<li class="method public "><a href="#get_answers" title="get_answers :: return the answers for a question"><span class="description">return the answers for a question</span><pre>get_answers()</pre></a></li>
-<li class="method public "><a href="#is_user_answer" title="is_user_answer :: Helper function for checking user's answer"><span class="description">Helper function for checking user's answer</span><pre>is_user_answer()</pre></a></li>
-<li class="method public "><a href="#update_answer" title="update_answer :: updating answer"><span class="description">updating answer</span><pre>update_answer()</pre></a></li>
+<li class="method public "><a href="#add_a_vote" title="add_a_vote :: upvote or downvote an answer"><span class="description">upvote or downvote an answer</span><pre>add_a_vote()</pre></a></li>
+<li class="method public "><a href="#add_q_vote" title="add_q_vote :: upvote or downvote a question"><span class="description">upvote or downvote a question</span><pre>add_q_vote()</pre></a></li>
+<li class="method public "><a href="#check_a_vote" title="check_a_vote :: Check a user voted or did not."><span class="description">Check a user voted or did not.</span><pre>check_a_vote()</pre></a></li>
+<li class="method public "><a href="#check_q_vote" title="check_q_vote :: Check a user voted or did not."><span class="description">Check a user voted or did not.</span><pre>check_q_vote()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CAnswer_model" id="\Answer_model"></a><ul class="breadcrumb">
+<a name="%5CVote_model" id="\Vote_model"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/.html"></a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/Answer_model.html">Answer_model</a>
+<span class="divider">\</span><a href="../classes/Vote_model.html">Vote_model</a>
 </li>
 </ul>
-<div href="../classes/Answer_model.html" class="element class">
-<p class="short_description">the answer model</p>
+<div href="../classes/Vote_model.html" class="element class">
+<p class="short_description">the vote model</p>
 <div class="details">
-<p class="long_description"><p>Provides CRUD functionality for answers.</p>
+<p class="long_description"><p>Provides checking and adding votes functionality for questions and answers.</p>
 
 <p>It uses the following database tables:</p>
 
 <ul>
+<li><em>QuestionVote</em></li>
+<li><em>AnswerVote</em></li>
+<li><em>Answer</em></li>
 <li><em>Answer</em></li>
 </ul></p>
 <table class="table table-bordered"><tr>
@@ -92,95 +94,71 @@
 </tr></table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<a name="add_answer" id="add_answer"></a><div class="element clickable method public add_answer" data-toggle="collapse" data-target=".add_answer .collapse">
-<h2>Adding new answer to a question</h2>
-<pre>add_answer(int $qid, int $uid, string $body) : boolean</pre>
+<a name="add_a_vote" id="add_a_vote"></a><div class="element clickable method public add_a_vote" data-toggle="collapse" data-target=".add_a_vote .collapse">
+<h2>upvote or downvote an answer</h2>
+<pre>add_a_vote(int $userID, int $answerID) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This function is for adding a new answer to a question by a registered user.</p></p>
+<p class="long_description"><p>Record the user who vote along with the answerID for which he/she voted.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$qid</h4>
-<code>int</code><p>the question id</p></div>
+<h4>$userID</h4>
+<code>int</code><p>the userID</p></div>
 <div class="subelement argument">
-<h4>$uid</h4>
-<code>int</code><p>the user id who want to answer</p></div>
-<div class="subelement argument">
-<h4>$body</h4>
-<code>string</code><p>the answer text</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if inserted otherwise false</div>
+<h4>$answerID</h4>
+<code>int</code><p>the answerID</p></div>
 </div></div>
 </div>
-<a name="delete_answer" id="delete_answer"></a><div class="element clickable method public delete_answer" data-toggle="collapse" data-target=".delete_answer .collapse">
-<h2>cascading Delete answer</h2>
-<pre>delete_answer(int $aid) : int</pre>
+<a name="add_q_vote" id="add_q_vote"></a><div class="element clickable method public add_q_vote" data-toggle="collapse" data-target=".add_q_vote .collapse">
+<h2>upvote or downvote a question</h2>
+<pre>add_q_vote(int $userID, int $questionID) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>Delete an answer and all its associative comments to that aid in different tables.
-by passing an array of table names into delete() you will delete data from more than 1 table.
-at end return the number of affected rows.</p></p>
+<p class="long_description"><p>Record the user who vote along with the questionID for which he/she voted.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$aid</h4>
-<code>int</code><p>the answerID.</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>int</code>number of affected rows if successful, 0 otherwise</div>
+<h4>$userID</h4>
+<code>int</code><p>the userID</p></div>
+<div class="subelement argument">
+<h4>$questionID</h4>
+<code>int</code><p>the questionID</p></div>
 </div></div>
 </div>
-<a name="get_answers" id="get_answers"></a><div class="element clickable method public get_answers" data-toggle="collapse" data-target=".get_answers .collapse">
-<h2>return the answers for a question</h2>
-<pre>get_answers(int $qid) : array</pre>
+<a name="check_a_vote" id="check_a_vote"></a><div class="element clickable method public check_a_vote" data-toggle="collapse" data-target=".check_a_vote .collapse">
+<h2>Check a user voted or did not.</h2>
+<pre>check_a_vote(int $userID, int $answerID) : object</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p></p>
+<p class="long_description"><p>Search a user voted or did not for an specific answer.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$qid</h4>
-<code>int</code><p>the id of the question we want answers for</p></div>
+<h4>$userID</h4>
+<code>int</code><p>the userID who want to vote.</p></div>
+<div class="subelement argument">
+<h4>$answerID</h4>
+<code>int</code><p>the answerID</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>array</code>holds answer objects with fileds for all database columns</div>
+<code>object</code>a single question object, containing column values as attributes.</div>
 </div></div>
 </div>
-<a name="is_user_answer" id="is_user_answer"></a><div class="element clickable method public is_user_answer" data-toggle="collapse" data-target=".is_user_answer .collapse">
-<h2>Helper function for checking user's answer</h2>
-<pre>is_user_answer(int $aid, int $uid) : boolean</pre>
+<a name="check_q_vote" id="check_q_vote"></a><div class="element clickable method public check_q_vote" data-toggle="collapse" data-target=".check_q_vote .collapse">
+<h2>Check a user voted or did not.</h2>
+<pre>check_q_vote(int $userID, $questionID) : object</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This is a function to check weather a answer related to a user or not.</p></p>
+<p class="long_description"><p>Search a user voted or did not for a specific question.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$aid</h4>
-<code>int</code><p>the answer id (to check is the answer related to this user or not)</p>
-</div>
+<h4>$userID</h4>
+<code>int</code><p>the userID who want to vote.</p></div>
 <div class="subelement argument">
-<h4>$uid</h4>
-<code>int</code><p>the user id, for an answer</p></div>
+<h4>$questionID</h4>
+<code></code>
+</div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>boolean</code>true if inserted otherwise false</div>
-</div></div>
-</div>
-<a name="update_answer" id="update_answer"></a><div class="element clickable method public update_answer" data-toggle="collapse" data-target=".update_answer .collapse">
-<h2>updating answer</h2>
-<pre>update_answer(int $aid, string $body) : boolean</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This function is for updating an existing answer by its owner (writer).</p></p>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$aid</h4>
-<code>int</code><p>the answer id (only we need answer id because its already primary key)</p>
-</div>
-<div class="subelement argument">
-<h4>$body</h4>
-<code>string</code><p>the answer text</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if inserted otherwise false</div>
+<code>object</code>a single question object, containing column values as attributes.</div>
 </div></div>
 </div>
 </div>

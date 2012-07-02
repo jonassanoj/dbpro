@@ -28,6 +28,47 @@ class Answer_model extends CI_Model {
 	}
 	
 	/**
+	* Adding new answer to a question
+	*
+	* This function is for adding a new answer to a question by a registered user.
+	*
+	* @param int $qid the question id
+	* @param int $uid the user id who want to answer
+	* @param string $body the answer text
+	* @return boolean true if inserted otherwise false
+	*/
+	public function add_answer($qid, $uid, $body) {
+		
+		$data = array('questionID' => $qid,
+						  'userID' => $uid,
+						  'body' => $body, 
+						  'date' => date('Y-m-d h:i:s'));
+						  
+		$this -> db -> insert('Answer', $data);
+		$flag = $this -> db -> insert_id();
+		if(!$flag)
+			return false;
+		return true;
+			
+	}
+	
+	/**
+	* updating answer 
+	*
+	* This function is for updating an existing answer by its owner (writer).
+	*
+	* @param int $aid the answer id (only we need answer id because its already primary key)
+	* @param string $body the answer text
+	* @return boolean true if inserted otherwise false
+	*/
+	public function update_answer($aid, $body) {
+		
+		$data = array('body' => $body, 'date' => date('Y-m-d h:i:s'));
+		$this -> db -> where('answerID', $aid);
+		return $this -> db -> update('Answer', $data);	
+	}
+	
+	/**
 	 * cascading Delete answer
 	 *
 	 * Delete an answer and all its associative comments to that aid in different tables.
@@ -43,5 +84,25 @@ class Answer_model extends CI_Model {
 		$this->db->delete($tables);
 		return $this -> db -> affected_rows();
 	}
-
+	
+	/**
+	* Helper function for checking user's answer
+	*
+	* This is a function to check weather a answer related to a user or not.
+	*
+	* @param int $aid the answer id (to check is the answer related to this user or not)
+	* @param int $uid the user id, for an answer
+	* @return boolean true if inserted otherwise false
+	*/
+	
+	public function is_user_answer($aid, $uid) {
+		
+		$this -> db -> where('answerID', $aid);
+		$this -> db -> where('userID', $uid);
+		$result_set = $this -> db -> get('Answer');
+		if($result_set ->num_rows() > 0)
+			return $result_set -> first_row();
+		return false;
+		
+	}
 }
