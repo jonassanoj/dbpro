@@ -101,8 +101,6 @@ class Edit extends CI_Controller {
 		$data['catList']=$this->category_model->get_categories(0,Category_model::FLAT_ARRAY);
 		// if quesiton id is greater then zero then it means to perform edite action 
 		if($qid>0){
-			$this->session->set_userdata('qid',$qid);
-			$this->session->set_userdata('action',"edit");
 			// load a question from question table 
 			$data['question']=$this->question_model->get_details($qid);
 			// checak if the $qid exist question table 
