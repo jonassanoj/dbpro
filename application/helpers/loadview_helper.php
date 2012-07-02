@@ -23,7 +23,7 @@ function init_view_data($content,$data) {
 	}
 	else {
 		$data['username']=$CI -> input -> cookie('username');
-		$data['categories']=$CI->category_model->get_popular();
+		$data['categories']=$CI->category_model->get_favorite_category();
 	}
 	$data['content'] = "content/$content";
 	
