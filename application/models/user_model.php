@@ -14,6 +14,12 @@
 
 class User_model extends CI_Model {
 
+	const TYPE_NORMAL = 1;
+	const TYPE_EDITOR = 2;
+	const TYPE_ADMIN = 3;
+	const TYPE_UNCONFIRMED = 8;
+	const TYPE_DEACTIVATED = 9;
+
 	/**
 	 * Checks if the username exists
 	 *
