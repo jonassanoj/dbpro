@@ -136,12 +136,68 @@ class User extends CI_Controller {
 		else 
 			redirect(site_url('user/recover/'. $user));
 	}
-
+	public function update_user() {
+		//$this->load->library('form_validation');
+		//$this->form_validation->set_rules('fullName', 'Username', 'required|min_length[5]|max_length[12]|is_unique[users.username]');
+		//$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		//$this->form_validation->set_rules('degree','Degree','alpha');
+//	if($this->form_validation->run() == false) {
+//		$this->view_account();
+//		}
+//		else {
+		$data['fullName'] = $this -> input -> post('fullName');
+		$data['email'] = $this -> input -> post('email');
+		$data['dateOfBirth'] = $this -> input -> post('dateOfBirth');
+		$data['organization'] = $this -> input -> post('organization');
+		$data['location'] = $this -> input -> post('location');
+		$data['imagePath'] = $this -> input -> post('imagePath');
+		$data['degree'] = $this -> input -> post('degree');
+		$data['fieldID'] = $this -> input -> post('fieldID');
+		$this -> load -> model('user_model');
+		$this -> user_model -> update_user(1,$data);
+		$this->load->view("main_view");
+//		}
+	}
 	public function register()
 	{
 		
 	}
-	
+	/**
+	 * shows the User Account Information 
+	 *
+	 * this function will retreive account data from the database about the logged in user
+	 * first it will check if the user is logged in or not and than will retrieve each field into the array
+	 * this will than load the my_account form and pass the array created from the user account data
+	 *
+	 * @param 
+	 * @return void
+	 * Author Sayed Ahmad
+	 *
+	 */
+	public function view_account() 
+	{
+		//if(!$this -> session -> userdata('login')) redirect('main/home');
+		$this -> load -> model('user_model');
+		$userdata = $this -> user_model -> get_userdata(1); //$this -> session -> userdata('uid'));
+		if(!$userdata)
+		redirect('main/home');
+		$this -> load -> model('field_model');
+		$data['fields'] = $this -> field_model -> get_fields();
+		$data['title'] = 'My profile';
+		$data['fullName'] = $userdata -> fullName;
+		$data['email'] = $userdata -> email;
+		$data['imagePath'] = $userdata -> imagePath;
+		$data['organization'] = $userdata -> organization;
+		$data['location'] = $userdata -> location;
+		$data['dateOfBirth'] = $userdata -> dateOfBirth;
+		$data['degree'] = $userdata -> degree;
+		$data['detail'] = $userdata -> detail;
+		$data['fieldID'] = $userdata -> fieldID;
+		
+		$this -> _loadviews('my_account', $data);
+		
+		
+	}
 	public function recover($user='')
 	{
 		

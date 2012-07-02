@@ -70,7 +70,7 @@ class Category_model extends CI_Model {
 	const MULTI_ARRAY = 2; 
 	 	
 	function get_categories($fieldID=0,$return=self::ARRAY_OF_OBJECTS) {
-		if ($fieldID) $this -> db -> where('fieldID', $fieldID);
+		if ($fieldID) $this -> db -> where('Category.fieldID', $fieldID);
 		$this -> db -> join('Field','Category.fieldID=Field.fieldID');
 		$this -> db -> select('catID, catName, Category.fieldID, fieldName');
 		$query = $this -> db -> get('Category');
@@ -89,17 +89,28 @@ class Category_model extends CI_Model {
 		else return $query -> result();
 	}
 	
- 	 /**
+	/**
 	 * Retrieve the 5 most popular Categories
 	 * 
 	 *
 	 * @return array contains category object containing fieldID, catID and catName
+	 * 
 	 */
-	
-	function get_popular() {
+	function get_favorite_category() {
 		//TODO: update query to use activerecords!
-		$query = $this->db->query("SELECT count(*),catName,Category.catID FROM Question,Category WHERE Question.catID=Category.catID group by Category.catID ORDER BY count(*)  DESC LIMIT 5");
+		$this->db->select("count(*) as nq, catName, Category.catID");
+		$this->db->from('Question');
+		$this->db->join('Category', 'Category.catID = Question.catID','right');
+		$this->db->group_by('Category.catID');
+		$this->db->order_by("nq", "desc");
+		$this->db->limit(5);
+		$query = $this->db->get();
 		return $query -> result();
+		
+		//$query = $this->db->query("SELECT count(*),catName,Category.catID FROM Question,Category WHERE   Question.catID=Category.catID group by Category.catID ORDER BY count(*)  DESC LIMIT 5");
+		
+		//return $query -> result();
+		
 	}
 
 	 /**

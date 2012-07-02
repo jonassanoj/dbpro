@@ -129,6 +129,37 @@ h3 { font-size: 120%; }
     bottom:0px;
 }
 
+#catbar {
+	position:absolute;	
+	top:0px;
+	left:auto;
+	width: 31%;
+	height: 2em;
+	text-align: center;
+	border-top: 1px dashed silver;
+	background: #D9C6B0;
+	padding: 0;
+	margin: 0;
+}
+
+#catbar ul{
+	margin: 0px;
+	padding: 0px;
+    font-size: small;
+    color: #FFF;
+    float: left;
+    line-height: 30px;
+	white-space: nowrap;
+	
+}
+
+#catbar li{
+	 font-family: Arial, Helvetica, sans-serif;
+	 float: left;
+	 margin-left: 1em;
+	 margin-right: 1em;
+}
+
 .question, .answer, .comment {
 	border-bottom-width: 1px;
 	border-bottom-style: dashed;
