@@ -1065,7 +1065,7 @@ after inserting successfully all parameter to the database, commentID will be re
       </method>
     </class>
   </file>
-  <file path="models/answer_model.php" hash="76009d3a88bfd6ae8b54642b7cd7fadb" package="Default">
+  <file path="models/answer_model.php" hash="bb7753b0259460d034ca847fb55ee4df" package="Default">
     <class final="false" abstract="false" namespace="" line="14" package="models">
       <name>Answer_model</name>
       <full_name>\Answer_model</full_name>
@@ -1101,22 +1101,111 @@ after inserting successfully all parameter to the database, commentID will be re
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="" line="40" package="models">
+        <name>add_answer</name>
+        <full_name>add_answer</full_name>
+        <docblock line="40">
+          <description><![CDATA[Adding new answer to a question]]></description>
+          <long-description><![CDATA[<p>This function is for adding a new answer to a question by a registered user.</p>]]></long-description>
+          <tag line="40" name="param" description="the question id" type="int" variable="$qid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="40" name="param" description="the user id who want to answer" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="40" name="param" description="the answer text" type="string" variable="$body">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="40" name="return" description="true if inserted otherwise false" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$qid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="40">
+          <name>$uid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="40">
+          <name>$body</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="64" package="models">
+        <name>update_answer</name>
+        <full_name>update_answer</full_name>
+        <docblock line="64">
+          <description><![CDATA[updating answer]]></description>
+          <long-description><![CDATA[<p>This function is for updating an existing answer by its owner (writer).</p>]]></long-description>
+          <tag line="64" name="param" description="the answer id (only we need answer id because its already primary key)" type="int" variable="$aid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="64" name="param" description="the answer text" type="string" variable="$body">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="64" name="return" description="true if inserted otherwise false" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="64">
+          <name>$aid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$body</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="81" package="models">
         <name>delete_answer</name>
         <full_name>delete_answer</full_name>
-        <docblock line="40">
+        <docblock line="81">
           <description><![CDATA[cascading Delete answer]]></description>
           <long-description><![CDATA[<p>Delete an answer and all its associative comments to that aid in different tables.
 by passing an array of table names into delete() you will delete data from more than 1 table.
 at end return the number of affected rows.</p>]]></long-description>
-          <tag line="40" name="param" description="the answerID." type="int" variable="$aid">
+          <tag line="81" name="param" description="the answerID." type="int" variable="$aid">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="40" name="return" description="number of affected rows if successful, 0 otherwise" type="int">
+          <tag line="81" name="return" description="number of affected rows if successful, 0 otherwise" type="int">
             <type by_reference="false">int</type>
           </tag>
         </docblock>
-        <argument line="40">
+        <argument line="81">
           <name>$aid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="98" package="models">
+        <name>is_user_answer</name>
+        <full_name>is_user_answer</full_name>
+        <docblock line="98">
+          <description><![CDATA[Helper function for checking user's answer]]></description>
+          <long-description><![CDATA[<p>This is a function to check weather a answer related to a user or not.</p>]]></long-description>
+          <tag line="98" name="param" description="the answer id (to check is the answer related to this user or not)" type="int" variable="$aid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="98" name="param" description="the user id, for an answer" type="int" variable="$uid">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="98" name="return" description="true if inserted otherwise false" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="98">
+          <name>$aid</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="98">
+          <name>$uid</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
@@ -2087,805 +2176,6 @@ presents its data using the <em>ajax/comments</em> view.</p>]]></long-descriptio
         <type/>
       </argument>
     </function>
-  </file>
-  <file path="helpers/markdown_helper.php" hash="bd5182ae54ca797ec68c7fc6495e7bfe" package="Default">
-    <include line="168" type="Include Once" package="Default">
-      <name>smartypants.php</name>
-    </include>
-    <constant namespace="" line="15" package="Default">
-      <name>MARKDOWN_VERSION</name>
-      <full_name>\\MARKDOWN_VERSION</full_name>
-      <value><![CDATA['1.0.1o']]></value>
-    </constant>
-    <constant namespace="" line="23" package="Default">
-      <name>MARKDOWN_EMPTY_ELEMENT_SUFFIX</name>
-      <full_name>\\MARKDOWN_EMPTY_ELEMENT_SUFFIX</full_name>
-      <value><![CDATA[' />']]></value>
-    </constant>
-    <constant namespace="" line="26" package="Default">
-      <name>MARKDOWN_TAB_WIDTH</name>
-      <full_name>\\MARKDOWN_TAB_WIDTH</full_name>
-      <value><![CDATA[4]]></value>
-    </constant>
-    <constant namespace="" line="34" package="Default">
-      <name>MARKDOWN_WP_POSTS</name>
-      <full_name>\\MARKDOWN_WP_POSTS</full_name>
-      <value><![CDATA[NULL]]></value>
-    </constant>
-    <constant namespace="" line="35" package="Default">
-      <name>MARKDOWN_WP_COMMENTS</name>
-      <full_name>\\MARKDOWN_WP_COMMENTS</full_name>
-      <value><![CDATA[NULL]]></value>
-    </constant>
-    <constant namespace="" line="41" package="Default">
-      <name>MARKDOWN_PARSER_CLASS</name>
-      <full_name>\\MARKDOWN_PARSER_CLASS</full_name>
-      <value><![CDATA['Markdown_Parser']]></value>
-    </constant>
-    <function namespace="" line="43" package="Default">
-      <name>Markdown</name>
-      <full_name>\Markdown</full_name>
-      <argument line="43">
-        <name>$text</name>
-        <default><![CDATA[]]></default>
-        <type/>
-      </argument>
-    </function>
-    <function namespace="" line="118" package="Default">
-      <name>mdwp_add_p</name>
-      <full_name>\mdwp_add_p</full_name>
-      <argument line="118">
-        <name>$text</name>
-        <default><![CDATA[]]></default>
-        <type/>
-      </argument>
-    </function>
-    <function namespace="" line="126" package="Default">
-      <name>mdwp_strip_p</name>
-      <full_name>\mdwp_strip_p</full_name>
-      <argument line="126">
-        <name>$t</name>
-        <default><![CDATA[]]></default>
-        <type/>
-      </argument>
-    </function>
-    <function namespace="" line="128" package="Default">
-      <name>mdwp_hide_tags</name>
-      <full_name>\mdwp_hide_tags</full_name>
-      <argument line="128">
-        <name>$text</name>
-        <default><![CDATA[]]></default>
-        <type/>
-      </argument>
-    </function>
-    <function namespace="" line="132" package="Default">
-      <name>mdwp_show_tags</name>
-      <full_name>\mdwp_show_tags</full_name>
-      <argument line="132">
-        <name>$text</name>
-        <default><![CDATA[]]></default>
-        <type/>
-      </argument>
-    </function>
-    <function namespace="" line="141" package="Default">
-      <name>identify_modifier_markdown</name>
-      <full_name>\identify_modifier_markdown</full_name>
-    </function>
-    <function namespace="" line="157" package="Default">
-      <name>smarty_modifier_markdown</name>
-      <full_name>\smarty_modifier_markdown</full_name>
-      <argument line="157">
-        <name>$text</name>
-        <default><![CDATA[]]></default>
-        <type/>
-      </argument>
-    </function>
-    <class final="false" abstract="false" namespace="" line="170" package="Default">
-      <name>Textile</name>
-      <full_name>\Textile</full_name>
-      <extends/>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="171" package="Default">
-        <name>TextileThis</name>
-        <full_name>TextileThis</full_name>
-        <argument line="171">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="171">
-          <name>$lite</name>
-          <default><![CDATA['']]></default>
-          <type/>
-        </argument>
-        <argument line="171">
-          <name>$encode</name>
-          <default><![CDATA['']]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="177" package="Default">
-        <name>TextileRestricted</name>
-        <full_name>TextileRestricted</full_name>
-        <argument line="177">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="177">
-          <name>$lite</name>
-          <default><![CDATA['']]></default>
-          <type/>
-        </argument>
-        <argument line="177">
-          <name>$noimage</name>
-          <default><![CDATA['']]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="181" package="Default">
-        <name>blockLite</name>
-        <full_name>blockLite</full_name>
-        <argument line="181">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <class final="false" abstract="false" namespace="" line="191" package="Default">
-      <name>Markdown_Parser</name>
-      <full_name>\Markdown_Parser</full_name>
-      <extends/>
-      <property final="false" static="false" visibility="public" line="195" namespace="" package="Default">
-        <name>$nested_brackets_depth</name>
-        <default><![CDATA[6]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="196" namespace="" package="Default">
-        <name>$nested_brackets_re</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="198" namespace="" package="Default">
-        <name>$nested_url_parenthesis_depth</name>
-        <default><![CDATA[4]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="199" namespace="" package="Default">
-        <name>$nested_url_parenthesis_re</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="202" namespace="" package="Default">
-        <name>$escape_chars</name>
-        <default><![CDATA['\\`*_{}[]()>#+-.!']]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="203" namespace="" package="Default">
-        <name>$escape_chars_re</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="206" namespace="" package="Default">
-        <name>$empty_element_suffix</name>
-        <default><![CDATA[NULL]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="207" namespace="" package="Default">
-        <name>$tab_width</name>
-        <default><![CDATA[NULL]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="210" namespace="" package="Default">
-        <name>$no_markup</name>
-        <default><![CDATA[NULL]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="211" namespace="" package="Default">
-        <name>$no_entities</name>
-        <default><![CDATA[NULL]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="214" namespace="" package="Default">
-        <name>$predef_urls</name>
-        <default><![CDATA[array()]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="215" namespace="" package="Default">
-        <name>$predef_titles</name>
-        <default><![CDATA[array()]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="243" namespace="" package="Default">
-        <name>$urls</name>
-        <default><![CDATA[array()]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="244" namespace="" package="Default">
-        <name>$titles</name>
-        <default><![CDATA[array()]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="245" namespace="" package="Default">
-        <name>$html_hashes</name>
-        <default><![CDATA[array()]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="248" namespace="" package="Default">
-        <name>$in_anchor</name>
-        <default><![CDATA[NULL]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="314" namespace="" package="Default">
-        <name>$document_gamut</name>
-        <default><![CDATA[array('stripLinkDefinitions' => 20, 'runBasicBlockGamut' => 30)]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="540" namespace="" package="Default">
-        <name>$block_gamut</name>
-        <default><![CDATA[array('doHeaders' => 10, 'doHorizontalRules' => 20, 'doLists' => 40, 'doCodeBlocks' => 50, 'doBlockQuotes' => 60)]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="602" namespace="" package="Default">
-        <name>$span_gamut</name>
-        <default><![CDATA[array('parseSpan' => NULL, 'doImages' => 10, 'doAnchors' => 20, 'doAutoLinks' => 30, 'encodeAmpsAndAngles' => 40, 'doItalicsAndBold' => 50, 'doHardBreaks' => 60)]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="1005" namespace="" package="Default">
-        <name>$list_level</name>
-        <default><![CDATA[0]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="1119" namespace="" package="Default">
-        <name>$em_relist</name>
-        <default><![CDATA[array('' => '(?:(?<!\\*)\\*(?!\\*)|(?<!_)_(?!_))(?=\\S|$)(?![\\.,:;]\\s)', '*' => '(?<=\\S|^)(?<!\\*)\\*(?!\\*)', '_' => '(?<=\\S|^)(?<!_)_(?!_)')]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="1124" namespace="" package="Default">
-        <name>$strong_relist</name>
-        <default><![CDATA[array('' => '(?:(?<!\\*)\\*\\*(?!\\*)|(?<!_)__(?!_))(?=\\S|$)(?![\\.,:;]\\s)', '**' => '(?<=\\S|^)(?<!\\*)\\*\\*(?!\\*)', '__' => '(?<=\\S|^)(?<!_)__(?!_)')]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="1129" namespace="" package="Default">
-        <name>$em_strong_relist</name>
-        <default><![CDATA[array('' => '(?:(?<!\\*)\\*\\*\\*(?!\\*)|(?<!_)___(?!_))(?=\\S|$)(?![\\.,:;]\\s)', '***' => '(?<=\\S|^)(?<!\\*)\\*\\*\\*(?!\\*)', '___' => '(?<=\\S|^)(?<!_)___(?!_)')]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="1134" namespace="" package="Default">
-        <name>$em_strong_prepared_relist</name>
-        <default><![CDATA[]]></default>
-      </property>
-      <property final="false" static="false" visibility="public" line="1589" namespace="" package="Default">
-        <name>$utf8_strlen</name>
-        <default><![CDATA['mb_strlen']]></default>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="218" package="Default">
-        <name>Markdown_Parser</name>
-        <full_name>Markdown_Parser</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="251" package="Default">
-        <name>setup</name>
-        <full_name>setup</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="264" package="Default">
-        <name>teardown</name>
-        <full_name>teardown</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="275" package="Default">
-        <name>transform</name>
-        <full_name>transform</full_name>
-        <argument line="275">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="322" package="Default">
-        <name>stripLinkDefinitions</name>
-        <full_name>stripLinkDefinitions</full_name>
-        <argument line="322">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="356" package="Default">
-        <name>_stripLinkDefinitions_callback</name>
-        <full_name>_stripLinkDefinitions_callback</full_name>
-        <argument line="356">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="365" package="Default">
-        <name>hashHTMLBlocks</name>
-        <full_name>hashHTMLBlocks</full_name>
-        <argument line="365">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="502" package="Default">
-        <name>_hashHTMLBlocks_callback</name>
-        <full_name>_hashHTMLBlocks_callback</full_name>
-        <argument line="502">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="509" package="Default">
-        <name>hashPart</name>
-        <full_name>hashPart</full_name>
-        <argument line="509">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="509">
-          <name>$boundary</name>
-          <default><![CDATA['X']]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="532" package="Default">
-        <name>hashBlock</name>
-        <full_name>hashBlock</full_name>
-        <argument line="532">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="553" package="Default">
-        <name>runBlockGamut</name>
-        <full_name>runBlockGamut</full_name>
-        <argument line="553">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="567" package="Default">
-        <name>runBasicBlockGamut</name>
-        <full_name>runBasicBlockGamut</full_name>
-        <argument line="567">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="584" package="Default">
-        <name>doHorizontalRules</name>
-        <full_name>doHorizontalRules</full_name>
-        <argument line="584">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="626" package="Default">
-        <name>runSpanGamut</name>
-        <full_name>runSpanGamut</full_name>
-        <argument line="626">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="638" package="Default">
-        <name>doHardBreaks</name>
-        <full_name>doHardBreaks</full_name>
-        <argument line="638">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="643" package="Default">
-        <name>_doHardBreaks_callback</name>
-        <full_name>_doHardBreaks_callback</full_name>
-        <argument line="643">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="648" package="Default">
-        <name>doAnchors</name>
-        <full_name>doAnchors</full_name>
-        <argument line="648">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="718" package="Default">
-        <name>_doAnchors_reference_callback</name>
-        <full_name>_doAnchors_reference_callback</full_name>
-        <argument line="718">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="752" package="Default">
-        <name>_doAnchors_inline_callback</name>
-        <full_name>_doAnchors_inline_callback</full_name>
-        <argument line="752">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="773" package="Default">
-        <name>doImages</name>
-        <full_name>doImages</full_name>
-        <argument line="773">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="828" package="Default">
-        <name>_doImages_reference_callback</name>
-        <full_name>_doImages_reference_callback</full_name>
-        <argument line="828">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="856" package="Default">
-        <name>_doImages_inline_callback</name>
-        <full_name>_doImages_inline_callback</full_name>
-        <argument line="856">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="875" package="Default">
-        <name>doHeaders</name>
-        <full_name>doHeaders</full_name>
-        <argument line="875">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="905" package="Default">
-        <name>_doHeaders_callback_setext</name>
-        <full_name>_doHeaders_callback_setext</full_name>
-        <argument line="905">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="914" package="Default">
-        <name>_doHeaders_callback_atx</name>
-        <full_name>_doHeaders_callback_atx</full_name>
-        <argument line="914">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="921" package="Default">
-        <name>doLists</name>
-        <full_name>doLists</full_name>
-        <argument line="921">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="987" package="Default">
-        <name>_doLists_callback</name>
-        <full_name>_doLists_callback</full_name>
-        <argument line="987">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1007" package="Default">
-        <name>processListItems</name>
-        <full_name>processListItems</full_name>
-        <argument line="1007">
-          <name>$list_str</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="1007">
-          <name>$marker_any_re</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1053" package="Default">
-        <name>_processListItems_callback</name>
-        <full_name>_processListItems_callback</full_name>
-        <argument line="1053">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1078" package="Default">
-        <name>doCodeBlocks</name>
-        <full_name>doCodeBlocks</full_name>
-        <argument line="1078">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1096" package="Default">
-        <name>_doCodeBlocks_callback</name>
-        <full_name>_doCodeBlocks_callback</full_name>
-        <argument line="1096">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1110" package="Default">
-        <name>makeCodeSpan</name>
-        <full_name>makeCodeSpan</full_name>
-        <argument line="1110">
-          <name>$code</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1136" package="Default">
-        <name>prepareItalicsAndBold</name>
-        <full_name>prepareItalicsAndBold</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1158" package="Default">
-        <name>doItalicsAndBold</name>
-        <full_name>doItalicsAndBold</full_name>
-        <argument line="1158">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1281" package="Default">
-        <name>doBlockQuotes</name>
-        <full_name>doBlockQuotes</full_name>
-        <argument line="1281">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1296" package="Default">
-        <name>_doBlockQuotes_callback</name>
-        <full_name>_doBlockQuotes_callback</full_name>
-        <argument line="1296">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1310" package="Default">
-        <name>_doBlockQuotes_callback2</name>
-        <full_name>_doBlockQuotes_callback2</full_name>
-        <argument line="1310">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1317" package="Default">
-        <name>formParagraphs</name>
-        <full_name>formParagraphs</full_name>
-        <argument line="1317">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1387" package="Default">
-        <name>encodeAttribute</name>
-        <full_name>encodeAttribute</full_name>
-        <argument line="1387">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1398" package="Default">
-        <name>encodeAmpsAndAngles</name>
-        <full_name>encodeAmpsAndAngles</full_name>
-        <argument line="1398">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1419" package="Default">
-        <name>doAutoLinks</name>
-        <full_name>doAutoLinks</full_name>
-        <argument line="1419">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1446" package="Default">
-        <name>_doAutoLinks_url_callback</name>
-        <full_name>_doAutoLinks_url_callback</full_name>
-        <argument line="1446">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1451" package="Default">
-        <name>_doAutoLinks_email_callback</name>
-        <full_name>_doAutoLinks_email_callback</full_name>
-        <argument line="1451">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1458" package="Default">
-        <name>encodeEmailAddress</name>
-        <full_name>encodeEmailAddress</full_name>
-        <argument line="1458">
-          <name>$addr</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1499" package="Default">
-        <name>parseSpan</name>
-        <full_name>parseSpan</full_name>
-        <argument line="1499">
-          <name>$str</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1555" package="Default">
-        <name>handleSpanToken</name>
-        <full_name>handleSpanToken</full_name>
-        <argument line="1555">
-          <name>$token</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-        <argument line="1555">
-          <name>$str</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1579" package="Default">
-        <name>outdent</name>
-        <full_name>outdent</full_name>
-        <argument line="1579">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1591" package="Default">
-        <name>detab</name>
-        <full_name>detab</full_name>
-        <argument line="1591">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1604" package="Default">
-        <name>_detab_callback</name>
-        <full_name>_detab_callback</full_name>
-        <argument line="1604">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1621" package="Default">
-        <name>_initDetab</name>
-        <full_name>_initDetab</full_name>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1635" package="Default">
-        <name>unhash</name>
-        <full_name>unhash</full_name>
-        <argument line="1635">
-          <name>$text</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="1642" package="Default">
-        <name>_unhash_callback</name>
-        <full_name>_unhash_callback</full_name>
-        <argument line="1642">
-          <name>$matches</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <parse_markers>
-      <error line="43" code="50009">No DocBlock was found for function \Markdown()</error>
-      <error line="118" code="50009">No DocBlock was found for function \mdwp_add_p()</error>
-      <error line="126" code="50009">No DocBlock was found for function \mdwp_strip_p()</error>
-      <error line="128" code="50009">No DocBlock was found for function \mdwp_hide_tags()</error>
-      <error line="132" code="50009">No DocBlock was found for function \mdwp_show_tags()</error>
-      <error line="141" code="50009">No DocBlock was found for function \identify_modifier_markdown()</error>
-      <error line="157" code="50009">No DocBlock was found for function \smarty_modifier_markdown()</error>
-      <error line="170" code="50000">No DocBlock was found for \Textile</error>
-      <error line="171" code="50010">No DocBlock was found for method TextileThis()</error>
-      <error line="177" code="50010">No DocBlock was found for method TextileRestricted()</error>
-      <error line="181" code="50010">No DocBlock was found for method blockLite()</error>
-      <error line="191" code="50000">No DocBlock was found for \Markdown_Parser</error>
-      <error line="195" code="50018">No DocBlock was found for property $nested_brackets_depth</error>
-      <error line="196" code="50018">No DocBlock was found for property $nested_brackets_re</error>
-      <error line="198" code="50018">No DocBlock was found for property $nested_url_parenthesis_depth</error>
-      <error line="199" code="50018">No DocBlock was found for property $nested_url_parenthesis_re</error>
-      <error line="202" code="50018">No DocBlock was found for property $escape_chars</error>
-      <error line="203" code="50018">No DocBlock was found for property $escape_chars_re</error>
-      <error line="206" code="50018">No DocBlock was found for property $empty_element_suffix</error>
-      <error line="207" code="50018">No DocBlock was found for property $tab_width</error>
-      <error line="210" code="50018">No DocBlock was found for property $no_markup</error>
-      <error line="211" code="50018">No DocBlock was found for property $no_entities</error>
-      <error line="214" code="50018">No DocBlock was found for property $predef_urls</error>
-      <error line="215" code="50018">No DocBlock was found for property $predef_titles</error>
-      <error line="243" code="50018">No DocBlock was found for property $urls</error>
-      <error line="244" code="50018">No DocBlock was found for property $titles</error>
-      <error line="245" code="50018">No DocBlock was found for property $html_hashes</error>
-      <error line="248" code="50018">No DocBlock was found for property $in_anchor</error>
-      <error line="314" code="50018">No DocBlock was found for property $document_gamut</error>
-      <error line="540" code="50018">No DocBlock was found for property $block_gamut</error>
-      <error line="602" code="50018">No DocBlock was found for property $span_gamut</error>
-      <error line="1005" code="50018">No DocBlock was found for property $list_level</error>
-      <error line="1119" code="50018">No DocBlock was found for property $em_relist</error>
-      <error line="1124" code="50018">No DocBlock was found for property $strong_relist</error>
-      <error line="1129" code="50018">No DocBlock was found for property $em_strong_relist</error>
-      <error line="1134" code="50018">No DocBlock was found for property $em_strong_prepared_relist</error>
-      <error line="1589" code="50018">No DocBlock was found for property $utf8_strlen</error>
-      <error line="218" code="50010">No DocBlock was found for method Markdown_Parser()</error>
-      <error line="251" code="50010">No DocBlock was found for method setup()</error>
-      <error line="264" code="50010">No DocBlock was found for method teardown()</error>
-      <error line="275" code="50010">No DocBlock was found for method transform()</error>
-      <error line="322" code="50010">No DocBlock was found for method stripLinkDefinitions()</error>
-      <error line="356" code="50010">No DocBlock was found for method _stripLinkDefinitions_callback()</error>
-      <error line="365" code="50010">No DocBlock was found for method hashHTMLBlocks()</error>
-      <error line="502" code="50010">No DocBlock was found for method _hashHTMLBlocks_callback()</error>
-      <error line="509" code="50010">No DocBlock was found for method hashPart()</error>
-      <error line="532" code="50010">No DocBlock was found for method hashBlock()</error>
-      <error line="553" code="50010">No DocBlock was found for method runBlockGamut()</error>
-      <error line="567" code="50010">No DocBlock was found for method runBasicBlockGamut()</error>
-      <error line="584" code="50010">No DocBlock was found for method doHorizontalRules()</error>
-      <error line="626" code="50010">No DocBlock was found for method runSpanGamut()</error>
-      <error line="638" code="50010">No DocBlock was found for method doHardBreaks()</error>
-      <error line="643" code="50010">No DocBlock was found for method _doHardBreaks_callback()</error>
-      <error line="648" code="50010">No DocBlock was found for method doAnchors()</error>
-      <error line="718" code="50010">No DocBlock was found for method _doAnchors_reference_callback()</error>
-      <error line="752" code="50010">No DocBlock was found for method _doAnchors_inline_callback()</error>
-      <error line="773" code="50010">No DocBlock was found for method doImages()</error>
-      <error line="828" code="50010">No DocBlock was found for method _doImages_reference_callback()</error>
-      <error line="856" code="50010">No DocBlock was found for method _doImages_inline_callback()</error>
-      <error line="875" code="50010">No DocBlock was found for method doHeaders()</error>
-      <error line="905" code="50010">No DocBlock was found for method _doHeaders_callback_setext()</error>
-      <error line="914" code="50010">No DocBlock was found for method _doHeaders_callback_atx()</error>
-      <error line="921" code="50010">No DocBlock was found for method doLists()</error>
-      <error line="987" code="50010">No DocBlock was found for method _doLists_callback()</error>
-      <error line="1007" code="50010">No DocBlock was found for method processListItems()</error>
-      <error line="1053" code="50010">No DocBlock was found for method _processListItems_callback()</error>
-      <error line="1078" code="50010">No DocBlock was found for method doCodeBlocks()</error>
-      <error line="1096" code="50010">No DocBlock was found for method _doCodeBlocks_callback()</error>
-      <error line="1110" code="50010">No DocBlock was found for method makeCodeSpan()</error>
-      <error line="1136" code="50010">No DocBlock was found for method prepareItalicsAndBold()</error>
-      <error line="1158" code="50010">No DocBlock was found for method doItalicsAndBold()</error>
-      <error line="1281" code="50010">No DocBlock was found for method doBlockQuotes()</error>
-      <error line="1296" code="50010">No DocBlock was found for method _doBlockQuotes_callback()</error>
-      <error line="1310" code="50010">No DocBlock was found for method _doBlockQuotes_callback2()</error>
-      <error line="1317" code="50010">No DocBlock was found for method formParagraphs()</error>
-      <error line="1387" code="50010">No DocBlock was found for method encodeAttribute()</error>
-      <error line="1398" code="50010">No DocBlock was found for method encodeAmpsAndAngles()</error>
-      <error line="1419" code="50010">No DocBlock was found for method doAutoLinks()</error>
-      <error line="1446" code="50010">No DocBlock was found for method _doAutoLinks_url_callback()</error>
-      <error line="1451" code="50010">No DocBlock was found for method _doAutoLinks_email_callback()</error>
-      <error line="1458" code="50010">No DocBlock was found for method encodeEmailAddress()</error>
-      <error line="1499" code="50010">No DocBlock was found for method parseSpan()</error>
-      <error line="1555" code="50010">No DocBlock was found for method handleSpanToken()</error>
-      <error line="1579" code="50010">No DocBlock was found for method outdent()</error>
-      <error line="1591" code="50010">No DocBlock was found for method detab()</error>
-      <error line="1604" code="50010">No DocBlock was found for method _detab_callback()</error>
-      <error line="1621" code="50010">No DocBlock was found for method _initDetab()</error>
-      <error line="1635" code="50010">No DocBlock was found for method unhash()</error>
-      <error line="1642" code="50010">No DocBlock was found for method _unhash_callback()</error>
-    </parse_markers>
   </file>
   <file path="helpers/formee_helper.php" hash="0944eccdd279a5c82829a4158dded156" package="Default">
     <constant namespace="" line="16" package="Default">
