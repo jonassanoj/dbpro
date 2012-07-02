@@ -10,6 +10,20 @@
 
 class Util extends CI_Controller {
 	
+	
+	/**
+	 * constructor
+	 *
+	 * loads vote_model.
+	 *
+	 */
+	
+	public function __construct() {
+		parent::__construct();
+		$this -> load -> model('vote_model');
+	
+	}
+	
 	/** 
 	 * Load a language
 	 * 

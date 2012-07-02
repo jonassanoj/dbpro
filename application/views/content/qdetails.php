@@ -63,14 +63,9 @@
 <form action="<?php echo site_url('util/q_vote/'.$question->questionID)?>" name="voting" method="POST">
 	<div class="vote">
 	 	
-		<input type="image" title="upvote" src=<?php echo base_url('img/icons/upvote.jpg'); ?> width=30 name="up" value="up" />
-		&nbsp;&nbsp;<input type="image" title="downvote" src=<?php echo base_url('img/icons/downvote.jpg'); ?> width=30 name="down" value="down" />
-		
-		<!--<input type="hidden" value="<?php echo $question->questionID; ?>" name="qid" />
-
-	   <a href="?vote=up&amp;id=" >Up</a>
-	<a href="?vote=down&amp;id=" >Down</a> -->
-		
+	<input type="image" title="upvote" src=<?php echo base_url('img/icons/upvote.jpg'); ?> width=30 name="up" value="up" />
+	&nbsp;&nbsp;
+	<input type="image" title="downvote" src=<?php echo base_url('img/icons/downvote.jpg'); ?> width=30 name="down" value="down" />		
 	</div>
 </form>
 
@@ -84,20 +79,17 @@ if (isset($result))
 </div> <!-- Question div closed -->
 
 <?php foreach ($answers as $answer): ?>
-	<div class="answer">
-
-		<?php echo $answer->body; ?>
-	
-	
+<div class="answer">
+<div class="markdown">
+	<?php echo Markdown($answer->body); ?>
+</div>	
 <form action="<?php echo site_url('util/a_vote/'.$answer->answerID)?>" name="answer_voting" method="POST">
-	<div>
-		 <input type="image" title="upvote" src=<?php echo base_url('img/icons/upvote.jpg'); ?> width=30 name="aup" value="up" />
-		&nbsp;&nbsp;<input type="image" title="downvote" src=<?php echo base_url('img/icons/downvote.jpg'); ?> width=30 name="adown" value="down" />
-	<div class="markdown">
-		<?php echo Markdown($answer->body); ?>
-
-	</div>
-	</div> <!-- answer dic closed -->
+	<div class="vote">
+		 <input type="image" title="upvote" src="<?php echo base_url('img/icons/upvote.jpg'); ?>" width=30 name="aup" value="up" />
+		 &nbsp;&nbsp;
+		 <input type="image" title="downvote" src="<?php echo base_url('img/icons/downvote.jpg'); ?>" width=30 name="adown" value="down" />
+	</div>	
+</div> <!-- answer dic closed -->
 <?php endforeach ?>
 
 <?php echo $backlink?>

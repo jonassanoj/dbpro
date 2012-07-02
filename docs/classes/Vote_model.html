@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » \Ajax</title>
+<title>phpDocumentor » \Vote_model</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -59,51 +59,111 @@
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
-<li class="method public "><a href="#__construct" title="__construct :: "><span class="description">__construct()
-        </span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#qcomments" title="qcomments :: asynchronously get comments for a question"><span class="description">asynchronously get comments for a question</span><pre>qcomments()</pre></a></li>
+<li class="method public "><a href="#add_a_vote" title="add_a_vote :: upvote or downvote an answer"><span class="description">upvote or downvote an answer</span><pre>add_a_vote()</pre></a></li>
+<li class="method public "><a href="#add_q_vote" title="add_q_vote :: upvote or downvote a question"><span class="description">upvote or downvote a question</span><pre>add_q_vote()</pre></a></li>
+<li class="method public "><a href="#check_a_vote" title="check_a_vote :: Check a user voted or did not."><span class="description">Check a user voted or did not.</span><pre>check_a_vote()</pre></a></li>
+<li class="method public "><a href="#check_q_vote" title="check_q_vote :: Check a user voted or did not."><span class="description">Check a user voted or did not.</span><pre>check_q_vote()</pre></a></li>
 </ul>
 </div>
 <div class="span8">
-<a name="%5CAjax" id="\Ajax"></a><ul class="breadcrumb">
+<a name="%5CVote_model" id="\Vote_model"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/.html"></a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/Ajax.html">Ajax</a>
+<span class="divider">\</span><a href="../classes/Vote_model.html">Vote_model</a>
 </li>
 </ul>
-<div href="../classes/Ajax.html" class="element class">
-<p class="short_description">controller for AJAX requests</p>
+<div href="../classes/Vote_model.html" class="element class">
+<p class="short_description">the vote model</p>
 <div class="details">
-<p class="long_description"><p>This controller will handle all AJAX requests up to now.
-If more AJAX-functionality is added, this should be split into thematically
-organized controllers.</p></p>
+<p class="long_description"><p>Provides checking and adding votes functionality for questions and answers.</p>
+
+<p>It uses the following database tables:</p>
+
+<ul>
+<li><em>QuestionVote</em></li>
+<li><em>AnswerVote</em></li>
+<li><em>Answer</em></li>
+<li><em>Answer</em></li>
+</ul></p>
 <table class="table table-bordered"><tr>
 <th>package</th>
-<td><a href="../packages/controllers.html">controllers</a></td>
+<td><a href="../packages/models.html">models</a></td>
 </tr></table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
-<h2>__construct()
-        </h2>
-<pre>__construct() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
-</div>
-<a name="qcomments" id="qcomments"></a><div class="element clickable method public qcomments" data-toggle="collapse" data-target=".qcomments .collapse">
-<h2>asynchronously get comments for a question</h2>
-<pre>qcomments(int $qid) : void</pre>
+<a name="add_a_vote" id="add_a_vote"></a><div class="element clickable method public add_a_vote" data-toggle="collapse" data-target=".add_a_vote .collapse">
+<h2>upvote or downvote an answer</h2>
+<pre>add_a_vote(int $userid, int $aid, int $vote) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>calls <em>get_qcomments</em> from the comment model.
-presents its data using the <em>ajax/comments</em> view.</p></p>
+<p class="long_description"><p>Record the user who vote along with the answerID for which he/she voted.</p></p>
 <h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$userid</h4>
+<code>int</code><p>the userID</p></div>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>the answerID</p></div>
+<div class="subelement argument">
+<h4>$vote</h4>
+<code>int</code><p>the type of vote</p></div>
+</div></div>
+</div>
+<a name="add_q_vote" id="add_q_vote"></a><div class="element clickable method public add_q_vote" data-toggle="collapse" data-target=".add_q_vote .collapse">
+<h2>upvote or downvote a question</h2>
+<pre>add_q_vote(int $userid, int $qid, int $vote) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Record the user who vote along with the questionID for which he/she voted.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$userid</h4>
+<code>int</code><p>the userID</p></div>
 <div class="subelement argument">
 <h4>$qid</h4>
 <code>int</code><p>the questionID</p></div>
+<div class="subelement argument">
+<h4>$vote</h4>
+<code>int</code><p>the type of vote</p></div>
+</div></div>
+</div>
+<a name="check_a_vote" id="check_a_vote"></a><div class="element clickable method public check_a_vote" data-toggle="collapse" data-target=".check_a_vote .collapse">
+<h2>Check a user voted or did not.</h2>
+<pre>check_a_vote(int $userid, int $aid) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Search a user voted or did not for an specific answer.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$userid</h4>
+<code>int</code><p>the userID who want to vote.</p></div>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>the answerID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>a single question object, containing column values as attributes.</div>
+</div></div>
+</div>
+<a name="check_q_vote" id="check_q_vote"></a><div class="element clickable method public check_q_vote" data-toggle="collapse" data-target=".check_q_vote .collapse">
+<h2>Check a user voted or did not.</h2>
+<pre>check_q_vote(int $userid, int $qid) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>Search a user voted or did not for a specific question.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$userid</h4>
+<code>int</code><p>the userID who want to vote.</p></div>
+<div class="subelement argument">
+<h4>$qid</h4>
+<code>int</code><p>the questionID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>a single question object, containing column values as attributes.</div>
 </div></div>
 </div>
 </div>
