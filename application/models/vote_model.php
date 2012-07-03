@@ -31,7 +31,6 @@ class Vote_model extends CI_Model {
 		
 		$query = "UPDATE `Question` SET `rank` = `rank` {$vote} 1 WHERE `QuestionID` = {$qid} ";
 		mysql_query($query);
-		
 		$this->db->set('userID', $userid);
 		$this->db->set('questionID', $qid);
 		$this->db->insert('QuestionVote');
@@ -55,7 +54,6 @@ class Vote_model extends CI_Model {
 	
 		$sql = "UPDATE `Answer` SET `rank` = `rank` {$vote} 1 WHERE `answerID` = {$aid} ";
 		mysql_query($sql);
-		
 		$this->db->set('userID', $userid);
 		$this->db->set('answerID', $aid);
 		$this->db->insert('AnswerVote');
@@ -77,9 +75,7 @@ class Vote_model extends CI_Model {
 	public function check_q_vote($userid, $qid) {
 	
 		$array = array('userID' => $userid, 'questionID' => $qid);
-		
 		$query = $this->db->from('QuestionVote')-> where($array)->get();
-		
 		return $query->first_row();
 	
 	}
@@ -97,9 +93,7 @@ class Vote_model extends CI_Model {
 	public function check_a_vote($userid, $aid) {
 	
 		$array = array('userID' => $userid, 'answerID' => $aid);
-	
 		$query = $this->db->from('AnswerVote')-> where($array)->get();
-	
 		return $query->first_row();
 	
 	}
