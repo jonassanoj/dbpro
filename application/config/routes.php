@@ -39,6 +39,11 @@
 */
 
 $route['default_controller'] = 'main/home';
-
+$route['de'] = 'utill/lang/deutsch/';
+$route['en'] = 'utill/lang/english/';
+$route['fa'] = 'utill/lang/farsi/';
+$route['ps'] = 'utill/lang/pashto/';
+/
+/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
