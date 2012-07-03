@@ -78,8 +78,6 @@
 		<td><a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >  <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/></a></td>
 		<?endif;?>
 		</tr>
-	 <!--   <a href="?vote=up&amp;id=" >Up</a>
-	<a href="?vote=down&amp;id=" >Down</a> -->
 		
 	</div>
 	</table>
