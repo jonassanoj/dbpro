@@ -68,7 +68,8 @@ $lang['form_password'] = "رمز";
 $lang['form_remember'] = "یاد می وساته";
 $lang['form_login'] = "ننوتل";
 $lang['form_register'] = "راجستر";
-
+//
+$lang['admin_user'] = "اډمین پاڼه";
 // Messages 
 $lang['msg_login_failed'] = "ننوتل ناکام شول";
 $lang['msgvar_username_taken'] = "په تاسف سره چی %s نوم مخکی نه راجستر شویده!";

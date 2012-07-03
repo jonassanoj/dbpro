@@ -1,15 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
-<link href="<?php echo base_url(); ?>css/adminstyle.css" rel="stylesheet" type="text/css" />
-
-<link href="<?php echo base_url(); ?>css/calendar.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?php echo base_url(); ?>js/calendar.js"></script>
-
-</head>
+<html 
 <body>
+	<link href="<?php echo base_url(); ?>css/adminstyle.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url(); ?>css/calendar.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/calendar.js"></script>
 	<div class="content">
 		<?php echo $message; ?>
 		<form method="post" action="<?php echo $action; ?>">
@@ -59,15 +53,22 @@
 			</tr>
 			<tr>
 				<td valign="top">User Privileges <span style="color:red;">*</span></td>
-				<td><input type="text" name="userTypeID" class="text" value="<?php echo set_value('userTypeID',$this->form_data->userType); ?>"/>
-<?php echo form_error('name'); ?>
-				</td>
-			</tr>
+				
+              <td>
+<?=form_dropdown('userTypeID',$userTypeList,set_value('userTypeID',$this->form_data->userTypeID), 'style="width: 240px; height:30px; font-size: 13px"');?> &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						 
+<?=form_error('userTypeID')?>
+</td>
 			<tr>
-				<td valign="top">Syudy Filed<span style="color:red;">*</span></td>
-				<td><input type="text" name="fieldID" class="text" value="<?php echo set_value('fieldID',$this->form_data->field); ?>"/>
-<?php echo form_error('name'); ?>
-				</td>
+				<td valign="top">Study Field<span style="color:red;">*</span></td>
+				<td>
+<?=form_dropdown('fieldID',$fieldList,set_value('fieldID',$this->form_data->fieldID), 'style="width: 240px; height:30px; font-size: 13px"');?> &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						 
+<?=form_error('userTypeID')?>
+</td>
+				
 			</tr>
 			<tr>
 				<td valign="top">Date of birth <span style="color:red;">*</span></td>
@@ -87,10 +88,6 @@
 				<td><input type="submit" value="Save"/></td>
 			</tr>
 		</table>
-		</div>
-		</form>
-		<br />
-		<?php echo $link_back; ?>
-	</div>
+		
 </body>
 </html>

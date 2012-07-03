@@ -56,16 +56,23 @@
 		<form action="" method="POST">
   		<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
 		</form>
-<form action="http:/index.php/util/q_vote" name="voting" method="POST">
+<form action="<?=base_url()?>index.php/util/q_vote" name="voting" method="POST">
+<table>
 	<div>
-	 	<input type="submit" name="up" value="up" /> 
-		<input type="submit" name="down" value="down"/> 
-		<input type="hidden" value="<?php echo $question->questionID; ?>" name="qid" />
-
+	<tr>
+	 	<td><input type="submit" name="up" value="up" /></td> 
+		<td><input type="submit" name="down" value="down"/></td> 
+		
+		<td><input type="hidden" value="<?php echo $question->questionID; ?>" name="qid" /></td>
+		<?if($this->session->userdata('uid')==$question->userID || ($this->session->userdata('user','userTypeID'))==2 || ($this->session->userdata('user','userTypeID'))==3):?>
+		<td><a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >  <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/></a></td>
+		<?endif;?>
+		</tr>
 	 <!--   <a href="?vote=up&amp;id=" >Up</a>
 	<a href="?vote=down&amp;id=" >Down</a> -->
 		
 	</div>
+	</table>
 </form> 
 <div id="ajaxresult">
 

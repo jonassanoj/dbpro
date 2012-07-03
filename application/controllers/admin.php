@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
 /**
  * the admin controller
  *
@@ -29,13 +29,17 @@ class Admin extends CI_Controller {
 		$this->load->helper('url');		
 		// load model
 		$this->load->model('User_model','',TRUE);
+		$this->load->model('Field_model','',TRUE);
+		//load session library
 		$this->load->library('session');
+		//load languege
 		if (!$this -> session -> userdata('language'))
 			$this -> lang -> load('main');
 		else
 			$this -> lang -> load('main', $this -> session -> userdata('language'));
 		
 	}
+	
 	/**
 	 * main function
 	 *
@@ -57,6 +61,10 @@ class Admin extends CI_Controller {
 		
 	}
 	
+	public function _loadviews($content, $data) {
+		$data['loginbox']=TRUE;
+		$this -> load -> view('main_view',init_view_data($content,$data));
+	}
 	/**
 	 * list all user in the data base 
 	 * 
@@ -70,11 +78,9 @@ class Admin extends CI_Controller {
 	
 	function mainf($offset = 0){
 
-		$data['loginbox'] = false;
-		$data['title'] = 'Admin View Users List';
-		$data['navigation'][0] = anchor("main/home","Home",array('class'=>'home'));
-		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
-		$data['navigation'][2] = anchor('admin/online/','Show online User',array('class'=>'user'));
+		$data['loginbox'] = true;
+		$data['title'] = 'Users List';
+		$data['navigation'][0] = anchor('admin/online/','Show online User');
 		$data['content'] = 'content/personList';
 		// offset
 		$uri_segment = 3;
@@ -86,7 +92,7 @@ class Admin extends CI_Controller {
 		
 		// generate pagination
 		$this->load->library('pagination');
-		$config['base_url'] = site_url('admin/index/');
+		$config['base_url'] = site_url('admin/mainf/');
  		$config['total_rows'] = $this->User_model->count_all();
  		$config['per_page'] = $this->limit;
 		$config['uri_segment'] = $uri_segment;
@@ -96,13 +102,11 @@ class Admin extends CI_Controller {
 		// generate table data
 		$this->load->library('table');
         $this->table->set_empty("&nbsp;");
-		$this->table->set_heading('No', 'Name', 'User Name', 'Email', 'Orgonization','Degree','User Type','Study Field','  ');
+		$this->table->set_heading('No', 'Full Name', 'User Name', 'Email', 'Orgonization','User Type','Study Field','  ');
 		$i = 0 + $offset;
 		     
 		foreach ($persons as $person){
-			$type = $this->User_model->get_type($person->userTypeID);
-	        $field = $this->User_model->get_feild($person->fieldID);
-			$this->table->add_row(++$i,$person->fullName, $person->userName,$person->email,$person->organization,$person->degree,	$type[0]->userType,$field[0]->fieldName,
+		$this->table->add_row(++$i,$person->fullName, $person->userName,$person->email,$person->organization,$person->userType,$person->fieldName,	
 				anchor('admin/view/'.$person->userID,'view',array('class'=>'view')).' '.
 				anchor('admin/update/'.$person->userID,'update',array('class'=>'update')).' '.
 				anchor('admin/upgrade/'.$person->userID,'upgrade',array('class'=>'upgrade')).' '.
@@ -123,17 +127,21 @@ class Admin extends CI_Controller {
 	 *@return void load upgrade view 
 	 */
 	function upgrade($uid){
-		$person = $this->User_model->get_by_id($uid)->row();
-		$this->form_data->id = $uid;
-		$this->form_data->userName = $person->userName;
-		$this->form_data->userType = $person->userTypeID;
-		$data['action'] = site_url('admin/upgrade_user');
+		//common properties 
 		$data['message'] ='';
-		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
-		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
-		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
-		$data['title'] = 'View Online User';
+		$data['navigation'][0] = anchor('admin/index/','Back to User list');
+		$data['title'] = 'Upgrade User';
 		$data['content'] = 'content/upgrade';
+		$data['action'] = site_url('admin/upgrade_user');
+		//load user model
+		$person = $this->User_model->get_userdata($uid);
+		$this->form_data->id = $uid;
+		//take parmeter from data base
+		$this->form_data->userTypeID = $person->userTypeID;
+		$this->form_data->userName = $person->userName;
+		$data['userTypeList']=$this->User_model->get_usertypes($return=user_model::FLAT_ARAY);
+		
+		//load view 
 		$this->load->view('main_view', $data);
 	}
 	/**
@@ -145,23 +153,35 @@ class Admin extends CI_Controller {
 	 * @return void
 	 * 
 	 */
+	function upgrade_user(){
+		$uid = $this->input->post('id');
+		$userTypeID = $this->input->post('userTypeID');
+		//exicute function from user model
+		$this->User_model->change_usertype($uid,$userTypeID);
+		$this->mainf();
+	}
 	
-	function ugrade_user(){
-	
-	
-		// $uid = $this->input->post('id');
-		// $userTypeID => $this->input->post('userType');
-		 
-		// $this->User_model->upgrade_user($uid,$userTypeID);
-	
-		$data['message'] = '<div class="success">upgrade person success</div>';
-		$data['action'] = site_url('admin/upgrade_user');
-		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
-		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
-		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
-		$data['title'] = 'View Online User';
-		$data['content'] = 'content/upgrade';
-		$this->load->view('main_view', $data);
+	function ugrade_user1(){
+		//comon properties 
+		//$data['message'] = '<div class="success">upgrade person success</div>';
+		//$data['action'] = site_url('admin/upgrade_user');
+		//$data['navigation'][0] = anchor('admin/index/','Back to User list');
+		//$data['title'] = 'Upagarade User';
+		//$data['content'] = 'content/upgrade';
+		
+		//$uid = $this->input->post('id');
+		//$userTypeID = $this->input->post('userTypeID');
+		//exicute function from user model 	 
+		//$this->User_model->change_usertype($uid,$userTypeID);	
+		//load view
+		//$this->User_model->update_user($id,$person);
+			
+			// set user message
+	//	$data['message'] = '<div class="success">update person success</div>';
+		 //}
+		
+		// load view
+		//$this->mainf();
 	}
 	
 	
@@ -178,7 +198,9 @@ class Admin extends CI_Controller {
 		$uri_segment = 3;
 		$offset = $this->uri->segment($uri_segment);
 		// load data
-		$persons = $this->User_model->get_paged_list($this->limit, $offset)->result();
+		
+		$persons =$this->list_users();
+		//$persons = $this->User_model->get_paged_list($this->limit, $offset)->result();
 		// generate pagination
 		$this->load->library('pagination');
 		$config['base_url'] = site_url('admin/index/');
@@ -189,100 +211,29 @@ class Admin extends CI_Controller {
 		$data['pagination'] = $this->pagination->create_links();
 		
 		$this->load->library('table');
-         	$this->table->set_empty("&nbsp;");
-		$this->table->set_heading( 'User Name', 'status ','');
+        $this->table->set_empty("&nbsp;");
+		$this->table->set_heading( 'User Name/IP ADD', 'status ','');
 		//$users = $this->onlineusers->get_info(); //prefer using reference to best memory usage
 		//foreach($user as $users)
 		  //{
 		      //if(isset($user['data']['userName'])) { print $user['data']['userName']; }
 		 // }
-		
+		if (is_array($persons))		
 		foreach ($persons as $person)
 		{
-				$this->table->add_row($person->userName,'Online',
+				$this->table->add_row($person,'Online',
 				anchor('admin/view/'.$person->userID,'view',array('class'=>'view')).' '.
 				anchor('admin/delete/'.$person->userID,'delete',array('class'=>'delete','onclick'=>"return confirm 						('Are you sure want to delete this person?')"))
 			);
 		}
-		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
-		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
-		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back')); 
+		
+		$data['navigation'][0] = anchor('admin/index/','Back to User list'); 
 		$data['table'] = $this->table->generate();
 		$data['title'] = 'View Online User';
 		$data['content'] = 'content/onlineuser';
 		$this->load->view('main_view', $data);
 	}
-	/**
-	 * add new user view 
-	 *
-	 *this function will load the addUser view for adding user data and than load the addUser function to store the data in to the database 
-	 *
-	 *@author Ashuqullah Alizai
-	 *@return void 
-	 */
-	function add(){
-		// set empty default form field values
-		$this->_set_fields();
-		// set validation properties
-		$this->_set_rules();
-		
-		// set common properties
-		$data['title'] = 'Add new person';
-		$data['message'] = '';
-		$data['action'] = site_url('admin/addUser');
-		$data['link_back'] = anchor('admin/index/','Back to User List',array('class'=>'back'));
 	
-		// load view
-		
-		$data['content'] = 'content/addUser';
-		$this->load->view('main_view', $data);
-	}
-	/**
-	 * add new user 
-	 * 
-	 * this function is to create new user it will get the data for user from the addUser view and send to data base 
-	 * 
-	 * @author alizai
-	 * @return void
-	 */
-	function addUser(){
-		// set common properties
-		$data['title'] = 'Add new person';
-		$data['action'] = site_url('admin/addUser');
-		$data['link_back'] = anchor('admin/index/','Back to User List',array('class'=>'back'));
-		
-		// set empty default form field values
-		$this->_set_fields();
-		// set validation properties
-		$this->_set_rules();
-		
-		/* run validation
-		if ($this->form_validation->run() == FALSE)
-		{
-			$data['message'] = '';
-		}
-		else
-		{
-		*/	// save data
-			$person = array('fullName' => $this->input->post('fullName'),
-					'userName' => $this->input->post('userName'),
-					'email' => $this->input->post('email'),
-					'organization' => $this->input->post('orgonization'),
-					'location' => $this->input->post('location'),
-					'degree' => $this->input->post('degree'),
-					'userTypeID' => $this->input->post('userType'),
-					'fieldID' => $this->input->post('field'),
-					'detail' => $this->input->post('details'),
-					'dateOfBirth' => date('Y-m-d', strtotime($this->input->post('dob'))));
-					$id = $this->User_model->save($person);
-			
-			// set user message
-			$data['message'] = '<div class="success">add new person success</div>';
-		//}
-		
-		// load view
-		$this->load->view('content/addUser', $data);
-	}
 	/**
 	 * show user details 
 	 * 
@@ -296,19 +247,15 @@ class Admin extends CI_Controller {
 	function view($id){
 		// set common properties
 		$data['title'] = 'Admin View User Details';
-		$data['link_back'] = anchor('admin/index/','Back to list of persons',array('class'=>'back'));
-		
-		// get person details
-		$data['person'] = $this->User_model->get_by_id($id)->row();
-		
-		// load view
-		//$data['title'] = 'User Details';
-		$data['navigation'][0] = anchor("main/home/","Home",array('class'=>'home'));
-		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
-		$data['navigation'][2] = anchor('admin/index/','Back to User list',array('class'=>'back'));
+		$data['navigation'][0] = anchor('admin/index/','Back to User list');
 		$data['content'] = 'content/personView';
+		// load model get person details
+		$data['person'] = $this->User_model->get_userdata($id);
+		
+		// load view			
 		$this->load->view('main_view', $data);
 	}
+	
 	/**
 	 * retrive current data for update 
 	 * 
@@ -318,12 +265,17 @@ class Admin extends CI_Controller {
 	 * @author Alizai
 	 * @return void
 	 */
+	
 	function update($id){
 		// set validation properties
 		$this->_set_rules();
+		//load model get user data for editing
+		$person = $this->User_model->get_userdata($id);
+		// prefill form values	
+		$data['userTypeList']=$this->User_model->get_usertypes($return=user_model::FLAT_ARAY);
+		$data['fieldList']=$this->Field_model->get_fields($retun=field_model::FLAT_ARAY);
 		
-		// prefill form values
-		$person = $this->User_model->get_by_id($id)->row();
+		
 		$this->form_data->id = $id;
 		$this->form_data->fullName = $person->fullName;
 		$this->form_data->userName = $person->userName;
@@ -331,25 +283,23 @@ class Admin extends CI_Controller {
 		$this->form_data->orgonization = $person->organization;
 		$this->form_data->location = $person->location;
 		$this->form_data->degree = $person->degree;
-		$this->form_data->userType = $person->userTypeID;
-		$this->form_data->field = $person->fieldID;
+		$this->form_data->userTypeID = $person->userTypeID;
+		$this->form_data->fieldID = $person->fieldID;
 		$this->form_data->dob = $person->dateOfBirth;
 		$this->form_data->details = $person->detail;
-		//$this->form_data->dob = date('d-m-Y',strtotime($person->dob));
 		
+			
 		// set common properties
 		$data['title'] = 'Update person';
 		$data['message'] = '';
 		$data['action'] = site_url('admin/updatePerson');
-		$data['link_back'] = anchor('admin/index/','Back to Users List',array('class'=>'back'));
-	
+		
 		// load view
-		$data['navigation'][0] = anchor("main/home","Home",array('class'=>'home'));
-		$data['navigation'][1] = anchor("admin/add/","Add new user",array('class'=>'add'));
-		$data['navigation'][2] = anchor('admin/online/','Show online User',array('class'=>'user'));
+		$data['navigation'][0] = anchor('admin/online/','Show online User');
 		$data['content'] = 'content/addUser';
 		$this->load->view('main_view', $data);
 	}
+	
 	/**
 	 * update the person information 
 	 * 
@@ -358,15 +308,11 @@ class Admin extends CI_Controller {
 	 * @return void
 	 */
 	function updatePerson(){
-		// set common properties
-		$data['title'] = 'Update person';
-		$data['action'] = site_url('admin/updatePerson');
-		$data['link_back'] = anchor('admin/index/','Back to list of persons',array('class'=>'back'));
-		
+						
 		// set empty default form field values
 		$this->_set_fields();
 		// set validation properties
-		//$this->_set_rules();
+		$this->_set_rules();
 		
 		// run validation
 		//if ($this->form_validation->run() == FALSE)
@@ -376,6 +322,7 @@ class Admin extends CI_Controller {
 		//else
 		//{
 			// save data
+			
 			$id = $this->input->post('id');
 			$person = array('fullName' => $this->input->post('fullName'),
 					'userName' => $this->input->post('userName'),
@@ -383,8 +330,8 @@ class Admin extends CI_Controller {
 					'organization' => $this->input->post('orgonization'),
 					'location' => $this->input->post('location'),
 					'degree' => $this->input->post('degree'),
-					'userTypeID' => $this->input->post('userType'),
-					'fieldID' => $this->input->post('field'),
+					'userTypeID' => $this->input->post('userTypeID'),
+					'fieldID' => $this->input->post('fieldID'),
 					'detail' => $this->input->post('details'),
 					'dateOfBirth' => date('Y-m-d', strtotime($this->input->post('dob'))));
 					
@@ -395,7 +342,8 @@ class Admin extends CI_Controller {
 		 //}
 		
 		// load view
-		$this->load->view('content/addUser', $data);
+		//$this->load->view('main_view', $data);
+		$this->mainf();
 	}
 	/**
 	 * delete user 
@@ -422,14 +370,15 @@ class Admin extends CI_Controller {
 	
 	function _set_fields(){
 		$this->form_data->id = '';
+		$this->form_data->userTypeList = '';
 		$this->form_data->fullName = '';
 		$this->form_data->userName = '';
 		$this->form_data->email = '';
 		$this->form_data->orgonization = '';
 		$this->form_data->location = '';
 		$this->form_data->degree = '';
-		$this->form_data->userType = '';
-		$this->form_data->field = '';
+		$this->form_data->userTypeID = '';
+		$this->form_data->fieldID = '';
 		$this->form_data->dob = '';
 		$this->form_data->details = '';
 		
@@ -464,7 +413,7 @@ class Admin extends CI_Controller {
 		//match the format of the date
 		if (preg_match ("/^([0-9]{2})-([0-9]{2})-([0-9]{4})$/", $str, $parts))
 		{
-			//check weather the date is valid of not
+			//check weather the date is valid or not
 			if(checkdate($parts[2],$parts[1],$parts[3]))
 				return true;
 			else
@@ -487,13 +436,13 @@ class Admin extends CI_Controller {
 	 *
 	 */
 	function list_users(){
+		
 		if($this->session->userdata('userTypeID'== 1 | 2 | 3))
 		{
 			return $this->session->userdata('userName');
 		}
 		else
-		{
-				
+		{				
 			return $this->session->userdata('ip_address');
 		}
 	}
