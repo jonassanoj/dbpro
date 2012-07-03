@@ -33,10 +33,17 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+<<<<<<< HEAD
+                <span class="label label-info">106</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">8</span>
+=======
                 <span class="label label-info">21</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">6</span>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -96,46 +103,87 @@
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a name="add_a_vote" id="add_a_vote"></a><div class="element clickable method public add_a_vote" data-toggle="collapse" data-target=".add_a_vote .collapse">
 <h2>upvote or downvote an answer</h2>
+<<<<<<< HEAD
+<pre>add_a_vote(int $userid, int $aid, int $vote) </pre>
+=======
 <pre>add_a_vote(int $userID, int $answerID) </pre>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Record the user who vote along with the answerID for which he/she voted.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
+<<<<<<< HEAD
+<h4>$userid</h4>
+<code>int</code><p>the userID</p></div>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>the answerID</p></div>
+<div class="subelement argument">
+<h4>$vote</h4>
+<code>int</code><p>the type of vote</p></div>
+=======
 <h4>$userID</h4>
 <code>int</code><p>the userID</p></div>
 <div class="subelement argument">
 <h4>$answerID</h4>
 <code>int</code><p>the answerID</p></div>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 </div></div>
 </div>
 <a name="add_q_vote" id="add_q_vote"></a><div class="element clickable method public add_q_vote" data-toggle="collapse" data-target=".add_q_vote .collapse">
 <h2>upvote or downvote a question</h2>
+<<<<<<< HEAD
+<pre>add_q_vote(int $userid, int $qid, int $vote) </pre>
+=======
 <pre>add_q_vote(int $userID, int $questionID) </pre>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Record the user who vote along with the questionID for which he/she voted.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
+<<<<<<< HEAD
+<h4>$userid</h4>
+<code>int</code><p>the userID</p></div>
+<div class="subelement argument">
+<h4>$qid</h4>
+<code>int</code><p>the questionID</p></div>
+<div class="subelement argument">
+<h4>$vote</h4>
+<code>int</code><p>the type of vote</p></div>
+=======
 <h4>$userID</h4>
 <code>int</code><p>the userID</p></div>
 <div class="subelement argument">
 <h4>$questionID</h4>
 <code>int</code><p>the questionID</p></div>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 </div></div>
 </div>
 <a name="check_a_vote" id="check_a_vote"></a><div class="element clickable method public check_a_vote" data-toggle="collapse" data-target=".check_a_vote .collapse">
 <h2>Check a user voted or did not.</h2>
+<<<<<<< HEAD
+<pre>check_a_vote(int $userid, int $aid) : object</pre>
+=======
 <pre>check_a_vote(int $userID, int $answerID) : object</pre>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Search a user voted or did not for an specific answer.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
+<<<<<<< HEAD
+<h4>$userid</h4>
+<code>int</code><p>the userID who want to vote.</p></div>
+<div class="subelement argument">
+<h4>$aid</h4>
+=======
 <h4>$userID</h4>
 <code>int</code><p>the userID who want to vote.</p></div>
 <div class="subelement argument">
 <h4>$answerID</h4>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 <code>int</code><p>the answerID</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
@@ -144,18 +192,30 @@
 </div>
 <a name="check_q_vote" id="check_q_vote"></a><div class="element clickable method public check_q_vote" data-toggle="collapse" data-target=".check_q_vote .collapse">
 <h2>Check a user voted or did not.</h2>
+<<<<<<< HEAD
+<pre>check_q_vote(int $userid, int $qid) : object</pre>
+=======
 <pre>check_q_vote(int $userID, $questionID) : object</pre>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>Search a user voted or did not for a specific question.</p></p>
 <h3>Parameters</h3>
 <div class="subelement argument">
+<<<<<<< HEAD
+<h4>$userid</h4>
+<code>int</code><p>the userID who want to vote.</p></div>
+<div class="subelement argument">
+<h4>$qid</h4>
+<code>int</code><p>the questionID</p></div>
+=======
 <h4>$userID</h4>
 <code>int</code><p>the userID who want to vote.</p></div>
 <div class="subelement argument">
 <h4>$questionID</h4>
 <code></code>
 </div>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 <h3>Returns</h3>
 <div class="subelement response">
 <code>object</code>a single question object, containing column values as attributes.</div>
@@ -168,7 +228,11 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
+<<<<<<< HEAD
+            generated on 2012-06-29T18:19:32+02:00.<br></footer></div>
+=======
             generated on 2012-07-02T12:41:33+02:00.<br></footer></div>
+>>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
 </div>
 </body>
 </html>

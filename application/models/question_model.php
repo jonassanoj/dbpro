@@ -76,6 +76,25 @@ class Question_model extends CI_Model {
 		$query = $this -> db -> get_where('Question', array('questionID' => $qid));
 		return $query -> first_row();
 	}
+	
+	/**
+	 * check for login user if he/she voted for question.
+	 *
+	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
+	 *
+	 * @param int $qid the questionID
+	 * @param int $userid the userID
+	 * @return object a single question object, containing column values as attributes.
+	 */
+	
+	public function check_vote($qid, $userid) {
+		$this->db->where('questionID', $qid);
+		$this->db->where('userID', $userid);
+		$this->db->from('QuestionVote');
+		$query = $this->db->get();
+		return $query -> first_row();
+		
+	}
 
 	/**
 	 * create a new question, return its id

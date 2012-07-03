@@ -1,5 +1,6 @@
-
 <script type="text/javascript"> 
+
+
 
 	 /**
 	 * this is Javascript and will call Ajax  
@@ -46,15 +47,24 @@
 	 * @package views
 	 */
 </script> <!-- javascript is closed -->
+
 <div class="question">
 		<h3><?php echo $question->title; ?></h3>
-		<div class="markdown">
-		<?php echo Markdown($question->body); ?>
-		</div>
-		
-		
+		<p><?php echo Markdown($question->body); ?></p>
+	
 		<form action="" method="POST">
   		<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
+
+	</form> 
+	<div class="vote">
+<?php if($question->vote){
+					echo "you already voted";}
+	else {
+		include "qvote.php";}?>
+
+	</div>
+
+
 		</form>
 <form action="<?=base_url()?>index.php/util/q_vote" name="voting" method="POST">
 <table>
@@ -68,12 +78,11 @@
 		<td><a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >  <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/></a></td>
 		<?endif;?>
 		</tr>
-	 <!--   <a href="?vote=up&amp;id=" >Up</a>
-	<a href="?vote=down&amp;id=" >Down</a> -->
 		
 	</div>
 	</table>
 </form> 
+
 <div id="ajaxresult">
 
 <?php
@@ -85,21 +94,19 @@ if (isset($result))
 
 <?php foreach ($answers as $answer): ?>
 	<div class="answer">
-	<div class="markdown">
-		<?php echo Markdown($answer->body); ?>
-	<form action="http:/index.php/util/a_vote" name="answer_voting" method="POST">
-	<div>
-		 <input type="submit" name="aup" value="up" /> 
-		<input type="submit" name="adown" value="down"/> 
-		<input type="hidden" value="<?php echo $answer->answerID; ?>" name="aid" />		
-	</div>
-	</form>
-	</div>
-	</div> <!-- answer dic closed -->
+		<?php echo $answer->body; ?>
+<div class="vote">	
+	<?php if($answer->vote){
+					echo "you already voted"; echo "<br>";}
+	else {
+		include "avote.php";}?>
+	</div>	
+
+</div> <!-- answer dic closed -->
+	
 <?php endforeach ?>
 
 <?php echo $backlink?>
 
 
-
-
+</div> <!-- body -->
