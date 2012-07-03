@@ -36,12 +36,13 @@ class Question_model extends CI_Model {
 	 * @param int $offset the pagination offset
 	 * @param int $limit the amount of questions to retrieve
 	 * @param array $filter the optional filter to be applied to the results
-	 * @return array holds question objects with a questionID and its title
+	 * @return array holds question objects with a questionID and its title ordered by rank in decending order 
 	 *
 	 */
 
 	public function get_list($offset, $limit, $filter = array()) {
 		$this -> db -> select('questionID,title');
+		$this->db->order_by("rank", "desc");
 		$this -> filter($filter);
 		$query = $this -> db -> get('Question', $limit, $offset);
 		return $query -> result();
