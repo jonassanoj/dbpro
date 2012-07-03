@@ -24,6 +24,7 @@ function init_view_data($content,$data) {
 		$data['navigation'][3] = anchor('util/lang/farsi', lang('w_lang_fa'));
 		$data['navigation'][4] = anchor('util/lang/pashto', lang('w_lang_ps'));
 		$data['navigation'][5] = anchor('util/lang/deutsch', lang('w_lang_de'));
+		$data['navigation'][6] = anchor('admin',lang('admin_user'));
 		////////////////// end of temporary changes
 		
 		// if a user is logged in show categories from his field:
@@ -34,6 +35,7 @@ function init_view_data($content,$data) {
 	else {
 		$data['username']=$CI -> input -> cookie('username');
 		$data['categories']=$CI->category_model->get_favorite_category();
+		
 	}
 	$data['content'] = "content/$content";
 	

@@ -19,10 +19,15 @@ class Field_model extends CI_Model {
 	 * @author Sayed Ahmad Mahbobi
 	 * @return: Array: it return an array of all rows in the Field table
 	 */
-	
-	function get_fields() {
+	const FLAT_ARAY=0;
+	function get_fields($return=self::FLAT_ARAY) {
 		$query = $this -> db -> get('Field');
-		return $query -> result();
+		if ($return==self::FLAT_ARAY) {
+			foreach($query -> result() as $fieldType)
+				$flat[$fieldType->fieldID]=$fieldType->fieldName;
+			return $flat;
+		}
+		else return $query -> result();
 	}
 
 	/**

@@ -200,9 +200,17 @@ class User_model extends CI_Model {
 	 * @author saminullah sameem
 	 * @return array userType objects with the attributes userTypeID and userType
 	 */
-	public function get_usertypes() {
+	const FLAT_ARAY = 0;
+	public function get_usertypes($return=self::FLAT_ARAY) {
 		$query = $this -> db -> get('UserType');
-		return $query -> result();
+		if ($return==self::FLAT_ARAY) {
+			foreach($query -> result() as $userType)
+				$flat[$userType->userTypeID]=$userType->userType;
+			return $flat;
+		}
+		
+		
+		else return $query->result();
 	}
 
 	/**
