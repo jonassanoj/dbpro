@@ -53,6 +53,10 @@ $lang['title_popular_questions'] = "پربیننده ترین سوالات";
 $lang['title_your_questions'] = "سوالات شما ";
 $lang['title_your_interest'] = "سوالات که ممکن مورد علاقه شما باشد";
 $lang['title_about'] = "در باره گفتگو";
+$lang['tittle_comment_create'] = "شمامیتوانیدنظریهٔ جدیدایجادکنید";
+$lang['tittle_existing_comment'] = "نظریهٔ موجوده را تغیربدهید";
+$lang['tittle_update_comment'] = "نظریهٔ شما تصحیح گردید";
+$lang['tittle_delete_comment'] = "نظریهٔ شماحذف گردید";
 
 // Words
 $lang['w_about'] = "درباره";
@@ -62,6 +66,9 @@ $lang['w_lang_ps'] = "‏پشتو";
 $lang['w_lang_fa'] = "‏درى‎";
 $lang['w_lang_de'] = "آلمانی";
 $lang['w_lang_en'] = "انگلیسی";
+$lang['update_comment'] = "تصحیح";
+$lang['add_comment'] = "افزودب";
+$lang['cancel_comment'] = "لغو";
 
 
 // Form
@@ -76,6 +83,13 @@ $lang['msg_login_failed'] = "ورود ناموفق است";
 $lang['msgvar_username_taken'] = "متاسفانه نام %s قبلا ثبت شده است ";
 $lang['msgvar_users_online'] = "اکنون %u کاربر عضو و %uکاربر مهامن انلاین هستند.";
 $lang['msgvar_login_trial'] = "شما %u مرتبه ورود ناموفق داشته اید.";
+$lang['msg_inserted_comment'] = "نظریهٔ شمابامؤفقیت درج گردید";
+$lang['msg_sorry_comment'] =  "متأسفانه,نظریهٔ شمادرج نگردید,بعداًامتحان کنید";
+$lang['msg_notUpdated_comment'] = "نظریهٔ شماتصحیح نگردید, لطفاً,بعداًامتحان کنید";
+$lang['msg_delete_comment'] = "نظریهٔ شماحذف گردید";
+$lang['msg_notFound_comment'] = "نظریهٔ یافت نگردیدتاحذف گردد";
+$lang['comment_textarea_label'] = "نظریهٔ خودرااینجابنویسید";
+$lang['msg_update_comment'] = "نظریهٔ شمابامؤفقیت تصحیح گردید";
 // Paragraphs . 
 $lang['par_about'] = "
 گفتگو صفحه انترنتی  سوال و جواب درباره موضوعات کمپیوتر ساینس است که هدف آن تامین روابط نزدیک میان شاگردان استادان و افراد مسلکی رشته تکنالوژی معلوماتی میباشد. 

@@ -49,6 +49,10 @@ $lang['title_popular_questions'] = "Die beliebtesten Fragen";
 $lang['title_your_questions'] = "Deine Fragen";
 $lang['title_your_interest'] = "Fragen, die dich interessieren könnten";
 $lang['title_about'] = "Über Goftogo";
+$lang['tittle_comment_create'] = "Sie können neue Kommentar!";
+$lang['tittle_existing_comment'] = "Bearbeiten einer vorhandenen Kommentar!";
+$lang['tittle_update_comment'] = "Sie haben den Kommentar aktualisiert!";
+$lang['tittle_delete_comment'] = "Sie haben das kommentarlos gelöscht!";
 
 // Words
 $lang['w_about'] = "über";
@@ -58,6 +62,9 @@ $lang['w_lang_ps'] = "‏paschtu";
 $lang['w_lang_fa'] = "persisch";
 $lang['w_lang_de'] = "deutsch";
 $lang['w_lang_en'] = "english";
+$lang['update_comment'] = "aktualisieren";
+$lang['add_comment'] = "hinzufügen";
+$lang['cancel_comment'] = "absagen";
 
 // Form
 $lang['form_username'] = "Benutzername";
@@ -71,7 +78,13 @@ $lang['msg_login_failed'] = "Login fehlgeschlagen!";
 $lang['msgvar_username_taken'] = "Der Benutzername %s ist bereits registriert!";
 $lang['msgvar_users_online'] = "Momentan sind %u registrierte Nutzer und %u Gäste online.";
 $lang['msgvar_login_trial'] = "Du hast %u mal erfolglos versucht, dich einzuloggen.";
-
+$lang['msg_inserted_comment'] = "Ihr Kommentar wird erfolgreich eingesetzt!";
+$lang['msg_sorry_comment'] = "Leider Ihr Kommentar wird nicht eingesetzt, später versuchen";
+$lang['msg_notUpdated_comment'] = "Kommentar nicht aktualisiert werden, versuchen Sie es später!";
+$lang['msg_delete_comment'] = "Kommentar gelöscht!";
+$lang['msg_notFound_comment'] = "Kommentar nicht gefunden wird, die gelöscht werden!";
+$lang['comment_textarea_label'] = "Schreiben Sie hier Ihren Kommentar !";
+$lang['msg_update_comment'] = "Kommentar wurde erfolgreich aktualisiert !";
 // Paragraphs 
 $lang['par_about'] = "Goftogo (Dialog) ist eine Frage und Antwort Webseite zum Thema Informatik, die afghanische Informatikstudenten, 
 -lehrer und -profis zusammenbringen will. Ob ein Student im ersten Semester, ein erfahrenerer Programmierer, der täglich die neuesten 

@@ -50,7 +50,6 @@ class Edit extends CI_Controller {
 		$this -> load -> view('main_view',init_view_data($content,$data));
 	}
 	
-	
 	/**
 	 * Create a new question or edit an existing one
 	 * 
@@ -244,56 +243,60 @@ class Edit extends CI_Controller {
 		$this -> _loadviews('form_answer', $data);
 		
 	}
-/**
+     /**
 	 * 
 	 * Creates a new comment or edits an existing one
 	 * 
-	 * @author Foawziah and Huma
+	 * This function will be run ,if the user in logged in 
+	 * 
 	 * @param int $qid the id of the question to comment on
 	 * @param int $aid the id of the answer
 	 * @param int $cid optional, the commentID, if left blank, create a new comment
 	 * @return void
 	 */
 	public function comment($qid,$aid,$cid=0){
-		if (!$this->session->userdata('login')) redirect('main/home');	
-				
-			$data['qid'] = $qid;
-			$data['aid'] = $aid;	
-		if ($cid==0)
-		{
-			$data['cid'] = 0;
-			$data['title']='Create new comment';       //TODO: localize		
+		
+		if (!$this->session->userdata('login')) redirect('main/home');
+		$data['aid'] = $aid;
+		$data['qid'] = $qid;
+		if ($cid==0){
+				if($qid && !$aid) {
+					$result = $this -> question_model -> get_details($qid);
+					$data['source_of_comment'] = $result -> body;
+				}
+				else if($aid && !$qid) {
+					$result = $this -> answer_model -> get_details($aid);
+					$data['source_of_comment'] = $result -> body;
+				}
+				$data['cid'] = 0;
+				$data['title']= lang('tittle_comment_create');   
 		}
 		else {
-			
-			$comment = $this -> comment_model -> get_comment($cid);
-			// if $comment is false (not found in db), send user back
-			if (!$comment) redirect('main/home'); 
-			// if the editor is not the owner of the comment,send him back	
-			if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home'); 
-			$data['cid'] = $cid;
-			if(!empty($comment -> questionID) || $comment -> questionID != '') {
-				$result = $this -> question_model -> get_details($comment->questionID);
-				$data['source_of_comment'] = $result -> body;
-			}
-			else if(!empty($comment -> answerID) || $comment -> answerID != '') {
-				
-				$result = $this -> answer_model -> get_answers($qid);
-				$data['source_of_comment'] = $result[0] -> body;
-			}
-			
-			$data['title']='Edit an existing comment !';    //TODO: localize
-			$data['comment'] = $comment -> body;
-			// modify existing comment
+				// if $comment is false (not found in db), send user back
+				$comment = $this -> comment_model -> get_comment($cid);
+				if (!$comment) redirect('main/home'); 
+				// if the editor is not the owner of the comment,send him back	
+				$data['cid'] = $cid;
+				if(($comment -> questionID) && (!$comment -> answerID)) {
+					$result = $this -> question_model -> get_details($comment->questionID);
+					$data['source_of_comment'] = $result -> body;
+				}
+				else if(($comment -> answerID) && (!$comment -> questionID)) {
+					$result = $this -> answer_model -> get_details($comment -> answerID);
+					$data['source_of_comment'] = $result -> body;
+				}
+				$data['title']= lang('tittle_existing_comment'); 
+				$data['comment'] = $comment -> body;
 		}
 		$this->_loadviews('form_comment',$data);
-		
 	}
 	/**
 	 *
-	 * Processes the 'create' and 'update' functionalities
+	 * Processes the create, update and delete functionalities
 	 *
-	 * @author Foawziah and Huma
+	 * It updates If comment is already there,else creates new one
+	 * This function is run,if the user is logged in and is the owner of the comment
+	 *
 	 * @return void
 	 */
 	
@@ -307,55 +310,43 @@ class Edit extends CI_Controller {
 		$data['qid'] = $qid;
 		$data['aid'] = $aid;
 		$data['cid'] = $cid;
-		$data['title'] = 'You can update or create a comment !';  //TODO: localize
-			// Now it will create new comment.
+		$data['title'] = lang('tittle_update_comment'); 
+		// Creates new comment.
+		if($this -> input -> post('btn_add')){
 			if($cid == 0) {
 				$return = -1;
-				if($aid != 0 && is_int($aid))
-				$return = $this -> comment_model -> create_acomment($aid, $uid, $body);
-				else
-				$return = $this -> comment_model -> create_qcomment($qid, $uid, $body);
-				
-				if($return > 0) 
-				$data['msg'] = 'Your comment is inserted successfully !';
-				else 
-				$data['msg'] = 'Sorry! try later';
+				if($aid)$return = $this -> comment_model -> create_acomment($aid, $uid, $body);
+				else$return = $this -> comment_model -> create_qcomment($qid, $uid, $body);
+				if($return > 0) $data['msg'] = lang('msg_inserted_comment');
+				else $data['msg'] = lang('msg_sorry_comment');
 			}
-			else {
-			 
+		}
+		//Updates an existing comment.
+		else if($this -> input -> post('btn_update')){
+				$comment = $this -> comment_model -> get_comment($cid);
+				if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home');
 			 	$return = $this -> comment_model -> update_comment($cid, $body);
-			 	if($return)
-			 	$data['msg'] = 'Comment is updated successfully !';
-			 	else
-			 	$data['msg'] = 'Comment did not updated please try later !';
-			
-			}
-			$this -> _loadviews('form_comment', $data);
-			
+			 	if($return) $data['msg'] = lang('msg_update_commnet');
+			 	else $data['msg'] = lang('msg_notUpdated_comment');
+		}
+					redirect('main/qshow/'. $qid);
 	}
-	
 	/**
 	 *
 	 *  Processes the deletion functionality
-	 *  
-	 * @author Foawziah and Huma
-	 * @param int $cid the id of the comment 
+	 *
+	 * Deletes the comment which the ID is passed as a parameter
+	 * 
+	 * @param int $cid the id of the comment
 	 * @return void
 	 */
-
 	public function delete_comment($cid){
-		if(!$this -> session -> userdata('login')) redirect('main/home');
-		
 		$comment = $this -> comment_model -> get_comment($cid);
-		if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home');
 		$return = $this -> comment_model-> delete_comment($cid);
-		$data['title'] = 'You can modify the comment !';
-		if($return)
-			$data['msg'] = 'Comment is deleted !';
-
-	        else 
-	    		$data['msg'] = 'Comment is not found to be deleted!';
-	    
-		$this -> _loadviews('form_comment', $data);		
+		if($return) $data['msg'] = lang('msg_delete_comment');
+	  	else $data['msg'] = lang('msg_notFound_comment');
+		redirect('main/qshow/'. $comment->questionID);
+		
+	
 	}
 }
