@@ -19,10 +19,11 @@ class Answer_model extends CI_Model {
 	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
 	 *
 	 * @param int $qid the id of the question we want answers for   
-	 * @return array holds answer objects with fileds for all database columns
+	 * @return array holds answer objects with fileds for all database columns  ordered by rank in decending order 
 	 */
 
 	public function get_answers($qid) {
+		$this->db->order_by("rank", "desc");
 		$query = $this -> db -> get_where('Answer', array('questionID' => $qid));
 		return $query -> result();
 	}

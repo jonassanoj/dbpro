@@ -4,7 +4,7 @@ if (!isset($userinfo)) {
 	echo lang('form_username','username');
 	    $options = array("id" => "username", "name"  => "username");
 	    if (isset($username)) $options['value'] = $username;
-		echo form_input($options);
+	   	echo form_input($options);
 		echo "<br>\n"; // new line
 		echo lang('form_password','password');
 		echo form_password(array("id" => "password", "name" => "password"));
