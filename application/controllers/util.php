@@ -36,6 +36,7 @@ class Util extends CI_Controller {
 	public function lang($language) {
 		$this -> session -> set_userdata('language',$language);
 		redirect($this -> session -> userdata('last_visited'));
+
 	}
 	
 	/**

@@ -46,18 +46,21 @@ $this->load->view('include/header');
 				</div><!-- #content-->
 			</div><!-- #container-->
 			<div id="sidebar">
-					<?php 
-					if (isset($navigation)) 
-						$this->load->view('include/navigation_dynamic');
-					else 
-						$this->load->view('include/navigation_default');
-					?>
+				<?php 
+				if (isset($navigation)) 
+					$this->load->view('include/navigation_dynamic');
+				else 
+					$this->load->view('include/navigation_default');
+				?>
 			</div><!-- #sidebar -->
 		</div><!-- #middle-->
 	</div><!-- #wrapper -->
 	
 	<div id="footer">
-		<?php echo lang('title_main'); ?>. 2012
+		
+		<?php
+			$this->load->view('include/langbar');
+		?>
 	</div><!-- footer  -->
 
 </body>

@@ -160,6 +160,42 @@ h3 { font-size: 120%; }
 	 margin-right: 1em;
 }
 
+/************************* /
+ * language bar at teh footer
+ */
+
+#langbar {
+	position:absolute;	
+	top:0px;
+	left:auto;
+	width: 41%;
+	height: 2em;
+	text-align: center;
+	border-top: 1px dashed silver;
+	background: #62B548;
+	padding: 0;
+	margin: 0;
+}
+
+#langbar ul{
+	margin: 0px;
+	padding: 0px;
+    font-size: small;
+    color: #FFF;
+    float: left;
+    line-height: 30px;
+	white-space: nowrap;
+	
+}
+
+#langbar li{
+	 font-family: Arial, Helvetica, sans-serif;
+	 float: left;
+	 margin-left: 1em;
+	 margin-right: 1em;
+}
+/* end */
+
 .question, .answer, .comment {
 	border-bottom-width: 1px;
 	border-bottom-style: dashed;
