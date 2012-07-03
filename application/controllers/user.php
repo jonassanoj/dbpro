@@ -137,10 +137,11 @@ class User extends CI_Controller {
 		else
 			redirect(site_url('user/recover/' . $user));
 	}
-	function index()
-	{
-		$this->load->view('upload_form', array('error' => ' ' ));
+
+	function index() {
+		$this -> load -> view('upload_form', array('error' => ' '));
 	}
+
 	public function update_user() {
 
 		//$this->load->library('form_validation');
@@ -156,13 +157,13 @@ class User extends CI_Controller {
 		$data['dateOfBirth'] = $this -> input -> post('dateOfBirth');
 		$data['organization'] = $this -> input -> post('organization');
 		$data['location'] = $this -> input -> post('location');
-		$data['imagePath'] = $this -> input -> post('imagePath');
+		$data['imagePath'] = "/uploads/" . $_FILES['userfile']['name'];
 		$data['degree'] = $this -> input -> post('degree');
 		$data['fieldID'] = $this -> input -> post('fieldID');
 		//$this -> load -> model('user_model');
 		//echo $data['imagePath'];
 		$this -> user_model -> update_user($this -> session -> userdata('uid'), $data);
-		$this -> do_upload();
+		//$this -> do_upload();
 		redirect('main/home');
 		//		}
 	}
@@ -179,14 +180,13 @@ class User extends CI_Controller {
 		if (!$this -> upload -> do_upload()) {
 
 			$error = array('error' => $this -> upload -> display_errors());
-			
+			$error['title'] = 'File upload error';
 			$this -> _loadviews('my_account', $error);
-
-		//	$this -> load -> view('upload_success', $error);
+			//$this -> view_account();
+			//	$this -> load -> view('upload_success', $error);
 		} else {
 			$data = array('upload_data' => $this -> upload -> data());
-		
-		//	$this -> _loadviews('upload_success', $data);
+			//$this -> _loadviews('upload_success', $data);
 			$this -> update_user();
 			//$this -> load -> view('upload_success', $data);
 		}

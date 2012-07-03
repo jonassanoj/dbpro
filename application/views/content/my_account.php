@@ -2,13 +2,15 @@
 /**
  *the form to show all the user account information so we can update the user account information after wards
  */
+
 </script>
+
 <div id="main_div">
 	<?php
 				if (isset($error))
 					echo $error;
  ?>
- <?php //$attribute = array("id" => "user_update_form", "name" => "user_update_form", "size" => "20");
+ <?php $attribute = array("id" => "user_update_form", "name" => "user_update_form", "size" => "20");
 	echo form_open_multipart('user/do_upload');
  ?>
         
@@ -27,7 +29,7 @@
             <td width="25%" rowspan="8" align="right" valign="top" >
             <img src="<?php
 				if (isset($imagePath))
-					echo base_url() . $imagePath;
+					echo base_url().$imagePath;
  ?>" 
             alt="Your image" width="120" height="120" align="bottom" border="1" /> <br />
             </td>
@@ -127,8 +129,12 @@
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td valign="top" align="right">&nbsp;</td>
-            <td colspan="2"><input type="submit" name="update" id="update" value="Update Profile" /></td>
+            <td valign="top" align="right">
+			
+			</td>
+            <td colspan="2"><input type="submit" name="update" id="update" value="Update Profile" />
+            
+            </td>
           </tr>
   </table>
 
