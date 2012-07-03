@@ -154,48 +154,68 @@ h3 { font-size: 120%; }
 }
 
 #catbar li{
+	 border-left: 1px solid #E4E4E4;
+	 padding: 0 0.5em;
 	 font-family: Arial, Helvetica, sans-serif;
 	 float: left;
-	 margin-left: 1em;
-	 margin-right: 1em;
+	 margin-left: 0em;
+	 
 }
 
 /************************* /
  * language bar at teh footer
  */
 
-#langbar {
-	position:absolute;	
-	top:0px;
-	left:auto;
-	width: 41%;
-	height: 2em;
-	text-align: center;
-	border-top: 1px dashed silver;
-	background: #62B548;
-	padding: 0;
-	margin: 0;
+.langbar {
+	background: #D9C6B0;
+	font-size: smaller;
+	margin: 0 0 1em 0;
+	padding: 0.5em 1em;
+	position:absolute;
+	right: 40px;
+}
+.langbar ul {
+	display: inline;
+	margin-left: 0;
+	padding-left: 0;
 }
 
-#langbar ul{
-	margin: 0px;
-	padding: 0px;
-    font-size: small;
-    color: #FFF;
-    float: left;
-    line-height: 30px;
-	white-space: nowrap;
-	
+.langbar ul li {
+	border-left: 1px solid #E4E4E4;
+	display: inline;
+	list-style: none;
+	margin-left: 0;
+	padding: 0 0.5em;
 }
 
-#langbar li{
-	 font-family: Arial, Helvetica, sans-serif;
-	 float: left;
-	 margin-left: 1em;
-	 margin-right: 1em;
+.langbar ul li.langbar_main {
+	border-left: none;
+	display: inline;
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
 }
-/* end */
+.langbar ul a.external {
+	background: none ! important;
+	padding-right: 0 ! important;
+}
 
+.langbar ul li.langbar_title {
+	display: none;
+}
+/*
+ * end
+ */
+
+.searchbox {
+	border: 0px;
+	position: absolute;
+	top: 140px;
+	right: 20px;
+	width: auto;
+	height: 35px;
+}
+/*end */
 .question, .answer, .comment {
 	border-bottom-width: 1px;
 	border-bottom-style: dashed;

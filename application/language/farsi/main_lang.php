@@ -36,8 +36,9 @@
  * 
  */ 
 
+
 // Meta-Information
-$lang['language_name'] = "������������"; // name of the language as it should be displayed.
+$lang['language_name'] = "‏درى‎"; // name of the language as it should be displayed.
 $lang['language_code'] = "fa"; // language code, e.g. fa for Farsi,  ps for Pashto, de for German
 $lang['language_region'] = "AF"; // regional language subtype, AF for Afghanistan (so fa-AF is dari)
 $lang['language_dir'] = "rtl"; // language direction can be ltr (left-to-right) or rtl (right-to-left)
@@ -47,22 +48,23 @@ $lang['language_dir'] = "rtl"; // language direction can be ltr (left-to-right) 
 // Titles
 $lang['title_main'] = "گفتگو";  
 $lang['title_alt'] =  "Goftogo"; // alternative name 
-$lang['title_recent_questions'] = "آخرین سوالات";
-$lang['title_popular_questions'] = "پرسش های پربیننده";
-$lang['title_your_questions'] = "پرسش های شما"
-lan['title_your_interest'] = "پرسش های مورد علاقه شما";
-$lang['title_about'] = "در مورد گفتگو";
+$lang['title_recent_questions'] = "آخرین سوالات ";
+$lang['title_popular_questions'] = "پربیننده ترین سوالات";
+$lang['title_your_questions'] = "سوالات شما ";
+$lang['title_your_interest'] = "سوالات که ممکن مورد علاقه شما باشد";
+$lang['title_about'] = "در باره گفتگو";
 
 // Words
-$lang['w_about'] = "در باره";
+$lang['w_about'] = "درباره";
 $lang['w_home'] = "صفحه اصلی";
 $lang['w_back'] = "برگشت";
-$lang['w_lang_ps'] = "پشتو";
-$lang['w_lang_fa'] = "فارسی";
+$lang['w_lang_ps'] = "‏پشتو";
+$lang['w_lang_fa'] = "‏درى‎";
 $lang['w_lang_de'] = "آلمانی";
 $lang['w_lang_en'] = "انگلیسی";
 
-
+//new 
+$lang['admin_user'] = "صفحه ای ادمین";
 // Form
 $lang['form_username'] = "نام ";
 $lang['form_password'] = "رمزعبور";
