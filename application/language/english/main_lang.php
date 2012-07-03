@@ -83,8 +83,8 @@ $lang['msgvar_loggedin_as'] = "You are logged in as %s.";
 $lang['msg_login_needed'] = "The page you are trying to view is only available to registered users. Please login with your username and password to access it.";
 $lang['msg_login_register'] = "If you do not have a user account yet, you can get one by clicking on ".$lang['form_register'].".";
 $lang['msg_registration_about'] = "Setting up a user account is completely free and takes just a minute. ";
-
-
+// newly added
+$lang['admin_user'] = "Admin page";
 // Paragraphs 
 $lang['par_about'] = "Goftogo (Dialogue) is a Computer Science related Q&A site, that wants to bring Afghan IT students, 
 teachers and professionals closer together. Whether you are just starting to learn about IT at university, are an experienced 

@@ -29,6 +29,7 @@ class Admin extends CI_Controller {
 		$this->load->helper('url');		
 		// load model
 		$this->load->model('User_model','',TRUE);
+		$this->load->model('Field_model','',TRUE);
 		//load session library
 		$this->load->library('session');
 		//load languege
@@ -60,6 +61,10 @@ class Admin extends CI_Controller {
 		
 	}
 	
+	public function _loadviews($content, $data) {
+		$data['loginbox']=TRUE;
+		$this -> load -> view('main_view',init_view_data($content,$data));
+	}
 	/**
 	 * list all user in the data base 
 	 * 
@@ -74,7 +79,7 @@ class Admin extends CI_Controller {
 	function mainf($offset = 0){
 
 		$data['loginbox'] = true;
-		$data['title'] = 'Admin View Users List';
+		$data['title'] = 'Users List';
 		$data['navigation'][0] = anchor('admin/online/','Show online User');
 		$data['content'] = 'content/personList';
 		// offset
@@ -132,8 +137,9 @@ class Admin extends CI_Controller {
 		$person = $this->User_model->get_userdata($uid);
 		$this->form_data->id = $uid;
 		//take parmeter from data base
+		$this->form_data->userTypeID = $person->userTypeID;
 		$this->form_data->userName = $person->userName;
-		$this->form_data->userType = $person->userTypeID;
+		$data['userTypeList']=$this->User_model->get_usertypes($return=user_model::FLAT_ARAY);
 		
 		//load view 
 		$this->load->view('main_view', $data);
@@ -147,21 +153,35 @@ class Admin extends CI_Controller {
 	 * @return void
 	 * 
 	 */
-	
-	function ugrade_user(){
-		//comon properties 
-		$data['message'] = '<div class="success">upgrade person success</div>';
-		//$data['action'] = site_url('admin/upgrade_user');
-		$data['navigation'][0] = anchor('admin/index/','Back to User list');
-		$data['title'] = 'Upagarade User';
-		$data['content'] = 'content/upgrade';
-		
+	function upgrade_user(){
 		$uid = $this->input->post('id');
 		$userTypeID = $this->input->post('userTypeID');
+		//exicute function from user model
+		$this->User_model->change_usertype($uid,$userTypeID);
+		$this->mainf();
+	}
+	
+	function ugrade_user1(){
+		//comon properties 
+		//$data['message'] = '<div class="success">upgrade person success</div>';
+		//$data['action'] = site_url('admin/upgrade_user');
+		//$data['navigation'][0] = anchor('admin/index/','Back to User list');
+		//$data['title'] = 'Upagarade User';
+		//$data['content'] = 'content/upgrade';
+		
+		//$uid = $this->input->post('id');
+		//$userTypeID = $this->input->post('userTypeID');
 		//exicute function from user model 	 
-		$this->User_model->change_usertype($uid,$userTypeID);	
+		//$this->User_model->change_usertype($uid,$userTypeID);	
 		//load view
-		$this->load->view('main_view', $data);
+		//$this->User_model->update_user($id,$person);
+			
+			// set user message
+	//	$data['message'] = '<div class="success">update person success</div>';
+		 //}
+		
+		// load view
+		//$this->mainf();
 	}
 	
 	
@@ -178,7 +198,9 @@ class Admin extends CI_Controller {
 		$uri_segment = 3;
 		$offset = $this->uri->segment($uri_segment);
 		// load data
-		$persons = $this->User_model->get_paged_list($this->limit, $offset)->result();
+		
+		$persons =$this->list_users();
+		//$persons = $this->User_model->get_paged_list($this->limit, $offset)->result();
 		// generate pagination
 		$this->load->library('pagination');
 		$config['base_url'] = site_url('admin/index/');
@@ -190,16 +212,16 @@ class Admin extends CI_Controller {
 		
 		$this->load->library('table');
         $this->table->set_empty("&nbsp;");
-		$this->table->set_heading( 'User Name', 'status ','');
+		$this->table->set_heading( 'User Name/IP ADD', 'status ','');
 		//$users = $this->onlineusers->get_info(); //prefer using reference to best memory usage
 		//foreach($user as $users)
 		  //{
 		      //if(isset($user['data']['userName'])) { print $user['data']['userName']; }
 		 // }
-		
+		if (is_array($persons))		
 		foreach ($persons as $person)
 		{
-				$this->table->add_row($person->userName,'Online',
+				$this->table->add_row($person,'Online',
 				anchor('admin/view/'.$person->userID,'view',array('class'=>'view')).' '.
 				anchor('admin/delete/'.$person->userID,'delete',array('class'=>'delete','onclick'=>"return confirm 						('Are you sure want to delete this person?')"))
 			);
@@ -249,7 +271,11 @@ class Admin extends CI_Controller {
 		$this->_set_rules();
 		//load model get user data for editing
 		$person = $this->User_model->get_userdata($id);
-		// prefill form values		
+		// prefill form values	
+		$data['userTypeList']=$this->User_model->get_usertypes($return=user_model::FLAT_ARAY);
+		$data['fieldList']=$this->Field_model->get_fields($retun=field_model::FLAT_ARAY);
+		
+		
 		$this->form_data->id = $id;
 		$this->form_data->fullName = $person->fullName;
 		$this->form_data->userName = $person->userName;
@@ -296,6 +322,7 @@ class Admin extends CI_Controller {
 		//else
 		//{
 			// save data
+			
 			$id = $this->input->post('id');
 			$person = array('fullName' => $this->input->post('fullName'),
 					'userName' => $this->input->post('userName'),
@@ -343,6 +370,7 @@ class Admin extends CI_Controller {
 	
 	function _set_fields(){
 		$this->form_data->id = '';
+		$this->form_data->userTypeList = '';
 		$this->form_data->fullName = '';
 		$this->form_data->userName = '';
 		$this->form_data->email = '';
@@ -408,6 +436,7 @@ class Admin extends CI_Controller {
 	 *
 	 */
 	function list_users(){
+		
 		if($this->session->userdata('userTypeID'== 1 | 2 | 3))
 		{
 			return $this->session->userdata('userName');

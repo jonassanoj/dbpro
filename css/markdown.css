@@ -6,7 +6,7 @@
 	font-size: 90%;
 	font-family: Arial, Helvetica, sans-serif;
 }
-.markdown h1, h2, h3, h4, h5, h6 {
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
 	font-style:normal;
@@ -15,7 +15,6 @@
 	padding: 0px;
 	font-size: 120%; color:#000000;
 	cursor: text;
-	
 } 
 .markdown h2{
 	font-size:100%; color: #000000; 

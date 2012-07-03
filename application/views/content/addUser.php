@@ -53,15 +53,22 @@
 			</tr>
 			<tr>
 				<td valign="top">User Privileges <span style="color:red;">*</span></td>
-				<td><input type="text" name="userTypeID" class="text" value="<?php echo set_value('userTypeID',$this->form_data->userTypeID); ?>"/>
-<?php echo form_error('name'); ?>
-				</td>
-			</tr>
+				
+              <td>
+<?=form_dropdown('userTypeID',$userTypeList,set_value('userTypeID',$this->form_data->userTypeID), 'style="width: 240px; height:30px; font-size: 13px"');?> &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						 
+<?=form_error('userTypeID')?>
+</td>
 			<tr>
-				<td valign="top">Syudy Filed<span style="color:red;">*</span></td>
-				<td><input type="text" name="fieldID" class="text" value="<?php echo set_value('fieldID',$this->form_data->fieldID); ?>"/>
-<?php echo form_error('name'); ?>
-				</td>
+				<td valign="top">Study Field<span style="color:red;">*</span></td>
+				<td>
+<?=form_dropdown('fieldID',$fieldList,set_value('fieldID',$this->form_data->fieldID), 'style="width: 240px; height:30px; font-size: 13px"');?> &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						 
+<?=form_error('userTypeID')?>
+</td>
+				
 			</tr>
 			<tr>
 				<td valign="top">Date of birth <span style="color:red;">*</span></td>

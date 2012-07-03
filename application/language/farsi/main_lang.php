@@ -63,7 +63,8 @@ $lang['w_lang_fa'] = "‏درى‎";
 $lang['w_lang_de'] = "آلمانی";
 $lang['w_lang_en'] = "انگلیسی";
 
-
+//new 
+$lang['admin_user'] = "صفحه ای ادمین";
 // Form
 $lang['form_username'] = "نام ";
 $lang['form_password'] = "رمزعبور";

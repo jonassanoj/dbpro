@@ -71,7 +71,8 @@ $lang['msg_login_failed'] = "Login fehlgeschlagen!";
 $lang['msgvar_username_taken'] = "Der Benutzername %s ist bereits registriert!";
 $lang['msgvar_users_online'] = "Momentan sind %u registrierte Nutzer und %u Gäste online.";
 $lang['msgvar_login_trial'] = "Du hast %u mal erfolglos versucht, dich einzuloggen.";
-
+// new 
+$lang['admin_user'] = "Admin page";
 // Paragraphs 
 $lang['par_about'] = "Goftogo (Dialog) ist eine Frage und Antwort Webseite zum Thema Informatik, die afghanische Informatikstudenten, 
 -lehrer und -profis zusammenbringen will. Ob ein Student im ersten Semester, ein erfahrenerer Programmierer, der täglich die neuesten 

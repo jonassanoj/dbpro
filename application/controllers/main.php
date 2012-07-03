@@ -83,6 +83,19 @@ class Main extends CI_Controller {
 	}
 
 	/**
+	 * this fucntion gets the search term from search box,
+	 * checking the input.then
+	 * redirects to _filter
+	 */
+	public function search(){
+		$term = $this->input->post('search');
+		if($term <> "")
+			redirect("main/filter/search/".$term);
+		else 
+			redirect(base_url());
+	}
+	
+	/**
 	 * shows a list of questions filtered after one condition
 	 *
 	 * show the paginated _qlist_ view with the questions matching a filter.  
