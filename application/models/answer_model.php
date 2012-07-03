@@ -28,6 +28,25 @@ class Answer_model extends CI_Model {
 	}
 	
 	/**
+	 * check for login user if he/she voted for answer.
+	 *
+	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
+	 *
+	 * @param int $aid the answerID
+	 * @param int $userid the userID
+	 * @return object a single question object, containing column values as attributes.
+	 */
+	
+	public function check_vote($aid, $userid) {
+		$this->db->where('answerID', $aid);
+		$this->db->where('userID', $userid);
+		$this->db->from('AnswerVote');
+		$query = $this->db->get();
+		return $query -> first_row();
+	
+	}
+	
+	/**
 	* Adding new answer to a question
 	*
 	* This function is for adding a new answer to a question by a registered user.
