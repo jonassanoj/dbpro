@@ -40,8 +40,6 @@ function init_view_data($content,$data) {
  * only works for views loaded via init_view_data()
  * 
  * @param string $msg the message to show the next time a page i loaded
- * @param array $data the array that will be passed to the view
- * @return array the updated data array
  * 
  */
  
