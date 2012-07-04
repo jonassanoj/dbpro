@@ -73,7 +73,31 @@ else if($this->session->flashdata('update_message')) {
 <div class="question">
 		<h3><?php echo $question->title; ?></h3>
 		<div class="markdown">
-		<p><?php echo Markdown($question->body); ?></p>
+		<p><?php echo Markdown($question->body); ?>
+		
+		</p>
+		<?php 
+		/*
+		$rank=$question->rank;
+		$col="black";
+		if($rank<=0)
+			$col="red";
+		elseif ($rank>0 && $rank<=10)
+		$col="gray";
+		elseif ($rank>10 && $rank<50)
+		$col="black";
+		elseif ($rank>50 && $rank<100)
+		$col="#4169E1";
+		else
+			$col="#FFD700";
+		
+		echo '<div style="width: 200px; ;  height:35px; border: 1px solid #D0D0D0; text-align: center; vertical-align: middle; background-color: #f9f9f9; color: #002166;">
+		Question Rank =<dive style="color:'.$col.';">'.$rank.'</div></div>';
+		
+		*/
+		
+		?>
+		
 		</div>
 	
 		<form action="" method="POST">
@@ -129,6 +153,25 @@ if (isset($result))
 <?php foreach ($answers as $answer): ?>
 	<div class="answer">
 		<?php echo $answer->body; ?>
+		<br>
+		<?php
+		/* 
+			 $rank=$answer->rank;
+			$col="black";
+			if($rank<=0)
+				$col="red";
+			elseif ($rank>0 && $rank<=10)
+				$col="gray";
+			elseif ($rank>10 && $rank<50)
+				$col="black";
+			elseif ($rank>50 && $rank<100)
+				$col="#4169E1";
+			else 
+				$col="#FFD700";
+				echo '<div style="width: 200px; ;  height:35px; border: 1px solid #D0D0D0; text-align: center; vertical-align: middle; background-color: #f9f9f9; color: #002166;">
+			Answer Rank =<dive style="color:'.$col.';">'.$rank.'</div></div>';
+		*/
+		?>
 	<div class="vote">	
 	<?php if($answer->vote){
 					echo "you already voted"; echo "<br>";}
