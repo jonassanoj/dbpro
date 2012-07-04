@@ -48,7 +48,7 @@
 			</tr>
 			<tr>
 				<td valign="top">Date of Acount Creation:</td>
-				<td><?php echo $person->acountCreationDate; ?></td>
+				<td><?php echo $person->accountCreationDate; ?></td>
 			</tr>
 			<tr>
 				<td valign="top">Last log in </td>

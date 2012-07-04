@@ -32,6 +32,8 @@ class Admin extends CI_Controller {
 		$this->load->model('Field_model','',TRUE);
 		//load session library
 		$this->load->library('session');
+		//get user data
+		//$user = $this->session -> userdata('user');
 		//load languege
 		if (!$this -> session -> userdata('language'))
 			$this -> lang -> load('main');
@@ -51,9 +53,13 @@ class Admin extends CI_Controller {
 	 */
 	
 	function index(){
+		
+		$user = $this->session -> userdata('user');
 		// we put the not sign now for checing the admin function because we dont have and session data it will always redirect us
-		if(!$this->session->userdata('userTypeID' == 3)){
+		if ($user){ if($user->userTypeID == user_model::TYPE_ADMIN){
 			$this->mainf();
+		}else 
+			redirect('main/home', 'refresh');
 		}
 		else{
 			redirect('main/home', 'refresh');
@@ -110,7 +116,7 @@ class Admin extends CI_Controller {
 				anchor('admin/view/'.$person->userID,'view',array('class'=>'view')).' '.
 				anchor('admin/update/'.$person->userID,'update',array('class'=>'update')).' '.
 				anchor('admin/upgrade/'.$person->userID,'upgrade',array('class'=>'upgrade')).' '.
-				anchor('admin/delete/'.$person->userID,'delete',array('class'=>'delete','onclick'=>"return confirm('Are you sure want to delete this person?')"))
+				anchor('admin/delete/'.$person->userID,'delete',array('class'=>'delete'))
 			);
 		}
 		$data['table'] = $this->table->generate();		
@@ -161,29 +167,7 @@ class Admin extends CI_Controller {
 		$this->mainf();
 	}
 	
-	function ugrade_user1(){
-		//comon properties 
-		//$data['message'] = '<div class="success">upgrade person success</div>';
-		//$data['action'] = site_url('admin/upgrade_user');
-		//$data['navigation'][0] = anchor('admin/index/','Back to User list');
-		//$data['title'] = 'Upagarade User';
-		//$data['content'] = 'content/upgrade';
-		
-		//$uid = $this->input->post('id');
-		//$userTypeID = $this->input->post('userTypeID');
-		//exicute function from user model 	 
-		//$this->User_model->change_usertype($uid,$userTypeID);	
-		//load view
-		//$this->User_model->update_user($id,$person);
-			
-			// set user message
-	//	$data['message'] = '<div class="success">update person success</div>';
-		 //}
-		
-		// load view
-		//$this->mainf();
-	}
-	
+
 	
 	/**
 	 * show onsite user 
@@ -221,15 +205,15 @@ class Admin extends CI_Controller {
 		if (is_array($persons))		
 		foreach ($persons as $person)
 		{
-				$this->table->add_row($person,'Online',
+				$this->table->add_row($person->userName,'Online',
 				anchor('admin/view/'.$person->userID,'view',array('class'=>'view')).' '.
-				anchor('admin/delete/'.$person->userID,'delete',array('class'=>'delete','onclick'=>"return confirm 						('Are you sure want to delete this person?')"))
+				anchor('admin/delete/'.$person->userID,'delete',array('class'=>'delete'))
 			);
 		}
 		
 		$data['navigation'][0] = anchor('admin/index/','Back to User list'); 
 		$data['table'] = $this->table->generate();
-		$data['title'] = 'View Online User';
+		$data['title'] = 'Online User';
 		$data['content'] = 'content/onlineuser';
 		$this->load->view('main_view', $data);
 	}
@@ -345,6 +329,32 @@ class Admin extends CI_Controller {
 		//$this->load->view('main_view', $data);
 		$this->mainf();
 	}
+
+	function delete($uid){
+		//common properties
+				
+		$data['message'] ='';
+		$data['navigation'][0] = anchor('admin/index/','Back to User list');
+		$data['title'] = 'Delete User';
+		$data['content'] = 'content/delete';
+		$data['action'] = site_url('admin/delete_user');
+		//load user model
+		
+		$person = $this->User_model->get_userdata($uid);
+		
+		//take parmeter from data base
+		$deletionID='';
+		$this->form_data->id = $uid;
+		$this->form_data->deletionID = $deletionID;
+		$this->form_data->userName = $person->userName;
+		$data['deletion_types']=array('DEACTIVATE','ANONYMIZE','CASCADE');
+		 
+		
+		//load view
+		$this->load->view('main_view', $data);
+		//$this->User_model->delete_user($uid);
+		//redirect('admin/index/','refresh');
+	}
 	/**
 	 * delete user 
 	 * 
@@ -354,8 +364,23 @@ class Admin extends CI_Controller {
 	 * @param int_type $id is user ID 
 	 * @return void
 	 */
-	function delete($id){
-		$this->User_model->delete_user($id);
+	function delete_user(){
+ 		
+		$uid = $this->input->post('id');
+		
+		$deletionID = $this->input->post('deletionID');
+		//exicute function from user model
+		if($deletionID == 0){
+		$this->User_model->delete($uid, $deletion_type = User_model::DEACTIVATE);
+		} elseif ($deletionID ==1){
+			$this->User_model->delete($uid,$deletion_type = User_model::ANONYMIZE);
+			
+		}elseif ($deletionID ==2){
+			$this->User_model->delete($uid,$deletion_type = User_model::CASCADE);
+		}
+		
+		
+		//$this->User_model->delete_user($id,$deletionID);
 		redirect('admin/index/','refresh');
 	}
 	/**
@@ -370,6 +395,7 @@ class Admin extends CI_Controller {
 	
 	function _set_fields(){
 		$this->form_data->id = '';
+		$this->form_data->deletionID = '';
 		$this->form_data->userTypeList = '';
 		$this->form_data->fullName = '';
 		$this->form_data->userName = '';
@@ -436,18 +462,20 @@ class Admin extends CI_Controller {
 	 *
 	 */
 	function list_users(){
-		
-		if($this->session->userdata('userTypeID'== 1 | 2 | 3))
-		{
-			return $this->session->userdata('userName');
+		$user = $this->session -> userdata('user');
+		if($user->userTypeID == user_model::TYPE_ADMIN)
+	    {
+			return $user->userName;
+		}elseif($user->userTypeID == user_model::TYPE_NORMAL){
+			return $user->userName;
+		}elseif ($user->userTypeID == user_model::TYPE_EDITOR){
+			return $user->userName;
 		}
 		else
 		{				
-			return $this->session->userdata('ip_address');
+			return $user->ip_address;
 		}
 	}
 	
 
 }
-
-?>

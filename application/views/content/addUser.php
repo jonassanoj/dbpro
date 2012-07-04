@@ -73,7 +73,7 @@
 			<tr>
 				<td valign="top">Date of birth <span style="color:red;">*</span></td>
 				<td><input type="text" name="dob" onclick="displayDatePicker('dob');" class="text" value="<?php echo set_value('dob',$this->form_data->dob); ?>"/>
-				<a href="javascript:void(0);" onclick="displayDatePicker('dob');"><img src="<?php echo base_url(); ?>res/css/images/calendar.png" alt="calendar" border="0"></a>
+				<a href="javascript:void(0);" onclick="displayDatePicker('dob');"><img src="<?php echo base_url(); ?>/img/icons/calendar.png" alt="calendar" border="0"></a>
 <?php echo form_error('dob'); ?></td>
 				
 			</tr>
