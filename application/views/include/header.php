@@ -20,6 +20,7 @@
 	echo link_tag('css/formee-style.css')."\n";
 	echo link_tag('css/formee-structure.css')."\n";
 	echo link_tag('css/commentForm.css')."\n";
+	echo link_tag('css/answer_form.css')."\n";
 
 	// Additional styles given in an array
 	if (isset($styles)) {

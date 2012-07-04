@@ -131,6 +131,7 @@ class Edit extends CI_Controller {
 		
 	
 	/**
+	 * 
 	 * creation and edition of answer
 	 *
 	 * create a new answer or edit an existing one
@@ -138,17 +139,27 @@ class Edit extends CI_Controller {
 	 * @param int $qid the id of the question to answer. 
 	 * @param int $aid optional, the id of the answer, if left blank, create a new answer.
 	 * 
+	 * @author Wazir khan Ahmadzai,
+	 * @author Sameen ullah sameen
 	 */
 	public function answer($qid,$aid=0){
 		
-		//TODO: every message should be in selected language
-		//if (!$this->session->userdata('login')) redirect('main/home');
+		if (!$this->session->userdata('login')) redirect('main/home');
 		$this->form_validation->set_message('required', 'Please write answer than submit');
 		// here we are loading question for which user will write an answer
 		$question = $this -> question_model -> get_details($qid);
 		$data['questiontitle'] = $question -> title;
 		$data['question'] = $question -> body;
 		
+		// checking if one of the form submit button clicked or just page refereshed
+		$check_for_submit = $this-> input -> post('btn_submit');
+		if($check_for_submit != 'Save' && $check_for_submit != 'Delete' && $check_for_submit != 'Cancel')
+			$this -> session -> unset_userdata('form');
+		if($check_for_submit == 'Cancel') {
+			$this -> session -> unset_userdata('form');
+			redirect('main/qshow/'.$qid);
+		}
+		// if form was created for new answer
 		if($this -> session -> userdata('form') == 'new') {
 			
 			
@@ -158,49 +169,61 @@ class Edit extends CI_Controller {
 				$data['title'] = 'Add New Answer';
 				$data['qid'] = $qid;
 				$data['aid'] = $aid;
+				$this -> _loadviews('form_answer', $data);
 			}
 			else
 			{
 				unset($data['questiontitle']);
 				unset($data['question']);
-				$data['title'] = 'Answer added';
 				$body = $this -> input -> post('answer_body');
 		 		$flag = $this -> answer_model -> add_answer($qid, $this -> session -> userdata('uid'), $body);
-				$data['message'] = 'Answer added successfully';
+				$this->session->set_flashdata('add_message','Answer added successfully');
 				if(!$flag)
-				$data['message'] = 'Answer did not save, please try later again';
+				$this->session->set_flashdata('add_message','Answer did not save, please try later again');
 				$this -> session -> unset_userdata('form');
+				redirect('main/qshow/'.$qid);
 			}	 		
-	 		$this -> _loadviews('form_answer', $data);
-			
+	 		
+		// if form was created for update answer	
 		} else if($this -> session -> userdata('form') == 'update') {
+			// both button have the same name but different value
+			$btn = $this-> input -> post('btn_submit');
+			if($btn == 'Delete') {
+				// call the delete function if delete button was clicked 
+				$this -> delete_answer($aid);
+			}
+			else {
+				$this -> form_validation -> set_rules('answer_body', 'Your answer', 'required|xss_clean');	
+				if ($this->form_validation->run() == FALSE)
+				{
+					$data['title'] = 'Editing answer';
+					$data['qid'] = $qid;
+					$data['aid'] = $aid;
+					$this -> _loadviews('form_answer', $data);
+				}
+				else
+				{
+					unset($data['questiontitle']);
+					unset($data['question']);
+					$body = $this -> input -> post('answer_body');
+					$flag = $this -> answer_model -> update_answer($aid, $body);
+					$this->session->set_flashdata('update_message', 'Answer updated successfully');
+					if(!$flag)
+					$this->session->set_flashdata('update_message','Answer did not update, please try later again');
+					$this -> session -> unset_userdata('form'); 
+					redirect('main/qshow/'.$qid);
+					
+				}
+			}
 			
-			$this -> form_validation -> set_rules('answer_body', 'Your answer', 'required|xss_clean');	
-			if ($this->form_validation->run() == FALSE)
-			{
-				$data['title'] = 'Editing answer';
-				$data['qid'] = $qid;
-				$data['aid'] = $aid;
-			}
-			else
-			{
-				unset($data['questiontitle']);
-				unset($data['question']);
-				$body = $this -> input -> post('answer_body');
-				$flag = $this -> answer_model -> update_answer($aid, $body);
-				$data['title'] = 'Answer updated';
-				$data['message'] = 'Answer updated successfully';
-				if(!$flag)
-				$data['message'] = 'Answer did not update, please try later again';
-				$this -> session -> unset_userdata('form'); 
-				
-			}
-			$this -> _loadviews('form_answer', $data);
 		}
+		// if these session were not set it mean for the first time request come to this function 
 		else {
+			
 			$data['qid'] = $qid;
 			$data['aid'] = $aid;
-			if($aid == 0) {
+			// if aid was not set
+			if($aid == 0 || $aid == '') {
 				$data['title'] = 'Add New Answer';
 				$this -> session -> set_userdata('form', 'new');
 				$this -> _loadviews('form_answer', $data);
@@ -208,8 +231,15 @@ class Edit extends CI_Controller {
 			else {
 				
 				$answer = $this -> answer_model -> is_user_answer($aid, $this -> session -> userdata('uid'));
-				if(!$answer) {
+				if(!$answer 
+				   && ($this->session->userdata('user')->userTypeID != 2)
+				   && ($this->session->userdata('user')->userTypeID != 3)) {
 					redirect('main/home');
+				}
+				// if previous answer was false
+				// than reload answer by answer id
+				if(!$answer) {
+					$answer = $this -> answer_model -> get_answer($aid);
 				}
 				$this -> session -> set_userdata('form', 'update');
 				$data['title'] = 'Editing answer';
@@ -224,24 +254,30 @@ class Edit extends CI_Controller {
 	* This function is for deleting a login user's answer
 	* 
 	* @param int $aid the id of the answer 
+	* 
+	* @author Wazir khan Ahmadzai,
+	* @author Sameen ullah sameen
 	*/
 	public function delete_answer($aid = 0) {
-		//if(!$this-> session -> userdata('login') || $aid == 0 )
-		//redirect('main/home');
+		
+		if(!$this-> session -> userdata('login') || $aid == 0 )
+		redirect('main/home');
 		$this -> session -> unset_userdata('form');
-		if(!$this -> answer_model -> is_user_answer($aid, $this -> session -> userdata('uid')))
+		// here it check for user if answer related to user or admin, editor want to delte it
+		if(!$this -> answer_model -> is_user_answer($aid, $this -> session -> userdata('uid'))
+		   && ($this->session->userdata('user')->userTypeID != 2)
+		   && ($this->session->userdata('user')->userTypeID != 3))
 		redirect('main/home');
 		$flag = $this -> answer_model -> delete_answer($aid, $this -> session -> userdata('uid'));
-		// These messages should take from language files
-		$data['message'] = 'Your answer deleted successfully';
-		if(!$flag)
-		$data['message'] = 'Sorry! your answer did not delete, tray again later';
-		$data['title'] = 'Answer deletion';
-		// for now we just call the same form again 
-		$this -> _loadviews('form_answer', $data);
+		$this->session->set_flashdata('delete_message', 'Your answer deleted successfully');
+		if(!$flag) {
+			$this->session->set_flashdata('delete_message', 'Sorry! your answer did not delete, tray again later');
+		}
+		
+		redirect($this -> session -> userdata('last_visited'));
 		
 	}
-     /**
+/**
 	 * 
 	 * Creates a new comment or edits an existing one
 	 * 
