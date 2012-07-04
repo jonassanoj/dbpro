@@ -11,7 +11,7 @@
  
 function init_view_data($content,$data) {
 	$CI =& get_instance();
-	
+	if ($CI -> session -> flashdata('message')) $data['message'] = $CI -> session -> flashdata('message'); 
 	// If the user is logged in, do the following:
 	if ($CI -> session -> userdata('login')) {
 		$user = $CI -> session -> userdata('user');
@@ -40,4 +40,21 @@ function init_view_data($content,$data) {
 	$data['content'] = "content/$content";
 	
 	return $data;	
+}
+
+/**
+ * show a message in the next view
+ * 
+ * show a message the next time a view is shown 
+ * only works for views loaded via init_view_data()
+ * 
+ * @param string $msg the message to show the next time a page i loaded
+ * @param array $data the array that will be passed to the view
+ * @return array the updated data array
+ * 
+ */
+ 
+function flash_message($msg) {
+	$CI =& get_instance();
+	$CI -> session -> set_flashdata('message',$msg); 	
 }
