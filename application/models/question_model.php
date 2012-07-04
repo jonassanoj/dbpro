@@ -76,6 +76,23 @@ class Question_model extends CI_Model {
 		$query = $this -> db -> get_where('Question', array('questionID' => $qid));
 		return $query -> first_row();
 	}
+	
+	/**
+	 * check if a user has voted for a question.
+	 *
+	 * @param int $qid the questionID
+	 * @param int $userid the userID
+	 * @return object 
+	 */
+	
+	public function check_vote($qid, $userid) {
+		$this->db->where('questionID', $qid);
+		$this->db->where('userID', $userid);
+		$this->db->from('QuestionVote');
+		$query = $this->db->get();
+		return $query -> first_row();
+		
+	}
 
 	/**
 	 * create a new question, return its id

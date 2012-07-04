@@ -63,3 +63,30 @@ form.login_small {
 .login_small #login{
     font-weight: bold;   
 }
+
+#textarea{
+	width: 600px;
+	height: 130px;
+	border: 1px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma;
+	background-color: white;
+	overflow-x: none;
+	overflow-y: auto;
+}
+
+#butstyle{
+	 -moz-border-radius: 5px;
+    	-webkit-border-radius: 5px;
+    	background-color: #eaeaea;
+    	background: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+   		background: -webkit-gradient(linear, left top, left bottom,
+                	color-stop(0.0, #ffffff), color-stop(1.0, #f2f2f2));
+    	border: 1px solid #cacaca;
+    	color: #797979;
+		height: 25px;
+		width:  58px;
+        cursor: pointer;
+		padding: 0 0 2px 2px;
+		
+}

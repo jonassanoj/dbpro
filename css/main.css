@@ -268,3 +268,19 @@ a.backlink:hover {
 	margin: auto;
 }
 
+.vote {
+	
+ 	margin-top: 1em;
+	display: block;
+	white-space: nowrap;
+	height: 50px;
+	width: 50px;
+}
+
+.vote:hover {
+	
+}
+
+
+
+

@@ -27,6 +27,39 @@ class Answer_model extends CI_Model {
 		$query = $this -> db -> get_where('Answer', array('questionID' => $qid));
 		return $query -> result();
 	}
+
+	/**
+	 * all the information about one answer.
+	 *
+	 * the total amount of answerss matching the filter criteria. see get_list documentation for details.
+	 *
+	 * @param int $aid the answerID
+	 * @return object a single answer object, containing column values as attributes.
+	 */
+	
+	public function get_details($aid) {
+		$query = $this -> db -> get_where('Answer', array('answerID' => $aid));
+		return $query -> first_row();
+	}
+	
+	/**
+	 * check for login user if he/she voted for answer.
+	 *
+	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
+	 *
+	 * @param int $aid the answerID
+	 * @param int $userid the userID
+	 * @return object a single question object, containing column values as attributes.
+	 */
+	
+	public function check_vote($aid, $userid) {
+		$this->db->where('answerID', $aid);
+		$this->db->where('userID', $userid);
+		$this->db->from('AnswerVote');
+		$query = $this->db->get();
+		return $query -> first_row();
+	
+	}
 	
 	/**
 	* Adding new answer to a question

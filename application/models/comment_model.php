@@ -26,7 +26,7 @@ class Comment_model extends CI_Model {
 	 */
 
 	public function get_qcomments($qid) {
-		$this -> db -> select('User.userName,Comment.body');
+		$this -> db -> select('User.userName,Comment.body, Comment.commentID, Comment.answerID, Comment.questionID, Comment.userID');
 		$this -> db -> join('User', 'User.UserID=Comment.UserID');
 		$query = $this -> db -> get_where('Comment', array('questionID' => $qid));
 		return $query -> result();
