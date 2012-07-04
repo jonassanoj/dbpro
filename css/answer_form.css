@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+/* created by Saminullah and Wazir khan */
+
+.textarea {
+	width: 100%;
+	border: thin #666 solid;
+	padding: 4px;
+	overflow-y: auto;
+	overflow-x: none;
+}
+
+.delete {
+    font-size:14px;
+	border: thin #666 solid;
+	background-color:#E2E9F5;
+	padding-top:3px;
+	padding-bottom:3px;
+	padding-left:6px;
+	padding-right:6px;
+	height:25px;
+	width:60px;
+	text-decoration:none;
+}
+
+.delete:hover {
+	text-decoration:none;
+}
+
+.save {
+	font-size:14px;
+	border: thin #666 solid;
+	background-color:#E2E9F5;
+	padding:2px;
+	height:25px;
+	width:60px;
+}
+.hint {
+	color:#999;
+	padding:0;
+	margin:0;
+	font-size:12px;
+}
