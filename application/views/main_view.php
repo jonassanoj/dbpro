@@ -41,7 +41,6 @@ $this->load->view('include/header');
 			$searchVal=array("name"=>"search");
 			echo form_input($searchVal['name']);
 			echo '<input type="submit" name="dosearch" value="Go"  />';
-						
 			echo form_close();
 			echo ('</div>'."\n");
 		?>

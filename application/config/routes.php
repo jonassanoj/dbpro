@@ -43,5 +43,10 @@ $route['de'] = 'util/lang/deutsch';
 $route['en'] = 'util/lang/english';
 $route['fa'] = 'util/lang/farsi';
 $route['ps'] = 'util/lang/pashto';
+$route['de/(:any)'] = 'util/lang/deutsch';
+$route['en/(:any)'] = 'util/lang/english';
+$route['fa/(:any)'] = 'util/lang/farsi';
+$route['ps/(:any)'] = 'util/lang/pashto';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
