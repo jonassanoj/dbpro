@@ -133,11 +133,11 @@ h3 { font-size: 120%; }
 	position:absolute;	
 	top:0px;
 	left:auto;
-	width: 31%;
+	width: 53%;
 	height: 2em;
 	text-align: center;
 	border-top: 1px dashed silver;
-	background: #D9C6B0;
+	background: #ffffff;
 	padding: 0;
 	margin: 0;
 }
@@ -150,7 +150,7 @@ h3 { font-size: 120%; }
     float: left;
     line-height: 30px;
 	white-space: nowrap;
-	
+	border-left: 1px solid #E4E4E4;
 }
 
 #catbar li{
@@ -162,8 +162,9 @@ h3 { font-size: 120%; }
 	 
 }
 
+
 /************************* /
- * language bar at teh footer
+ * language bar at the footer
  */
 
 .langbar {

@@ -17,10 +17,15 @@ function init_view_data($content,$data) {
 		$user = $CI -> session -> userdata('user');
 		// if a user is logged in define dynamic navigation items
 		$data['navigation'][0] = anchor('main/filter/userID/'.$CI->session->userdata('uid'),lang('title_your_questions'));
+		if($user->userTypeID == 3){
+			$data['navigation'][1] = anchor('admin',lang('admin_user'));
+		}
 
 		// if a user is logged in show categories from his field:
 		$data['categories']=$CI->category_model->get_categories($user->fieldID);
 		$data['userinfo'] = $user;
+		
+		
 	}
 	// If the user is not logged in, do the following:
 	else {
@@ -28,10 +33,12 @@ function init_view_data($content,$data) {
 		$data['categories']=$CI->category_model->get_favorite_category();
 		
 	}
+	$data['general_cat'] = $CI -> category_model -> get_categories();
 	$data['content'] = "content/$content";
 	
 	return $data;	
 }
+
 
 /**
  * show a message in the next view

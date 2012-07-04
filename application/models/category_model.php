@@ -107,10 +107,6 @@ class Category_model extends CI_Model {
 		$query = $this->db->get();
 		return $query -> result();
 		
-		//$query = $this->db->query("SELECT count(*),catName,Category.catID FROM Question,Category WHERE   Question.catID=Category.catID group by Category.catID ORDER BY count(*)  DESC LIMIT 5");
-		
-		//return $query -> result();
-		
 	}
 
 	 /**

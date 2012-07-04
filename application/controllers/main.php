@@ -94,7 +94,11 @@ class Main extends CI_Controller {
 		else 
 			redirect(base_url());
 	}
-	
+
+	public function cat() {
+		$opt = $this -> input -> post('cat_sel');
+		$this->filter('catID', $opt);
+	}
 	/**
 	 * shows a list of questions filtered after one condition
 	 *
