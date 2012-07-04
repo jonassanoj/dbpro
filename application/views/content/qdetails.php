@@ -50,7 +50,9 @@
 
 <div class="question">
 		<h3><?php echo $question->title; ?></h3>
+		<div class="markdown">
 		<p><?php echo Markdown($question->body); ?></p>
+		</div>
 	
 		<form action="" method="POST">
   		<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
