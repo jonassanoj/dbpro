@@ -88,8 +88,13 @@ else if($this->session->flashdata('update_message')) {
 
 	</div>
 	</form>
-		<?//if($this->session->userdata('uid')==$question->userID || ($this->session->userdata('user','userTypeID'))==2 || ($this->session->userdata('user','userTypeID'))==3):?>
-		<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >  <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/>
+		<?if((($this->session->userdata('uid')>0) && ($this->session->userdata('uid')==$question->userID))
+			|| ($this->session->userdata('user')->userTypeID)==2
+			||($this->session->userdata('user')->userTypeID)==3):?>
+		<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >
+	    <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/>
+		</a>
+		<?endif;?>
 	<!-- button for adding answer-->
 	<?php if($this->session->userdata('login')):?>
 			<a href="<?php echo base_url()."index.php/edit/answer/".$question->questionID ?>">
