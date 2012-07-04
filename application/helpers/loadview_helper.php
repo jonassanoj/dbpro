@@ -18,15 +18,7 @@ function init_view_data($content,$data) {
 		// if a user is logged in define dynamic navigation items
 		$data['navigation'][0] = anchor('main/filter/userID/'.$CI->session->userdata('uid'),lang('title_your_questions'));
 		$data['navigation'][1] = anchor('http://www.google.de','google');
-		
-		////////////////// temporary changes: added languages to navigation bar for logged in users:
-		$data['navigation'][2] = anchor('util/lang/english', lang('w_lang_en'));
-		$data['navigation'][3] = anchor('util/lang/farsi', lang('w_lang_fa'));
-		$data['navigation'][4] = anchor('util/lang/pashto', lang('w_lang_ps'));
-		$data['navigation'][5] = anchor('util/lang/deutsch', lang('w_lang_de'));
-		$data['navigation'][6] = anchor('admin',lang('admin_user'));
-		////////////////// end of temporary changes
-		
+			
 		// if a user is logged in show categories from his field:
 		$data['categories']=$CI->category_model->get_categories($user->fieldID);
 		$data['userinfo'] = $user;
