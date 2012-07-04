@@ -28,9 +28,9 @@
  }); 		
    	
  
-var doConfirm = function()
+var doConfirm = function($message)
     {
-        if(confirm("Do you really want to delete your answer?"))
+        if(confirm("Do you really want to "+$message))
             return true;
         else
             return false;
@@ -88,13 +88,26 @@ else if($this->session->flashdata('update_message')) {
 
 	</div>
 	</form>
-		<?if((($this->session->userdata('uid')>0) && ($this->session->userdata('uid')==$question->userID))
+	
+
+	<?php
+	// Abdullaziz Akbary Hamidullah khanzai
+	
+	// This code will show a edit image for the user in condition 
+	// if the the current question belongs to the user or the use which is loged in is 
+	// an editor or admin it also check if the question if posted by the unregistered user 
+	// the unregistered user does not have the rights to edit question because all the unregistered user the in the quesiton table
+	// the id of the user would be 0 The user will get a confimation message
+	?>
+		<?if((($this->session->userdata('uid')>0) && ($this->session->userdata('uid')==$question->userID)) // check if the question belongs to the user and if the question is posted by the user which is not registered 
 			|| ($this->session->userdata('user')->userTypeID)==2
 			||($this->session->userdata('user')->userTypeID)==3):?>
-		<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >
-	    <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/>
+		<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" onclick="return doConfirm('Edit This Question?')"  >
+	    <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" title="Edit Question" width="50px"/>
 		</a>
 		<?endif;?>
+	<?php // end?> 	
+		
 	<!-- button for adding answer-->
 	<?php if($this->session->userdata('login')):?>
 			<a href="<?php echo base_url()."index.php/edit/answer/".$question->questionID ?>">
@@ -138,7 +151,7 @@ if (isset($result))
 					align="middle" width="25" height="25" title="Edit your answer"/> 
 				</a> &nbsp;
 				<a href="<?php echo base_url()."index.php/edit/delete_answer/".$answer->answerID ?>" 
-				onclick="return doConfirm();">
+				onclick="return doConfirm('delete your answer?');">
 					<img src="<?php echo base_url('img/unused/trash.png'); ?>"
 					align="middle" width="25" height="25" title="Delete your answer"/> 
 				</a>
