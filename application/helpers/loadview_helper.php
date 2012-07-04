@@ -28,10 +28,12 @@ function init_view_data($content,$data) {
 		$data['categories']=$CI->category_model->get_favorite_category();
 		
 	}
+	$data['general_cat'] = $CI -> category_model -> get_categories();
 	$data['content'] = "content/$content";
 	
 	return $data;	
 }
+
 
 /**
  * show a message in the next view
