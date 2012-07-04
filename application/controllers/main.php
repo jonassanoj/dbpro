@@ -111,7 +111,7 @@ class Main extends CI_Controller {
 		$config['base_url'] = site_url("main/filter/$filter/$param/"); 
 		$config['per_page'] = 5;
 		$config['uri_segment'] = 5;
-		$filter = array($filter => $param);
+		$filter = array($filter => urldecode($param));
 		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $filter);
 		$config['total_rows'] = $this -> question_model -> get_count($filter);
 		$this -> pagination -> initialize($config);
