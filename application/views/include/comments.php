@@ -1,7 +1,3 @@
-<?php if(!$comments && $this -> session-> userdata('login')){ ?>
-		<a href="<?php echo base_url()."edit/comment/".(isset($qid)? $qid: '').
-		"/0"."/0" ?>" title='Add new comment'> Click to create a comment for this question !  </a>
-		<?php }?>
 <?php foreach ($comments as $comment): ?>
 	<div class="comment">
 		<b><?php echo $comment->userName; ?></b> says "<?php echo $comment->body; ?>"

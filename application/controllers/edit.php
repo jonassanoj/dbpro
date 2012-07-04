@@ -351,8 +351,8 @@ class Edit extends CI_Controller {
 				$return = -1;
 				if($aid)$return = $this -> comment_model -> create_acomment($aid, $uid, $body);
 				else$return = $this -> comment_model -> create_qcomment($qid, $uid, $body);
-				if($return > 0) $data['msg'] = lang('msg_inserted_comment');
-				else $data['msg'] = lang('msg_sorry_comment');
+				if($return > 0) $this->session->set_flashdata('msg_add_comment', lang('msg_inserted_comment'));
+				else $this->session->set_flashdata('msg_add_comment', lang('msg_sorry_comment'));
 			}
 		}
 		//Updates an existing comment.
@@ -360,8 +360,8 @@ class Edit extends CI_Controller {
 				$comment = $this -> comment_model -> get_comment($cid);
 				if ($this->session->userdata('uid')!=$comment->userID) redirect('main/home');
 			 	$return = $this -> comment_model -> update_comment($cid, $body);
-			 	if($return) $data['msg'] = lang('msg_update_commnet');
-			 	else $data['msg'] = lang('msg_notUpdated_comment');
+			 	if($return) $this->session->set_flashdata('msg_update', lang('msg_update_comment'));
+			 	else $this->session->set_flashdata('msg_update', lang('msg_notUpdated_comment'));
 		}
 					redirect('main/qshow/'. $qid);
 	}
@@ -377,8 +377,8 @@ class Edit extends CI_Controller {
 	public function delete_comment($cid){
 		$comment = $this -> comment_model -> get_comment($cid);
 		$return = $this -> comment_model-> delete_comment($cid);
-		if($return) $data['msg'] = lang('msg_delete_comment');
-	  	else $data['msg'] = lang('msg_notFound_comment');
+		if($return) $this->session->set_flashdata('msg_delete',lang('msg_delete_comment')); 
+	  	else $this->session->set_flashdata('msg_delete', lang('msg_notFound_comment'));
 		redirect('main/qshow/'. $comment->questionID);
 		
 	

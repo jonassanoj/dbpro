@@ -69,11 +69,38 @@ else if($this->session->flashdata('update_message')) {
  			.$this->session->flashdata('add_message')."</p>");
  }
 ?>
+
+
+
+<?php
+// This is for showing the comment successed or failed messages 
+ if($this->session->flashdata('msg_update')) {
+		echo ("<p class='message'>"
+				.$this->session->flashdata('msg_update')."</p>");
+	}
+	else if($this->session->flashdata('msg_add_comment')) {
+		echo ("<p class='message'>"
+				.$this->session->flashdata('msg_add_comment')."</p>");
+	}
+	else if($this->session->flashdata('msg_delete')){
+		echo ("<p class='message'>"
+				.$this->session->flashdata('msg_delete')."</p>");
+	}
+?>
+
+
+
+
 </div>
 <div class="question">
 		<h3><?php echo $question->title; ?></h3>
 		<div class="markdown">
 		<p><?php echo Markdown($question->body); ?></p>
+		<br>
+		<?php if($this -> session-> userdata('login')){ ?>
+		<p> Click <a href="<?php echo base_url()."edit/comment/".$question -> questionID.
+		"/0"."/0" ?>" title='Add new comment'> here  </a> to write a comment ! </p>
+		<?php }?>
 		</div>
 	
 		<form action="" method="POST">
