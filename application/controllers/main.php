@@ -131,10 +131,10 @@ class Main extends CI_Controller {
 	 */
 
 	public function qshow($qid) {
-		$userid = 4;//$this->session->userdata('uid');
+		$uid=$this->session->userdata('uid');
 		
 		//check if the current login user already voted for this question or not.
-		$voted = $this -> question_model -> check_vote($qid, $userid);
+		$voted = $this -> question_model -> check_vote($qid, $uid);
 		$data['question'] = $this -> question_model -> get_details($qid);
 		$data['title'] = lang('title_main') . ': ' . $data['question'] -> title;
 		if(!empty($voted)){
@@ -149,7 +149,7 @@ class Main extends CI_Controller {
 		//check for every answer if the current login user already voted for or not.
 		foreach($data['answers'] as $answer){
 			
-			$voted = $this -> answer_model -> check_vote($answer -> answerID, $userid);
+			$voted = $this -> answer_model -> check_vote($answer -> answerID, $uid);
 			if(!empty($voted)){
 				$answer -> vote = true;
 			}

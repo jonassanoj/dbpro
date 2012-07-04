@@ -63,25 +63,10 @@
 		include "qvote.php";}?>
 
 	</div>
-
-
-		</form>
-<form action="<?=base_url()?>index.php/util/q_vote" name="voting" method="POST">
-<table>
-	<div>
-	<tr>
-	 	<td><input type="submit" name="up" value="up" /></td> 
-		<td><input type="submit" name="down" value="down"/></td> 
-		
-		<td><input type="hidden" value="<?php echo $question->questionID; ?>" name="qid" /></td>
-		<?if($this->session->userdata('uid')==$question->userID || ($this->session->userdata('user','userTypeID'))==2 || ($this->session->userdata('user','userTypeID'))==3):?>
-		<td><a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >  <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/></a></td>
-		<?endif;?>
-		</tr>
-		
-	</div>
-	</table>
-</form> 
+	</form>
+		<?//if($this->session->userdata('uid')==$question->userID || ($this->session->userdata('user','userTypeID'))==2 || ($this->session->userdata('user','userTypeID'))==3):?>
+		<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >  <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/>
+		<?//endif;?>
 
 <div id="ajaxresult">
 
@@ -102,11 +87,11 @@ if (isset($result))
 		include "avote.php";}?>
 	</div>	
 
-</div> <!-- answer dic closed -->
+</div> <!-- answer div closed -->
 	
 <?php endforeach ?>
 
 <?php echo $backlink?>
 
 
-</div> <!-- body -->
+

@@ -78,13 +78,11 @@ class Question_model extends CI_Model {
 	}
 	
 	/**
-	 * check for login user if he/she voted for question.
-	 *
-	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
+	 * check if a user has voted for a question.
 	 *
 	 * @param int $qid the questionID
 	 * @param int $userid the userID
-	 * @return object a single question object, containing column values as attributes.
+	 * @return object 
 	 */
 	
 	public function check_vote($qid, $userid) {
