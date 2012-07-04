@@ -19,48 +19,31 @@ class Answer_model extends CI_Model {
 	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
 	 *
 	 * @param int $qid the id of the question we want answers for   
-	 * @return array holds answer objects with fileds for all database columns  ordered by rank in decending order 
+	 * @return array holds answer objects with fileds for all database columns
 	 */
 
 	public function get_answers($qid) {
-		$this->db->order_by("rank", "desc");
 		$query = $this -> db -> get_where('Answer', array('questionID' => $qid));
 		return $query -> result();
 	}
-
-	/**
-	 * all the information about one answer.
-	 *
-	 * the total amount of answerss matching the filter criteria. see get_list documentation for details.
-	 *
-	 * @param int $aid the answerID
-	 * @return object a single answer object, containing column values as attributes.
-	 */
-	
-	public function get_details($aid) {
-		$query = $this -> db -> get_where('Answer', array('answerID' => $aid));
-		return $query -> first_row();
-	}
 	
 	/**
-	 * check for login user if he/she voted for answer.
-	 *
-	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
-	 *
-	 * @param int $aid the answerID
-	 * @param int $userid the userID
-	 * @return object a single question object, containing column values as attributes.
+	 * The function to get answe
+	 * 
+	 * geting answer by answer id
+	 * 
+	 * @param int $aid the id of the answer
+	 * @return array|boolean return row with fields or false if now row
+	 * 
+	 * @author Wazir khan, Samin 
 	 */
-	
-	public function check_vote($aid, $userid) {
-		$this->db->where('answerID', $aid);
-		$this->db->where('userID', $userid);
-		$this->db->from('AnswerVote');
-		$query = $this->db->get();
-		return $query -> first_row();
-	
+	public function get_answer($aid) {
+		$this -> db -> where('answerID', $aid);
+		$result_set = $this -> db -> get('Answer');
+		if($result_set ->num_rows() > 0)
+			return $result_set -> first_row();
+		return false;
 	}
-	
 	/**
 	* Adding new answer to a question
 	*
@@ -93,7 +76,11 @@ class Answer_model extends CI_Model {
 	*
 	* @param int $aid the answer id (only we need answer id because its already primary key)
 	* @param string $body the answer text
+	* 
 	* @return boolean true if inserted otherwise false
+	* 
+	* @author Wazir khan Ahmadzai,
+	* @author Sameen ullah sameen
 	*/
 	public function update_answer($aid, $body) {
 		
@@ -110,7 +97,9 @@ class Answer_model extends CI_Model {
 	 * at end return the number of affected rows.
 	 *
 	 * @param int $aid the answerID.
+	 * 
 	 * @return int number of affected rows if successful, 0 otherwise
+	 * 
 	 */
 	public function delete_answer($aid){
 		$tables = array('Comment', 'Answer');
@@ -126,7 +115,11 @@ class Answer_model extends CI_Model {
 	*
 	* @param int $aid the answer id (to check is the answer related to this user or not)
 	* @param int $uid the user id, for an answer
-	* @return boolean true if inserted otherwise false
+	* @return array|bool if record found return first row otherwise false (0)
+	* 
+	* @author Wazir khan Ahmadzai,
+	* @author Sameen ullah sameen
+	* 
 	*/
 	
 	public function is_user_answer($aid, $uid) {
@@ -138,5 +131,34 @@ class Answer_model extends CI_Model {
 			return $result_set -> first_row();
 		return false;
 		
+	}
+	/**
+	
+	* @param int $aid the answerID
+	* @return object a single answer object, containing column values as attributes.
+	*/
+	
+	public function get_details($aid) {
+		$query = $this -> db -> get_where('Answer', array('answerID' => $aid));
+		return $query -> first_row();
+	}
+	
+	/**
+	 * check for login user if he/she voted for answer.
+	 *
+	 * the total amount of questions matching the filter criteria. see get_list documentation for details.
+	 *
+	 * @param int $aid the answerID
+	 * @param int $userid the userID
+	 * @return object a single question object, containing column values as attributes.
+	 */
+	
+	public function check_vote($aid, $userid) {
+		$this->db->where('answerID', $aid);
+		$this->db->where('userID', $userid);
+		$this->db->from('AnswerVote');
+		$query = $this->db->get();
+		return $query -> first_row();
+	
 	}
 }

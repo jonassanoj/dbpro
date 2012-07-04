@@ -281,6 +281,19 @@ a.backlink:hover {
 	
 }
 
+.message {
+	width: 98%;
+	margin-top:4px;
+	margin-left:0;
+	margin-right:0;
+	margin-bottom:0;
+	padding:4px;
+	text-align: center;
+	border: thin green solid;
+	color:green;
+}
+
+
 
 
 
