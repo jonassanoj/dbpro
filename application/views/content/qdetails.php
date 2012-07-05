@@ -28,9 +28,9 @@
  }); 		
    	
  
-var doConfirm = function($message)
+var doConfirm = function()
     {
-        if(confirm("Do you really want to "+$message))
+        if(confirm("Do you really want to delete your answer?"))
             return true;
         else
             return false;
@@ -95,40 +95,12 @@ else if($this->session->flashdata('update_message')) {
 <div class="question">
 		<h3><?php echo $question->title; ?></h3>
 		<div class="markdown">
-<<<<<<< HEAD
 		<p><?php echo Markdown($question->body); ?></p>
 		<br>
 		<?php if($this -> session-> userdata('login')){ ?>
 		<p> Click <a href="<?php echo base_url()."edit/comment/".$question -> questionID.
 		"/0"."/0" ?>" title='Add new comment'> here  </a> to write a comment ! </p>
 		<?php }?>
-=======
-		<p><?php echo Markdown($question->body); ?>
-		
-		</p>
-		<?php 
-		/*
-		$rank=$question->rank;
-		$col="black";
-		if($rank<=0)
-			$col="red";
-		elseif ($rank>0 && $rank<=10)
-		$col="gray";
-		elseif ($rank>10 && $rank<50)
-		$col="black";
-		elseif ($rank>50 && $rank<100)
-		$col="#4169E1";
-		else
-			$col="#FFD700";
-		
-		echo '<div style="width: 200px; ;  height:35px; border: 1px solid #D0D0D0; text-align: center; vertical-align: middle; background-color: #f9f9f9; color: #002166;">
-		Question Rank =<dive style="color:'.$col.';">'.$rank.'</div></div>';
-		
-		*/
-		
-		?>
-		
->>>>>>> branch 'master' of https://github.com/jonassanoj/dbpro.git
 		</div>
 	
 		<form action="" method="POST">
@@ -143,26 +115,8 @@ else if($this->session->flashdata('update_message')) {
 
 	</div>
 	</form>
-	
-
-	<?php
-	// Abdullaziz Akbary Hamidullah khanzai
-	
-	// This code will show a edit image for the user in condition 
-	// if the the current question belongs to the user or the use which is loged in is 
-	// an editor or admin it also check if the question if posted by the unregistered user 
-	// the unregistered user does not have the rights to edit question because all the unregistered user the in the quesiton table
-	// the id of the user would be 0 The user will get a confimation message
-	?>
-		<?if((($this->session->userdata('uid')>0) && ($this->session->userdata('uid')==$question->userID)) // check if the question belongs to the user and if the question is posted by the user which is not registered 
-			|| ($this->session->userdata('user')->userTypeID)==2
-			||($this->session->userdata('user')->userTypeID)==3):?>
-		<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" onclick="return doConfirm('Edit This Question?')"  >
-	    <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" title="Edit Question" width="50px"/>
-		</a>
-		<?endif;?>
-	<?php // end?> 	
-		
+		<?//if($this->session->userdata('uid')==$question->userID || ($this->session->userdata('user','userTypeID'))==2 || ($this->session->userdata('user','userTypeID'))==3):?>
+		<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >  <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/>
 	<!-- button for adding answer-->
 	<?php if($this->session->userdata('login')):?>
 			<a href="<?php echo base_url()."index.php/edit/answer/".$question->questionID ?>">
@@ -184,25 +138,6 @@ if (isset($result))
 <?php foreach ($answers as $answer): ?>
 	<div class="answer">
 		<?php echo $answer->body; ?>
-		<br>
-		<?php
-		/* 
-			 $rank=$answer->rank;
-			$col="black";
-			if($rank<=0)
-				$col="red";
-			elseif ($rank>0 && $rank<=10)
-				$col="gray";
-			elseif ($rank>10 && $rank<50)
-				$col="black";
-			elseif ($rank>50 && $rank<100)
-				$col="#4169E1";
-			else 
-				$col="#FFD700";
-				echo '<div style="width: 200px; ;  height:35px; border: 1px solid #D0D0D0; text-align: center; vertical-align: middle; background-color: #f9f9f9; color: #002166;">
-			Answer Rank =<dive style="color:'.$col.';">'.$rank.'</div></div>';
-		*/
-		?>
 	<div class="vote">	
 	<?php if($answer->vote){
 					echo "you already voted"; echo "<br>";}
@@ -225,7 +160,7 @@ if (isset($result))
 					align="middle" width="25" height="25" title="Edit your answer"/> 
 				</a> &nbsp;
 				<a href="<?php echo base_url()."index.php/edit/delete_answer/".$answer->answerID ?>" 
-				onclick="return doConfirm('delete your answer?');">
+				onclick="return doConfirm();">
 					<img src="<?php echo base_url('img/unused/trash.png'); ?>"
 					align="middle" width="25" height="25" title="Delete your answer"/> 
 				</a>
