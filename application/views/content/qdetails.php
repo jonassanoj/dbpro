@@ -96,6 +96,26 @@ else if($this->session->flashdata('update_message')) {
 		<h3><?php echo $question->title; ?></h3>
 		<div class="markdown">
 		<p><?php echo Markdown($question->body); ?></p>
+		
+		<?php 
+		/*
+		$rank=$question->rank;
+		$col="black";
+		if($rank<=0)
+			$col="red";
+		elseif ($rank>0 && $rank<=10)
+		$col="gray";
+		elseif ($rank>10 && $rank<50)
+		$col="black";
+		elseif ($rank>50 && $rank<100)
+		$col="#4169E1";
+		else
+			$col="#FFD700";
+		echo  "<script>Rank();</script>";
+		echo 'Rank =<dive style="color:'.$col.';">'.$rank.'</div></div>';
+		*/
+		?>
+		
 		<br>
 		<?php if($this -> session-> userdata('login')){ ?>
 		<p> Click <a href="<?php echo base_url()."edit/comment/".$question -> questionID.
@@ -115,8 +135,30 @@ else if($this->session->flashdata('update_message')) {
 
 	</div>
 	</form>
-		<?//if($this->session->userdata('uid')==$question->userID || ($this->session->userdata('user','userTypeID'))==2 || ($this->session->userdata('user','userTypeID'))==3):?>
-		<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" >  <img src="<?=base_url()?>/img/icons/edit.png" alt="cant display" height="40px" width="50px"/>
+	
+		<?php
+	// Abdullaziz Akbary Hamidullah khanzai
+	
+	// This code will show a edit image for the user in condition 
+	// if the the current question belongs to the user or the use which is loged in is 
+	// an editor or admin it also check if the question if posted by the unregistered user 
+	// the unregistered user does not have the rights to edit question because all the unregistered user the in the quesiton table
+	// the id of the user would be 0 The user will get a confimation message
+	?>
+	 <?php if($this->session->userdata('login')):?>
+			<?php if(($this -> session -> userdata('uid') == $question->userID) 
+					|| ($this->session->userdata('user')->userTypeID == 2)
+					|| ($this->session->userdata('user')->userTypeID == 3)):?>
+				<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" 
+						onclick="return doConfirm('Edit This Question?')"  >
+	   			 <img src="<?=base_url()?>/img/unused/edit.png" alt="cant display"
+	    		 height="40px" title="Edit Question" width="50px"/>
+		</a>
+			<?php endif;?>
+		<?php endif;?>	
+		
+		
+		
 	<!-- button for adding answer-->
 	<?php if($this->session->userdata('login')):?>
 			<a href="<?php echo base_url()."index.php/edit/answer/".$question->questionID ?>">
@@ -138,6 +180,26 @@ if (isset($result))
 <?php foreach ($answers as $answer): ?>
 	<div class="answer">
 		<?php echo $answer->body; ?>
+		<br>
+		<?php
+		/*
+		
+		 $rank=$answer->rank;
+			$col="black";
+			if($rank<=0)
+				$col="red";
+			elseif ($rank>0 && $rank<=10)
+				$col="gray";
+			elseif ($rank>10 && $rank<50)
+				$col="black";
+			elseif ($rank>50 && $rank<100)
+				$col="#4169E1";
+			else 
+				$col="#FFD700";
+				echo 'Rank =<dive style="color:'.$col.';">'.$rank.'</div>';
+		*/
+		?>
+		
 	<div class="vote">	
 	<?php if($answer->vote){
 					echo "you already voted"; echo "<br>";}
