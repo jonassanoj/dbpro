@@ -36,12 +36,13 @@ class Question_model extends CI_Model {
 	 * @param int $offset the pagination offset
 	 * @param int $limit the amount of questions to retrieve
 	 * @param array $filter the optional filter to be applied to the results
-	 * @return array holds question objects with a questionID and its title
+	 * @return array holds question objects with a questionID and its title ordered by rank in decending order 
 	 *
 	 */
 
 	public function get_list($offset, $limit, $filter = array()) {
 		$this -> db -> select('questionID,title');
+		$this->db->order_by("rank", "desc");
 		$this -> filter($filter);
 		$query = $this -> db -> get('Question', $limit, $offset);
 		return $query -> result();
@@ -74,6 +75,23 @@ class Question_model extends CI_Model {
 	public function get_details($qid) {
 		$query = $this -> db -> get_where('Question', array('questionID' => $qid));
 		return $query -> first_row();
+	}
+	
+	/**
+	 * check if a user has voted for a question.
+	 *
+	 * @param int $qid the questionID
+	 * @param int $userid the userID
+	 * @return object 
+	 */
+	
+	public function check_vote($qid, $userid) {
+		$this->db->where('questionID', $qid);
+		$this->db->where('userID', $userid);
+		$this->db->from('QuestionVote');
+		$query = $this->db->get();
+		return $query -> first_row();
+		
 	}
 
 	/**

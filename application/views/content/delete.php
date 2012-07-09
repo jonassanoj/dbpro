@@ -1,9 +1,3 @@
-
-<html>
-
-
-
-<body>
 	<link href="<?php echo base_url(); ?>css/adminstyle.css" rel="stylesheet" type="text/css" />
 		<div class="content">
 		<?php echo $message; ?>
@@ -41,5 +35,3 @@
 		</form>
 		<br />
 		</div>
-</body>
-</html>

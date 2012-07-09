@@ -133,11 +133,11 @@ h3 { font-size: 120%; }
 	position:absolute;	
 	top:0px;
 	left:auto;
-	width: 31%;
+	width: 53%;
 	height: 2em;
 	text-align: center;
 	border-top: 1px dashed silver;
-	background: #D9C6B0;
+	background: #ffffff;
 	padding: 0;
 	margin: 0;
 }
@@ -150,16 +150,73 @@ h3 { font-size: 120%; }
     float: left;
     line-height: 30px;
 	white-space: nowrap;
-	
+	border-left: 1px solid #E4E4E4;
 }
 
 #catbar li{
+	 border-left: 1px solid #E4E4E4;
+	 padding: 0 0.5em;
 	 font-family: Arial, Helvetica, sans-serif;
 	 float: left;
-	 margin-left: 1em;
-	 margin-right: 1em;
+	 margin-left: 0em;
+	 
 }
 
+
+/************************* /
+ * language bar at the footer
+ */
+
+.langbar {
+	background: #D9C6B0;
+	font-size: smaller;
+	margin: 0 0 1em 0;
+	padding: 0.5em 1em;
+	position:absolute;
+	right: 40px;
+}
+.langbar ul {
+	display: inline;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.langbar ul li {
+	border-left: 1px solid #E4E4E4;
+	display: inline;
+	list-style: none;
+	margin-left: 0;
+	padding: 0 0.5em;
+}
+
+.langbar ul li.langbar_main {
+	border-left: none;
+	display: inline;
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+.langbar ul a.external {
+	background: none ! important;
+	padding-right: 0 ! important;
+}
+
+.langbar ul li.langbar_title {
+	display: none;
+}
+/*
+ * end
+ */
+
+.searchbox {
+	border: 0px;
+	position: absolute;
+	top: 140px;
+	right: 35px;
+	width: auto;
+	height: 35px;
+}
+/*end */
 .question, .answer, .comment {
 	border-bottom-width: 1px;
 	border-bottom-style: dashed;
@@ -211,4 +268,32 @@ a.backlink:hover {
 	max-width: 40em;
 	margin: auto;
 }
+
+.vote {
+	
+ 	margin-top: 1em;
+	display: block;
+	white-space: nowrap;
+	height: 50px;
+	width: 50px;
+}
+
+.vote:hover {
+	
+}
+
+.message {
+	width: 98%;
+	margin-top:4px;
+	margin-left:0;
+	margin-right:0;
+	margin-bottom:0;
+	padding:4px;
+	text-align: center;
+	border: thin green solid;
+	color:green;
+}
+
+
+
 

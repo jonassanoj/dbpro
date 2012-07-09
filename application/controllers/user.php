@@ -192,7 +192,6 @@ class User extends CI_Controller {
 			//$this -> load -> view('upload_success', $data);
 		}
 	}
-
 	public function register() {
 
 	}
@@ -210,7 +209,7 @@ class User extends CI_Controller {
 	 *
 	 */
 	public function view_account() {
-		
+		//if(!$this -> session -> userdata('login')) redirect('main/home');
 		$this -> load -> model('user_model');
 		$userdata = $this -> user_model -> get_userdata($this -> session -> userdata('uid'));
 		//$this -> session -> userdata('uid'));
@@ -258,6 +257,7 @@ class User extends CI_Controller {
 		//$this->User_model->delete_user($uid);
 		//redirect('admin/index/','refresh');
 	}
+	
 	/**
 	 * delete user
 	 *

@@ -51,6 +51,10 @@ $lang['title_about'] = "About Goftogo";
 ////// newly added to english:
 $lang['title_search_questions'] = "Search results";
 $lang['title_login_needed'] = "Login required";
+$lang['tittle_comment_create'] = "You can create new comment !";
+$lang['tittle_existing_comment'] = "Edit an existing comment !";
+$lang['tittle_update_comment'] = "You have updated the comment !";
+$lang['tittle_delete_comment'] = "You have deleted the comment !";
 
 // Words
 $lang['w_about'] = "about";
@@ -63,7 +67,9 @@ $lang['w_lang_ps'] = "Pashto";
 ////// newly added to english:
 $lang['w_createnew'] = "create new";
 $lang['w_question'] = "question";
-
+$lang['update_comment'] = "Update";
+$lang['add_comment'] = "Add";
+$lang['cancel_comment'] = "Cancel";
 // Form
 $lang['form_username'] = "Username";
 $lang['form_password'] = "Password";
@@ -84,6 +90,16 @@ $lang['msg_login_needed'] = "The page you are trying to view is only available t
 $lang['msg_login_register'] = "If you do not have a user account yet, you can get one by clicking on ".$lang['form_register'].".";
 $lang['msg_registration_about'] = "Setting up a user account is completely free and takes just a minute. ";
 
+// newly added
+$lang['admin_user'] = "Admin page";
+
+$lang['msg_inserted_comment'] = "Your comment is inserted successfully !";
+$lang['msg_sorry_comment'] = "Sorry! Your comment is not inserted, try later";
+$lang['msg_notUpdated_comment'] = "Comment did not updated, please try later !";
+$lang['msg_delete_comment'] = "Comment is deleted !";
+$lang['msg_notFound_comment'] = "Comment is not found to be deleted!";
+$lang['comment_textarea_label'] = "Write your comment here !";
+$lang['msg_update_comment'] = "Comment is updated successfully !";
 
 // Paragraphs 
 $lang['par_about'] = "Goftogo (Dialogue) is a Computer Science related Q&A site, that wants to bring Afghan IT students, 

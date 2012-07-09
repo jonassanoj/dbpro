@@ -83,6 +83,23 @@ class Main extends CI_Controller {
 	}
 
 	/**
+	 * this fucntion gets the search term from search box,
+	 * checking the input.then
+	 * redirects to _filter
+	 */
+	public function search(){
+		$term = $this->input->post('search');
+		if($term <> "")
+			redirect("main/filter/search/".$term);
+		else 
+			redirect(base_url());
+	}
+
+	public function cat() {
+		$opt = $this -> input -> post('cat_sel');
+		$this->filter('catID', $opt);
+	}
+	/**
 	 * shows a list of questions filtered after one condition
 	 *
 	 * show the paginated _qlist_ view with the questions matching a filter.  
@@ -98,7 +115,7 @@ class Main extends CI_Controller {
 		$config['base_url'] = site_url("main/filter/$filter/$param/"); 
 		$config['per_page'] = 5;
 		$config['uri_segment'] = 5;
-		$filter = array($filter => $param);
+		$filter = array($filter => urldecode($param));
 		$data['questions'] = $this -> question_model -> get_list($offset, $config['per_page'], $filter);
 		$config['total_rows'] = $this -> question_model -> get_count($filter);
 		$this -> pagination -> initialize($config);
@@ -118,9 +135,33 @@ class Main extends CI_Controller {
 	 */
 
 	public function qshow($qid) {
+		$uid=$this->session->userdata('uid');
+		
+		//check if the current login user already voted for this question or not.
+		$voted = $this -> question_model -> check_vote($qid, $uid);
 		$data['question'] = $this -> question_model -> get_details($qid);
 		$data['title'] = lang('title_main') . ': ' . $data['question'] -> title;
+		if(!empty($voted)){
+			$data['question'] -> vote = true;
+		}
+		else{
+			$data['question'] -> vote = false;
+		}
+		
 		$data['answers'] = $this -> answer_model -> get_answers($qid);
+		
+		//check for every answer if the current login user already voted for or not.
+		foreach($data['answers'] as $answer){
+			
+			$voted = $this -> answer_model -> check_vote($answer -> answerID, $uid);
+			if(!empty($voted)){
+				$answer -> vote = true;
+			}
+			else{
+				$answer -> vote = false;
+			}
+		}
+		
 		$data['backlink'] = anchor($this -> session -> userdata('last_visited'), lang('w_back'), "class=backlink");
 		$this -> _loadviews('qdetails', $data);
 
@@ -145,7 +186,7 @@ class Main extends CI_Controller {
 		$data['title'] = mb_convert_case(lang('title_' . $page), MB_CASE_TITLE);
 		$this -> _loadviews($page, $data);
 	}
-/**
+	/**
 	 * shows the User Account Information 
 	 *
 	 * this function will retreive account data from the database about the logged in user

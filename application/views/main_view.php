@@ -34,8 +34,17 @@ $this->load->view('include/header');
 				echo('</div><!-- #loginbox-->'."\n");
 			}
 			echo("<h1>$title</h1>\n");
-		?>
 			
+			echo ('<div class="searchbox">'."\n");
+			$attr=array('name'=>"form");
+			echo form_open("main/search", $attr);
+			$searchVal=array("name"=>"search");
+			echo form_input($searchVal['name']);
+			echo '<input type="submit" name="dosearch" value="Go"  />';
+			echo form_close();
+			echo ('</div>'."\n");
+		?>
+		
 		</div><!-- #header-->
 	
 		<div id="middle">
@@ -46,20 +55,24 @@ $this->load->view('include/header');
 				</div><!-- #content-->
 			</div><!-- #container-->
 			<div id="sidebar">
-					<?php 
-					if (isset($navigation)) 
-						$this->load->view('include/navigation_dynamic');
-					else 
-						$this->load->view('include/navigation_default');
-					?>
+				<?php 
+				if (isset($navigation)) 
+					$this->load->view('include/navigation_dynamic');
+				else 
+					$this->load->view('include/navigation_default');
+				?>
 			</div><!-- #sidebar -->
 		</div><!-- #middle-->
 	</div><!-- #wrapper -->
 	
 	<div id="footer">
-		<?php echo lang('title_main'); ?>. 2012
+		<div class="langbar">
+		<?php 
+			$this->load->view('include/langbar');
+		?>
+		</div>
+		<?php echo lang('title_main');?>.2012
 	</div><!-- footer  -->
-
 </body>
 
 </html>

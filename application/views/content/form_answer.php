@@ -20,9 +20,12 @@ if($this -> session -> userdata('form') == 'new'
 	if(isset($body)) echo $body;
 	echo "</textarea>";
 	echo "<br>";
-	echo "<input type='submit' name='btn_save' id='btn_save' value='Save' class='save'>";
+	echo "<input type='submit' name='btn_submit' id='btn_save' value='Save' class='save'>";
 	echo "&nbsp; &nbsp;";
-	echo "<a href='".base_url()."index.php/edit/delete_answer/".(isset($aid)? $aid: '')."' class='delete'>Delete</a>";
+	if($aid == 0 || $aid == '') 
+		echo "<input type='submit' name='btn_submit' id='btn_cancel' value='Cancel' class='save'>";
+	else
+		echo "<input type='submit' name='btn_submit' id='btn_delete' value='Delete' class='save'>";
 	echo "<div class='ans_error'>".validation_errors()."</div>";	
 	echo "<br>";
 	echo "<p>";
@@ -32,5 +35,9 @@ if($this -> session -> userdata('form') == 'new'
 }
 else {
 	echo $message; 
+	if($this->session->flashdata('delete_message')) {
+		echo ("<p style='margin-bottom:6px; padding:4px;'>"
+				.$this->session->flashdata('delete_message')."</p>");
+	}
 }
 ?>

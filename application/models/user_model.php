@@ -200,9 +200,17 @@ class User_model extends CI_Model {
 	 * @author saminullah sameem
 	 * @return array userType objects with the attributes userTypeID and userType
 	 */
-	public function get_usertypes() {
+	const FLAT_ARAY = 0;
+	public function get_usertypes($return=self::FLAT_ARAY) {
 		$query = $this -> db -> get('UserType');
-		return $query -> result();
+		if ($return==self::FLAT_ARAY) {
+			foreach($query -> result() as $userType)
+				$flat[$userType->userTypeID]=$userType->userType;
+			return $flat;
+		}
+		
+		
+		else return $query->result();
 	}
 
 	/**
@@ -300,5 +308,46 @@ class User_model extends CI_Model {
 			
 		}
 	}
-
+	/**
+	 * get all users from user table
+	 *
+	 * this function will return all users from user table
+	 *
+	 * @author Ashuqullah Alziai
+	 * @param int $limit
+	 * @param int $offse
+	 * @return array of users
+	 */
+	function get_paged_list($limit = 10, $offset = 0){
+		$this->db->join('UserType', 'User.userTypeID = UserType.userTypeID');
+		$this->db->join('Field', 'User.fieldID = Field.fieldID','left');
+		$this->db->order_by('userID','asc');
+		return $this->db->get('User', $limit, $offset);
+	}
+	/**
+	 * Count users
+	 *
+	 * This function is used to count all existing users in the database.
+	 *
+	 * @author Ashuqullah Alizai
+	 * @return array of users
+	 *
+	 */
+	function count_all(){
+		return $this->db->count_all('User');
+	}
+	/**
+	 * List users
+	 *
+	 * This function is used to list all users ordered by userID.
+	 *
+	 * @author Ashuqullah Alizai & Ghezal Ahmad
+	 * @return array of users.
+	 */
+	function list_all(){
+		$this->db->order_by('userID','asc');
+		return $this->db->get('User');
+	}
+	
+	
 }
