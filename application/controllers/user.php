@@ -236,26 +236,21 @@ class User extends CI_Controller {
 
 	}
 	
-	function delete(){
-		//common properties
-		$uid=$this -> session -> userdata('uid');
-		$data['message'] ='';
-		
-		$data['title'] = 'Delete User';
-		$data['action'] = site_url('user/delete_user');
-		//load user model
-		$deletionID='';
-		$person = $this->user_model->get_userdata($uid);
-		$this->form_data->id = $uid;
-		//take parmeter from data base
-		$this->form_data->deletionID = $deletionID;
-		$this->form_data->userName = $person->userName;
-		$data['deletion_types']=array('DEACTIVATE','ANONYMIZE','CASCADE');	
-		//load view
-		//$this -> load -> view('delete_user', $data);
-		$this->_loadviews('delete_user', $data);
-		//$this->User_model->delete_user($uid);
-		//redirect('admin/index/','refresh');
+	function delete($type=null){
+		if ($type==null){
+			$data['title']=lang('title_delete_user');
+			$this->_loadviews('delete_user', $data);			
+		}
+		else {
+			$success=false;
+			if ($type=='deactivate') 
+				$success=$this->user_model->delete($this->session->userdata('uid'),User_model::DEACTIVATE);
+			if ($type=='anonymize')
+				$success=$this->user_model->delete($this->session->userdata('uid'),User_model::ANONYMIZE);
+			if ($type=='cascade')
+				$success=$this->user_model->delete($this->session->userdata('uid'),User_model::CASCADE);
+			if ($success) redirect('user/logout'); else redirect('user/delete');
+		}
 	}
 	
 	/**

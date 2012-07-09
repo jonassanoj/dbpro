@@ -55,6 +55,11 @@ $lang['tittle_comment_create'] = "You can create new comment !";
 $lang['tittle_existing_comment'] = "Edit an existing comment !";
 $lang['tittle_update_comment'] = "You have updated the comment !";
 $lang['tittle_delete_comment'] = "You have deleted the comment !";
+$lang['title_delete_user'] = "Delete or deactivate my account";
+$lang['title_anonymize_user'] = "Delete my account and keep my contributions in anonymized form";
+$lang['title_deactivate_user'] = "Deactivate my account, keeping my contributions";
+$lang['title_cascade_user'] = "Delete my account and completely delete all my contributions";
+
 
 // Words
 $lang['w_about'] = "about";
@@ -78,7 +83,9 @@ $lang['form_login'] = "Login";
 $lang['form_register'] = "Register";
 ////// newly added to english:
 $lang['form_logout'] = "Logout";
-
+$lang['form_delete'] = "Delete";
+$lang['form_deactivate'] = "Deactivate";
+$lang['form_anonymize'] = "Anonymize";
 // Messages 
 $lang['msg_login_failed'] = "Login failed!";
 $lang['msgvar_username_taken'] = "Sorry, the username %s is already registered!";

@@ -1,11 +1,3 @@
-<script type="text/javascript">
-/**
- *the form to show all the user account information so we can update the user account information after wards
- */
-
-</script>
-
-<div id="main_div">
 	<?php
 				if (isset($error))
 					echo $error;
@@ -137,8 +129,10 @@
             </td>
           </tr>
   </table>
-
-
 </form>
-
-</div>
+<?php 
+echo form_open('user/delete');
+echo lang('title_delete_user','delete');
+echo form_submit('delete',lang('form_delete'));
+echo form_close();
+?>
