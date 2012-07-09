@@ -105,7 +105,10 @@ class Edit extends CI_Controller {
 			// checak if the $qid exist question table 
 			if($data){
 				// check if the question belong to the current user
-				if(true){ //$question->userID==$this->session->userdata('uid')
+				
+				if($data['question']->userID==$this->session->userdata('uid')
+						||($this->session->userdata('user')->userTypeID==2)
+						|| ($this->session->userdata('user')->userTypeID==3) ){ 
 						$_POST['btn']='Save Changes';
 						$data['title']='Edit Question';
 						$this->_loadviews('form_question',$data);
