@@ -97,8 +97,9 @@ else if($this->session->flashdata('update_message')) {
 		<div class="markdown">
 		<p><?php echo Markdown($question->body); ?></p>
 		
-		<?php 
-		/*
+		<?php
+	 
+		
 		$rank=$question->rank;
 		$col="black";
 		if($rank<=0)
@@ -111,10 +112,10 @@ else if($this->session->flashdata('update_message')) {
 		$col="#4169E1";
 		else
 			$col="#FFD700";
-		echo  "<script>Rank();</script>";
-		echo 'Rank =<dive style="color:'.$col.';">'.$rank.'</div></div>';
-		*/
-		?>
+		
+		echo 'Rank = <label style="color:'.$col.';">'.$rank.'</label>';?>
+		
+		
 		
 		<br>
 		<?php if($this -> session-> userdata('login')){ ?>
@@ -122,6 +123,8 @@ else if($this->session->flashdata('update_message')) {
 		"/0"."/0" ?>" title='Add new comment'> here  </a> to write a comment ! </p>
 		<?php }?>
 		</div>
+		
+		
 	
 		<form action="" method="POST">
   		<input type="image" title="load comments" src=<?php echo base_url('img/icons/plus.png'); ?> width=30 name="submitit" id="submitit" onclick="return false" />
@@ -182,7 +185,7 @@ if (isset($result))
 		<?php echo $answer->body; ?>
 		<br>
 		<?php
-		/*
+		
 		
 		 $rank=$answer->rank;
 			$col="black";
@@ -196,9 +199,9 @@ if (isset($result))
 				$col="#4169E1";
 			else 
 				$col="#FFD700";
-				echo 'Rank =<dive style="color:'.$col.';">'.$rank.'</div>';
-		*/
-		?>
+				echo 'Rank = <label style="color:'.$col.';">'.$rank.'</label>';?>
+		
+		
 		
 	<div class="vote">	
 	<?php if($answer->vote){
