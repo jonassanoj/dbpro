@@ -129,7 +129,33 @@ class Edit extends CI_Controller {
 				$this->_loadviews('form_question',$data);
 			} 
 		
+	}
+	
+	
+	/**
+	 * This method delete qustion
+	 * The method check if the question belongs to the user or the or the user type is admin or editor
+	 * if the question have been deleted the user will redirect to main page
+	 * @author Abdulaziz Akabary Hamidullah khanzai
+	 * @param int $qid
+	 * @return string if there was problem
+	 */
+	
+	function question_Delete($qid){
+		if (!$this->session->userdata('login')) redirect('main/home');
+	
+		if($this -> question_model -> is_User_Question($qid, $this -> session -> userdata('uid'))
+				|| ($this->session->userdata('user')->userTypeID = 2)
+				|| ($this->session->userdata('user')->userTypeID = 3)){
+			if($this->question_model->delete_question($qid)){
+				redirect('main/home');
+			}
+			else
+				$this->session->set_flashdata('delete_message', 'Sorry! you dont have privacey to delete this Question');
+				
 		}
+	
+	}
 		
 		
 	
