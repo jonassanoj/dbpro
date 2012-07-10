@@ -53,7 +53,7 @@ $this->load->view('include/header');
 		<div id="middle">
 			<div id="container">
 				<div id="content">
-					<?php if (isset($message)) {
+					<?php if (isset($message)) if ($message) {
 						echo '<div class='.$message['class']." >\n"; 
 						echo $message['content']."\n";
 						echo ('</div>'."\n");

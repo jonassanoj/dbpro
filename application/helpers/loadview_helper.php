@@ -33,7 +33,7 @@ function init_view_data($content,$data) {
 		$data['categories']=$CI->category_model->get_favorite_category();
 		
 	}
-	$data['general_cat'] = $CI -> category_model -> get_categories();
+	$data['general_cat'] = $CI -> category_model -> get_categories(0,Category_model::MULTI_ARRAY);
 	$data['content'] = "content/$content";
 	
 	return $data;	
