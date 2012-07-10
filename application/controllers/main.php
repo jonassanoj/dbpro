@@ -46,6 +46,7 @@ class Main extends CI_Controller {
 	public function _loadviews($content, $data) {
 		$this -> session -> set_userdata('last_visited', current_url());
 		$data['loginbox'] = TRUE;
+		$data['categorybar'] = TRUE;
 		$this -> load -> view('main_view', init_view_data($content, $data));
 	}
 

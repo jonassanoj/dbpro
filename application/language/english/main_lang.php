@@ -59,6 +59,7 @@ $lang['title_delete_user'] = "Delete or deactivate my account";
 $lang['title_anonymize_user'] = "Delete my account and keep my contributions in anonymized form";
 $lang['title_deactivate_user'] = "Deactivate my account, keeping my contributions";
 $lang['title_cascade_user'] = "Delete my account and completely delete all my contributions";
+$lang['title_new_question'] = "Ask a question";
 
 
 // Words
