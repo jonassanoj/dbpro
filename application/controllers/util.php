@@ -48,7 +48,7 @@ class Util extends CI_Controller {
 	
 	public function q_vote($qid){
 		
-		$userid = 4;//$this->session->userdata('uid');
+		$userid = $this->session->userdata('uid');
 		if($this->input->post('up')){
 			$term = $this->input->post('up');
 		}
@@ -75,7 +75,7 @@ class Util extends CI_Controller {
 	
 	public function a_vote($aid){
 		
-		$userid = 4;//$this->session->userdata('uid');
+		$userid = $this->session->userdata('uid');
 		if($this->input->post('aup')){
 			$term = $this->input->post('aup');
 		}

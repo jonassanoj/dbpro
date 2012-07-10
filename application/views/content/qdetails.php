@@ -140,22 +140,21 @@ else if($this->session->flashdata('update_message')) {
 	</form>
 	
 		<?php
-	// Abdullaziz Akbary Hamidullah khanzai
+	// Abdulaziz Akbary Hamidullah khanzai
 	
 	// This code will show a edit image for the user in condition 
 	// if the the current question belongs to the user or the use which is loged in is 
 	// an editor or admin it also check if the question if posted by the unregistered user 
 	// the unregistered user does not have the rights to edit question because all the unregistered user the in the quesiton table
-	// the id of the user would be 0 The user will get a confimation message
+	// the id of the user would be 0 The user will get a confirmation message
 	?>
 	 <?php if($this->session->userdata('login')):?>
 			<?php if(($this -> session -> userdata('uid') == $question->userID) 
 					|| ($this->session->userdata('user')->userTypeID == 2)
 					|| ($this->session->userdata('user')->userTypeID == 3)):?>
-				<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>" 
-						onclick="return doConfirm('Edit This Question?')"  >
+				<a href="<?=base_url()?>index.php/edit/question/<?= $question->questionID;?>">
 	   			 <img src="<?=base_url()?>/img/unused/edit.png" alt="cant display"
-	    		 height="40px" title="Edit Question" width="50px"/>
+	    		 height="30px" title="Edit Question" width="30px"/>
 		</a>
 			<?php endif;?>
 		<?php endif;?>	
@@ -204,19 +203,21 @@ if (isset($result))
 		
 		
 	<div class="vote">	
+	<?php if($this->session->userdata('login')):?>
 	<?php if($answer->vote){
 					echo "you already voted"; echo "<br>";}
 	else {
 		include "avote.php";}?>
+	<?php endif;?>	
 	</div>	
 	<!-- Edit answer, add answer, delete answer-->
         <?php if($this->session->userdata('login')):?>
-			<?php if($i == count($answers)-1):?>
+			
 			<a href="<?php echo base_url()."index.php/edit/answer/".$question->questionID ?>">
 				<img src="<?php echo base_url('img/unused/write.png'); ?>"
 				align="middle" width="25" height="25" title="Add new answer"/> 
 			</a> &nbsp;
-			<?php endif; $i++;?>
+			
 			<?php if(($this -> session -> userdata('uid') == $answer->userID) 
 					|| ($this->session->userdata('user')->userTypeID == 2) // checking for editor or admin
 					|| ($this->session->userdata('user')->userTypeID == 3)):?>
