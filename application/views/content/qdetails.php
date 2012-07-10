@@ -49,49 +49,6 @@ var doConfirm = function()
 	 * @package views
 	 */
 </script> <!-- javascript is closed -->
-<div>
-<?php 
-// this can be used for all kind adding, editing and deleting
-// for answer i have done, for question is the same, and for comment is the same
-// but they have to use the same index for flash data
-// style class is in main.css, for its only design for 
-// success messages (color green) border green
-if($this->session->flashdata('delete_message')) {
-	echo ("<p class='message'>"
-		.$this->session->flashdata('delete_message')."</p>");
- }
-else if($this->session->flashdata('update_message')) {
-	echo ("<p class='message'>"
-		.$this->session->flashdata('update_message')."</p>");
- }
- else if($this->session->flashdata('add_message')) {
- 	echo ("<p class='message'>"
- 			.$this->session->flashdata('add_message')."</p>");
- }
-?>
-
-
-
-<?php
-// This is for showing the comment successed or failed messages 
- if($this->session->flashdata('msg_update')) {
-		echo ("<p class='message'>"
-				.$this->session->flashdata('msg_update')."</p>");
-	}
-	else if($this->session->flashdata('msg_add_comment')) {
-		echo ("<p class='message'>"
-				.$this->session->flashdata('msg_add_comment')."</p>");
-	}
-	else if($this->session->flashdata('msg_delete')){
-		echo ("<p class='message'>"
-				.$this->session->flashdata('msg_delete')."</p>");
-	}
-?>
-
-
-
-
-</div>
 <div class="question">
 		<h3><?php echo $question->title; ?></h3>
 		<div class="markdown">

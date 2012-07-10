@@ -180,9 +180,9 @@ class Edit extends CI_Controller {
 				unset($data['question']);
 				$body = $this -> input -> post('answer_body');
 		 		$flag = $this -> answer_model -> add_answer($qid, $this -> session -> userdata('uid'), $body);
-				$this->session->set_flashdata('add_message','Answer added successfully');
+				flash_message('Answer added successfully');
 				if(!$flag)
-				$this->session->set_flashdata('add_message','Answer did not save, please try later again');
+				flash_message('Answer did not save, please try later again');
 				$this -> session -> unset_userdata('form');
 				redirect('main/qshow/'.$qid);
 			}	 		
@@ -210,9 +210,9 @@ class Edit extends CI_Controller {
 					unset($data['question']);
 					$body = $this -> input -> post('answer_body');
 					$flag = $this -> answer_model -> update_answer($aid, $body);
-					$this->session->set_flashdata('update_message', 'Answer updated successfully');
+					flash_message('Answer updated successfully');
 					if(!$flag)
-					$this->session->set_flashdata('update_message','Answer did not update, please try later again');
+					flash_message('Answer did not update, please try later again');
 					$this -> session -> unset_userdata('form'); 
 					redirect('main/qshow/'.$qid);
 					
@@ -272,9 +272,9 @@ class Edit extends CI_Controller {
 		   && ($this->session->userdata('user')->userTypeID != 3))
 		redirect('main/home');
 		$flag = $this -> answer_model -> delete_answer($aid, $this -> session -> userdata('uid'));
-		$this->session->set_flashdata('delete_message', 'Your answer deleted successfully');
+		flash_message('Your answer deleted successfully');
 		if(!$flag) {
-			$this->session->set_flashdata('delete_message', 'Sorry! your answer did not delete, tray again later');
+			flash_message('Sorry! your answer did not delete, try again later');
 		}
 		
 		redirect($this -> session -> userdata('last_visited'));

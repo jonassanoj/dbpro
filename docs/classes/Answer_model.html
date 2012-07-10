@@ -33,14 +33,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-<<<<<<< HEAD
-                <span class="label label-info">106</span></a></li>
-=======
-                <span class="label label-info">21</span></a></li>
->>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
+                <span class="label label-info">32</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">6</span>
+                <span class="label label-info">2</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -63,12 +59,13 @@
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
-<<<<<<< HEAD
-=======
 <li class="method public "><a href="#add_answer" title="add_answer :: Adding new answer to a question"><span class="description">Adding new answer to a question</span><pre>add_answer()</pre></a></li>
->>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
+<li class="method public "><a href="#check_vote" title="check_vote :: check for login user if he/she voted for answer."><span class="description">check for login user if he/she voted for answer.</span><pre>check_vote()</pre></a></li>
 <li class="method public "><a href="#delete_answer" title="delete_answer :: cascading Delete answer"><span class="description">cascading Delete answer</span><pre>delete_answer()</pre></a></li>
+<li class="method public "><a href="#get_answer" title="get_answer :: The function to get answe"><span class="description">The function to get answe</span><pre>get_answer()</pre></a></li>
 <li class="method public "><a href="#get_answers" title="get_answers :: return the answers for a question"><span class="description">return the answers for a question</span><pre>get_answers()</pre></a></li>
+<li class="method public "><a href="#get_details" title="get_details :: "><span class="description">get_details()
+        </span><pre>get_details()</pre></a></li>
 <li class="method public "><a href="#is_user_answer" title="is_user_answer :: Helper function for checking user's answer"><span class="description">Helper function for checking user's answer</span><pre>is_user_answer()</pre></a></li>
 <li class="method public "><a href="#update_answer" title="update_answer :: updating answer"><span class="description">updating answer</span><pre>update_answer()</pre></a></li>
 </ul>
@@ -99,8 +96,6 @@
 </tr></table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<<<<<<< HEAD
-=======
 <a name="add_answer" id="add_answer"></a><div class="element clickable method public add_answer" data-toggle="collapse" data-target=".add_answer .collapse">
 <h2>Adding new answer to a question</h2>
 <pre>add_answer(int $qid, int $uid, string $body) : boolean</pre>
@@ -122,7 +117,24 @@
 <code>boolean</code>true if inserted otherwise false</div>
 </div></div>
 </div>
->>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
+<a name="check_vote" id="check_vote"></a><div class="element clickable method public check_vote" data-toggle="collapse" data-target=".check_vote .collapse">
+<h2>check for login user if he/she voted for answer.</h2>
+<pre>check_vote(int $aid, int $userid) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>the total amount of questions matching the filter criteria. see get_list documentation for details.</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>the answerID</p></div>
+<div class="subelement argument">
+<h4>$userid</h4>
+<code>int</code><p>the userID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>a single question object, containing column values as attributes.</div>
+</div></div>
+</div>
 <a name="delete_answer" id="delete_answer"></a><div class="element clickable method public delete_answer" data-toggle="collapse" data-target=".delete_answer .collapse">
 <h2>cascading Delete answer</h2>
 <pre>delete_answer(int $aid) : int</pre>
@@ -140,6 +152,25 @@ at end return the number of affected rows.</p></p>
 <code>int</code>number of affected rows if successful, 0 otherwise</div>
 </div></div>
 </div>
+<a name="get_answer" id="get_answer"></a><div class="element clickable method public get_answer" data-toggle="collapse" data-target=".get_answer .collapse">
+<h2>The function to get answe</h2>
+<pre>get_answer(int $aid) : array | boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>geting answer by answer id</p></p>
+<table class="table table-bordered"><tr>
+<th>author</th>
+<td><a href="">Wazir khan, Samin</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>the id of the answer</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code><code>boolean</code>return row with fields or false if now row</div>
+</div></div>
+</div>
 <a name="get_answers" id="get_answers"></a><div class="element clickable method public get_answers" data-toggle="collapse" data-target=".get_answers .collapse">
 <h2>return the answers for a question</h2>
 <pre>get_answers(int $qid) : array</pre>
@@ -155,12 +186,38 @@ at end return the number of affected rows.</p></p>
 <code>array</code>holds answer objects with fileds for all database columns</div>
 </div></div>
 </div>
+<a name="get_details" id="get_details"></a><div class="element clickable method public get_details" data-toggle="collapse" data-target=".get_details .collapse">
+<h2>get_details()
+        </h2>
+<pre>get_details(int $aid) : object</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$aid</h4>
+<code>int</code><p>the answerID</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>object</code>a single answer object, containing column values as attributes.</div>
+</div></div>
+</div>
 <a name="is_user_answer" id="is_user_answer"></a><div class="element clickable method public is_user_answer" data-toggle="collapse" data-target=".is_user_answer .collapse">
 <h2>Helper function for checking user's answer</h2>
-<pre>is_user_answer(int $aid, int $uid) : boolean</pre>
+<pre>is_user_answer(int $aid, int $uid) : array | bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>This is a function to check weather a answer related to a user or not.</p></p>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Wazir khan Ahmadzai,</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="">Sameen ullah sameen</a></td>
+</tr>
+</table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$aid</h4>
@@ -171,7 +228,7 @@ at end return the number of affected rows.</p></p>
 <code>int</code><p>the user id, for an answer</p></div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>boolean</code>true if inserted otherwise false</div>
+<code>array</code><code>bool</code>if record found return first row otherwise false (0)</div>
 </div></div>
 </div>
 <a name="update_answer" id="update_answer"></a><div class="element clickable method public update_answer" data-toggle="collapse" data-target=".update_answer .collapse">
@@ -180,6 +237,16 @@ at end return the number of affected rows.</p></p>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>This function is for updating an existing answer by its owner (writer).</p></p>
+<table class="table table-bordered">
+<tr>
+<th>author</th>
+<td><a href="">Wazir khan Ahmadzai,</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="">Sameen ullah sameen</a></td>
+</tr>
+</table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$aid</h4>
@@ -200,11 +267,7 @@ at end return the number of affected rows.</p></p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-<<<<<<< HEAD
-            generated on 2012-06-29T18:19:32+02:00.<br></footer></div>
-=======
-            generated on 2012-07-02T12:41:33+02:00.<br></footer></div>
->>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
+            generated on 2012-07-10T13:08:38+02:00.<br></footer></div>
 </div>
 </body>
 </html>

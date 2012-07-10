@@ -294,6 +294,10 @@ a.backlink:hover {
 	color:green;
 }
 
+.message .red{
+	border: thin red solid;
+	color:red;
+}
 
 
 

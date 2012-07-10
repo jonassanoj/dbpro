@@ -9,6 +9,9 @@
  *  $navigation array -- if set, show include/navigation_dynamic, else show include/navigation_default
  *  $userinfo object -- a user object, contains user information if a user is logged in. 
  * 
+ *  flashdata that is processed:
+ *  $message -- an array with the keys 'content' and 'class', it shows the content in a div of the given class
+ * 
  *  variables processed by include/header: 
  *  $this->lang object -- if set, localizes the document
  *  $scripts array -- uris of scripts to load
@@ -50,6 +53,12 @@ $this->load->view('include/header');
 		<div id="middle">
 			<div id="container">
 				<div id="content">
+					<?php if (isset($message)) {
+						echo '<div class='.$message['class']." >\n"; 
+						echo $message['content']."\n";
+						echo ('</div>'."\n");
+					}
+					?>
 					<?php $this->load->view('include/catbar');?>
 					<?php $this->load->view($content);?>
 				</div><!-- #content-->

@@ -47,10 +47,12 @@ function init_view_data($content,$data) {
  * only works for views loaded via init_view_data()
  * 
  * @param string $msg the message to show the next time a page i loaded
- * 
+ * @param string $class the css class the message div should have in addition to message
  */
  
-function flash_message($msg) {
+function flash_message($msg,$class='') {
 	$CI =& get_instance();
-	$CI -> session -> set_flashdata('message',$msg); 	
+	$message['class']='message '.$class;
+	$message['content']=$msg;
+	$CI -> session -> set_flashdata('message',$message); 	
 }

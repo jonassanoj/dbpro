@@ -33,17 +33,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-<<<<<<< HEAD
-                <span class="label label-info">106</span></a></li>
+                <span class="label label-info">32</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">8</span>
-=======
-                <span class="label label-info">21</span></a></li>
-<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul><li>todo 
-                <span class="label label-info">6</span>
->>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
+                <span class="label label-info">2</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -68,21 +61,32 @@
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#add_user" title="add_user :: adding new user in the User table with initial data (username,password and email address)"><span class="description">adding new user in the User table with initial data (username,password and email address)</span><pre>add_user()</pre></a></li>
 <li class="method public "><a href="#change_usertype" title="change_usertype :: Change the userType"><span class="description">Change the userType</span><pre>change_usertype()</pre></a></li>
+<li class="method public "><a href="#count_all" title="count_all :: Count users"><span class="description">Count users</span><pre>count_all()</pre></a></li>
 <li class="method public "><a href="#delete" title="delete :: "><span class="description">delete()
         </span><pre>delete()</pre></a></li>
 <li class="method public "><a href="#delete_user" title="delete_user :: Deletes a user"><span class="description">Deletes a user</span><pre>delete_user()</pre></a></li>
 <li class="method public "><a href="#get_field" title="get_field :: returns user field."><span class="description">returns user field.</span><pre>get_field()</pre></a></li>
+<li class="method public "><a href="#get_paged_list" title="get_paged_list :: get all users from user table"><span class="description">get all users from user table</span><pre>get_paged_list()</pre></a></li>
 <li class="method public "><a href="#get_userID" title="get_userID :: Get the userID for a certain userName."><span class="description">Get the userID for a certain userName.</span><pre>get_userID()</pre></a></li>
 <li class="method public "><a href="#get_userdata" title="get_userdata :: retrieve all information about a user"><span class="description">retrieve all information about a user</span><pre>get_userdata()</pre></a></li>
 <li class="method public "><a href="#get_usertype" title="get_usertype :: returns specific user type."><span class="description">returns specific user type.</span><pre>get_usertype()</pre></a></li>
-<li class="method public "><a href="#get_usertypes" title="get_usertypes :: return user types"><span class="description">return user types</span><pre>get_usertypes()</pre></a></li>
+<li class="method public "><a href="#get_usertypes" title="get_usertypes :: "><span class="description">get_usertypes()
+        </span><pre>get_usertypes()</pre></a></li>
+<li class="method public "><a href="#list_all" title="list_all :: List users"><span class="description">List users</span><pre>list_all()</pre></a></li>
 <li class="method public "><a href="#login" title="login :: Checks if the username exists"><span class="description">Checks if the username exists</span><pre>login()</pre></a></li>
 <li class="method public "><a href="#update_user" title="update_user :: Update userdata"><span class="description">Update userdata</span><pre>update_user()</pre></a></li>
 <li class="nav-header">
 <i class="icon-custom icon-constant"></i> Constants</li>
 <li class="constant  "><a href="#ANONYMIZE" title="ANONYMIZE :: "><span class="description">ANONYMIZE</span><pre>ANONYMIZE</pre></a></li>
+<li class="constant  "><a href="#ANONYMOUS_ID" title="ANONYMOUS_ID :: "><span class="description">ANONYMOUS_ID</span><pre>ANONYMOUS_ID</pre></a></li>
 <li class="constant  "><a href="#CASCADE" title="CASCADE :: "><span class="description">CASCADE</span><pre>CASCADE</pre></a></li>
 <li class="constant  "><a href="#DEACTIVATE" title="DEACTIVATE :: "><span class="description">DEACTIVATE</span><pre>DEACTIVATE</pre></a></li>
+<li class="constant  "><a href="#FLAT_ARAY" title="FLAT_ARAY :: "><span class="description">FLAT_ARAY</span><pre>FLAT_ARAY</pre></a></li>
+<li class="constant  "><a href="#TYPE_ADMIN" title="TYPE_ADMIN :: "><span class="description">TYPE_ADMIN</span><pre>TYPE_ADMIN</pre></a></li>
+<li class="constant  "><a href="#TYPE_DEACTIVATED" title="TYPE_DEACTIVATED :: "><span class="description">TYPE_DEACTIVATED</span><pre>TYPE_DEACTIVATED</pre></a></li>
+<li class="constant  "><a href="#TYPE_EDITOR" title="TYPE_EDITOR :: "><span class="description">TYPE_EDITOR</span><pre>TYPE_EDITOR</pre></a></li>
+<li class="constant  "><a href="#TYPE_NORMAL" title="TYPE_NORMAL :: "><span class="description">TYPE_NORMAL</span><pre>TYPE_NORMAL</pre></a></li>
+<li class="constant  "><a href="#TYPE_UNCONFIRMED" title="TYPE_UNCONFIRMED :: "><span class="description">TYPE_UNCONFIRMED</span><pre>TYPE_UNCONFIRMED</pre></a></li>
 </ul>
 </div>
 <div class="span8">
@@ -159,6 +163,21 @@
 <code>int</code>0 if user is not found, 1 otherwise.</div>
 </div></div>
 </div>
+<a name="count_all" id="count_all"></a><div class="element clickable method public count_all" data-toggle="collapse" data-target=".count_all .collapse">
+<h2>Count users</h2>
+<pre>count_all() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This function is used to count all existing users in the database.</p></p>
+<table class="table table-bordered"><tr>
+<th>author</th>
+<td><a href="">Ashuqullah Alizai</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of users</div>
+</div></div>
+</div>
 <a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
 <h2>delete()
         </h2>
@@ -219,6 +238,30 @@ software engineering, Data base management system etc.</p></p>
 <code>object</code>user field</div>
 </div></div>
 </div>
+<a name="get_paged_list" id="get_paged_list"></a><div class="element clickable method public get_paged_list" data-toggle="collapse" data-target=".get_paged_list .collapse">
+<h2>get all users from user table</h2>
+<pre>get_paged_list(int $limit, $offset) : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>this function will return all users from user table</p></p>
+<table class="table table-bordered"><tr>
+<th>author</th>
+<td><a href="">Ashuqullah Alziai</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$limit</h4>
+<code>int</code>
+</div>
+<div class="subelement argument">
+<h4>$offset</h4>
+<code></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>of users</div>
+</div></div>
+</div>
 <a name="get_userID" id="get_userID"></a><div class="element clickable method public get_userID" data-toggle="collapse" data-target=".get_userID .collapse">
 <h2>Get the userID for a certain userName.</h2>
 <pre>get_userID(string $username) : int</pre>
@@ -272,18 +315,32 @@ named Administrator, Normal user,Editor and unconfirmed.</p></p>
 </div></div>
 </div>
 <a name="get_usertypes" id="get_usertypes"></a><div class="element clickable method public get_usertypes" data-toggle="collapse" data-target=".get_usertypes .collapse">
-<h2>return user types</h2>
-<pre>get_usertypes() : array</pre>
+<h2>get_usertypes()
+        </h2>
+<pre>get_usertypes($return) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>This function is used to return all types of users.the function takes no parameter.</p></p>
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$return</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="list_all" id="list_all"></a><div class="element clickable method public list_all" data-toggle="collapse" data-target=".list_all .collapse">
+<h2>List users</h2>
+<pre>list_all() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>This function is used to list all users ordered by userID.</p></p>
 <table class="table table-bordered"><tr>
 <th>author</th>
-<td><a href="">saminullah sameem</a></td>
+<td><a href="">Ashuqullah Alizai &amp; Ghezal Ahmad</a></td>
 </tr></table>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>array</code>userType objects with the attributes userTypeID and userType</div>
+<code>array</code>of users.</div>
 </div></div>
 </div>
 <a name="login" id="login"></a><div class="element clickable method public login" data-toggle="collapse" data-target=".login .collapse">
@@ -366,6 +423,12 @@ User data is an array. It updates the user information in table user where UserI
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
+<a name="ANONYMOUS_ID" id="ANONYMOUS_ID"> </a><div class="element clickable constant  ANONYMOUS_ID" data-toggle="collapse" data-target=".ANONYMOUS_ID .collapse">
+<h2>ANONYMOUS_ID</h2>
+<pre>ANONYMOUS_ID </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
 <a name="CASCADE" id="CASCADE"> </a><div class="element clickable constant  CASCADE" data-toggle="collapse" data-target=".CASCADE .collapse">
 <h2>CASCADE</h2>
 <pre>CASCADE </pre>
@@ -378,6 +441,42 @@ User data is an array. It updates the user information in table user where UserI
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
 </div>
+<a name="FLAT_ARAY" id="FLAT_ARAY"> </a><div class="element clickable constant  FLAT_ARAY" data-toggle="collapse" data-target=".FLAT_ARAY .collapse">
+<h2>FLAT_ARAY</h2>
+<pre>FLAT_ARAY </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="TYPE_ADMIN" id="TYPE_ADMIN"> </a><div class="element clickable constant  TYPE_ADMIN" data-toggle="collapse" data-target=".TYPE_ADMIN .collapse">
+<h2>TYPE_ADMIN</h2>
+<pre>TYPE_ADMIN </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="TYPE_DEACTIVATED" id="TYPE_DEACTIVATED"> </a><div class="element clickable constant  TYPE_DEACTIVATED" data-toggle="collapse" data-target=".TYPE_DEACTIVATED .collapse">
+<h2>TYPE_DEACTIVATED</h2>
+<pre>TYPE_DEACTIVATED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="TYPE_EDITOR" id="TYPE_EDITOR"> </a><div class="element clickable constant  TYPE_EDITOR" data-toggle="collapse" data-target=".TYPE_EDITOR .collapse">
+<h2>TYPE_EDITOR</h2>
+<pre>TYPE_EDITOR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="TYPE_NORMAL" id="TYPE_NORMAL"> </a><div class="element clickable constant  TYPE_NORMAL" data-toggle="collapse" data-target=".TYPE_NORMAL .collapse">
+<h2>TYPE_NORMAL</h2>
+<pre>TYPE_NORMAL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="TYPE_UNCONFIRMED" id="TYPE_UNCONFIRMED"> </a><div class="element clickable constant  TYPE_UNCONFIRMED" data-toggle="collapse" data-target=".TYPE_UNCONFIRMED .collapse">
+<h2>TYPE_UNCONFIRMED</h2>
+<pre>TYPE_UNCONFIRMED </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
 </div>
 </div>
 </div>
@@ -385,11 +484,7 @@ User data is an array. It updates the user information in table user where UserI
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-<<<<<<< HEAD
-            generated on 2012-06-29T18:19:32+02:00.<br></footer></div>
-=======
-            generated on 2012-07-02T12:41:33+02:00.<br></footer></div>
->>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
+            generated on 2012-07-10T13:08:38+02:00.<br></footer></div>
 </div>
 </body>
 </html>

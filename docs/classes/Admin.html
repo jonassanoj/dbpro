@@ -33,14 +33,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-<<<<<<< HEAD
-                <span class="label label-info">106</span></a></li>
-=======
-                <span class="label label-info">21</span></a></li>
->>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
+                <span class="label label-info">32</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">6</span>
+                <span class="label label-info">2</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -64,19 +60,21 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods</li>
 <li class="method public "><a href="#__construct" title="__construct :: constructor"><span class="description">constructor</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#_loadviews" title="_loadviews :: "><span class="description">_loadviews()
+        </span><pre>_loadviews()</pre></a></li>
 <li class="method public "><a href="#_set_fields" title="_set_fields :: set field value"><span class="description">set field value</span><pre>_set_fields()</pre></a></li>
 <li class="method public "><a href="#_set_rules" title="_set_rules :: set validation rules"><span class="description">set validation rules</span><pre>_set_rules()</pre></a></li>
-<li class="method public "><a href="#add" title="add :: add new user view"><span class="description">add new user view</span><pre>add()</pre></a></li>
-<li class="method public "><a href="#addUser" title="addUser :: add new user"><span class="description">add new user</span><pre>addUser()</pre></a></li>
-<li class="method public "><a href="#delete" title="delete :: delete user"><span class="description">delete user</span><pre>delete()</pre></a></li>
+<li class="method public "><a href="#delete" title="delete :: "><span class="description">delete()
+        </span><pre>delete()</pre></a></li>
+<li class="method public "><a href="#delete_user" title="delete_user :: delete user"><span class="description">delete user</span><pre>delete_user()</pre></a></li>
 <li class="method public "><a href="#index" title="index :: main function"><span class="description">main function</span><pre>index()</pre></a></li>
 <li class="method public "><a href="#list_users" title="list_users :: List current onsite user"><span class="description">List current onsite user</span><pre>list_users()</pre></a></li>
 <li class="method public "><a href="#mainf" title="mainf :: list all user in the data base"><span class="description">list all user in the data base</span><pre>mainf()</pre></a></li>
 <li class="method public "><a href="#online" title="online :: show onsite user"><span class="description">show onsite user</span><pre>online()</pre></a></li>
-<li class="method public "><a href="#ugrade_user" title="ugrade_user :: upgrade user privileges"><span class="description">upgrade user privileges</span><pre>ugrade_user()</pre></a></li>
 <li class="method public "><a href="#update" title="update :: retrive current data for update"><span class="description">retrive current data for update</span><pre>update()</pre></a></li>
 <li class="method public "><a href="#updatePerson" title="updatePerson :: update the person information"><span class="description">update the person information</span><pre>updatePerson()</pre></a></li>
 <li class="method public "><a href="#upgrade" title="upgrade :: retrive current privileges for user"><span class="description">retrive current privileges for user</span><pre>upgrade()</pre></a></li>
+<li class="method public "><a href="#upgrade_user" title="upgrade_user :: upgrade user privileges"><span class="description">upgrade user privileges</span><pre>upgrade_user()</pre></a></li>
 <li class="method public "><a href="#valid_date" title="valid_date :: validate the data
 fuction will validate the inserted data format"><span class="description">validate the data
 fuction will validate the inserted data format</span><pre>valid_date()</pre></a></li>
@@ -119,6 +117,24 @@ fuction will validate the inserted data format</span><pre>valid_date()</pre></a>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><p class="long_description"><p>loads user_model, helper , main_lang, session library , table library</p></p></div></div>
 </div>
+<a name="_loadviews" id="_loadviews"></a><div class="element clickable method public _loadviews" data-toggle="collapse" data-target="._loadviews .collapse">
+<h2>_loadviews()
+        </h2>
+<pre>_loadviews($content, $data) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$content</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$data</h4>
+<code></code>
+</div>
+</div></div>
+</div>
 <a name="_set_fields" id="_set_fields"></a><div class="element clickable method public _set_fields" data-toggle="collapse" data-target="._set_fields .collapse">
 <h2>set field value</h2>
 <pre>_set_fields() : void</pre>
@@ -146,33 +162,23 @@ fuction will validate the inserted data format</span><pre>valid_date()</pre></a>
 <code>string</code>message for required fields</div>
 </div></div>
 </div>
-<a name="add" id="add"></a><div class="element clickable method public add" data-toggle="collapse" data-target=".add .collapse">
-<h2>add new user view</h2>
-<pre>add() : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>this function will load the addUser view for adding user data and than load the addUser function to store the data in to the database</p></p>
-<table class="table table-bordered"><tr>
-<th>author</th>
-<td><a href="">Ashuqullah Alizai</a></td>
-</tr></table>
-</div></div>
-</div>
-<a name="addUser" id="addUser"></a><div class="element clickable method public addUser" data-toggle="collapse" data-target=".addUser .collapse">
-<h2>add new user</h2>
-<pre>addUser() : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>this function is to create new user it will get the data for user from the addUser view and send to data base</p></p>
-<table class="table table-bordered"><tr>
-<th>author</th>
-<td><a href="">alizai</a></td>
-</tr></table>
-</div></div>
-</div>
 <a name="delete" id="delete"></a><div class="element clickable method public delete" data-toggle="collapse" data-target=".delete .collapse">
+<h2>delete()
+        </h2>
+<pre>delete($uid) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$uid</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="delete_user" id="delete_user"></a><div class="element clickable method public delete_user" data-toggle="collapse" data-target=".delete_user .collapse">
 <h2>delete user</h2>
-<pre>delete(\int_type $id) : void</pre>
+<pre>delete_user() : void</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <p class="long_description"><p>this function delete the user with _$id_from user table</p></p>
@@ -180,10 +186,6 @@ fuction will validate the inserted data format</span><pre>valid_date()</pre></a>
 <th>author</th>
 <td><a href="">ashuqullah alizai</a></td>
 </tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$id</h4>
-<code>\int_type</code><p>is user ID</p></div>
 </div></div>
 </div>
 <a name="index" id="index"></a><div class="element clickable method public index" data-toggle="collapse" data-target=".index .collapse">
@@ -246,18 +248,6 @@ fuction will validate the inserted data format</span><pre>valid_date()</pre></a>
 </tr></table>
 </div></div>
 </div>
-<a name="ugrade_user" id="ugrade_user"></a><div class="element clickable method public ugrade_user" data-toggle="collapse" data-target=".ugrade_user .collapse">
-<h2>upgrade user privileges</h2>
-<pre>ugrade_user() : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<p class="long_description"><p>this function is for upgrading user privileges as per admin decision from one level to other</p></p>
-<table class="table table-bordered"><tr>
-<th>author</th>
-<td><a href="">Alizai</a></td>
-</tr></table>
-</div></div>
-</div>
 <a name="update" id="update"></a><div class="element clickable method public update" data-toggle="collapse" data-target=".update .collapse">
 <h2>retrive current data for update</h2>
 <pre>update(\int_type $id) : void</pre>
@@ -301,6 +291,18 @@ fuction will validate the inserted data format</span><pre>valid_date()</pre></a>
 <h4>$uid</h4>
 <code></code>
 </div>
+</div></div>
+</div>
+<a name="upgrade_user" id="upgrade_user"></a><div class="element clickable method public upgrade_user" data-toggle="collapse" data-target=".upgrade_user .collapse">
+<h2>upgrade user privileges</h2>
+<pre>upgrade_user() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>this function is for upgrading user privileges as per admin decision from one level to other</p></p>
+<table class="table table-bordered"><tr>
+<th>author</th>
+<td><a href="">Alizai</a></td>
+</tr></table>
 </div></div>
 </div>
 <a name="valid_date" id="valid_date"></a><div class="element clickable method public valid_date" data-toggle="collapse" data-target=".valid_date .collapse">
@@ -354,11 +356,7 @@ fuction will validate the inserted data format</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a5</a> and<br>
-<<<<<<< HEAD
-            generated on 2012-06-29T18:19:32+02:00.<br></footer></div>
-=======
-            generated on 2012-07-02T12:41:33+02:00.<br></footer></div>
->>>>>>> 488fc57fad52e73e7bc00d865ee43c386e4c6de3
+            generated on 2012-07-10T13:08:38+02:00.<br></footer></div>
 </div>
 </body>
 </html>
