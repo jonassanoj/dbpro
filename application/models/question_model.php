@@ -146,7 +146,32 @@ class Question_model extends CI_Model {
 	$this->db->delete($tables);
 	return $this -> db -> affected_rows();
 	}
-
+	
+	
+	/**
+	 * Helper function for checking user's Qustion
+	 *
+	 * This is a function to check weather a Question related to a user or not.
+	 *
+	 * @param int $qid the answer id (to check is the question related to this user or not)
+	 * @param int $uid the user id, for an question
+	 * @return array|bool if record found return first row otherwise false (0)
+	 *
+	 * @author Abdulaziz Akbary
+	 * @author Hamidullah khanzai
+	 *
+	 */
+	public function is_User_Question($qid, $uid) {
+	
+		$this -> db -> where('questionID', $qid);
+		$this -> db -> where('userID', $uid);
+		$result_set = $this -> db -> get('Question');
+		if($result_set ->num_rows() > 0)
+			return $result_set -> first_row();
+		return false;
+	
+	}
+	
 	/**
 	 * create a filter for the where-clause
 	 *
