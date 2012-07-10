@@ -28,9 +28,9 @@
  }); 		
    	
  
-var doConfirm = function()
+var doConfirm = function($message)
     {
-        if(confirm("Do you really want to delete your answer?"))
+        if(confirm("Do you really want to "+$message))
             return true;
         else
             return false;
@@ -116,6 +116,18 @@ var doConfirm = function()
 			<?php endif;?>
 		<?php endif;?>	
 		
+		<?php if($this->session->userdata('login')):?>
+			<?php if(($this -> session -> userdata('uid') == $question->userID) 
+					|| ($this->session->userdata('user')->userTypeID == 2)
+					|| ($this->session->userdata('user')->userTypeID == 3)):?>
+				<a href="<?=base_url()?>index.php/edit/question_Delete/<?= $question->questionID;?>" 
+					onclick="return doConfirm('delete your Question?')">
+	   			 <img src="<?=base_url()?>/img/icons/trash.png" alt="cant display"
+	    		 height="30px" title="Delete Question" width="30px"/>
+		</a>
+			<?php endif;?>
+		<?php endif;?>	
+		
 		
 		
 	<!-- button for adding answer-->
@@ -183,7 +195,7 @@ if (isset($result))
 					align="middle" width="25" height="25" title="Edit your answer"/> 
 				</a> &nbsp;
 				<a href="<?php echo base_url()."index.php/edit/delete_answer/".$answer->answerID ?>" 
-				onclick="return doConfirm();">
+				onclick="return doConfirm('delete your answer?');">
 					<img src="<?php echo base_url('img/unused/trash.png'); ?>"
 					align="middle" width="25" height="25" title="Delete your answer"/> 
 				</a>
